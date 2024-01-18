@@ -1,0 +1,10 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.title {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+}

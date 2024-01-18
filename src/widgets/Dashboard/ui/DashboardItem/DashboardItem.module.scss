@@ -1,0 +1,10 @@
+.DashboardItem {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  font-size: var(--size-icon);
+}

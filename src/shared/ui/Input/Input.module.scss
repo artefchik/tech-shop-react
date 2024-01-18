@@ -1,0 +1,31 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.label {
+  color: var(--color-text-secondary);
+}
+
+.input {
+  height: 40px;
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: var(--border-radius-s);
+  border: 1px solid var(--border-color);
+  font-size: var(--font-size-m);
+  outline: none;
+  position: relative;
+  transition: all 0.3s ease 0s;
+
+  &:focus,
+  {
+    box-shadow: 0 0 8px var(--box-shadow-color);
+  }
+}
+
+.readonly {
+  opacity: 0.8;
+}

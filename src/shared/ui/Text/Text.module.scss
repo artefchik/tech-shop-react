@@ -1,0 +1,27 @@
+.Text {
+  color: var(--primary-color);
+}
+
+.default {
+  font:var(--font-m)
+}
+
+.medium {
+  font:var(--font-l)
+}
+
+.link {
+  font-size: var(--font-link);
+  letter-spacing: 0.7px;
+}
+
+.big {
+  font:var(--font-xl)
+}
+
+.center {
+  text-align: center;
+}
+.end {
+  text-align: end;
+}

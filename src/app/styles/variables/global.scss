@@ -1,0 +1,40 @@
+:root {
+    --font-family-main: 'Poppins', sans-serif;
+    --font-size-m: 16px;
+    --font-line-m: 22px;
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+    --font-size-l: 22px;
+    --font-line-l: 32px;
+    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+    --font-size-xl: 30px;
+    --font-line-xl: 42px;
+    --font-weight-semiBold:600;
+    --font-weight-Bold:700;
+    --font-xl: var(--font-weight-semiBold)  var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+    --font-weight-medium: 500;
+    --size-icon:20px;
+    --size-icon-l:26px;
+
+    --font-link: var(--font-weight-medium) var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
+
+    --border-radius:40px;
+    --border-radius-s:8px;
+
+
+    --min-width:320px;
+    --header-height:50px;
+    --header-height-min:40px;
+    --container-width:1370px;
+    --tablet-width:991.98px;
+    --mobile-width:767.98px;
+    --mobileSmall-width:479.98px;
+
+    --z-index-modal:10;
+
+
+
+
+
+}

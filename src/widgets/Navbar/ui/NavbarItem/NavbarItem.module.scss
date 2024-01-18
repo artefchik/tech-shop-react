@@ -1,0 +1,9 @@
+.NavbarItem {
+    @media (any-hover: hover) {
+        &:hover {
+        color: var(--secondary-color);
+        }
+      }
+
+}
+

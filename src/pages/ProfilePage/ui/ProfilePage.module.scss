@@ -1,0 +1,22 @@
+.ProfilePage {
+}
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: 40px;
+  @media (max-width: 991.98px) {
+    gap: 30px;
+  }
+}
+
+.dashboard {
+
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-self: start;
+}

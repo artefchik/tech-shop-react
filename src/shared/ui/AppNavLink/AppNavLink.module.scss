@@ -1,0 +1,11 @@
+.AppNavLink {
+  color: var(--primary-color);
+  font: var(--font-link);
+  letter-spacing: 0.2px;
+  transition: all 0.3s ease 0s;
+  position: relative;
+}
+
+.navbarActive {
+  color:var(--secondary-color);
+}
