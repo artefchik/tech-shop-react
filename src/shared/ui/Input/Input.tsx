@@ -9,7 +9,7 @@ interface InputProps extends HTMLInputProps {
     value?: string;
     onChange?: (value: string) => void;
     readonly?: boolean;
-    label?:string
+    label?:string,
 }
 
 export const Input = memo(
@@ -21,7 +21,7 @@ export const Input = memo(
             value = '',
             onChange,
             readonly,
-            placeholder = 'text',
+            placeholder,
             type = 'text',
             ...otherProps
         } = props;
@@ -42,6 +42,7 @@ export const Input = memo(
                     readOnly={readonly}
                     className={cls.input}
                     type={type}
+                    placeholder={placeholder}
                     onChange={onChangeHandler}
                     value={value}
                     {...otherProps}

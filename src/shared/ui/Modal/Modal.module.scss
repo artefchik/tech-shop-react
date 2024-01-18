@@ -22,12 +22,18 @@
 }
 
 .content {
-  padding: 25px;
-  border-radius: 15px;
+  padding: 15px;
+  border-radius: var(--border-radius-s);
   background-color: var(--bg-color);
-  width: 40%;
+  width: 30%;
   transition: transform 0.4s ease 0s;
   transform: scale(0.5);
+  @media (max-width: 1023.98px) {
+    width: 60%;
+  }
+  @media (max-width: 767.98px) {
+    width: 90%;
+  }
 }
 
 .opened {
@@ -39,7 +45,7 @@
 }
 
 .isClosing {
-  .content{
+  .content {
     transform: scale(0);
   }
 }

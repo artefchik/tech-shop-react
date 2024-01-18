@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { loginReducer } from 'features/AuthByUsername';
 import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
@@ -42,13 +42,28 @@ const LoginForm = memo((props: LoginFormProps) => {
         }));
     }, [dispatch, password, username]);
 
+    const onKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            onLoginClick();
+        }
+    }, [onLoginClick]);
+
+    useEffect(() => {
+        window.addEventListener('keydown', onKeyDown);
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+        };
+    }, [onKeyDown]);
+
     return (
         <DynamicModelLoader name="login" reducer={loginReducer}>
             <div className={classNames(cls.LoginForm, {}, [className])}>
                 <Text align={TextAlign.CENTER} title="Authorization" size={TextSize.BIG} className={cls.title} />
-                <Input label="Username" onChange={onChangeUsername} value={username} />
-                <Input label="Password" onChange={onChangePassword} value={password} />
-                <Button onClick={onLoginClick} type="button">submit</Button>
+                <div className={cls.bodyInputs}>
+                    <Input label="Username" onChange={onChangeUsername} value={username} />
+                    <Input label="Password" onChange={onChangePassword} value={password} />
+                </div>
+                <Button className={cls.button} onClick={onLoginClick} type="button">submit</Button>
             </div>
         </DynamicModelLoader>
     );
