@@ -3,7 +3,10 @@ import { classNames, Mods } from '../../lib/classNames/classNames';
 import cls from './Text.module.scss';
 
 export enum TextTheme {
-    PRIMARY = 'primary'
+    PRIMARY = 'primary',
+    HEADER = 'header',
+    TEXT = 'textBlock'
+
 }
 
 export enum TextSize {
@@ -46,8 +49,8 @@ export const Text = memo((props: TextProps) => {
 
     return (
         <div className={classNames(cls.Text, mods, [className])}>
-            {title && <div>{title}</div>}
-            {text && <div>{text}</div>}
+            {title && <div className={cls.title}>{title}</div>}
+            {text && <div className={cls.text}>{text}</div>}
         </div>
     );
 });

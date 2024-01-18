@@ -6,14 +6,14 @@ export enum ArticleBlockType {
 export interface ArticleBlockBase {
   id:string;
   type:ArticleBlockType;
-  title:string
+  title?:string
 }
 
 export interface ArticleTextBlock extends ArticleBlockBase {
-  paragraphs:string[]
+  paragraphs?:string[]
 }
 export interface ArticleImageBlock extends ArticleBlockBase {
-  src:string
+  src?:string
 }
 
 export type ArticleBlock = ArticleImageBlock | ArticleTextBlock

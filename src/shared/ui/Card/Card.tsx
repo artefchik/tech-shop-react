@@ -9,7 +9,7 @@ interface CardProps {
 }
 
 export const Card = (props: CardProps) => {
-    const { className, color = false, children } = props;
+    const { className, color = true, children } = props;
 
     const mods:Mods = {
         [cls.color]: color,

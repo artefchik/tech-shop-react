@@ -1,2 +1,36 @@
 .ArticleDetails {
 }
+
+
+.headerBlock {
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.bodyInfo {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-secondary);
+}
+
+.icon {
+  font-size: var(--font-size-m);
+}
+
+.block {
+    &:not(:last-child) {
+        margin-bottom: 25px;
+      }
+}

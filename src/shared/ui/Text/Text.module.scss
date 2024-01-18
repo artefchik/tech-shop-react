@@ -1,13 +1,32 @@
+
 .Text {
-  color: var(--primary-color);
+  //color: var(--primary-color);
+}
+
+.header {
+  .title {
+    font: var(--font-xl);
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .text {
+    font: var(--font-l)
+  }
+}
+
+.textBlock {
+  color: var(--color-text-block);
 }
 
 .default {
-  font:var(--font-m)
+  font: var(--font-m)
 }
 
 .medium {
-  font:var(--font-l)
+  font: var(--font-l)
 }
 
 .link {
@@ -16,12 +35,13 @@
 }
 
 .big {
-  font:var(--font-xl)
+  font: var(--font-xl)
 }
 
 .center {
   text-align: center;
 }
+
 .end {
   text-align: end;
 }

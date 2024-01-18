@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleDetails } from 'entities/Article';
 import { Text, TextSize } from 'shared/ui/Text/Text';
+import { Container } from 'shared/ui/Container/Container';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -18,7 +19,9 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     return (
         <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-            <ArticleDetails id={id} />
+            <Container>
+                <ArticleDetails id={id} />
+            </Container>
         </div>
     );
 };

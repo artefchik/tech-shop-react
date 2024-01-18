@@ -1,0 +1,15 @@
+.ArticleTextBlockComponent {
+}
+
+.title {
+  font-weight: var(--font-weight-medium);
+  &:not(:last-child) {
+    margin-bottom: 11px;
+  }
+}
+
+.text {
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
