@@ -1,0 +1,13 @@
+.ArticleList {
+
+}
+.big {
+  display: grid;
+  gap: 20px;
+}
+
+.small {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
+  gap: 30px;
+}

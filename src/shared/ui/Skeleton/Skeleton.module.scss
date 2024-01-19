@@ -14,7 +14,7 @@
     height: 100%;
     width: 80%;
     background: linear-gradient(to right, transparent 0%, var(--skeleton-color) 50%, transparent 100%);
-    animation: load 1s cubic-bezier(0.4, 0, 0.2, 0.6) infinite;
+    animation: load 1.2s infinite linear;
   }
 }
 

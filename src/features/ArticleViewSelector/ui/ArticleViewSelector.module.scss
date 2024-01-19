@@ -1,0 +1,8 @@
+.ArticleViewSelector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.selected {
+  color:var(--hover-button-color)
+}
