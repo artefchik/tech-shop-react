@@ -5,7 +5,8 @@ import cls from './Text.module.scss';
 export enum TextTheme {
     PRIMARY = 'primary',
     HEADER = 'header',
-    TEXT = 'textBlock'
+    TEXT = 'textBlock',
+    USER = 'user'
 
 }
 

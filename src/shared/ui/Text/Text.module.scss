@@ -45,3 +45,9 @@
 .end {
   text-align: end;
 }
+
+.user {
+  font: var(--font-link);
+  font-size: 18px;
+  color: var(--color-text-block);
+}

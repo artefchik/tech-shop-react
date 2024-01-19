@@ -20,8 +20,9 @@
       "views": 1022,
       "createdAt": "26.02.2022",
       "userId": "1",
-      "type": [
-        "IT"
+      "types": [
+        "IT",
+        "SCIENCE"
       ],
       "blocks": [
         {

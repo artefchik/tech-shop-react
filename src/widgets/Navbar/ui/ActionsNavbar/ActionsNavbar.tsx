@@ -48,7 +48,10 @@ export const ActionsNavbar = memo((props: ActionsNavbarProps) => {
                 {/* } */}
                 {
                     authData ? (
-                        <AppLink to={RoutePath.profile} className={classNames(cls.ActionsNavbar, {}, [className])}>
+                        <AppLink
+                            to={`${RoutePath.profile}${authData.id}`}
+                            className={classNames(cls.ActionsNavbar, {}, [className])}
+                        >
                             <FaUser className={cls.icon} />
                         </AppLink>
                     ) : (

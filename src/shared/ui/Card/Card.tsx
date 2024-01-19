@@ -1,22 +1,27 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import cls from './Card.module.scss';
 
-interface CardProps {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   children:ReactNode
-  color?:boolean
+  theme?:boolean
 }
 
 export const Card = (props: CardProps) => {
-    const { className, color = true, children } = props;
+    const {
+        className,
+        theme = true,
+        children,
+        ...otherProps
+    } = props;
 
     const mods:Mods = {
-        [cls.color]: color,
+        [cls.color]: theme,
     };
 
     return (
-        <div className={classNames(cls.Card, mods, [className])}>
+        <div {...otherProps} className={classNames(cls.Card, mods, [className])}>
             {children}
         </div>
     );

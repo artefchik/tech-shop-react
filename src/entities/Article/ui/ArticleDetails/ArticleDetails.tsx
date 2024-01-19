@@ -11,12 +11,13 @@ import { IoCalendarSharp } from 'react-icons/io5';
 import { FaEye } from 'react-icons/fa';
 import { Card } from 'shared/ui/Card/Card';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { ArticleTypeBlock } from 'entities/Article/ui/ArticleTypeBlock/ArticleTypeBlock';
 import { ArticleImageBlockComponent } from '../../ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById';
 import cls from './ArticleDetails.module.scss';
-import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
+import { ArticleBlock, ArticleBlockType, ArticleType } from '../../model/types/article';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -29,6 +30,8 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
+
+    const renderType = useCallback((type:ArticleType) => <ArticleTypeBlock type={type} key={type} />, []);
 
     const renderBlock = useCallback((block:ArticleBlock) => {
         switch (block.type) {
@@ -94,6 +97,9 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                         <FaEye className={cls.icon} />
                         {article?.views}
                     </div>
+                </div>
+                <div className={cls.types}>
+                    {article?.types.map(renderType)}
                 </div>
                 {article?.blocks.map(renderBlock)}
             </>

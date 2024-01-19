@@ -52,7 +52,7 @@ export const ProfilePage = (props: ProfilePageProps) => {
             <div className={classNames(cls.ProfilePage, {}, [className])}>
                 <Container className={cls.container}>
                     <Dashboard className={cls.dashboard} />
-                    <Card className={cls.body} color>
+                    <Card className={cls.body}>
                         <ProfileCard
                             readonly={readonly}
                             data={dataForm}
