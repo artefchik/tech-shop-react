@@ -24,13 +24,13 @@ export const ArticleList = memo((props: ArticleListProps) => {
         view = ArticleView.SMALL,
     } = props;
 
-    if (isLoading) {
-        return (
-            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-                {getSkeletons(view)}
-            </div>
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
+    //             {getSkeletons(view)}
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className={classNames(cls.AritcleList, {}, [className, cls[view]])}>
@@ -43,6 +43,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
                     />
                 )) : null
             }
+            {isLoading && getSkeletons(view)}
         </div>
     );
 });

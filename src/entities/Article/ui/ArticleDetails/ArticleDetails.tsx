@@ -99,7 +99,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                     </div>
                 </div>
                 <div className={cls.types}>
-                    {article?.types.map(renderType)}
+                    {article?.type.map(renderType)}
                 </div>
                 {article?.blocks.map(renderBlock)}
             </>

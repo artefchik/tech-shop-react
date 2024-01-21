@@ -3,11 +3,6 @@ import { useDispatch, useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
 import { ReduxStoreWithManager, StateSchemaKey } from 'app/providers/StoreProvider/config/StateSchema';
 
-// export types ReducerList = {
-//     [name in StateSchemaKey]?:Reducer
-// }
-
-// types ReducerListEntry = [StateSchemaKey,Reducer]
 interface DynamicModelLoaderProps {
     name: StateSchemaKey;
     reducer: Reducer;

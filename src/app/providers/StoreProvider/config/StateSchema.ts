@@ -12,6 +12,7 @@ import { ArticleDetailsSchema } from 'entities/Article';
 import { AddNewCommentFormSchema } from 'features/addNewCommentForm';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
+import { ArticleFiltersSchema } from 'features/ArticleFilters';
 
 export interface StateSchema {
     user: UserSchema;
@@ -22,7 +23,8 @@ export interface StateSchema {
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: ArticleDetailsCommentsSchema;
     addNewCommentForm?: AddNewCommentFormSchema;
-    articlesPage?:ArticlesPageSchema
+    articlesPage?:ArticlesPageSchema;
+    articleFilters?:ArticleFiltersSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

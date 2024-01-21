@@ -21,6 +21,7 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 export type ArticleBlock = ArticleImageBlock | ArticleTextBlock
 
 export enum ArticleType {
+  ALL = 'ALL',
   IT = 'IT',
   SCIENCE = 'SCIENCE',
   POLITICS = 'POLITICS'
@@ -39,6 +40,6 @@ export interface Article {
   img: string;
   views: number;
   createdAt: string;
-  types:ArticleType[];
+  type:ArticleType[];
   blocks:ArticleBlock[]
 }

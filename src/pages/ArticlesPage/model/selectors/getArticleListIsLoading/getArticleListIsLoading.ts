@@ -1,3 +1,3 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getArticleListIsLoading = (state:StateSchema) => state.articlesPage?.isLoading;
+export const getArticleListIsLoading = (state:StateSchema) => state.articlesPage?.isLoading || false;

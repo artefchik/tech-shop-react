@@ -64,7 +64,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         </div>
                     </div>
                     <div className={cls.types}>
-                        {article?.types.map(renderType)}
+                        { article?.type.map(renderType)}
                     </div>
                     <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
                     <Button onClick={onOpenArticle}>Подробнее</Button>
@@ -82,7 +82,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 </div>
                 <div className={cls.body}>
                     <div className={cls.types}>
-                        {article.types.map(renderType)}
+                        {article?.type.map(renderType)}
                     </div>
                     <Text title={article.title} size={TextSize.MEDIUM} className={cls.title} />
                     <div className={cls.infoWrapper}>
