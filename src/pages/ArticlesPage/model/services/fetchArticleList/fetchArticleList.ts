@@ -3,7 +3,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Article, ArticleType } from 'entities/Article';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { getArticleFiltersSearch, getArticleFiltersType } from 'features/ArticleFilters';
+import {
+    getArticleFiltersOrder,
+    getArticleFiltersSearch,
+    getArticleFiltersSort,
+    getArticleFiltersType,
+} from 'features/ArticleFilters';
 import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
 import { getArticleListLimit } from '../../selectors/getArticleListLimit/getArticleListLimit';
 import { getArticleListPage } from '../../selectors/getArticleListPage/getArticleListPage';
@@ -15,28 +20,36 @@ interface fetchArticleListProps {
 export const fetchArticleList = createAsyncThunk<Article[], fetchArticleListProps, ThunkConfig<string>>(
     'articlesPage/fetchArticleList',
     async (_, thunkAPI) => {
-        const page = getArticleListPage(thunkAPI.getState());
-        const limit = getArticleListLimit(thunkAPI.getState());
-        const search = getArticleFiltersSearch(thunkAPI.getState());
-        const type = getArticleFiltersType(thunkAPI.getState());
+        const { getState, rejectWithValue } = thunkAPI;
+
+        const page = getArticleListPage(getState());
+        const limit = getArticleListLimit(getState());
+        const search = getArticleFiltersSearch(getState());
+        const type = getArticleFiltersType(getState());
+        const sort = getArticleFiltersSort(getState());
+        const order = getArticleFiltersOrder(getState());
         try {
-            addQueryParams({ search, type });
+            addQueryParams({
+                search, type, sort, order,
+            });
             const response = await axios.get<Article[]>('http://localhost:8000/articles', {
                 params: {
                     _expand: 'user',
                     _page: page,
                     _limit: limit,
+                    _sort: sort,
+                    _order: order,
                     _type: type === ArticleType.ALL ? undefined : type,
                     q: search,
                 },
             });
             if (!response.data) {
-                return thunkAPI.rejectWithValue('error');
+                return rejectWithValue('error');
             }
             return response.data;
         } catch (e) {
             console.log(e);
-            return thunkAPI.rejectWithValue('error');
+            return rejectWithValue('error');
         }
     },
 );

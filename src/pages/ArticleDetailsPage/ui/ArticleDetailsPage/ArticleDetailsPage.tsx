@@ -9,20 +9,24 @@ import { useCallback, useEffect } from 'react';
 import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
 import { useSelector } from 'react-redux';
 import { CommentList } from 'entities/Comment';
+import { Page } from 'shared/ui/Page/Page';
+import {
+    ArticleDetailsHeaderPage,
+} from '../ArticleDetailsHeaderPage/ArticleDetailsHeaderPage';
 import {
     getArticleDetailsCommentsIsLoading,
-} from '../model/selectors/getArticleDetailsCommentsIsLoading/getArticleDetailsCommentsIsLoading';
+} from '../../model/selectors/getArticleDetailsCommentsIsLoading/getArticleDetailsCommentsIsLoading';
 import {
     getArticleDetailsCommentsData,
-} from '../model/selectors/getArticleDetailsCommentsData/getArticleDetailsCommentsData';
+} from '../../model/selectors/getArticleDetailsCommentsData/getArticleDetailsCommentsData';
 import {
     addCommentForArticle,
-} from '../model/services/addNewCommentForArticle/addNewCommentForArticle';
+} from '../../model/services/addNewCommentForArticle/addNewCommentForArticle';
 import {
     fetchCommentsByArticleId,
-} from '../model/services/fetchCommentByArticleId/fetchCommentByArticleId';
+} from '../../model/services/fetchCommentByArticleId/fetchCommentByArticleId';
 import cls from './ArticleDetailsPage.module.scss';
-import { articleDetailsCommentsReducer } from '../model/slice/articleDetailsCommentsSlice';
+import { articleDetailsCommentsReducer } from '../../model/slice/articleDetailsCommentsSlice';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -49,14 +53,15 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     return (
         <DynamicModelLoader name="articleDetailsComments" reducer={articleDetailsCommentsReducer}>
-            <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+            <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
                 <Container className={cls.body}>
+                    <ArticleDetailsHeaderPage />
                     <ArticleDetails id={id} className={cls.article} />
                     <Text size={TextSize.BIG} title="Комментарии" className={cls.commentTitle} />
                     <AddNewCommentForm onSendComment={onSendComment} />
                     <CommentList comments={comments} isLoading={isLoading} />
                 </Container>
-            </div>
+            </Page>
         </DynamicModelLoader>
     );
 };

@@ -18,6 +18,7 @@ import { Container } from 'shared/ui/Container/Container';
 import { Card } from 'shared/ui/Card/Card';
 import { Dashboard } from 'widgets/Dashboard/ui/Dashboard/Dashboard';
 import { getUserAuthData } from 'entities/User';
+import { Page } from 'shared/ui/Page/Page';
 import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
@@ -49,7 +50,7 @@ export const ProfilePage = (props: ProfilePageProps) => {
 
     return (
         <DynamicModelLoader name="profile" reducer={profileReducer}>
-            <div className={classNames(cls.ProfilePage, {}, [className])}>
+            <Page className={classNames(cls.ProfilePage, {}, [className])}>
                 <Container className={cls.container}>
                     <Dashboard className={cls.dashboard} />
                     <Card className={cls.body}>
@@ -62,7 +63,7 @@ export const ProfilePage = (props: ProfilePageProps) => {
                         {canEdit && <ProfileFooter />}
                     </Card>
                 </Container>
-            </div>
+            </Page>
         </DynamicModelLoader>
     );
 };

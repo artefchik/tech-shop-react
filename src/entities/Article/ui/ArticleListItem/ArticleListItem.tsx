@@ -7,8 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { IoCalendarSharp } from 'react-icons/io5';
 import { FaEye } from 'react-icons/fa';
-import { Button } from 'shared/ui/Button/Button';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -47,7 +46,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         className={cls.headerBlock}
                     />
                     <div className={cls.bodyInfo}>
-                        <AppLink to={`${RoutePath.profile}${article.user.id}`} className={cls.info}>
+                        <AppLink
+                            to={`${RoutePath.profile}${article.user.id}`}
+                            className={cls.info}
+                            theme={AppLinkTheme.CLEAR}
+                        >
                             <Avatar
                                 src={article.user.avatar}
                                 alt={article.user.username}
@@ -67,7 +70,9 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         { article?.type.map(renderType)}
                     </div>
                     <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
-                    <Button onClick={onOpenArticle}>Подробнее</Button>
+                    <AppLink to={RoutePath.article_details + article.id} theme={AppLinkTheme.PRIMARY}>
+                        Подробнее
+                    </AppLink>
                 </Card>
             </article>
 
@@ -89,13 +94,17 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         <div className={cls.user}>
                             {article.user.avatar
                 && (
-                    <>
+                    <AppLink
+                        to={`${RoutePath.profile}${article.user.id}`}
+                        className={cls.info}
+                        theme={AppLinkTheme.CLEAR}
+                    >
                         <Avatar
                             src={article.user.avatar}
                             alt={article.user.username}
                         />
                         <Text text={article.user.username} theme={TextTheme.USER} />
-                    </>
+                    </AppLink>
                 )}
                         </div>
                         <Text text={article.createdAt} className={cls.date} theme={TextTheme.TEXT} />

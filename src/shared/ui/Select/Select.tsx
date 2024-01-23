@@ -1,64 +1,68 @@
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { ChangeEvent, memo, useMemo } from 'react';
+import { Listbox } from '@headlessui/react';
+import { Fragment, ReactNode } from 'react';
+import { FaCheck } from 'react-icons/fa6';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { IconType } from 'react-icons';
 import cls from './Select.module.scss';
 
-export interface SelectOption {
-    value: string;
-    content: string;
+interface SelectItem {
+    value:string;
+    content:ReactNode
 }
 
 interface SelectProps {
-    className?: string;
-    label?: string;
-    options?: SelectOption[];
-    value?: string;
-    onChange?: (value: string) => void;
-    readonly?: boolean;
+    className?:string
+    defaultValue?:string;
+    value?:string;
+    onChange?:(value:string)=> void;
+    items:SelectItem[];
+    readonly?:boolean;
+    Icon?:IconType
+
 }
 
-export const Select = memo((props: SelectProps) => {
+export const Select = (props: SelectProps) => {
     const {
         className,
-        label,
-        options,
-        onChange,
+        defaultValue,
         value,
+        onChange,
+        items,
         readonly,
+        Icon,
     } = props;
 
-    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        if (onChange) {
-            onChange(e.target.value);
-        }
-    };
-
-    const optionsList = useMemo(() => options?.map((opt) => (
-        <option
-            className={cls.option}
-            value={opt.value}
-            key={opt.value}
-        >
-            {opt.content}
-        </option>
-    )), [options]);
-
-    const mods: Mods = {};
-
     return (
-        <div className={classNames(cls.Wrapper, mods, [className])}>
-            {label && (
-                <span className={cls.label}>
-                    {`${label}>`}
-                </span>
-            )}
-            <select
-                disabled={readonly}
-                className={cls.select}
-                value={value}
-                onChange={onChangeHandler}
-            >
-                {optionsList}
-            </select>
-        </div>
+
+        <Listbox
+            as="div"
+            value={value}
+            onChange={onChange}
+            className={classNames(cls.Select, {}, [className])}
+        >
+            <Listbox.Button as="button" className={cls.trigger}>
+                {Icon ? (
+                    <span className={cls.bodyText}>
+                        {defaultValue}
+                        <Icon className={cls.icon} />
+                    </span>
+                ) : value || defaultValue }
+            </Listbox.Button>
+            <Listbox.Options as="div" className={cls.options}>
+                {items?.map((item) => (
+
+                    <Listbox.Option key={item.value} value={item.value} as={Fragment}>
+                        {({ active, selected }) => (
+                            <li
+                                className={classNames(cls.item, { [cls.active]: active, [cls.selected]: selected })}
+                            >
+                                {selected && <FaCheck />}
+                                {item.value}
+                            </li>
+                        )}
+                    </Listbox.Option>
+                ))}
+            </Listbox.Options>
+        </Listbox>
     );
-});
+};

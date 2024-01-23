@@ -50,4 +50,11 @@
   font: var(--font-link);
   font-size: 18px;
   color: var(--color-text-block);
+  transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+
 }

@@ -1,5 +1,5 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { FaUser } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
@@ -50,6 +50,7 @@ export const ActionsNavbar = memo((props: ActionsNavbarProps) => {
                     authData ? (
                         <AppLink
                             to={`${RoutePath.profile}${authData.id}`}
+                            theme={AppLinkTheme.CLEAR}
                             className={classNames(cls.ActionsNavbar, {}, [className])}
                         >
                             <FaUser className={cls.icon} />

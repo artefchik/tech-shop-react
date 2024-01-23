@@ -1,3 +1,15 @@
+export { articleFiltersActions } from './model/slice/articleFiltersSlice';
+
+export { ArticleSortField } from './model/types/filters';
+
+export {
+    getArticleFiltersOrder,
+} from './model/selectors/getArticleFiltersOrder/getArticleFiltersOrder';
+
+export {
+    getArticleFiltersSort,
+} from './model/selectors/getArticleFiltersSort/getArticleFiltersSort';
+
 export {
     getArticleFiltersType,
 } from './model/selectors/getArticleFiltersType/getArticleFiltersType';

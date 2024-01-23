@@ -51,12 +51,11 @@
     justify-content: space-between;
   }
 
-  .user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
+.info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 }
 
 .big {

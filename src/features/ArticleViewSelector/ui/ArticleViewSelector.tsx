@@ -1,9 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleView } from 'entities/Article';
 import { PiList } from 'react-icons/pi';
-import { BiBorderAll } from 'react-icons/bi';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { memo, useCallback } from 'react';
+import { BsGrid } from 'react-icons/bs';
 import cls from './ArticleViewSelector.module.scss';
 
 interface ArticleViewSelectorProps {
@@ -15,7 +15,7 @@ interface ArticleViewSelectorProps {
 const viewTypes = [
     {
         view: ArticleView.SMALL,
-        Icon: BiBorderAll,
+        Icon: BsGrid,
     },
     {
         view: ArticleView.BIG,
