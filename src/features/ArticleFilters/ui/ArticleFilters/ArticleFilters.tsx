@@ -10,11 +10,13 @@ import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/Dyn
 import { Select } from 'shared/ui/Select/Select';
 import { ArticleSortOrder } from 'features/ArticleFilters/ui/ArticleSortOrder/ArticleSortOrder';
 import { BsFilterRight } from 'react-icons/bs';
-import { SortOrder } from 'shared/const/types';
+import { Popover } from 'shared/ui/Popover/Popover';
+import { TabItem } from 'shared/ui/Tabs/Tabs';
+import { ArticleType } from 'entities/Article';
+import { getArticleFiltersType } from 'features/ArticleFilters';
 import {
     getArticleFiltersSort,
 } from '../../model/selectors/getArticleFiltersSort/getArticleFiltersSort';
-import { ArticleTypeTabs } from '../../ui/ArticleTypeTabs/ArticleTypeTabs';
 import { getArticleFiltersSearch } from '../../model/selectors/getArticleFiltersSearch/getArticleFiltersSearch';
 import { articleFiltersActions, articleFiltersReducer } from '../../model/slice/articleFiltersSlice';
 import cls from './ArticleFilters.module.scss';
@@ -27,14 +29,15 @@ interface ArticleFiltersProps {
 
 export enum SortItemValueType {
   SORT_FIELD='SortField',
-  SortOrder = 'SortOrder',
+  SORT_ORDER = 'SortOrder',
+  SORT_TYPE = 'SortType'
 }
 interface SortOption {
   value: ArticleSortField;
   content: ReactNode;
 }
 
-interface SortItem {
+interface PopoverItem {
   value:SortItemValueType;
   content:ReactNode
 }
@@ -42,6 +45,7 @@ interface SortItem {
 export const ArticleFilters = memo((props: ArticleFiltersProps) => {
     const { className, fetchData } = props;
     const search = useSelector(getArticleFiltersSearch);
+    const type = useSelector(getArticleFiltersType);
     const sort = useSelector(getArticleFiltersSort);
     const dispatch = useAppDispatch();
 
@@ -64,13 +68,6 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
         [],
     );
 
-    // const sortOptions = useMemo<SortItem[]>(() => [
-    //     {
-    //         value: ,
-    //         content: <ArticleSortOrder onSend={fetchData} />,
-    //     },
-    // ], [fetchData]);
-
     const onChangeSearch = useCallback((value: string) => {
         dispatch(articleFiltersActions.setSearch(value));
         fetchData();
@@ -80,24 +77,64 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
         dispatch(articleFiltersActions.setSort(value as ArticleSortField));
         fetchData();
     }, [dispatch, fetchData]);
+    const onChangeTypes = useCallback((value: string) => {
+        dispatch(articleFiltersActions.setType(value as ArticleType));
+        fetchData();
+    }, [dispatch, fetchData]);
+
+    const sortTypesOptions = useMemo<TabItem[]>(
+        () => [
+            {
+                value: ArticleType.ALL,
+                content: 'Все статьи',
+            },
+            {
+                value: ArticleType.SCIENCE,
+                content: 'Наука',
+            },
+            {
+                value: ArticleType.IT,
+                content: 'IT',
+            },
+            {
+                value: ArticleType.POLITICS,
+                content: 'Политика',
+            },
+        ],
+        [],
+    );
+
+    const popoverItems = useMemo<PopoverItem[]>(() => [
+
+        {
+            value: SortItemValueType.SORT_FIELD,
+            content: <Select
+                value={sort}
+                onChange={onChangeSortField}
+                items={sortFieldOptions}
+                defaultValue="Фильтровать ..."
+            />,
+        },
+        {
+            value: SortItemValueType.SORT_TYPE,
+            content: <Select
+                value={type}
+                onChange={onChangeTypes}
+                items={sortTypesOptions}
+                defaultValue="Категории"
+            />,
+        },
+        {
+            value: SortItemValueType.SORT_FIELD,
+            content: <ArticleSortOrder onSend={fetchData} />,
+        },
+    ], [fetchData, onChangeSortField, onChangeTypes, sort, sortFieldOptions, sortTypesOptions, type]);
+
     return (
         <DynamicModelLoader name="articleFilters" reducer={articleFiltersReducer}>
             <Card className={classNames(cls.ArticleFilters, {}, [className])}>
                 <Input value={search} onChange={onChangeSearch} placeholder="Поиск" />
-                <ArticleTypeTabs fetchData={fetchData} />
-                <Select
-                    value={sort}
-                    onChange={onChangeSortField}
-                    items={sortFieldOptions}
-                    defaultValue="сортировать по"
-                />
-
-                {/* <Select */}
-                {/*    items={sortOptions} */}
-                {/*    defaultValue="Фильтры" */}
-                {/*    Icon={BsFilterRight} */}
-                {/* /> */}
-
+                <Popover items={popoverItems} title="Фильтры" Icon={BsFilterRight} />
             </Card>
         </DynamicModelLoader>
     );

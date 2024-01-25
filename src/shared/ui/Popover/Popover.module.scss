@@ -1,0 +1,66 @@
+
+.Popover {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  background-color: var(--color-trigger);
+  padding: 0 15px;
+  border-radius: var(--border-radius-s);
+  border: 1px solid var(--color-border-select);
+  transition: all 0.3s ease 0s;
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--color-active-trigger);
+    }
+  }
+
+}
+
+.bodyText {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  font-size: var(--font-size-l);
+}
+
+.body {
+  position: absolute;
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-options);
+  z-index: 4;
+  min-width: 250px;
+  max-width: 250px;
+  box-shadow: 0 5 10px var(--box-shadow-color-select);
+  border: 1px solid var(--color-border-select);
+  left: 0;
+  top: 120%;
+  overflow: hidden;
+  min-height: 310px;
+  max-height: 310px;
+  padding: 10px;
+
+}
+
+.item {
+  list-style-type: none;
+  width: 100%;
+  transition: all 0.3s ease 0s;
+  @media (any-hover: hover) {
+      &:hover {
+      }
+    }
+
+}
+
+.active {
+
+}
+

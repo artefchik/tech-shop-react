@@ -1,0 +1,13 @@
+.CommentForm {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  @media (max-width: 479.98px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.input {
+  flex: 1 1 auto;
+}

@@ -1,9 +1,11 @@
 import { Listbox } from '@headlessui/react';
-import { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode, useMemo } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { IconType } from 'react-icons';
 import cls from './Select.module.scss';
+
+type SelectDirectionOpen = 'bottom'|'top'
 
 interface SelectItem {
     value:string;
@@ -17,9 +19,14 @@ interface SelectProps {
     onChange?:(value:string)=> void;
     items:SelectItem[];
     readonly?:boolean;
-    Icon?:IconType
+    Icon?:IconType;
+    open?:SelectDirectionOpen
 
 }
+const SelectDirectionOpenClasses : Record<SelectDirectionOpen, string> = {
+    top: cls.topOpen,
+    bottom: cls.bottomOpen,
+};
 
 export const Select = (props: SelectProps) => {
     const {
@@ -30,7 +37,14 @@ export const Select = (props: SelectProps) => {
         items,
         readonly,
         Icon,
+        open = 'bottom',
     } = props;
+
+    const classes = useMemo(() => [
+        className,
+        SelectDirectionOpenClasses[open],
+
+    ], [className, open]);
 
     return (
 
@@ -46,9 +60,14 @@ export const Select = (props: SelectProps) => {
                         {defaultValue}
                         <Icon className={cls.icon} />
                     </span>
-                ) : value || defaultValue }
+                ) : defaultValue || value }
             </Listbox.Button>
-            <Listbox.Options as="div" className={cls.options}>
+            <Listbox.Options
+                as="div"
+                className={
+                    classNames(cls.options, {}, classes)
+                }
+            >
                 {items?.map((item) => (
 
                     <Listbox.Option key={item.value} value={item.value} as={Fragment}>
@@ -57,7 +76,7 @@ export const Select = (props: SelectProps) => {
                                 className={classNames(cls.item, { [cls.active]: active, [cls.selected]: selected })}
                             >
                                 {selected && <FaCheck />}
-                                {item.value}
+                                {item.content}
                             </li>
                         )}
                     </Listbox.Option>

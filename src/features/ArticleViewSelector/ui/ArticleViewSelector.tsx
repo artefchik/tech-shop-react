@@ -4,6 +4,7 @@ import { PiList } from 'react-icons/pi';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { memo, useCallback } from 'react';
 import { BsGrid } from 'react-icons/bs';
+import { HStack } from 'shared/ui/Stack';
 import cls from './ArticleViewSelector.module.scss';
 
 interface ArticleViewSelectorProps {
@@ -31,17 +32,17 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
     }, [onViewClick]);
 
     return (
-        <div className={classNames(cls.ArticleViewSelector, {}, [className])}>
+        <HStack align="center" className={classNames(cls.ArticleViewSelector, {}, [className])}>
             {viewTypes.map((viewType) => (
                 <Button
                     key={viewType.view}
                     theme={ThemeButton.CLEAR}
                     onClick={onClick(viewType.view)}
-                    className={classNames(cls.icon, { [cls.selected]: viewType.view === view }, [className])}
+                    className={classNames(cls.button, { [cls.selected]: viewType.view === view }, [className])}
                 >
-                    <viewType.Icon />
+                    <viewType.Icon className={cls.icon} />
                 </Button>
             ))}
-        </div>
+        </HStack>
     );
 });

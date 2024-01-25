@@ -1,5 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CommentItem } from 'entities/Comment/ui/CommentItem/CommentItem';
+import { memo } from 'react';
 import cls from './CommentList.module.scss';
 import { CommentType } from '../../model/types/comment';
 
@@ -9,8 +10,12 @@ interface CommentListProps {
     isLoading?:boolean
 }
 
-export const CommentList = (props: CommentListProps) => {
-    const { className, comments, isLoading } = props;
+export const CommentList = memo((props: CommentListProps) => {
+    const {
+        className,
+        comments,
+        isLoading,
+    } = props;
     return (
         <div className={classNames(cls.CommentList, {}, [className])}>
             {comments?.map((comment) => (
@@ -18,4 +23,4 @@ export const CommentList = (props: CommentListProps) => {
             ))}
         </div>
     );
-};
+});

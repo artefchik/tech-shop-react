@@ -4,10 +4,10 @@ import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Card } from 'shared/ui/Card/Card';
 import { getArticleDetailsData } from 'entities/Article';
-import cls from './ArticleDetailsHeaderPage.module.scss';
 import {
     getCanEditArticleDetails,
-} from '../../model/selectors/getCanEditArticleDetails/getCanEditArticleDetails';
+} from 'features/ArticleDetailsComment/model/selectors/getCanEditArticleDetails/getCanEditArticleDetails';
+import cls from './ArticleDetailsHeaderPage.module.scss';
 
 interface ArticleDetailsHeaderPageProps {
     className?: string;

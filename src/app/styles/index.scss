@@ -20,14 +20,15 @@
 
 
 *::-webkit-scrollbar {
-    width: 10px;               /* ширина всей полосы прокрутки */
+    width: 5px;
+    height: 5px;
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--bg-color);        /* цвет зоны отслеживания */
+    //background: var(--bg-color);        /* цвет зоны отслеживания */
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #fff;    /* цвет бегунка */
+    background-color: var(--bg-color-block);    /* цвет бегунка */
     border-radius: 20px;       /* округлось бегунка */
 }

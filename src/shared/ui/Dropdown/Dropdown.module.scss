@@ -1,0 +1,59 @@
+.Dropdown {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  background-color: var(--color-trigger);
+  padding: 0 15px;
+  border-radius: var(--border-radius-s);
+  border: 1px solid var(--color-border-select);
+  transition: all 0.3s ease 0s;
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--secelt-active);
+    }
+  }
+
+}
+
+.bodyText {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  font-size: var(--font-size-l);
+}
+
+.items {
+  position: absolute;
+  z-index: 100;
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-options);
+
+  min-width: 200px;
+  max-width: 200px;
+  box-shadow: 0 5 10px var(--box-shadow-color-select);
+  border: 1px solid var(--color-border-select);
+  left: 0;
+  top: 120%;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.item {
+  list-style-type: none;
+  width: 100%;
+  transition: all 0.3s ease 0s;
+  padding: 10px;
+}
+
+.active {
+  background-color: var(--secelt-active);
+}
+

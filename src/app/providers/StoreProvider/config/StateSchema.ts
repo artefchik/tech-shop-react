@@ -4,16 +4,14 @@ import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
-import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 import { To } from 'history';
 import { NavigateOptions } from 'react-router';
 import { ArticleDetailsSchema } from 'entities/Article';
-import { AddNewCommentFormSchema } from 'features/addNewCommentForm';
-import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { ArticleFiltersSchema } from 'features/ArticleFilters';
-import { SiteSearchSchema } from 'features/SiteSearch';
+import { ProfileSchema } from 'features/EditableProfilleCard';
+import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 
 export interface StateSchema {
     user: UserSchema;
@@ -23,11 +21,9 @@ export interface StateSchema {
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: ArticleDetailsCommentsSchema;
-    addNewCommentForm?: AddNewCommentFormSchema;
     articlesPage?:ArticlesPageSchema;
     articleFilters?:ArticleFiltersSchema;
 
-    siteSearch?:SiteSearchSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

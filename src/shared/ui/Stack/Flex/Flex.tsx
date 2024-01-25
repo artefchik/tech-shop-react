@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import {
     DetailedHTMLProps, HTMLAttributes, ReactNode, useMemo,
 } from 'react';
@@ -17,7 +17,8 @@ export interface FlexProps extends DivProps {
   justify?: FlexJustify;
   align?: FlexAlign;
   direction?:FlexDirection;
-  gap?:FlexGap
+  gap?:FlexGap;
+  width?:boolean
 }
 
 const justifyClasses: Record<FlexJustify, string> = {
@@ -52,9 +53,10 @@ export const Flex = (props: FlexProps) => {
         children,
         className,
         justify = 'start',
-        align = 'start',
+        align = 'stretch',
         direction = 'row',
         gap,
+        width = false,
     } = props;
 
     const classes = useMemo(() => [
@@ -66,8 +68,12 @@ export const Flex = (props: FlexProps) => {
 
     ], [align, className, direction, gap, justify]);
 
+    const mods:Mods = {
+        [cls.width]: width,
+    };
+
     return (
-        <div className={classNames(cls.Flex, {}, classes)}>
+        <div className={classNames(cls.Flex, mods, classes)}>
             {children}
         </div>
     );

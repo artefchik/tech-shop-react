@@ -4,6 +4,7 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { memo } from 'react';
 import cls from './CommentItem.module.scss';
 import { CommentType } from '../../model/types/comment';
 
@@ -14,8 +15,12 @@ interface CommentItemProps {
 
 }
 
-export const CommentItem = (props: CommentItemProps) => {
-    const { className, comment, isLoading } = props;
+export const CommentItem = memo((props: CommentItemProps) => {
+    const {
+        className,
+        comment,
+        isLoading,
+    } = props;
 
     if (!comment) {
         return null;
@@ -29,4 +34,4 @@ export const CommentItem = (props: CommentItemProps) => {
             <Text text={comment.text} theme={TextTheme.TEXT} />
         </Card>
     );
-};
+});

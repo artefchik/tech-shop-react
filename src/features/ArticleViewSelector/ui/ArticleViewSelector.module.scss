@@ -1,12 +1,27 @@
 .ArticleViewSelector {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
+  min-height: 40px;
+  background-color: var(--accent-bg-color);
 }
-.selected {
-  color:var(--hover-button-color)
+
+.button {
+  border-radius: var(--border-radius-s);
+  padding: 9px;
+  transition: all 0.3s ease 0s;
 }
 
 .icon {
-  font-size: var(--font-size-xl)
+  font-size: var(--font-size-l);
+  color: var(--color-view-icon);
+  transition: all 0.3s ease 0s;
+}
+
+.selected {
+  background-color: var(--color-view-btn);
+
+  .icon {
+    color: var(--primary-color);
+  }
 }
