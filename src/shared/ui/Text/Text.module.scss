@@ -1,6 +1,42 @@
-
-.Text {
+.primary {
   color: var(--primary-color);
+  .title {
+    font: var(--font-l);
+    //font-weight: var(--font-weight-medium);
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .text {
+    font: var(--font-s);
+    color: var(--color-text-secondary);
+  }
+}
+
+.error {
+  .title {
+    color: var(--color-error);
+    font: var(--font-m);
+  }
+}
+
+.small {
+  color: var(--primary-color);
+
+  .title {
+    font: var(--font-m);
+    font-weight: var(--font-weight-medium);
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .text {
+    font: var(--font-s);
+    color: var(--color-text-secondary);
+  }
 }
 
 .header {
@@ -51,10 +87,10 @@
   font-size: 18px;
   color: var(--color-text-block);
   transition: all 0.3s ease 0s;
-    @media (any-hover: hover) {
-        &:hover {
-          color: var(--primary-color);
-        }
-      }
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
 
 }

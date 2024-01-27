@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: minmax(180px, 240px) 1fr;
   gap: 40px;
+  align-items: start;
   @media (max-width: 991.98px) {
     gap: 30px;
   }

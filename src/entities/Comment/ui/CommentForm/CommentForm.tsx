@@ -1,10 +1,12 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
 import { Button } from 'shared/ui/Button/Button';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { Card } from 'shared/ui/Card/Card';
 import { FormEvent, memo, useCallback } from 'react';
 import { User } from 'entities/User';
+import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
+import { LoginModal } from 'features/AuthByUsername';
 import cls from './CommentForm.module.scss';
 
 interface CommentFormProps {
@@ -23,6 +25,7 @@ export const CommentForm = memo((props: CommentFormProps) => {
         text,
         authData,
     } = props;
+    const { isOpenModal, onCloseModal, onShowModal } = useToggleModal();
 
     const onSendCommentHandler = useCallback((event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -46,10 +49,13 @@ export const CommentForm = memo((props: CommentFormProps) => {
                 ) : (
                     <>
                         <Text
+                            theme={TextTheme.TEXT}
+                            size={TextSize.DEFAULT}
                             title="Оставлять комментарии могут только зарегистрированные пользователи..."
                             className={cls.input}
                         />
-                        <Button>Войти</Button>
+                        <Button onClick={onShowModal}>Войти</Button>
+                        {isOpenModal && <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />}
                     </>
                 )}
             </form>

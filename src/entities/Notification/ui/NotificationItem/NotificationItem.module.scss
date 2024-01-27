@@ -1,0 +1,10 @@
+.NotificationItem {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: var(--size-icon);
+}

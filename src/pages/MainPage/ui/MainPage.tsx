@@ -1,21 +1,13 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Select } from 'shared/ui/Select/Select';
-import { useCallback } from 'react';
-import { Page } from 'shared/ui/Page/Page';
-import { Container } from 'shared/ui/Container/Container';
-import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
-import { BsFilterRight } from 'react-icons/bs';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { Article } from 'entities/Article';
+import { Loader } from 'shared/ui/Loader/Loader';
 import cls from './MainPage.module.scss';
 
 interface MainPageProps {
     className?: string;
 }
-
-const links = [
-    { value: '/support', content: 'Support' },
-    { value: '/license', content: 'License' },
-    { value: '/sign-out', content: 'Sign out' },
-];
 
 const MainPage = (props: MainPageProps) => {
     const { className } = props;

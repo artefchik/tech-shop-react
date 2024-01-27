@@ -1,17 +1,20 @@
 import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { Loader } from 'shared/ui/Loader/Loader';
 import { classNames } from '../../lib/classNames/classNames';
 import cls from './Button.module.scss';
 
 export enum ThemeButton {
     PRIMARY = 'primary',
     CLEAR = 'clear',
-    OUTLINE = 'outline'
+    OUTLINE = 'outline',
+    LOADED = 'loaded'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     theme?: ThemeButton;
     children?: ReactNode;
+    isLoading?:boolean
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -19,16 +22,18 @@ export const Button = memo((props: ButtonProps) => {
         className,
         children,
         theme = ThemeButton.PRIMARY,
+        isLoading = false,
         ...otherProps
     } = props;
 
     return (
         <button
             type="button"
+            disabled={isLoading}
             className={classNames(cls.Button, { [cls[theme]]: true }, [className])}
             {...otherProps}
         >
-            {children}
+            {isLoading ? <Loader /> : children }
         </button>
     );
 });

@@ -6,8 +6,9 @@ export enum TextTheme {
     PRIMARY = 'primary',
     HEADER = 'header',
     TEXT = 'textBlock',
-    USER = 'user'
-
+    USER = 'user',
+    SMALL = 'small',
+    ERROR ='error'
 }
 
 export enum TextSize {

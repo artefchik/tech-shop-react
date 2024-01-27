@@ -7,16 +7,14 @@ import {
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
-import { Select } from 'shared/ui/Select/Select';
+import { Select } from 'shared/ui/DropdownsList/ui/Select/Select';
 import { ArticleSortOrder } from 'features/ArticleFilters/ui/ArticleSortOrder/ArticleSortOrder';
 import { BsFilterRight } from 'react-icons/bs';
-import { Popover } from 'shared/ui/Popover/Popover';
+import { Popover } from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import { TabItem } from 'shared/ui/Tabs/Tabs';
 import { ArticleType } from 'entities/Article';
 import { getArticleFiltersType } from 'features/ArticleFilters';
-import {
-    getArticleFiltersSort,
-} from '../../model/selectors/getArticleFiltersSort/getArticleFiltersSort';
+import { getArticleFiltersSort } from '../../model/selectors/getArticleFiltersSort/getArticleFiltersSort';
 import { getArticleFiltersSearch } from '../../model/selectors/getArticleFiltersSearch/getArticleFiltersSearch';
 import { articleFiltersActions, articleFiltersReducer } from '../../model/slice/articleFiltersSlice';
 import cls from './ArticleFilters.module.scss';
@@ -104,37 +102,26 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
         [],
     );
 
-    const popoverItems = useMemo<PopoverItem[]>(() => [
-
-        {
-            value: SortItemValueType.SORT_FIELD,
-            content: <Select
-                value={sort}
-                onChange={onChangeSortField}
-                items={sortFieldOptions}
-                defaultValue="Фильтровать ..."
-            />,
-        },
-        {
-            value: SortItemValueType.SORT_TYPE,
-            content: <Select
-                value={type}
-                onChange={onChangeTypes}
-                items={sortTypesOptions}
-                defaultValue="Категории"
-            />,
-        },
-        {
-            value: SortItemValueType.SORT_FIELD,
-            content: <ArticleSortOrder onSend={fetchData} />,
-        },
-    ], [fetchData, onChangeSortField, onChangeTypes, sort, sortFieldOptions, sortTypesOptions, type]);
-
     return (
         <DynamicModelLoader name="articleFilters" reducer={articleFiltersReducer}>
             <Card className={classNames(cls.ArticleFilters, {}, [className])}>
                 <Input value={search} onChange={onChangeSearch} placeholder="Поиск" />
-                <Popover items={popoverItems} title="Фильтры" Icon={BsFilterRight} />
+                <Popover title="Фильтры" icon={BsFilterRight}>
+                    <Select
+                        value={sort}
+                        onChange={onChangeSortField}
+                        items={sortFieldOptions}
+                        defaultValue="Фильтровать ..."
+                    />
+                    <Select
+                        value={type}
+                        onChange={onChangeTypes}
+                        items={sortTypesOptions}
+                        defaultValue="Категории"
+                    />
+                    <ArticleSortOrder onSend={fetchData} />
+                </Popover>
+
             </Card>
         </DynamicModelLoader>
     );

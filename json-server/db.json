@@ -1,4 +1,38 @@
 {
+  "notifications": [
+    {
+      "id": "1",
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "Уведомление 2",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "http://localhost:3000/"
+    },
+    {
+      "id": "3",
+      "title": "Уведомление 3",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "http://localhost:3000/"
+    },
+    {
+      "id": "4",
+      "title": "Уведомление 4",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
+    },
+    {
+      "id": "5",
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "2"
+    }
+  ],
   "posts": [
     {
       "id": "1",
@@ -625,6 +659,18 @@
       "userId": "1",
       "text": "dd",
       "id": "-jAy0dn"
+    },
+    {
+      "articleId": "4",
+      "userId": "1",
+      "text": "msss\\",
+      "id": "v_mDo_h"
+    },
+    {
+      "articleId": "4",
+      "userId": "1",
+      "text": "xkxkkx",
+      "id": "l-1h6FE"
     }
   ],
   "users": [

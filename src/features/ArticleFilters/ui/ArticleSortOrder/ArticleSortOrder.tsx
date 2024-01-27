@@ -1,4 +1,4 @@
-import { Select } from 'shared/ui/Select/Select';
+import { Select } from 'shared/ui/DropdownsList/ui/Select/Select';
 import { ReactNode, useCallback, useMemo } from 'react';
 import { SortOrder } from 'shared/const/types';
 import { useSelector } from 'react-redux';

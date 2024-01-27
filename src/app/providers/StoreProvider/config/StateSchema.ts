@@ -12,10 +12,11 @@ import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { ArticleFiltersSchema } from 'features/ArticleFilters';
 import { ProfileSchema } from 'features/EditableProfilleCard';
 import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
     user: UserSchema;
-
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     // Асинхронные редюсеры
     login?: LoginSchema;
     profile?: ProfileSchema;

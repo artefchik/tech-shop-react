@@ -3,9 +3,11 @@ import { Fragment, ReactNode, useMemo } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { IconType } from 'react-icons';
+import { DropdownsListDirectionOpenClasses } from '../../styles/const';
 import cls from './Select.module.scss';
+import clsDrop from '../../styles/DropdownsList.module.scss';
 
-type SelectDirectionOpen = 'bottom'|'top'
+type SelectDirectionOpen = 'bottom'|'top'| 'topLeft' | 'bottomLeft'
 
 interface SelectItem {
     value:string;
@@ -23,10 +25,6 @@ interface SelectProps {
     open?:SelectDirectionOpen
 
 }
-const SelectDirectionOpenClasses : Record<SelectDirectionOpen, string> = {
-    top: cls.topOpen,
-    bottom: cls.bottomOpen,
-};
 
 export const Select = (props: SelectProps) => {
     const {
@@ -42,8 +40,7 @@ export const Select = (props: SelectProps) => {
 
     const classes = useMemo(() => [
         className,
-        SelectDirectionOpenClasses[open],
-
+        DropdownsListDirectionOpenClasses[open],
     ], [className, open]);
 
     return (
@@ -52,13 +49,20 @@ export const Select = (props: SelectProps) => {
             as="div"
             value={value}
             onChange={onChange}
-            className={classNames(cls.Select, {}, [className])}
+            className={classNames(clsDrop.DropdownsList, {}, [className])}
         >
-            <Listbox.Button as="button" className={cls.trigger}>
+            <Listbox.Button
+                as="button"
+                className={classNames(
+                    clsDrop.trigger,
+                    {},
+                    [className, cls.selectTrigger],
+                )}
+            >
                 {Icon ? (
-                    <span className={cls.bodyText}>
+                    <span className={clsDrop.bodyText}>
                         {defaultValue}
-                        <Icon className={cls.icon} />
+                        <Icon className={clsDrop.icon} />
                     </span>
                 ) : defaultValue || value }
             </Listbox.Button>
