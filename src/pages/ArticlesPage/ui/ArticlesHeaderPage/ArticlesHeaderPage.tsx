@@ -6,6 +6,8 @@ import { ArticleView } from 'entities/Article';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
+import { ArticleSearch } from 'features/ArticleFilters/ui/ArticleSearch/ArticleSearch';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { fetchArticleList } from '../../model/services/fetchArticleList/fetchArticleList';
 import { articlesPageActions } from '../../model/slice/articlesPageSlice';
 import { getArticleListView } from '../../model/selectors/getArticleListView/getArticleListView';
@@ -32,9 +34,12 @@ export const ArticlesHeaderPage = (props: ArticlesHeaderPageProps) => {
     const debounceFetchData = useDebounce(fetchData, 600);
 
     return (
-        <HStack gap="15" align="start" className={className} justify="between">
-            <ArticleFilters fetchData={debounceFetchData} className={cls.filter} />
-            <ArticleViewSelector view={view} onViewClick={onChangeView} />
+        <HStack align="center" gap="30" className={classNames(cls.ArticlesHeaderPage, {}, [className])}>
+            <ArticleSearch onSend={fetchData} />
+            <HStack gap="15" align="center" justify="end">
+                <ArticleFilters fetchData={debounceFetchData} />
+                <ArticleViewSelector view={view} onViewClick={onChangeView} />
+            </HStack>
         </HStack>
     );
 };

@@ -11,8 +11,6 @@ interface ActionsNavbarItemProps {
 export const ActionsNavbarItem = (props: ActionsNavbarItemProps) => {
     const { className, item } = props;
     return (
-        <AppLink to={item.path} className={classNames(cls.ActionsNavbar, {}, [className])}>
-            <item.Icon className={cls.icon} />
-        </AppLink>
+        <AppLink to={item.path} className={classNames(cls.ActionsNavbar, {}, [className])} />
     );
 };

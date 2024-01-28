@@ -4,8 +4,9 @@ import cls from './Card.module.scss';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
-  children:ReactNode
-  theme?:boolean
+  children: ReactNode;
+  theme?: boolean;
+  fullWidth?: boolean;
 }
 
 export const Card = (props: CardProps) => {
@@ -13,11 +14,13 @@ export const Card = (props: CardProps) => {
         className,
         theme = true,
         children,
+        fullWidth = false,
         ...otherProps
     } = props;
 
-    const mods:Mods = {
+    const mods: Mods = {
         [cls.color]: theme,
+        [cls.fullWidth]: fullWidth,
     };
 
     return (

@@ -1,11 +1,11 @@
-import { IoIosNotifications } from 'react-icons/io';
 import { NotificationList } from 'entities/Notification/ui/NotificationList/NotificationList';
-import { Popover } from 'shared/ui/DropdownsList/ui/Popover/Popover';
+import { Popover, TriggerTheme } from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { memo, useCallback, useState } from 'react';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
+import bell from 'shared/assets/icons/bell.svg';
 
 interface NotificationButtonProps {
   className?: string;
@@ -23,13 +23,19 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
     }, []);
 
     const trigger = (
-        <Button theme={ThemeButton.CLEAR} onClick={onOpenDrawer}><Icon icon={IoIosNotifications} /></Button>
+        <Button theme={ThemeButton.CLEAR} onClick={onOpenDrawer}><Icon Svg={bell} /></Button>
     );
 
     return (
         <>
             <BrowserView>
-                <Popover triggerClear open="bottomLeft" icon={IoIosNotifications}><NotificationList /></Popover>
+                <Popover
+                    triggerTheme={TriggerTheme.CLEAR}
+                    openView="bottomLeft"
+                    icon={bell}
+                >
+                    <NotificationList />
+                </Popover>
             </BrowserView>
             <MobileView>
                 {trigger}

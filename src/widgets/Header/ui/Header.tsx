@@ -2,9 +2,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Container } from 'shared/ui/Container/Container';
 import { Navbar } from 'widgets/Navbar';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import Logo from 'shared/assets/icons/logo.svg';
 import { ActionsNavbar } from 'widgets/Navbar/ui/ActionsNavbar/ActionsNavbar';
+import { RoutePath } from 'shared/const/router';
 import cls from './Header.module.scss';
 
 interface HeaderProps {

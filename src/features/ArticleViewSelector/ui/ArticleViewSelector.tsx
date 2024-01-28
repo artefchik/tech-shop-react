@@ -1,9 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleView } from 'entities/Article';
-import { PiList } from 'react-icons/pi';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { memo, useCallback } from 'react';
-import { BsGrid } from 'react-icons/bs';
+import grid from 'shared/assets/icons/grid.svg';
+import list from 'shared/assets/icons/listBullet.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { HStack } from 'shared/ui/Stack';
 import cls from './ArticleViewSelector.module.scss';
 
@@ -16,11 +17,11 @@ interface ArticleViewSelectorProps {
 const viewTypes = [
     {
         view: ArticleView.SMALL,
-        Icon: BsGrid,
+        Icon: grid,
     },
     {
         view: ArticleView.BIG,
-        Icon: PiList,
+        Icon: list,
     },
 ];
 
@@ -40,7 +41,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                     onClick={onClick(viewType.view)}
                     className={classNames(cls.button, { [cls.selected]: viewType.view === view }, [className])}
                 >
-                    <viewType.Icon className={cls.icon} />
+                    <Icon className={cls.icon} Svg={viewType.Icon} />
                 </Button>
             ))}
         </HStack>

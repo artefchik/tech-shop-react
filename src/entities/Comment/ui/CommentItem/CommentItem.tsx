@@ -1,10 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { memo } from 'react';
+import { RoutePath } from 'shared/const/router';
 import cls from './CommentItem.module.scss';
 import { CommentType } from '../../model/types/comment';
 

@@ -1,8 +1,8 @@
 import { Listbox } from '@headlessui/react';
-import { Fragment, ReactNode, useMemo } from 'react';
-import { FaCheck } from 'react-icons/fa6';
+import React, { Fragment, ReactNode, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { IconType } from 'react-icons';
+import { Icon } from 'shared/ui/Icon/Icon';
+import check from 'shared/assets/icons/check.svg';
 import { DropdownsListDirectionOpenClasses } from '../../styles/const';
 import cls from './Select.module.scss';
 import clsDrop from '../../styles/DropdownsList.module.scss';
@@ -21,7 +21,7 @@ interface SelectProps {
     onChange?:(value:string)=> void;
     items:SelectItem[];
     readonly?:boolean;
-    Icon?:IconType;
+    icon?: React.VFC<React.SVGProps<SVGSVGElement>>;
     open?:SelectDirectionOpen
 
 }
@@ -34,7 +34,7 @@ export const Select = (props: SelectProps) => {
         onChange,
         items,
         readonly,
-        Icon,
+        icon,
         open = 'bottom',
     } = props;
 
@@ -59,12 +59,9 @@ export const Select = (props: SelectProps) => {
                     [className, cls.selectTrigger],
                 )}
             >
-                {Icon ? (
-                    <span className={clsDrop.bodyText}>
-                        {defaultValue}
-                        <Icon className={clsDrop.icon} />
-                    </span>
-                ) : defaultValue || value }
+                <span className={clsDrop.bodyText}>
+                    {defaultValue || value}
+                </span>
             </Listbox.Button>
             <Listbox.Options
                 as="div"
@@ -79,7 +76,7 @@ export const Select = (props: SelectProps) => {
                             <li
                                 className={classNames(cls.item, { [cls.active]: active, [cls.selected]: selected })}
                             >
-                                {selected && <FaCheck />}
+                                {selected && <Icon hover={false} Svg={check} className={cls.icon} />}
                                 {item.content}
                             </li>
                         )}

@@ -17,7 +17,6 @@ export const DashboardItem = (props: DashboardItemProps) => {
             theme={AppNavLinkTheme.ACTIVE}
             className={classNames(cls.DashboardItem, {}, [className])}
         >
-            <item.Icon className={cls.icon} />
             <Text title={item.text} size={TextSize.LINK} />
         </AppNavLink>
     );

@@ -1,6 +1,12 @@
 .Button {
   cursor: pointer;
   color: var(--primary-color);
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border-radius: var(--border-radius-s);
 }
 
 .clear {
@@ -8,9 +14,9 @@
   border: none;
   background: none;
   outline: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  //display: inline-flex;
+  //align-items: center;
+  //justify-content: center;
 }
 
 .primary {
@@ -34,9 +40,23 @@
 .outline {
   border: 1px solid var(--secondary-color);
   background-color: transparent;
+  transition: all 0.3s ease 0s;
   @media (any-hover: hover) {
     &:hover {
       background-color: var(--hover-button-color);
+    }
+  }
+}
+
+.outline_red {
+  border: 1px solid var(--color-error);
+  background-color: transparent;
+  color: var(--color-error);
+  transition: all 0.3s ease 0s;
+  @media (any-hover: hover) {
+    &:hover {
+      color:#fff;
+      background-color: var(--color-error);
     }
   }
 }

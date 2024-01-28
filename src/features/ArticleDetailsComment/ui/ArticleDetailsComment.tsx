@@ -17,9 +17,6 @@ import {
     addCommentForArticle,
 } from '../model/services/addNewCommentForArticle/addNewCommentForArticle';
 import {
-    fetchCommentsByArticleId,
-} from '../model/services/fetchCommentByArticleId/fetchCommentByArticleId';
-import {
     articleDetailsCommentsActions,
     articleDetailsCommentsReducer,
 } from '../model/slice/articleDetailsCommentsSlice';
@@ -27,14 +24,17 @@ import {
     getArticleDetailsCommentsData,
 } from '../model/selectors/getArticleDetailsCommentsData/getArticleDetailsCommentsData';
 import cls from './ArticleDetailsComment.module.scss';
+import {
+    fetchCommentsByArticleId,
+} from '../model/services/fetchCommentByArticleId/fetchCommentByArticleId';
 
 interface ArticleDetailsCommentProps {
     className?: string;
-    id:string
+    articleId:string
 }
 
 export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
-    const { className, id } = props;
+    const { className, articleId } = props;
     const authData = useSelector(getUserAuthData);
     const dispatch = useAppDispatch();
     const comments = useSelector(getArticleDetailsCommentsData);
@@ -50,8 +50,8 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(fetchCommentsByArticleId(id));
-    }, [dispatch, id]);
+        dispatch(fetchCommentsByArticleId(articleId));
+    }, [dispatch, articleId]);
 
     return (
         <DynamicModelLoader name="articleDetailsComments" reducer={articleDetailsCommentsReducer}>

@@ -1,6 +1,6 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { NavbarItem } from 'widgets/Navbar/ui/NavbarItem/NavbarItem';
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { useMenuInitiated } from 'app/providers/MenuInitiatedProvider';
 import cls from './Navbar.module.scss';
 import { NavbarItemsList } from '../../model/items';

@@ -5,6 +5,7 @@ import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Container } from 'shared/ui/Container/Container';
 import { Page } from 'shared/ui/Page/Page';
 import { ArticleDetailsComment } from 'features/ArticleDetailsComment';
+import { ArticleDetailsRating } from 'features/ArticleDetailsRating';
 import cls from './ArticleDetailsPage.module.scss';
 import {
     ArticleDetailsHeaderPage,
@@ -27,7 +28,8 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
             <Container className={cls.body}>
                 <ArticleDetailsHeaderPage />
                 <ArticleDetails id={id} className={cls.article} />
-                <ArticleDetailsComment id={id} />
+                <ArticleDetailsRating articleId={id} />
+                <ArticleDetailsComment articleId={id} />
             </Container>
         </Page>
     );

@@ -7,11 +7,12 @@ import { getArticleDetailsData, getArticleDetailsError, getArticleDetailsIsLoadi
 import {
     Text, TextAlign, TextSize, TextTheme,
 } from 'shared/ui/Text/Text';
-import { IoCalendarSharp } from 'react-icons/io5';
-import { FaEye } from 'react-icons/fa';
 import { Card } from 'shared/ui/Card/Card';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { ArticleTypeBlock } from 'entities/Article/ui/ArticleTypeBlock/ArticleTypeBlock';
+import view from 'shared/assets/icons/view.svg';
+import calendar from 'shared/assets/icons/calendar.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { ArticleImageBlockComponent } from '../../ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
@@ -90,11 +91,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 />
                 <div className={cls.bodyInfo}>
                     <div className={cls.info}>
-                        <IoCalendarSharp className={cls.icon} />
+                        <Icon Svg={calendar} hover={false} />
                         {article?.createdAt}
                     </div>
                     <div className={cls.info}>
-                        <FaEye className={cls.icon} />
+                        <Icon Svg={view} hover={false} />
                         {article?.views}
                     </div>
                 </div>

@@ -1,7 +1,4 @@
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { ReactNode } from 'react';
-import { FaUser } from 'react-icons/fa';
-import { IconType } from 'react-icons';
+import { RoutePath } from 'shared/const/router';
 
 export interface NavbarItemType {
     path:string;
@@ -26,12 +23,10 @@ export const NavbarItemsList:NavbarItemType[] = [
 
 export interface ActionNavbarItemType {
     path:string;
-    Icon:IconType
 }
 
 export const ActionItemsList:ActionNavbarItemType[] = [
     {
         path: RoutePath.profile,
-        Icon: FaUser,
     },
 ];

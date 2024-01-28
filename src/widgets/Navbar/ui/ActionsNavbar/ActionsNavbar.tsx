@@ -1,11 +1,9 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { FaUser } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import {
-    memo, useCallback, useMemo, useState,
+    memo, useCallback, useMemo,
 } from 'react';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { Burger } from 'shared/ui/Burger/Burger';
@@ -13,6 +11,8 @@ import { Dropdown, DropdownItem } from 'shared/ui/DropdownsList/ui/Dropdown/Drop
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { NotificationButton } from 'features/NotificationButton';
 import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
+import user from 'shared/assets/icons/user.svg';
+import { RoutePath } from 'shared/const/router';
 import cls from './ActionsNavbar.module.scss';
 
 interface ActionsNavbarProps {
@@ -60,7 +60,7 @@ export const ActionsNavbar = memo((props: ActionsNavbarProps) => {
         <nav className={classNames(cls.ActionsNavbar, {}, [className])}>
             <ul className={cls.list}>
                 <NotificationButton />
-                <Dropdown items={profileActions} Icon={FaUser} open="bottomLeft" triggerClear />
+                <Dropdown items={profileActions} icon={user} open="bottomLeft" triggerClear />
                 {isOpenModal && <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />}
                 <ThemeSwitcher />
                 <Burger />

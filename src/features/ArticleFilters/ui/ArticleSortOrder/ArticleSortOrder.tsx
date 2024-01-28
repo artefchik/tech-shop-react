@@ -47,6 +47,7 @@ export const ArticleSortOrder = (props: ArticleSortOrderProps) => {
             onChange={onChangeOrder}
             items={sortOrderOptions}
             defaultValue="Сортировка"
+            className={className}
         />
     );
 };

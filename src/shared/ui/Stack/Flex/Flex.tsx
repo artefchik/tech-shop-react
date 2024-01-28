@@ -6,7 +6,7 @@ import cls from './Flex.module.scss';
 
 type FlexJustify = 'center' | 'start' | 'end' | 'between'
 type FlexAlign = 'center' | 'start' | 'end' | 'stretch'
-type FlexGap = '10' | '15' | '20' | '25' | '30'
+type FlexGap = '5' |'10' | '15' | '20' | '25' | '30'
 type FlexDirection = 'row' | 'column'
 
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
@@ -18,7 +18,8 @@ export interface FlexProps extends DivProps {
   align?: FlexAlign;
   direction?:FlexDirection;
   gap?:FlexGap;
-  width?:boolean
+  width?:boolean;
+  wrap?:boolean
 }
 
 const justifyClasses: Record<FlexJustify, string> = {
@@ -41,6 +42,7 @@ const directionClasses: Record<FlexDirection, string> = {
 };
 
 const gapClasses: Record<FlexGap, string> = {
+    5: cls.gap5,
     10: cls.gap10,
     15: cls.gap15,
     20: cls.gap20,
@@ -56,6 +58,7 @@ export const Flex = (props: FlexProps) => {
         align = 'stretch',
         direction = 'row',
         gap,
+        wrap = false,
         width = false,
     } = props;
 
@@ -70,6 +73,7 @@ export const Flex = (props: FlexProps) => {
 
     const mods:Mods = {
         [cls.width]: width,
+        [cls.wrap]: wrap,
     };
 
     return (

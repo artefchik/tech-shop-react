@@ -2,8 +2,15 @@
   padding: 15px;
   border-radius: var(--border-radius-s);
   border: 1px solid var(--border-color);
+  @media (max-width: 767.98px) {
+    padding: 10px;
+  }
 }
 
 .color {
   background-color: var(--accent-bg-color);
+}
+
+.fullWidth {
+  width: 100%;
 }

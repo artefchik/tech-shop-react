@@ -14,6 +14,7 @@
   }
 }
 
+
 .error {
   .title {
     color: var(--color-error);
@@ -42,12 +43,10 @@
 .header {
   .title {
     font: var(--font-xl);
-
     &:not(:last-child) {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
   }
-
   .text {
     font: var(--font-l)
   }

@@ -15,8 +15,8 @@ export const Burger = (props: BurgerProps) => {
     };
 
     return (
-        <Button onClick={menuToggle} theme={ThemeButton.CLEAR} className={classNames(cls.Burger, mods, [className])}>
+        <button onClick={menuToggle} className={classNames(cls.Burger, mods, [className])}>
             <span />
-        </Button>
+        </button>
     );
 };

@@ -1,5 +1,5 @@
 .ArticleViewSelector {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border-select);
   border-radius: var(--border-radius-s);
   overflow: hidden;
   min-height: 40px;
@@ -12,22 +12,14 @@
   transition: all 0.3s ease 0s;
 }
 
-.icon {
-  font-size: var(--font-size-l);
-  color: var(--color-view-icon);
-  transition: all 0.3s ease 0s;
-    @media (any-hover: hover) {
-        &:hover {
-          color: var(--primary-color);
-        }
-      }
 
-}
 
 .selected {
-  background-color: var(--color-view-btn);
+  background-color: var(--color-active-trigger);
 
   .icon {
-    color: var(--primary-color);
+   path ,circle {
+      stroke: var(--primary-color);
+   }
   }
 }

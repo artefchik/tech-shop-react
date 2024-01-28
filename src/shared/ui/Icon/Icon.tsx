@@ -1,31 +1,31 @@
+import React, { memo } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { IconType } from 'react-icons';
-import { memo, ReactNode } from 'react';
 import cls from './Icon.module.scss';
 
-export enum IconSize {
-    SMALL = 'small',
-    MEDIUM= 'medium',
-    BIG = 'big'
-}
-
-interface IconProps {
-    className?: string;
-    size?:IconSize
-    icon:IconType
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+  Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
+  inverted?: boolean;
+  hover?:boolean;
 }
 
 export const Icon = memo((props: IconProps) => {
     const {
         className,
-        size = IconSize.BIG,
-        icon,
+        Svg,
+        inverted,
+        hover = true,
+        ...otherProps
     } = props;
 
     const mods:Mods = {
-        [cls[size]]: true,
+        [cls.hover]: hover,
     };
+
     return (
-        <props.icon className={classNames(cls.Icon, mods, [className])} />
+        <Svg
+            className={classNames(cls.Icon, mods, [className])}
+            {...otherProps}
+        />
     );
 });

@@ -3,7 +3,7 @@
 }
 
 .width {
-  width: 100%;
+ flex: 1 1 auto;
 }
 
 .justifyStart {
@@ -44,6 +44,9 @@
 .directionColumn {
   flex-direction: column;
 }
+.gap5 {
+  gap: 5px;
+}
 
 .gap10 {
   gap: 10px;
@@ -63,4 +66,8 @@
 
 .gap30 {
   gap: 30px;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }

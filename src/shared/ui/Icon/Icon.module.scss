@@ -1,14 +1,30 @@
 .Icon {
-  font-size: 20px;
+  path, circle {
+    transition: all 0.3s ease 0s;
+    stroke: var(--color-icon);
+  }
+  width: 25px;
+  height: 25px;
 }
 
-.small {
-  font-size: var(--font-size-m);
+.hover {
+  @media (any-hover: hover) {
+    &:hover {
+      path, circle {
+        stroke: var(--primary-color);
+      }
+    }
+  }
 }
 
-.medium {
-  font-size: var(--size-icon);
+.no_hover{
+  @media (any-hover: hover) {
+    &:hover {
+      path, circle {
+        stroke: var(--primary-color);
+      }
+    }
+  }
 }
-.big {
-  font-size: var(--size-icon-l);
-}
+
+

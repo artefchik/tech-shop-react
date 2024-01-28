@@ -1,0 +1,27 @@
+.StarRating {
+}
+
+.star {
+  cursor: pointer;
+  fill: none;
+
+}
+.hover {
+  path {
+    fill: var(--secondary-color);
+    stroke: var(--secondary-color);
+  }
+    @media (any-hover: hover) {
+        &:hover {
+          path {
+            stroke: var(--secondary-color);
+          }
+        }
+      }
+
+}
+
+.selected {
+  cursor: auto;
+  pointer-events: none;
+}

@@ -1,12 +1,12 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Card } from 'shared/ui/Card/Card';
 import { getArticleDetailsData } from 'entities/Article';
 import {
     getCanEditArticleDetails,
 } from 'features/ArticleDetailsComment/model/selectors/getCanEditArticleDetails/getCanEditArticleDetails';
+import { RoutePath } from 'shared/const/router';
 import cls from './ArticleDetailsHeaderPage.module.scss';
 
 interface ArticleDetailsHeaderPageProps {

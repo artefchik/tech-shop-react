@@ -4,15 +4,12 @@
 
 
 .small {
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
 
   .image {
     position: relative;
     aspect-ratio: 360/240;
+    border-radius: var(--border-radius-s);
+    overflow: hidden;
 
     img {
       position: absolute;
@@ -24,56 +21,30 @@
     }
   }
 
-  .body {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    gap: 14px;
-  }
-
   .title {
-    //width: 300px;
+    width: 85%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .types {
-    display: flex;
-    gap: 10px;
     max-width: 300px;
     overflow: hidden;
   }
 
-  .infoWrapper {
+  .info {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 15px;
   }
-
-.info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
 }
 
 .big {
-  .headerBlock {
-    &:not(:last-child) {
-      margin-bottom: 15px;
-    }
-  }
 
-  .bodyInfo {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-
-
-    &:not(:last-child) {
-      margin-bottom: 15px;
+  .body {
+    @media (min-width: 479.98px) {
+      align-items: flex-start;
     }
   }
 
@@ -84,41 +55,20 @@
     color: var(--color-text-secondary);
   }
 
-  .icon {
-    font-size: var(--font-size-m);
-  }
 
-  .block {
-    &:not(:last-child) {
-      margin-bottom: 25px;
-    }
-  }
-
-  .types {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-
-    &:not(:last-child) {
-      margin-bottom: 25px;
-    }
-  }
   .textBlock {
-    height: 160px;
+    height: 150px;
     overflow: hidden;
     position: relative;
+
     &::before {
       content: "";
       position: absolute;
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 40px;
+      height: 30px;
       background: linear-gradient(180deg, transparent, var(--accent-bg-color) 60%);
-    }
-    &:not(:last-child) {
-      margin-bottom: 20px;
     }
   }
 

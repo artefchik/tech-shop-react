@@ -1,7 +1,9 @@
 import React from 'react';
-import { useTheme } from 'app/providers/ThemeProvider';
-import { classNames, Mods } from '../../../lib/classNames/classNames';
-import cls from './ThemeSwitcher.module.scss';
+import { Theme, useTheme } from 'app/providers/ThemeProvider';
+import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import moon from 'shared/assets/icons/moon.svg';
+import sun from 'shared/assets/icons/sun.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 
 interface ThemeSwitcherProps {
     className?: string;
@@ -11,9 +13,12 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <label className={classNames(cls.switch, {}, [className])}>
-            <input onChange={toggleTheme} type="checkbox" />
-            <span className={cls.slider} />
-        </label>
+
+        <Button
+            theme={ThemeButton.CLEAR}
+            onClick={toggleTheme}
+        >
+            {theme === Theme.DARK ? <Icon Svg={moon} /> : <Icon Svg={sun} />}
+        </Button>
     );
 };

@@ -1,5 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CSSProperties, useMemo } from 'react';
+import avatar from 'shared/assets/icons/avatar.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 import cls from './Avatar.module.scss';
 
 interface AvatarProps {
@@ -21,7 +23,16 @@ export const Avatar = (props: AvatarProps) => {
         height: size || 30,
     }), [size]);
 
+    if (!src) {
+        return (
+            <div className={cls.icon} style={styles}>
+                <Icon Svg={avatar} />
+            </div>
+        );
+    }
+
     return (
         <img src={src} alt={alt} className={classNames(cls.Avatar, {}, [className])} style={styles} />
+
     );
 };

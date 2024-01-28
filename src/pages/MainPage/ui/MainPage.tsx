@@ -1,8 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useEffect } from 'react';
-import axios from 'axios';
-import { Article } from 'entities/Article';
-import { Loader } from 'shared/ui/Loader/Loader';
+import { Page } from 'shared/ui/Page/Page';
+import { ArticleListItemSkeleton } from 'entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
+import { ArticleView } from 'entities/Article';
 import cls from './MainPage.module.scss';
 
 interface MainPageProps {
@@ -13,7 +12,9 @@ const MainPage = (props: MainPageProps) => {
     const { className } = props;
 
     return (
-        <div className={classNames(cls.MainPage, {}, [className])} />
+        <Page className={classNames(cls.MainPage, {}, [className])}>
+            Home
+        </Page>
     );
 };
 export default MainPage;
