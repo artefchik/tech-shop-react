@@ -4,7 +4,6 @@ export interface UseInfiniteScrollOptions {
     callback?: () => void;
     wrapperRef: MutableRefObject<HTMLElement>;
     triggerRef: MutableRefObject<HTMLElement>;
-
 }
 
 export function useInfiniteScroll(props: UseInfiniteScrollOptions) {

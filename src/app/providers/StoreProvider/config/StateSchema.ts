@@ -1,7 +1,10 @@
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
 import {
-    AnyAction, EnhancedStore, Reducer, ReducersMapObject,
+    AnyAction,
+    EnhancedStore,
+    Reducer,
+    ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
 import { AxiosInstance } from 'axios';
@@ -13,25 +16,29 @@ import { ArticleFiltersSchema } from 'features/ArticleFilters';
 import { ProfileSchema } from 'features/EditableProfilleCard';
 import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
+import { CartSchema } from 'entities/Cart';
 
 export interface StateSchema {
     user: UserSchema;
+    cart: CartSchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     // Асинхронные редюсеры
     login?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: ArticleDetailsCommentsSchema;
-    articlesPage?:ArticlesPageSchema;
-    articleFilters?:ArticleFiltersSchema;
-
+    articlesPage?: ArticlesPageSchema;
+    articleFilters?: ArticleFiltersSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
 
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
-    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+    reduce: (
+        state: StateSchema,
+        action: AnyAction,
+    ) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
 }
@@ -42,7 +49,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
     api: AxiosInstance;
-    navigate?: (to: To, options?: NavigateOptions) => void,
+    navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {

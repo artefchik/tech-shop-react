@@ -1,32 +1,34 @@
-import { RoutePath } from 'shared/const/router';
+import {
+    getRoutePathAbout,
+    getRoutePathArticles,
+    getRoutePathMain,
+    getRoutePathProducts,
+} from 'shared/const/router';
 
 export interface NavbarItemType {
-    path:string;
-    text:string
+    path: string;
+    text: string;
 }
 
-export const NavbarItemsList:NavbarItemType[] = [
+export const NavbarItemsList: NavbarItemType[] = [
     {
-        path: RoutePath.main,
+        path: getRoutePathMain(),
         text: 'Home',
     },
     {
-        path: RoutePath.about,
+        path: getRoutePathAbout(),
         text: 'About',
     },
     {
-        path: RoutePath.articles,
+        path: getRoutePathArticles(),
         text: 'Articles',
     },
-
+    {
+        path: getRoutePathProducts(),
+        text: 'Products',
+    },
 ];
 
 export interface ActionNavbarItemType {
-    path:string;
+    path: string;
 }
-
-export const ActionItemsList:ActionNavbarItemType[] = [
-    {
-        path: RoutePath.profile,
-    },
-];

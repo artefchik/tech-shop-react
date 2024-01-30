@@ -1,20 +1,15 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
-import React, {
-    CSSProperties, Fragment, ReactNode, useMemo,
-} from 'react';
+import React, { CSSProperties, Fragment, ReactNode, useMemo } from 'react';
 import { Menu } from '@headlessui/react';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { DropdownsListDirectionOpen, DropdownsListDirectionOpenClasses } from '../../styles/const';
+import { Link } from 'react-router-dom';
+import {
+    DropdownsListDirectionOpen,
+    DropdownsListDirectionOpenClasses,
+} from '../../styles/const';
 import cls from './Dropdown.module.scss';
 import clsDrop from '../../styles/DropdownsList.module.scss';
-
-const links = [
-    { href: '/account-settings', label: 'Account settings' },
-    { href: '/support', label: 'Support' },
-    { href: '/license', label: 'License' },
-    { href: '/sign-out', label: 'Sign out' },
-];
 
 export interface DropdownItem {
     disabled?: boolean;
@@ -24,18 +19,17 @@ export interface DropdownItem {
 }
 
 interface DropdownProps {
-    className?:string
-    defaultValue?:string;
-    value?:string;
-    onChange?:(value:string)=> void;
-    items:DropdownItem[];
-    readonly?:boolean;
+    className?: string;
+    defaultValue?: string;
+    value?: string;
+    onChange?: (value: string) => void;
+    items: DropdownItem[];
+    readonly?: boolean;
     icon: React.VFC<React.SVGProps<SVGSVGElement>>;
-    open?:DropdownsListDirectionOpen;
+    open?: DropdownsListDirectionOpen;
     width?: string | number;
     height?: string | number;
-    triggerClear?:boolean
-
+    triggerClear?: boolean;
 }
 
 export const Dropdown = (props: DropdownProps) => {
@@ -53,10 +47,10 @@ export const Dropdown = (props: DropdownProps) => {
         triggerClear = false,
     } = props;
 
-    const classes = useMemo(() => [
-        className,
-        DropdownsListDirectionOpenClasses[open],
-    ], [className, open]);
+    const classes = useMemo(
+        () => [className, DropdownsListDirectionOpenClasses[open]],
+        [className, open],
+    );
 
     const styles: CSSProperties = {
         minWidth: width,
@@ -66,7 +60,7 @@ export const Dropdown = (props: DropdownProps) => {
         padding: 0,
     };
 
-    const mods:Mods = {
+    const mods: Mods = {
         [cls.clear]: triggerClear,
     };
 
@@ -78,19 +72,30 @@ export const Dropdown = (props: DropdownProps) => {
                         {defaultValue}
                         <Icon className={clsDrop.icon} Svg={icon} />
                     </span>
-                ) : value || defaultValue}
+                ) : (
+                    value || defaultValue
+                )}
             </Menu.Button>
             <Menu.Items
                 style={styles}
-                className={classNames(
-                    clsDrop.body,
-                    {},
-                    [DropdownsListDirectionOpenClasses[open]],
-                )}
-
+                className={classNames(clsDrop.body, {}, [
+                    DropdownsListDirectionOpenClasses[open],
+                ])}
             >
                 {items.map((item, index) => {
-                    const content = ({ active }:{active:boolean}) => (
+                    if (item.href) {
+                        return (
+                            <Menu.Item
+                                className={cls.item}
+                                as={Link}
+                                to={item.href}
+                                key={index}
+                            >
+                                {item.content}
+                            </Menu.Item>
+                        );
+                    }
+                    const content = ({ active }: { active: boolean }) => (
                         <button
                             onClick={item.onClick}
                             className={classNames(
@@ -103,13 +108,6 @@ export const Dropdown = (props: DropdownProps) => {
                         </button>
                     );
 
-                    // if (item.href) {
-                    //     return (
-                    //         <Menu.Item as={Fr} to={item.href} key={index}>
-                    //             {item.content}
-                    //         </Menu.Item>
-                    //     );
-                    // }
                     //
                     return (
                         <Menu.Item as={Fragment} key={index}>

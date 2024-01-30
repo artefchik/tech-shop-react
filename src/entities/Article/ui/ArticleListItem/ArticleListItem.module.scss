@@ -2,74 +2,98 @@
 
 }
 
-
 .small {
-
-  .image {
-    position: relative;
-    aspect-ratio: 360/240;
-    border-radius: var(--border-radius-s);
-    overflow: hidden;
-
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .card {
+        transition: all 0.3s ease 0s;
     }
-  }
 
-  .title {
-    width: 85%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+    @media (any-hover: hover) {
+        &:hover {
+            .card {
+                background-color: var(--hover-color-article);
+            }
 
-  .types {
-    max-width: 300px;
-    overflow: hidden;
-  }
+            .view {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
 
-  .info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+    .image {
+        position: relative;
+        aspect-ratio: 360/240;
+        border-radius: var(--border-radius-s);
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .view {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        color: var(--color-text-secondary);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s ease 0s;
+    }
+
+    .title {
+        width: 85%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .types {
+        max-width: 300px;
+        overflow: hidden;
+    }
+
+    .info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 }
 
 .big {
 
-  .body {
-    @media (min-width: 479.98px) {
-      align-items: flex-start;
+
+    .body {
+        @media (min-width: 479.98px) {
+            align-items: flex-start;
+        }
     }
-  }
 
-  .info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--color-text-secondary);
-  }
-
-
-  .textBlock {
-    height: 150px;
-    overflow: hidden;
-    position: relative;
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 30px;
-      background: linear-gradient(180deg, transparent, var(--accent-bg-color) 60%);
+    .info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--color-text-secondary);
     }
-  }
 
+    .textBlock {
+        height: 150px;
+        overflow: hidden;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(180deg, transparent, var(--accent-bg-color) 60%);
+        }
+    }
 }

@@ -1,6 +1,6 @@
-type paramsType = Record<string, string>
+type paramsType = Record<string, string>;
 
-export const addQueryParams = (params:paramsType) => {
+export const addQueryParams = (params: paramsType) => {
     const searchParams = new URLSearchParams(window.location.search);
 
     Object.entries(params).forEach(([name, value]) => {

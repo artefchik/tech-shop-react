@@ -1,43 +1,45 @@
 .Modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-  padding: 15px;
-  border-radius: var(--border-radius-s);
-  background-color: var(--bg-color);
-  width: 30%;
-  transition: transform 0.4s ease 0s;
-  transform: scale(0.5);
-  @media (max-width: 1023.98px) {
-    width: 60%;
-  }
-  @media (max-width: 767.98px) {
-    width: 90%;
-  }
+    padding: 15px;
+    border-radius: var(--border-radius-s);
+    background-color: var(--bg-color);
+    width: 30%;
+    transition: transform 0.4s ease 0s;
+    transform: scale(0.5);
+
+    @media (max-width: 1023.98px) {
+        width: 60%;
+    }
+
+    @media (max-width: 767.98px) {
+        width: 90%;
+    }
 }
 
 .opened {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  z-index: var(--z-index-modal);
-  transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    z-index: var(--z-index-modal);
+    transform: scale(1);
 }
 
 .isClosing {
-  .content {
-    transform: scale(0);
-  }
+    .content {
+        transform: scale(0);
+    }
 }

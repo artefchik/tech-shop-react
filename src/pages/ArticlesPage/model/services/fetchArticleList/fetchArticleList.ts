@@ -14,25 +14,32 @@ import { getArticleListLimit } from '../../selectors/getArticleListLimit/getArti
 import { getArticleListPage } from '../../selectors/getArticleListPage/getArticleListPage';
 
 interface fetchArticleListProps {
-  replace?:boolean
+    replace?: boolean;
 }
 
-export const fetchArticleList = createAsyncThunk<Article[], fetchArticleListProps, ThunkConfig<string>>(
-    'articlesPage/fetchArticleList',
-    async (_, thunkAPI) => {
-        const { getState, rejectWithValue } = thunkAPI;
+export const fetchArticleList = createAsyncThunk<
+    Article[],
+    fetchArticleListProps,
+    ThunkConfig<string>
+>('articlesPage/fetchArticleList', async (_, thunkAPI) => {
+    const { getState, rejectWithValue } = thunkAPI;
 
-        const page = getArticleListPage(getState());
-        const limit = getArticleListLimit(getState());
-        const search = getArticleFiltersSearch(getState());
-        const type = getArticleFiltersType(getState());
-        const sort = getArticleFiltersSort(getState());
-        const order = getArticleFiltersOrder(getState());
-        try {
-            addQueryParams({
-                search, type, sort, order,
-            });
-            const response = await axios.get<Article[]>('http://localhost:8000/articles', {
+    const page = getArticleListPage(getState());
+    const limit = getArticleListLimit(getState());
+    const search = getArticleFiltersSearch(getState());
+    const type = getArticleFiltersType(getState());
+    const sort = getArticleFiltersSort(getState());
+    const order = getArticleFiltersOrder(getState());
+    try {
+        addQueryParams({
+            search,
+            type,
+            sort,
+            order,
+        });
+        const response = await axios.get<Article[]>(
+            'http://localhost:8000/articles',
+            {
                 params: {
                     _expand: 'user',
                     _page: page,
@@ -42,14 +49,14 @@ export const fetchArticleList = createAsyncThunk<Article[], fetchArticleListProp
                     _type: type === ArticleType.ALL ? undefined : type,
                     q: search,
                 },
-            });
-            if (!response.data) {
-                return rejectWithValue('error');
-            }
-            return response.data;
-        } catch (e) {
-            console.log(e);
+            },
+        );
+        if (!response.data) {
             return rejectWithValue('error');
         }
-    },
-);
+        return response.data;
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue('error');
+    }
+});

@@ -1,5 +1,5 @@
 import { ArticleFilters } from 'features/ArticleFilters';
-import { ArticleViewSelector } from 'features/ArticleViewSelector';
+import { ArticleViewSelector } from 'pages/ArticlesPage/ui/ArticleViewSelector';
 import { HStack } from 'shared/ui/Stack';
 import { useCallback } from 'react';
 import { ArticleView } from 'entities/Article';
@@ -19,12 +19,7 @@ interface ArticlesHeaderPageProps {
 
 export const ArticlesHeaderPage = (props: ArticlesHeaderPageProps) => {
     const { className } = props;
-    const view = useSelector(getArticleListView);
     const dispatch = useAppDispatch();
-
-    const onChangeView = useCallback((view:ArticleView) => {
-        dispatch(articlesPageActions.setView(view));
-    }, [dispatch]);
 
     const fetchData = useCallback(() => {
         dispatch(articlesPageActions.setPage(1));
@@ -34,11 +29,15 @@ export const ArticlesHeaderPage = (props: ArticlesHeaderPageProps) => {
     const debounceFetchData = useDebounce(fetchData, 600);
 
     return (
-        <HStack align="center" gap="30" className={classNames(cls.ArticlesHeaderPage, {}, [className])}>
-            <ArticleSearch onSend={fetchData} />
+        <HStack
+            align="center"
+            gap="30"
+            className={classNames(cls.ArticlesHeaderPage, {}, [className])}
+        >
+            <ArticleSearch onSend={debounceFetchData} />
             <HStack gap="15" align="center" justify="end">
                 <ArticleFilters fetchData={debounceFetchData} />
-                <ArticleViewSelector view={view} onViewClick={onChangeView} />
+                <ArticleViewSelector />
             </HStack>
         </HStack>
     );

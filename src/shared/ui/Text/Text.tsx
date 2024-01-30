@@ -8,20 +8,22 @@ export enum TextTheme {
     TEXT = 'textBlock',
     USER = 'user',
     SMALL = 'small',
-    ERROR ='error'
+    ERROR = 'error',
+    PRICE = 'price',
+    SECONDARY = 'secondary',
 }
 
 export enum TextSize {
-    SMALL='small',
+    SMALL = 'small',
     MEDIUM = 'medium',
     DEFAULT = 'default',
     BIG = 'big',
-    LINK = 'link'
+    LINK = 'link',
 }
 export enum TextAlign {
-    START='start',
+    START = 'start',
     CENTER = 'center',
-    END = 'end'
+    END = 'end',
 }
 
 interface TextProps {
@@ -29,8 +31,8 @@ interface TextProps {
     title?: string;
     text?: string;
     theme?: TextTheme;
-    align?:TextAlign;
-    size?:TextSize
+    align?: TextAlign;
+    size?: TextSize;
 }
 
 export const Text = memo((props: TextProps) => {

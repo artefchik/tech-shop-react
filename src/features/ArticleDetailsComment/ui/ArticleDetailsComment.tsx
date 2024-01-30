@@ -7,30 +7,20 @@ import { useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
 import { getUserAuthData } from 'entities/User';
 import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
-import {
-    getArticleDetailsCommentsText,
-} from '../model/selectors/getArticleDetailsCommentsText/getArticleDetailsCommentsText';
-import {
-    getArticleDetailsCommentsIsLoading,
-} from '../model/selectors/getArticleDetailsCommentsIsLoading/getArticleDetailsCommentsIsLoading';
-import {
-    addCommentForArticle,
-} from '../model/services/addNewCommentForArticle/addNewCommentForArticle';
+import { getArticleDetailsCommentsText } from '../model/selectors/getArticleDetailsCommentsText/getArticleDetailsCommentsText';
+import { getArticleDetailsCommentsIsLoading } from '../model/selectors/getArticleDetailsCommentsIsLoading/getArticleDetailsCommentsIsLoading';
+import { addCommentForArticle } from '../model/services/addNewCommentForArticle/addNewCommentForArticle';
 import {
     articleDetailsCommentsActions,
     articleDetailsCommentsReducer,
 } from '../model/slice/articleDetailsCommentsSlice';
-import {
-    getArticleDetailsCommentsData,
-} from '../model/selectors/getArticleDetailsCommentsData/getArticleDetailsCommentsData';
+import { getArticleDetailsCommentsData } from '../model/selectors/getArticleDetailsCommentsData/getArticleDetailsCommentsData';
 import cls from './ArticleDetailsComment.module.scss';
-import {
-    fetchCommentsByArticleId,
-} from '../model/services/fetchCommentByArticleId/fetchCommentByArticleId';
+import { fetchCommentsByArticleId } from '../model/services/fetchCommentByArticleId/fetchCommentByArticleId';
 
 interface ArticleDetailsCommentProps {
     className?: string;
-    articleId:string
+    articleId: string;
 }
 
 export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
@@ -41,21 +31,35 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
     const isLoading = useSelector(getArticleDetailsCommentsIsLoading);
     const text = useSelector(getArticleDetailsCommentsText);
 
-    const onCommentChangeText = useCallback((value:string) => {
-        dispatch(articleDetailsCommentsActions.setText(value));
-    }, [dispatch]);
+    const onCommentChangeText = useCallback(
+        (value: string) => {
+            dispatch(articleDetailsCommentsActions.setText(value));
+        },
+        [dispatch],
+    );
 
-    const onSendComment = useCallback((text: string) => {
-        dispatch(addCommentForArticle(text));
-    }, [dispatch]);
+    const onSendComment = useCallback(
+        (text: string) => {
+            dispatch(addCommentForArticle(text));
+        },
+        [dispatch],
+    );
 
     useEffect(() => {
         dispatch(fetchCommentsByArticleId(articleId));
     }, [dispatch, articleId]);
 
     return (
-        <DynamicModelLoader name="articleDetailsComments" reducer={articleDetailsCommentsReducer}>
-            <VStack gap="20" className={classNames(cls.ArticleDetailsComment, {}, [className])}>
+        <DynamicModelLoader
+            name="articleDetailsComments"
+            reducer={articleDetailsCommentsReducer}
+        >
+            <VStack
+                gap="20"
+                className={classNames(cls.ArticleDetailsComment, {}, [
+                    className,
+                ])}
+            >
                 <Text
                     size={TextSize.BIG}
                     title="Комментарии"
@@ -70,6 +74,5 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
                 <CommentList comments={comments} isLoading={isLoading} />
             </VStack>
         </DynamicModelLoader>
-
     );
 };

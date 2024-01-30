@@ -17,7 +17,10 @@ export const NotificationList = (props: NotificationListProps) => {
 
     if (isLoading) {
         return (
-            <VStack gap="15" className={classNames(cls.NotificationList, {}, [className])}>
+            <VStack
+                gap="15"
+                className={classNames(cls.NotificationList, {}, [className])}
+            >
                 <Skeleton width="100%" height={84} />
                 <Skeleton width="100%" height={84} />
                 <Skeleton width="100%" height={84} />
@@ -26,8 +29,13 @@ export const NotificationList = (props: NotificationListProps) => {
     }
 
     return (
-        <VStack gap="15" className={classNames(cls.NotificationList, {}, [className])}>
-            {notifications?.map((notification) => <NotificationItem key={notification.id} item={notification} />)}
+        <VStack
+            gap="15"
+            className={classNames(cls.NotificationList, {}, [className])}
+        >
+            {notifications?.map((notification) => (
+                <NotificationItem key={notification.id} item={notification} />
+            ))}
         </VStack>
     );
 };

@@ -1,67 +1,72 @@
 .trigger {
-  //&:focus {
-  //  outline: none;
-  //}
-  //&:focus-visible {
-  //  border: 2px solid #FFFFFF;
-  //  outline: none;
-  //}
+    //&:focus {
+    //  outline: none;
+    //}
+    //&:focus-visible {
+    //  border: 2px solid #FFFFFF;
+    //  outline: none;
+    //}
 }
 
 .clear {
-  padding: 0;
-  border: none;
-  background: none;
-  outline: none;
-  &.active{
-    color: var(--primary-color);
-    .icon {
-      transition: all 0.4s ease 0s;
-      path {
-        stroke: var(--primary-color);
-      }
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+
+    &.active {
+        color: var(--primary-color);
+
+        .icon {
+            transition: all 0.4s ease 0s;
+
+            path {
+                stroke: var(--primary-color);
+            }
+        }
     }
-  }
 }
 
 .default {
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
-  min-height: 43px;
-  background-color: var(--color-trigger);
-  padding: 0 15px;
-  border-radius: var(--border-radius-s);
-  border: 1px solid var(--color-border-select);
-  transition: all 0.3s ease 0s;
-  color:var(--color-text-secondary);
-  .icon {
-    path {
-      transition: all 0.3s ease 0s;
-      stroke: var(--color-text-secondary);
-    }
-  }
-  @media (any-hover: hover) {
-    &:hover {
-      background-color: var(--color-active-trigger);
-      color: var(--primary-color);
-      .icon {
-        path {
-          stroke: var(--primary-color);
-        }
-      }
-    }
-  }
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 43px;
+    background-color: var(--color-trigger);
+    padding: 0 15px;
+    border-radius: var(--border-radius-s);
+    border: 1px solid var(--color-border-select);
+    transition: all 0.3s ease 0s;
+    color: var(--color-text-secondary);
 
-  &.active{
-    background-color: var(--color-active-trigger);
-    color: var(--primary-color);
     .icon {
-      path {
-        stroke: var(--primary-color);
-      }
+        path {
+            transition: all 0.3s ease 0s;
+            stroke: var(--color-text-secondary);
+        }
     }
-  }
+
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: var(--color-active-trigger);
+            color: var(--primary-color);
+
+            .icon {
+                path {
+                    stroke: var(--primary-color);
+                }
+            }
+        }
+    }
+
+    &.active {
+        background-color: var(--color-active-trigger);
+        color: var(--primary-color);
+
+        .icon {
+            path {
+                stroke: var(--primary-color);
+            }
+        }
+    }
 }
-
-

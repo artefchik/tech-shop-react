@@ -1,30 +1,25 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import cls from './StarRating.module.scss';
 import starIcon from '../../assets/icons/star.svg';
 
 interface StarRatingProps {
     className?: string;
-    onSelect?:(starCount:number)=>void;
-    size?:number;
-    selectedStars?:number
+    onSelect?: (starCount: number) => void;
+    size?: number;
+    selectedStars?: number;
 }
 
 const stars = [1, 2, 3, 4, 5];
 
 export const StarRating = (props: StarRatingProps) => {
-    const {
-        className,
-        size,
-        onSelect,
-        selectedStars = 0,
-    } = props;
+    const { className, size = 25, onSelect, selectedStars = 0 } = props;
 
     const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
-    const onHover = (starsCount:number) => () => {
+    const onHover = (starsCount: number) => () => {
         if (!isSelected) {
             setCurrentStarsCount(starsCount);
         }
@@ -36,7 +31,7 @@ export const StarRating = (props: StarRatingProps) => {
         }
     };
 
-    const onClick = (starsCount:number) => () => {
+    const onClick = (starsCount: number) => () => {
         if (!isSelected) {
             onSelect?.(starsCount);
             setCurrentStarsCount(starsCount);
@@ -44,6 +39,10 @@ export const StarRating = (props: StarRatingProps) => {
         }
     };
 
+    const styles: CSSProperties = {
+        width: size,
+        height: size,
+    };
     return (
         <div className={classNames(cls.StarRating, {}, [className])}>
             {stars.map((star) => (
@@ -51,9 +50,13 @@ export const StarRating = (props: StarRatingProps) => {
                     Svg={starIcon}
                     className={classNames(
                         cls.star,
-                        { [cls.hover]: currentStarsCount >= star, [cls.selected]: isSelected },
+                        {
+                            [cls.hover]: currentStarsCount >= star,
+                            [cls.selected]: isSelected,
+                        },
                         [className],
                     )}
+                    // style={styles}
                     key={star}
                     onMouseEnter={onHover(star)}
                     onMouseLeave={onLeave}

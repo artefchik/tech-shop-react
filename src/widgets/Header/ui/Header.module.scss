@@ -1,38 +1,37 @@
 .Header {
-  background-color: var(--accent-bg-color);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border-bottom: 1px solid var(--border-color);
-  padding: 10px 0;
-  z-index: 1000;
+    background-color: var(--accent-bg-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+    z-index: 1000;
 }
 
 .container {
-  display: flex;
-  min-height: var(--header-height);
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
+    display: flex;
+    min-height: var(--header-height);
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .logo {
-  margin-right: 30px;
-  position: relative;
-  z-index: 5;
+    margin-right: 30px;
+    position: relative;
+    z-index: 5;
 }
 
 .navbar {
-  flex: 1 1 auto;
-}
-.open {
-  left: 0;
+    flex: 1 1 auto;
 }
 
+.open {
+    left: 0;
+}
 
 .actions {
-  position: relative;
-  z-index: 5;
+    position: relative;
+    z-index: 5;
 }

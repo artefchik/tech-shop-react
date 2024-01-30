@@ -7,13 +7,20 @@ import { ArticleDetailsEditPage } from 'pages/ArticleDetailsEditPage';
 import { NotFoundPage } from 'pages/NotFoundPage/ui/NotFoundPage';
 import {
     AppRoutes,
-    AppRoutesProps, getRoutePathAbout,
-    getRoutePathArticles, getRoutePathArticlesCreate,
-    getRoutePathArticlesDetailsById, getRoutePathArticlesEditById,
+    AppRoutesProps,
+    getRoutePathAbout,
+    getRoutePathArticles,
+    getRoutePathArticlesCreate,
+    getRoutePathArticlesDetailsById,
+    getRoutePathArticlesEditById,
+    getRoutePathCartProducts,
     getRoutePathMain,
+    getRoutePathProducts,
     getRoutePathProfile,
     RoutePath,
 } from 'shared/const/router';
+import { ProductsPage } from 'pages/ProductsPage';
+import { ProductsCartPage } from 'pages/ProductsCartPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -48,6 +55,14 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRoutePathArticlesEditById(':id'),
         element: <ArticleDetailsEditPage />,
         authOnly: false,
+    },
+    [AppRoutes.PRODUCTS]: {
+        path: getRoutePathProducts(),
+        element: <ProductsPage />,
+    },
+    [AppRoutes.CART_PRODUCTS]: {
+        path: getRoutePathCartProducts(),
+        element: <ProductsCartPage />,
     },
     // last
     [AppRoutes.NOT_FOUND]: {

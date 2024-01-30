@@ -19,3 +19,5 @@ render(
     </BrowserRouter>,
     document.getElementById('root'),
 );
+
+export { Theme } from 'app/providers/ThemeProvider';

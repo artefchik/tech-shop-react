@@ -28,8 +28,7 @@ export const articleFiltersSlice = createSlice({
             state.order = action.payload;
         },
     },
-    extraReducers: (builder) => {
-    },
+    extraReducers: (builder) => {},
 });
 
 export const { actions: articleFiltersActions } = articleFiltersSlice;

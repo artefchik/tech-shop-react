@@ -1,0 +1,27 @@
+.CartButton {
+}
+
+.icon {
+    display: inline-block;
+
+    path,
+    circle {
+        transition: all 0.3s ease 0s;
+        stroke: var(--color-icon);
+        fill: var(--color-icon);
+    }
+
+    @media (any-hover: hover) {
+        &:hover {
+            path,
+            circle {
+                transition: all 0.3s ease 0s;
+                stroke: var(--primary-color);
+                fill: var(--primary-color);
+            }
+        }
+    }
+
+    //width: 25px;
+    //height: 25px;
+}

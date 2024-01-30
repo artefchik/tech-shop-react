@@ -1,0 +1,11 @@
+.ProductFavoriteButton {
+
+}
+
+.active {
+
+  path {
+    stroke: var(--favorites-color);
+    fill: var(--favorites-color);
+  }
+}

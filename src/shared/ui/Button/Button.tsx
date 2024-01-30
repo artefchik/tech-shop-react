@@ -7,14 +7,14 @@ export enum ThemeButton {
     PRIMARY = 'primary',
     CLEAR = 'clear',
     OUTLINE_RED = 'outline_red',
-    LOADED = 'loaded'
+    LOADED = 'loaded',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     theme?: ThemeButton;
     children?: ReactNode;
-    isLoading?:boolean
+    isLoading?: boolean;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -30,10 +30,12 @@ export const Button = memo((props: ButtonProps) => {
         <button
             type="button"
             disabled={isLoading}
-            className={classNames(cls.Button, { [cls[theme]]: true }, [className])}
+            className={classNames(cls.Button, { [cls[theme]]: true }, [
+                className,
+            ])}
             {...otherProps}
         >
-            {isLoading ? <Loader /> : children }
+            {isLoading ? <Loader /> : children}
         </button>
     );
 });

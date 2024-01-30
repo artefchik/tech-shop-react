@@ -1,15 +1,16 @@
 .Tabs {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
+
 .tab {
-  padding: 5px 10px;
-  border-radius: var(--border-radius-s);
-  border: 1px solid var(--secondary-color);
+    padding: 5px 10px;
+    border-radius: var(--border-radius-s);
+    border: 1px solid var(--secondary-color);
 }
 
 .active {
-  background-color: var(--secondary-color);
-  color: var(--color-active-text-button);
+    background-color: var(--secondary-color);
+    color: var(--color-active-text-button);
 }

@@ -4,26 +4,33 @@ import axios from 'axios';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 
 interface LoginByUsernameProps {
-    username: string | undefined,
-    password: string| undefined
+    username: string | undefined;
+    password: string | undefined;
 }
 
-export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, {
-    rejectValue: string
-}>(
-    'login/loginByUsername',
-    async (authData, thunkAPI) => {
-        try {
-            const response = await axios.post('http://localhost:8000/login', authData);
-            if (!response.data) {
-                throw new Error();
-            }
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
-            thunkAPI.dispatch(userActions.setAuthData(response.data));
-            return response.data;
-        } catch (e) {
-            console.log(e);
-            return thunkAPI.rejectWithValue('не верный логин или пароль');
+export const loginByUsername = createAsyncThunk<
+    User,
+    LoginByUsernameProps,
+    {
+        rejectValue: string;
+    }
+>('login/loginByUsername', async (authData, thunkAPI) => {
+    try {
+        const response = await axios.post(
+            'http://localhost:8000/login',
+            authData,
+        );
+        if (!response.data) {
+            throw new Error();
         }
-    },
-);
+        localStorage.setItem(
+            USER_LOCALSTORAGE_KEY,
+            JSON.stringify(response.data),
+        );
+        thunkAPI.dispatch(userActions.setAuthData(response.data));
+        return response.data;
+    } catch (e) {
+        console.log(e);
+        return thunkAPI.rejectWithValue('не верный логин или пароль');
+    }
+});

@@ -1,56 +1,61 @@
 .Dropdown {
-  position: relative;
+    position: relative;
 }
-
 
 .trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  background-color: var(--color-trigger);
-  padding: 0 15px;
-  border-radius: var(--border-radius-s);
-  border: 1px solid var(--color-border-select);
-  transition: all 0.3s ease 0s;
-  @media (any-hover: hover) {
-    &:hover {
-      background-color: var(--secelt-active);
-    }
-  }
-
-  .body {
-    position: absolute;
-    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    background-color: var(--color-trigger);
+    padding: 0 15px;
     border-radius: var(--border-radius-s);
-    background-color: var(--color-options);
-    box-shadow: 0 5 10px var(--box-shadow-color-select);
     border: 1px solid var(--color-border-select);
-    overflow: hidden;
-  }
+    transition: all 0.3s ease 0s;
 
-}
-.item {
-  list-style-type: none;
-  width: 100%;
-  transition: all 0.3s ease 0s;
-  padding: 10px;
     @media (any-hover: hover) {
         &:hover {
-          background-color: var(--secelt-active);
+            background-color: var(--secelt-active);
         }
-      }
+    }
+
+    .body {
+        position: absolute;
+        z-index: 100;
+        border-radius: var(--border-radius-s);
+        background-color: var(--color-options);
+        box-shadow: 0 5 10px var(--box-shadow-color-select);
+        border: 1px solid var(--color-border-select);
+        overflow: hidden;
+    }
+}
+
+.item {
+    list-style-type: none;
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    min-height: 44px;
+    max-height: 44px;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: var(--secelt-active);
+        }
+    }
 }
 
 .active {
-  background-color: var(--secelt-active);
+    background-color: var(--secelt-active);
 }
 
 .clear {
-  .trigger {
-    padding: 0;
-    border: none;
-    background: none;
-    outline: none;
-  }
+    .trigger {
+        padding: 0;
+        border: none;
+        background: none;
+        outline: none;
+    }
 }

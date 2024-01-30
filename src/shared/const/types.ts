@@ -1,4 +1,4 @@
 export enum SortOrder {
-  ASK = 'ask',
-  DESK = 'desk',
+    ASK = 'ask',
+    DESK = 'desk',
 }

@@ -1,3 +1,4 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getArticleListLimit = (state:StateSchema) => state.articlesPage?.limit || 3;
+export const getArticleListLimit = (state: StateSchema) =>
+    state.articlesPage?.limit || 3;

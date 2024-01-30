@@ -1,16 +1,15 @@
 .Dashboard {
-  min-height: 80vh;
-
+    min-height: 80vh;
 }
 
 .list {
-  display: flex;
-  flex-direction: column;
-  row-gap: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
 }
 
 .title {
-  &:not(:last-child) {
-    margin-bottom: 40px;
-  }
+    &:not(:last-child) {
+        margin-bottom: 40px;
+    }
 }

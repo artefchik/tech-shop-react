@@ -8,12 +8,12 @@ import { articleFiltersActions } from 'features/ArticleFilters/model/slice/artic
 
 interface ArticleSortOrderProps {
     className?: string;
-    onSend:()=>void
+    onSend: () => void;
 }
 
 interface SortOrderOption {
-    value:SortOrder;
-    content:ReactNode
+    value: SortOrder;
+    content: ReactNode;
 }
 
 export const ArticleSortOrder = (props: ArticleSortOrderProps) => {
@@ -21,10 +21,13 @@ export const ArticleSortOrder = (props: ArticleSortOrderProps) => {
     const order = useSelector(getArticleFiltersOrder);
     const dispatch = useAppDispatch();
 
-    const onChangeOrder = useCallback((value:string) => {
-        dispatch(articleFiltersActions.setOrder(value as SortOrder));
-        onSend();
-    }, [dispatch, onSend]);
+    const onChangeOrder = useCallback(
+        (value: string) => {
+            dispatch(articleFiltersActions.setOrder(value as SortOrder));
+            onSend();
+        },
+        [dispatch, onSend],
+    );
 
     const sortOrderOptions = useMemo<SortOrderOption[]>(
         () => [

@@ -3,9 +3,10 @@
 }
 
 .body {
-  display: grid;
-  gap: 25px;
-  @media (max-width: 767.98px) {
-    gap: 20px;
-  }
+    display: grid;
+    gap: 25px;
+
+    @media (max-width: 767.98px) {
+        gap: 20px;
+    }
 }

@@ -3,26 +3,29 @@ import { Popover as Pop } from '@headlessui/react';
 import React, { CSSProperties, ReactNode } from 'react';
 import { VStack } from 'shared/ui/Stack';
 
-import { DropdownsListDirectionOpen, DropdownsListDirectionOpenClasses } from 'shared/ui/DropdownsList/styles/const';
+import {
+    DropdownsListDirectionOpen,
+    DropdownsListDirectionOpenClasses,
+} from 'shared/ui/DropdownsList/styles/const';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import clsDrop from '../../styles/DropdownsList.module.scss';
 import cls from './Popover.module.scss';
 
 export enum TriggerTheme {
-  DEFAULT = 'default',
-  CLEAR = 'clear'
+    DEFAULT = 'default',
+    CLEAR = 'clear',
 }
 interface PopoverProps {
-  className?: string;
-  title?: string;
-  icon: React.VFC<React.SVGProps<SVGSVGElement>>;
-  children: ReactNode;
-  width?: string | number;
-  height?: string | number;
-  openView?:DropdownsListDirectionOpen;
-  triggerClear?:boolean
-  triggerTheme?:TriggerTheme
+    className?: string;
+    title?: string;
+    icon: React.VFC<React.SVGProps<SVGSVGElement>>;
+    children: ReactNode;
+    width?: string | number;
+    height?: string | number;
+    openView?: DropdownsListDirectionOpen;
+    triggerClear?: boolean;
+    triggerTheme?: TriggerTheme;
 }
 
 export const Popover = (props: PopoverProps) => {
@@ -31,7 +34,7 @@ export const Popover = (props: PopoverProps) => {
         title,
         icon,
         children,
-        width = 250,
+        width = 270,
         height = 310,
         openView = 'bottom',
         triggerClear = false,
@@ -48,7 +51,7 @@ export const Popover = (props: PopoverProps) => {
     return (
         <Pop className={classNames(clsDrop.DropdownsList, {}, [className])}>
             {({ open }) => (
-            /* Use the `open` state to conditionally change the direction of the chevron icon. */
+                /* Use the `open` state to conditionally change the direction of the chevron icon. */
                 <>
                     <Pop.Button as="div">
                         <Button
@@ -62,20 +65,15 @@ export const Popover = (props: PopoverProps) => {
                             {title}
                             <Icon Svg={icon} className={cls.icon} />
                         </Button>
-
                     </Pop.Button>
                     <Pop.Panel
-                        className={classNames(
-                            clsDrop.body,
-                            {},
-                            [DropdownsListDirectionOpenClasses[openView]],
-                        )}
+                        className={classNames(clsDrop.body, {}, [
+                            DropdownsListDirectionOpenClasses[openView],
+                        ])}
                         as="div"
                         style={styles}
                     >
-                        <VStack gap="15">
-                            {children}
-                        </VStack>
+                        <VStack gap="15">{children}</VStack>
                     </Pop.Panel>
                 </>
             )}

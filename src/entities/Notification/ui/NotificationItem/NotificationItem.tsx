@@ -9,19 +9,27 @@ import cls from './NotificationItem.module.scss';
 
 interface NotificationItemProps {
     className?: string;
-    item:NotificationType
+    item: NotificationType;
 }
 
 export const NotificationItem = (props: NotificationItemProps) => {
     const { className, item } = props;
     return (
         <Card className={classNames(cls.NotificationItem, {}, [className])}>
-            <Text theme={TextTheme.SMALL} title={item.title} text={item.description} />
+            <Text
+                theme={TextTheme.SMALL}
+                title={item.title}
+                text={item.description}
+            />
             {item.href && (
-                <AppLink to={item.href} theme={AppLinkTheme.CLEAR} className={cls.link}>
+                <AppLink
+                    to={item.href}
+                    theme={AppLinkTheme.CLEAR}
+                    className={cls.link}
+                >
                     <Icon Svg={arrowRight} />
                 </AppLink>
-            ) }
+            )}
         </Card>
     );
 };

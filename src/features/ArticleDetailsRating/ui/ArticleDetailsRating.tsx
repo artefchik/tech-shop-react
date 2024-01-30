@@ -8,8 +8,8 @@ import { useCallback } from 'react';
 import { RatingCard } from 'entities/Rating';
 
 interface ArticleDetailsRatingProps {
-  className?: string;
-  articleId: string;
+    className?: string;
+    articleId: string;
 }
 
 const ArticleDetailsRatingAsync = (props: ArticleDetailsRatingProps) => {
@@ -23,26 +23,35 @@ const ArticleDetailsRatingAsync = (props: ArticleDetailsRatingProps) => {
 
     const [changeArticleRatingMutation] = useChangeArticleDetailsRating();
 
-    const handleChangeArticleRatingMutation = useCallback((starsCount:number, feedback?:string) => {
-        try {
-            changeArticleRatingMutation({
-                articleId,
-                userId: userData?.id ?? '',
-                rate: starsCount,
-                feedback,
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    }, [articleId, changeArticleRatingMutation, userData?.id]);
+    const handleChangeArticleRatingMutation = useCallback(
+        (starsCount: number, feedback?: string) => {
+            try {
+                changeArticleRatingMutation({
+                    articleId,
+                    userId: userData?.id ?? '',
+                    rate: starsCount,
+                    feedback,
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        },
+        [articleId, changeArticleRatingMutation, userData?.id],
+    );
 
-    const onAccept = useCallback((starsCount:number, feedback?:string) => {
-        handleChangeArticleRatingMutation(starsCount, feedback);
-    }, [handleChangeArticleRatingMutation]);
+    const onAccept = useCallback(
+        (starsCount: number, feedback?: string) => {
+            handleChangeArticleRatingMutation(starsCount, feedback);
+        },
+        [handleChangeArticleRatingMutation],
+    );
 
-    const onCancel = useCallback((starsCount:number) => {
-        handleChangeArticleRatingMutation(starsCount);
-    }, [handleChangeArticleRatingMutation]);
+    const onCancel = useCallback(
+        (starsCount: number) => {
+            handleChangeArticleRatingMutation(starsCount);
+        },
+        [handleChangeArticleRatingMutation],
+    );
 
     const rating = data?.[0];
 

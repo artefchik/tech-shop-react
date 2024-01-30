@@ -1,85 +1,83 @@
 .DropdownsList {
-  position: relative;
+    position: relative;
 }
 
 .trigger {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  background-color: var(--color-trigger);
-  padding: 0 15px;
-  border-radius: var(--border-radius-s);
-  border: 1px solid var(--color-border-select);
-  transition: all 0.3s ease 0s;
-  //@media (any-hover: hover) {
-  //  &:hover {
-  //    background-color: var(--color-active-trigger);
-  //  }
-  //}
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    background-color: var(--color-trigger);
+    padding: 0 15px;
+    border-radius: var(--border-radius-s);
+    border: 1px solid var(--color-border-select);
+    transition: all 0.3s ease 0s;
 
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: var(--color-active-trigger);
+        }
+    }
 }
 
 .triggerClear {
-  padding: 0;
-  border: none;
-  background: none;
-  outline: none;
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
 }
 
 .bodyText {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-
-
 .body {
-  position: absolute;
-  z-index: 100;
-  border-radius: var(--border-radius-s);
-  background-color: var(--color-options);
-  box-shadow: 0 5 10px var(--box-shadow-color-select);
-  border: 1px solid var(--color-border-select);
-  overflow-x: hidden;
-  padding: 10px;
-  overflow-y: auto;
+    position: absolute;
+    z-index: 100;
+    border-radius: var(--border-radius-s);
+    background-color: var(--color-options);
+    box-shadow: 0 5 10px var(--box-shadow-color-select);
+    border: 1px solid var(--color-border-select);
+    overflow-x: hidden;
+    padding: 10px;
+    overflow-y: auto;
 }
 
 .item {
-  list-style-type: none;
-  width: 100%;
-  transition: all 0.3s ease 0s;
-  padding: 10px;
+    list-style-type: none;
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    padding: 10px;
 }
 
 .active {
-  background-color: var(--secelt-active);
+    background-color: var(--secelt-active);
 }
 
-
 .topOpen {
-  left: 0;
-  bottom: 120%;
+    left: 0;
+    bottom: 120%;
 }
 
 .bottomOpen {
-  left: 0;
-  top: 120%;
+    left: 0;
+    top: 120%;
 }
 
 .bottomLeftOpen {
-  right: 0;
-  top: 120%;
+    right: 0;
+    top: 120%;
 }
+
 .topLeftOpen {
-  right: 0;
-  bottom: 120%;
+    right: 0;
+    bottom: 120%;
 }
 
 .clear {
-  padding: 0;
-  border: none;
-  background: none;
-  outline: none;
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
 }

@@ -800,5 +800,62 @@
       "rate": 4,
       "id": "MT4HJKW"
     }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "Apple iPhone 11, 64GB, Black - Unlocked (Renewed)",
+      "image": "https://freepngimg.com/thumb/apple_iphone/133296-11-apple-iphone-free-transparent-image-hq.png",
+      "starRating": 4,
+      "priceSymbol": "$",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "2",
+      "title": "Apple iPhone 11, 64GB, Black - Unlocked (Renewed)",
+      "image": "https://freepngimg.com/thumb/apple_iphone/133296-11-apple-iphone-free-transparent-image-hq.png",
+      "starRating": 4,
+      "priceSymbol": "$",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "3",
+      "title": "Apple iPhone 15, 64GB, Black - Unlocked (Renewed)",
+      "image": "https://freepngimg.com/thumb/apple_iphone/133296-11-apple-iphone-free-transparent-image-hq.png",
+      "starRating": 4,
+      "priceSymbol": "$",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+  ],
+  "product-favorites": [
+    {
+      "productId": "1",
+      "userId": "1",
+      "isFavorite": true
+    },
+    {
+      "productId": "2",
+      "userId": "1",
+      "isFavorite": false,
+      "id": 2
+    },
+    {
+      "id": "5",
+      "productId": "5",
+      "userId": "1",
+      "isFavorite": true
+    }
   ]
 }
