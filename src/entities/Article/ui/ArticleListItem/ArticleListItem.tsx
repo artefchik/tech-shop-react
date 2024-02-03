@@ -43,12 +43,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const onOpenArticle = useCallback(() => {
         navigate(getRoutePathArticlesDetailsById(article.id));
     }, [article.id, navigate]);
+    const textBlock = article.blocks.find(
+        (block) => block.type === ArticleBlockType.TEXT,
+    ) as ArticleTextBlock;
 
     if (view === ViewType.BIG) {
-        const textBlock = article.blocks.find(
-            (block) => block.type === ArticleBlockType.TEXT,
-        ) as ArticleTextBlock;
-
         return (
             <article
                 className={classNames(cls.ArticleListItem, {}, [
@@ -113,45 +112,23 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 cls[view],
             ])}
         >
-            <Card onClick={onOpenArticle} className={cls.card}>
-                <VStack gap="10">
-                    <div className={cls.image}>
-                        <img src={article.img} alt={article.title} />
-                        <HStack gap="5" align="center" className={cls.view}>
-                            <Icon Svg={viewIcon} hover={false} />
-                            {article?.views}
-                        </HStack>
-                    </div>
-                    <VStack width gap="10">
-                        <HStack gap="10" className={cls.types}>
-                            {article?.type.map(renderType)}
-                        </HStack>
+            <Card
+                onClick={onOpenArticle}
+                className={classNames(cls.card, {}, [cls.flex])}
+            >
+                <img src={article.img} alt="" className={cls.image} />
+                <VStack className={cls.body}>
+                    <Text theme={TextTheme.SMALL} text={article.createdAt} />
+                    <VStack className={cls.info} gap="10">
                         <Text
-                            title={article.title}
-                            size={TextSize.DEFAULT}
+                            theme={TextTheme.SMALL}
                             className={cls.title}
+                            title={article.title}
                         />
-                        <HStack align="center" justify="between">
-                            <AppLink
-                                to={getRoutePathProfile(article.user.id)}
-                                className={cls.info}
-                                theme={AppLinkTheme.CLEAR}
-                            >
-                                <Avatar
-                                    src={article.user.avatar}
-                                    alt={article.user.username}
-                                />
-                                <Text
-                                    text={article.user.username}
-                                    theme={TextTheme.USER}
-                                />
-                            </AppLink>
-                            <Text
-                                text={article.createdAt}
-                                className={cls.date}
-                                theme={TextTheme.TEXT}
-                            />
-                        </HStack>
+                        <Text
+                            text={textBlock.paragraphs?.[0]}
+                            className={cls.text}
+                        />
                     </VStack>
                 </VStack>
             </Card>

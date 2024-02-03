@@ -77,33 +77,11 @@ export const ArticleListItemSkeleton = memo(
                 ])}
             >
                 <Card className={cls.card}>
-                    <VStack gap="10">
-                        <Skeleton height={266} width="100%" />
-                        <VStack gap="10">
-                            <HStack gap="10">
-                                <Skeleton height={32} width={80} />
-                                <Skeleton height={32} width={80} />
-                            </HStack>
-                            <Skeleton
-                                height={32}
-                                width="100%"
-                                className={cls.title}
-                            />
-                            <HStack align="center" justify="between">
-                                <HStack align="center" gap="10">
-                                    <Skeleton
-                                        height={30}
-                                        width={30}
-                                        border="50%"
-                                    />
-                                    <Skeleton height={20} width={120} />
-                                </HStack>
-                                <Skeleton
-                                    height={22}
-                                    width={90}
-                                    className={cls.date}
-                                />
-                            </HStack>
+                    <VStack className={cls.bodySkeleton}>
+                        <Skeleton height={20} width={100} />
+                        <VStack gap="10" className={cls.info}>
+                            <Skeleton width="100%" height={44} />
+                            <Skeleton width="100%" height={60} />
                         </VStack>
                     </VStack>
                 </Card>

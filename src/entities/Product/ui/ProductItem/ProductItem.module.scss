@@ -1,7 +1,6 @@
 .small {
 
-  .ProductCard {
-    max-width: 250px;
+  &.ProductCard {
     padding: 10px;
     cursor: pointer;
 
@@ -46,9 +45,19 @@
   }
 
   .title {
-    max-width: 210px;
+    //max-width: 210px;
+    //overflow: hidden;
+    //max-height: 45px;
+    //text-overflow: ellipsis;
+
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    display: -webkit-box;
     overflow: hidden;
-    max-height: 45px;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
   }
 
@@ -103,6 +112,7 @@
       object-fit: cover;
     }
   }
+
   .rating {
     @media (max-width: 767.98px) {
       width: 25px;
@@ -122,26 +132,18 @@
   .actionsBlock {
     flex: 0 1 30%;
     @media (max-width: 991.98px) {
-        align-items: flex-end;
+      align-items: flex-end;
     }
   }
 
-  .currentPrice {
-    font-size: var(--font-size-xl);
+  .button {
     @media (max-width: 767.98px) {
-      font-size: var(--font-size-l);
-
+      span {
+        display: none;
+      }
     }
   }
 
-  .previousPrice {
-    font-size: var(--font-size-m);
-    text-decoration-line: line-through;
-    color: var(--color-text-secondary);
-    @media (max-width: 767.98px) {
-      font-size: var(--font-size-m);
-    }
-  }
 }
 
 .cartPlus {
@@ -151,12 +153,24 @@
 }
 
 .button {
-  span{
+  span {
     white-space: nowrap;
   }
+}
+
+.currentPrice {
+  font-size: var(--font-size-xl);
   @media (max-width: 767.98px) {
-    span {
-      display: none;
-    }
+    font-size: var(--font-size-l);
+
+  }
+}
+
+.previousPrice {
+  font-size: var(--font-size-m);
+  text-decoration-line: line-through;
+  color: var(--color-text-secondary);
+  @media (max-width: 767.98px) {
+    font-size: var(--font-size-m);
   }
 }

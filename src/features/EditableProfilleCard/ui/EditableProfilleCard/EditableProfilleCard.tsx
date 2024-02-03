@@ -52,7 +52,7 @@ export const EditableProfilleCard = memo(
         return (
             <DynamicModelLoader name="profile" reducer={profileReducer}>
                 <Card>
-                    <VStack gap="20" align="start">
+                    <VStack gap="20">
                         <ProfileCard
                             readonly={readonly}
                             data={dataForm}

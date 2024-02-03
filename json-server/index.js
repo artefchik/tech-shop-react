@@ -21,7 +21,9 @@ server.use(async (req, res, next) => {
 server.post('/login', (req, res) => {
     try {
         const { username, password } = req.body;
-        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const db = JSON.parse(
+            fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'),
+        );
         const { users = [] } = db;
 
         const userFromBd = users.find(
@@ -39,6 +41,29 @@ server.post('/login', (req, res) => {
     }
 });
 
+server.patch('/cart', (req, res) => {
+    try {
+        console.log(req.body);
+        const { productId } = req.body;
+
+        const db = JSON.parse(
+            fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'),
+        );
+        const { cart = [] } = db;
+
+        const cartFromBd = cart[productId];
+
+        if (cartFromBd) {
+            return res.json(cartFromBd);
+        }
+
+        return res.status(403).json({ message: 'pr not found' });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+});
+//
 // проверяем, авторизован ли пользователь
 // eslint-disable-next-line
 server.use((req, res, next) => {

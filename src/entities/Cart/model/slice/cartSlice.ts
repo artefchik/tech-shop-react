@@ -3,49 +3,87 @@ import {
     createSlice,
     PayloadAction,
 } from '@reduxjs/toolkit';
-import { Article } from 'entities/Article';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Product } from 'entities/Product';
-import { CartItem, CartSchema } from '../types/cart';
+import { User } from 'entities/User';
+import { fetchCartProductsList } from '../services/fetchCartProductsList/fetchCartProductsList';
+import { CartItemType, CartSchema } from '../types/cart';
 
-const initialState: CartSchema = {
-    itemsMap: {},
-};
+const cartAdapter = createEntityAdapter<CartItemType>({
+    selectId: (product: CartItemType) => product.id,
+});
+
+export const getCart = cartAdapter.getSelectors<StateSchema>(
+    (state) => state.cart || cartAdapter.getInitialState(),
+);
 
 export const cartsSlice = createSlice({
     name: 'cart',
-    initialState,
+    initialState: cartAdapter.getInitialState<CartSchema>({
+        ids: [],
+        entities: {},
+        userId: undefined,
+    }),
     reducers: {
-        addOneItem: (state, action: PayloadAction<Product>) => {
-            const productInCart = state.itemsMap[action.payload.id];
-            if (productInCart) {
-                productInCart.quantity += 1;
+        setInitUserId: (state, action: PayloadAction<User>) => {
+            state.userId = action.payload.id;
+        },
+        addItem: (state, action: PayloadAction<Product>) => {
+            cartAdapter.setOne(state, {
+                ...action.payload,
+                quantity: 1,
+            });
+            // const productInCart = state.items.find(
+            //     ({ product }) => product.id === action.payload.id,
+            // );
+            // if (productInCart) {
+            //     productInCart.quantity += 1;
+            // } else {
+            //     state.items.push({
+            //         product: action.payload,
+            //         quantity: 1,
+            //     });
+            // }
+        },
+
+        addOneItem: (state, action: PayloadAction<CartItemType>) => {
+            cartAdapter.updateOne(state, {
+                id: action.payload.id,
+                changes: action.payload,
+            });
+        },
+        removeOneItem: (state, action: PayloadAction<CartItemType>) => {
+            if (action.payload.quantity) {
+                cartAdapter.updateOne(state, {
+                    id: action.payload.id,
+                    changes: action.payload,
+                });
             } else {
-                state.itemsMap[action.payload.id] = {
-                    quantity: 1,
-                    product: action.payload,
-                };
+                cartAdapter.removeOne(state, action.payload.id);
             }
         },
-        removeOneItem: (state, action: PayloadAction<Product>) => {
-            const productInCart = state.itemsMap[action.payload.id];
-            if (!productInCart) return;
-            if (productInCart.quantity) {
-                productInCart.quantity -= 1;
-            } else {
-                delete state.itemsMap[action.payload.id];
-            }
-        },
-        removeItem: (state, action: PayloadAction<Product>) => {
-            const productInCart = state.itemsMap[action.payload.id];
-            if (!productInCart) return;
-            delete state.itemsMap[action.payload.id];
+        removeItem: (state, action: PayloadAction<string>) => {
+            cartAdapter.removeOne(state, action.payload);
         },
         clearCart: (state) => {
-            state.itemsMap = {};
+            cartAdapter.removeAll(state);
         },
     },
-    extraReducers: (builder) => {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCartProductsList.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(fetchCartProductsList.fulfilled, (state, action) => {
+                state.isLoading = false;
+                cartAdapter.setAll(state, action.payload.products);
+            })
+            .addCase(fetchCartProductsList.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            });
+    },
 });
 
 export const { actions: cartActions } = cartsSlice;

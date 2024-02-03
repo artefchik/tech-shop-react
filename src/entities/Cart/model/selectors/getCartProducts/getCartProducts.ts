@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { getCart } from 'entities/Cart/model/slice/cartSlice';
+import { useSelector } from 'react-redux';
 
-export const getCartProducts = (state: StateSchema) =>
-    Object.values(state.cart.itemsMap).map((item) => item.product);
+export const getCartProducts = getCart.selectAll;

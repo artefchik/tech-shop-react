@@ -1,0 +1,31 @@
+.RemoveButtonCartProduct {
+  min-width: 30px;
+  max-width: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  background-color: var(--color-text-secondary);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    background-color: #fff;
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+
+  &::before {
+    transform: rotate(-45deg);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--color-remove-btn);
+    }
+  }
+
+}

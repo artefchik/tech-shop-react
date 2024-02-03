@@ -4,23 +4,25 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from 'widgets/Header';
-import { userActions } from 'entities/User';
+import { getUserAuthData, getUserInitied, userActions } from 'entities/User';
+import { initUserAuthData } from 'entities/User/model/services/initUserAuthData/initUserAuthData';
+import { cartActions } from 'entities/Cart/model/slice/cartSlice';
 
 function App() {
     const { theme } = useTheme();
     const dispatch = useDispatch();
-    // const inited = useSelector(getUserInited);
+    const inited = useSelector(getUserInitied);
+    const authData = useSelector(getUserAuthData);
+
     //
     useEffect(() => {
-        dispatch(userActions.setInitAuthData());
-    }, [dispatch]);
+        dispatch(initUserAuthData());
+    }, [authData?.id, dispatch]);
 
     return (
         <div className={classNames('app', {}, [theme])}>
             <Header />
-            <Suspense fallback="load">
-                <AppRouter />
-            </Suspense>
+            <Suspense fallback="load">{inited && <AppRouter />}</Suspense>
         </div>
     );
 }

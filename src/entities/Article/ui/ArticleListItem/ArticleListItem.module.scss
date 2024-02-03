@@ -3,97 +3,99 @@
 }
 
 .small {
-    .card {
-        transition: all 0.3s ease 0s;
-    }
-
+  .card {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+    transition: all 0.4s ease 0s;
     @media (any-hover: hover) {
-        &:hover {
-            .card {
-                background-color: var(--hover-color-article);
-            }
+      &:hover {
+        border-color: var(--hover-border);
 
-            .view {
-                visibility: visible;
-                opacity: 1;
-            }
+        .image {
+          transform: scale(1.02);
         }
+      }
     }
 
-    .image {
-        position: relative;
-        aspect-ratio: 360/240;
-        border-radius: var(--border-radius-s);
-        overflow: hidden;
+  }
 
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: all 0.4s ease 0s;
+    opacity: 0.4;
+  }
 
-    .view {
-        position: absolute;
-        top: 7px;
-        right: 7px;
-        color: var(--color-text-secondary);
-        visibility: hidden;
-        opacity: 0;
-        transition: all 0.3s ease 0s;
-    }
+  .body {
+    position: relative;
+    z-index: 1;
+  }
 
-    .title {
-        width: 85%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+  .text {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
 
-    .types {
-        max-width: 300px;
-        overflow: hidden;
-    }
+  .info {
+    margin-top: auto;
+  }
 
-    .info {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
+  .title {
+    color: #fff;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .bodySkeleton {
+    height: 208px;
+  }
+
 }
 
 .big {
 
 
-    .body {
-        @media (min-width: 479.98px) {
-            align-items: flex-start;
-        }
+  .body {
+    @media (min-width: 479.98px) {
+      align-items: flex-start;
     }
+  }
 
-    .info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--color-text-secondary);
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-secondary);
+  }
+
+  .textBlock {
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 30px;
+      background: linear-gradient(180deg, transparent, var(--accent-bg-color) 60%);
     }
-
-    .textBlock {
-        height: 150px;
-        overflow: hidden;
-        position: relative;
-
-        &::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 30px;
-            background: linear-gradient(180deg, transparent, var(--accent-bg-color) 60%);
-        }
-    }
+  }
 }

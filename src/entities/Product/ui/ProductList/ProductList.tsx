@@ -25,7 +25,11 @@ export const ProductList = (props: ProductListProps) => {
         >
             {products.length > 0 &&
                 products.map((product) => (
-                    <ProductItem key={product.id} product={product} />
+                    <ProductItem
+                        key={product.id}
+                        product={product}
+                        view={view}
+                    />
                 ))}
 
             {isLoading && getSkeletons(view)}

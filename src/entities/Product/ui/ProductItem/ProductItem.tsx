@@ -5,21 +5,22 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { Button } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
 import favorites from 'shared/assets/icons/favorites.svg';
-import { memo, useState } from 'react';
+import { memo, ReactNode, useState } from 'react';
 import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { StarRating } from 'shared/ui/StarRating/StarRating';
 import cartPlus from 'shared/assets/icons/cartPlus.svg';
 import { Product } from '../../model/product';
 import cls from './ProductItem.module.scss';
 
-interface ProductCardProps {
+interface ProductItemProps {
     className?: string;
     product: Product;
-    view?: ViewType;
+    view: ViewType;
+    AddToCartButton?: ReactNode;
 }
 
-export const ProductItem = memo((props: ProductCardProps) => {
-    const { className, product, view = ViewType.BIG } = props;
+export const ProductItem = memo((props: ProductItemProps) => {
+    const { className, product, view, AddToCartButton } = props;
 
     if (view === ViewType.SMALL) {
         return (
@@ -47,27 +48,23 @@ export const ProductItem = memo((props: ProductCardProps) => {
                         />
                         <HStack align="center" gap="15">
                             <Text
-                                theme={TextTheme.PRICE}
                                 title={`${product.priceSymbol}${String(
                                     product.price.current,
                                 )}`}
+                                className={cls.currentPrice}
+                                theme={TextTheme.PRICE}
                             />
+
                             <Text
-                                title={`${product.priceSymbol}${String(
+                                text={`${product.priceSymbol}${String(
                                     product.price.previous,
                                 )}`}
-                                className={cls.prevPrice}
+                                className={cls.previousPrice}
+                                theme={TextTheme.SECONDARY}
                             />
                         </HStack>
                     </VStack>
-                    <Button className={cls.button}>
-                        <Icon
-                            Svg={cartPlus}
-                            hover={false}
-                            className={cls.cartPlus}
-                        />
-                        <span> Add To Cart</span>
-                    </Button>
+                    {AddToCartButton}
                 </VStack>
             </Card>
         );
@@ -115,14 +112,7 @@ export const ProductItem = memo((props: ProductCardProps) => {
                         />
                     </HStack>
                     <HStack align="center" gap="20">
-                        <Button className={cls.button}>
-                            <Icon
-                                Svg={cartPlus}
-                                hover={false}
-                                className={cls.cartPlus}
-                            />
-                            <span> Add To Cart</span>
-                        </Button>
+                        {AddToCartButton}
                         <Icon
                             hover={false}
                             Svg={favorites}

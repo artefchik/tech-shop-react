@@ -1,0 +1,26 @@
+.CartItem {
+  position: relative;
+}
+
+.image {
+  width: 90px;
+  height: 90px;
+  flex: 0 0 90px;
+
+  img {
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+}
+
+.content {
+  @media (max-width: 630.98px) {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+}
+
+.actions {
+}

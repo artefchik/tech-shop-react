@@ -5,7 +5,7 @@ interface ProductDetailsPageProps {
     className?: string;
 }
 
-const ProductDetailsPage = (props: ProductDetailsPageProps) => {
+export const ProductDetailsPage = (props: ProductDetailsPageProps) => {
     const { className } = props;
     return (
         <div className={classNames(cls.ProductDetailsPage, {}, [className])}>
@@ -13,5 +13,3 @@ const ProductDetailsPage = (props: ProductDetailsPageProps) => {
         </div>
     );
 };
-
-export default ProductDetailsPage;

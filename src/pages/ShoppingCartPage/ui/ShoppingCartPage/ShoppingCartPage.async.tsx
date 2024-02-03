@@ -1,10 +1,10 @@
 import { lazy } from 'react';
 
-export const ProductsCartPageAsync = lazy(
+export const ShoppingCartPageAsync = lazy(
     () =>
         new Promise((resolve) => {
             // @ts-ignore
             // for the loader
-            setTimeout(() => resolve(import('./ProductsCartPage')), 1500);
+            setTimeout(() => resolve(import('./ShoppingCartPage')), 1500);
         }),
 );

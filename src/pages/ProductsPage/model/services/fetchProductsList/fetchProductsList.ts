@@ -3,12 +3,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Product } from 'entities/Product';
 
+import { ThunkConfig } from 'app/providers/StoreProvider';
+
+interface fetchProductsListProps {
+    replace?: boolean;
+}
+
 export const fetchProductsList = createAsyncThunk<
     Product[],
-    string,
-    {
-        rejectValue: string;
-    }
+    fetchProductsListProps,
+    ThunkConfig<string>
 >('articleDetails/fetchArticleById', async (_, thunkAPI) => {
     try {
         const response = await axios.get<Product[]>(

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { ValidateProfileError } from 'features/EditableProfilleCard/model/types/editableProfile';
 import { Profile } from 'entities/Profile';
+import { getProfileForm } from 'features/EditableProfilleCard/model/selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
 
 interface ThunkConfig {
@@ -21,9 +22,9 @@ export const updateProfileData = createAsyncThunk<
     // @ts-ignore
     const formData = getProfileForm(thunkAPI.getState());
     const errors = validateProfileData(formData);
-    if (errors.length) {
-        return thunkAPI.rejectWithValue(errors);
-    }
+    // if (errors.length) {
+    //     return thunkAPI.rejectWithValue(errors);
+    // }
     try {
         const response = await axios.put<Profile>(
             `http://localhost:8000/profile/${formData?.id}`,

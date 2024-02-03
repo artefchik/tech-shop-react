@@ -13,14 +13,14 @@ import {
     getRoutePathArticlesCreate,
     getRoutePathArticlesDetailsById,
     getRoutePathArticlesEditById,
-    getRoutePathCartProducts,
     getRoutePathMain,
     getRoutePathProducts,
     getRoutePathProfile,
+    getRoutePathShoppingCart,
     RoutePath,
 } from 'shared/const/router';
 import { ProductsPage } from 'pages/ProductsPage';
-import { ProductsCartPage } from 'pages/ProductsCartPage';
+import { ShoppingCartPage } from 'pages/ShoppingCartPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -60,9 +60,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRoutePathProducts(),
         element: <ProductsPage />,
     },
-    [AppRoutes.CART_PRODUCTS]: {
-        path: getRoutePathCartProducts(),
-        element: <ProductsCartPage />,
+    [AppRoutes.SHOPPING_CART]: {
+        path: getRoutePathShoppingCart(),
+        element: <ShoppingCartPage />,
     },
     // last
     [AppRoutes.NOT_FOUND]: {

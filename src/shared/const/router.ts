@@ -13,7 +13,7 @@ export enum AppRoutes {
     ARTICLE_CREATE = 'article_create',
     ARTICLE_EDIT = 'article_edit',
     PRODUCTS = 'products',
-    CART_PRODUCTS = 'cart_products',
+    SHOPPING_CART = 'shopping_cart',
 
     NOT_FOUND = 'not_found',
 }
@@ -29,7 +29,7 @@ export const getRoutePathArticlesEditById = (id: string) =>
     `/articles/${id}/edit`;
 
 export const getRoutePathProducts = () => '/products';
-export const getRoutePathCartProducts = () => '/cart_products';
+export const getRoutePathShoppingCart = () => '/shopping_cart';
 
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: getRoutePathMain(),
@@ -40,7 +40,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.ARTICLE_CREATE]: getRoutePathArticlesCreate(),
     [AppRoutes.ARTICLE_EDIT]: getRoutePathArticlesEditById(':id'), // + :id
     [AppRoutes.PRODUCTS]: getRoutePathProducts(),
-    [AppRoutes.CART_PRODUCTS]: getRoutePathCartProducts(),
+    [AppRoutes.SHOPPING_CART]: getRoutePathShoppingCart(),
 
     [AppRoutes.NOT_FOUND]: '*',
 };

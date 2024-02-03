@@ -17,6 +17,7 @@ import { ProfileSchema } from 'features/EditableProfilleCard';
 import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
+import { ProductsPageSchema } from 'pages/ProductsPage/model/types/productsPageSchema';
 
 export interface StateSchema {
     user: UserSchema;
@@ -29,6 +30,7 @@ export interface StateSchema {
     articleDetailsComments?: ArticleDetailsCommentsSchema;
     articlesPage?: ArticlesPageSchema;
     articleFilters?: ArticleFiltersSchema;
+    productsPage?: ProductsPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
