@@ -18,10 +18,14 @@ import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/productsPageSchema';
+import { productFavoritesReducer } from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
+import { ProductFavoritesSchema } from 'features/ProductFavoriteButton/model/types/favorite';
 
 export interface StateSchema {
     user: UserSchema;
     cart: CartSchema;
+    productFavorites: ProductFavoritesSchema;
+
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     // Асинхронные редюсеры
     login?: LoginSchema;

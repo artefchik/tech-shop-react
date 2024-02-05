@@ -1,5 +1,5 @@
 import { rtkApi } from 'shared/api/rtkApi';
-import { FavoriteProduct } from '../model/types/favorite';
+import { FavoriteProduct, FavoriteType } from '../model/types/favorite';
 
 interface GetProductFavoritesArg {
     productId: string;
@@ -17,45 +17,31 @@ const productFavoriteApiWithTag = rtkApi.enhanceEndpoints({
 
 const productFavoriteApi = productFavoriteApiWithTag.injectEndpoints({
     endpoints: (build) => ({
-        getProductFavorite: build.query<
-            FavoriteProduct[],
-            GetProductFavoritesArg
-        >({
-            query: ({ productId, userId }) => ({
+        getProductsFavorites: build.query<FavoriteType, string>({
+            query: (userId) => ({
                 url: '/product-favorites',
                 params: {
-                    productId,
                     userId,
                 },
             }),
             providesTags: (result) => ['ProductFavorites'],
         }),
-        changeProductFavorite: build.mutation<
-            ChangeProductFavoritesArg,
-            ChangeProductFavoritesArg
-        >({
-            query: (arg) => ({
-                url: `/product-favorites/${arg.productId}`,
+        updateProductsFavorites: build.mutation<FavoriteType, FavoriteType>({
+            query: ({ userId, favorites }) => ({
+                url: `/product-favorites/${userId}`,
                 method: 'PATCH',
-                body: arg,
-            }),
-            invalidatesTags: ['ProductFavorites'],
-        }),
-        addProductFavorite: build.mutation<
-            ChangeProductFavoritesArg,
-            ChangeProductFavoritesArg
-        >({
-            query: (arg) => ({
-                url: `/product-favorites`,
-                method: 'POST',
-                body: arg,
+                body: {
+                    favorites,
+                    userId,
+                },
             }),
             invalidatesTags: ['ProductFavorites'],
         }),
     }),
 });
 
-export const useGetProductFavorite =
-    productFavoriteApi.useGetProductFavoriteQuery;
-export const useChangeProductFavorite =
-    productFavoriteApi.useChangeProductFavoriteMutation;
+export const useGetProductsFavorites =
+    productFavoriteApi.useGetProductsFavoritesQuery;
+
+export const useUpdateProductsFavorites =
+    productFavoriteApi.useUpdateProductsFavoritesMutation;

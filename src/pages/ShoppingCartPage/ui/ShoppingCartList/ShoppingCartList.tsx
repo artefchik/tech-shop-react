@@ -1,13 +1,16 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { VStack } from 'shared/ui/Stack';
 import { useSelector } from 'react-redux';
-import { getCart } from 'entities/Cart/model/slice/cartSlice';
-import { useUpdateProductFavorite } from 'entities/Cart/api/cartApi';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { CartProduct } from 'widgets/CartProduct/ui/CartProduct';
 import { getUserAuthData } from 'entities/User';
-import { fetchCartProductsList } from 'entities/Cart';
+import {
+    fetchCartProductsList,
+    getCartProducts,
+    updateCart,
+} from 'entities/Cart';
+import { useGetProductsFavorites } from 'features/ProductFavoriteButton';
 import cls from './ShoppingCartList.module.scss';
 
 interface ShoppingCartListProps {
@@ -15,16 +18,15 @@ interface ShoppingCartListProps {
 }
 
 export const ShoppingCartList = ({ className }: ShoppingCartListProps) => {
-    const products = useSelector(getCart.selectAll);
-    const [updateProductFavorite] = useUpdateProductFavorite();
+    const products = useSelector(getCartProducts);
     const dispatch = useAppDispatch();
     const authData = useSelector(getUserAuthData);
+    // const [updateProduct] = useUpdateProduct();
 
-    const onUpdateCart = () =>
-        updateProductFavorite({
-            products,
-            userId: authData?.id || '',
-        });
+    const { data: favorites } = useGetProductsFavorites(authData?.id || '');
+    // useEffect(() => {
+    //     dispatch(updateCart());
+    // }, [dispatch]);
 
     useEffect(() => {
         dispatch(fetchCartProductsList());
@@ -37,11 +39,7 @@ export const ShoppingCartList = ({ className }: ShoppingCartListProps) => {
         >
             {!!products.length &&
                 products.map((product) => (
-                    <CartProduct
-                        key={product.id}
-                        product={product}
-                        onUpdateCart={onUpdateCart}
-                    />
+                    <CartProduct key={product.id} product={product} />
                 ))}
         </VStack>
     );

@@ -6,6 +6,7 @@ import {
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Product } from 'entities/Product';
 import { User } from 'entities/User';
+import { updateCart } from 'entities/Cart';
 import { fetchCartProductsList } from '../services/fetchCartProductsList/fetchCartProductsList';
 import { CartItemType, CartSchema } from '../types/cart';
 
@@ -77,12 +78,24 @@ export const cartsSlice = createSlice({
             })
             .addCase(fetchCartProductsList.fulfilled, (state, action) => {
                 state.isLoading = false;
-                cartAdapter.setAll(state, action.payload.products);
+                cartAdapter.addMany(state, action.payload.products);
             })
             .addCase(fetchCartProductsList.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                // state.error = action.payload;
             });
+
+        // .addCase(updateCart.pending, (state, action) => {
+        //     state.error = undefined;
+        //     state.isLoading = true;
+        // })
+        // .addCase(updateCart.fulfilled, (state, action) => {
+        //     state.isLoading = false;
+        // })
+        // .addCase(updateCart.rejected, (state, action) => {
+        //     state.isLoading = false;
+        //     state.error = action.payload;
+        // });
     },
 });
 

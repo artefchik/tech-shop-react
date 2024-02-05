@@ -4,6 +4,7 @@ import { $api } from 'shared/api/api';
 import { CombinedState, Reducer } from 'redux';
 import { rtkApi } from 'shared/api/rtkApi';
 import { cartReducer } from 'entities/Cart';
+import { productFavoritesReducer } from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -15,6 +16,7 @@ export function createReduxStore(
         ...asyncReducers,
         user: userReducer,
         cart: cartReducer,
+        productFavorites: productFavoritesReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     };
 

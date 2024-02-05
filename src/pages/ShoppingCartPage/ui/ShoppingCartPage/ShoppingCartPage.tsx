@@ -3,6 +3,7 @@ import { Page } from 'shared/ui/Page/Page';
 import { Container } from 'shared/ui/Container/Container';
 import { ShoppingCartList } from 'pages/ShoppingCartPage/ui/ShoppingCartList/ShoppingCartList';
 import { ShoppingCartHeaderPage } from 'pages/ShoppingCartPage/ui/ShoppingCartHeaderPage/ShoppingCartHeaderPage';
+import { ShoppingCartTotalSummary } from 'pages/ShoppingCartPage/ui/ShoppingCartTotalSummary/ShoppingCartTotalSummary';
 import cls from './ShoppingCartPage.module.scss';
 
 interface ProductsCartPageProps {
@@ -16,7 +17,8 @@ const ShoppingCartPage = (props: ProductsCartPageProps) => {
         <Page className={classNames(cls.ShoppingCartPage, {}, [className])}>
             <Container>
                 <ShoppingCartHeaderPage className={cls.header} />
-                <ShoppingCartList />
+                <ShoppingCartList className={cls.list} />
+                <ShoppingCartTotalSummary />
             </Container>
         </Page>
     );

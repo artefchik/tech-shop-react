@@ -6,15 +6,13 @@ import { RemoveButtonCartProduct } from 'features/RemoveButtonCartProduct';
 interface CartProductProps {
     className?: string;
     product: CartItemType;
-    onUpdateCart: () => void;
 }
 
 export const CartProduct = (props: CartProductProps) => {
-    const { className, product, onUpdateCart } = props;
+    const { className, product } = props;
     return (
         <CartItem
             product={product}
-            onUpdateCart={onUpdateCart}
             counter={<CounterCartProduct product={product} />}
             removeButton={<RemoveButtonCartProduct product={product} />}
         />

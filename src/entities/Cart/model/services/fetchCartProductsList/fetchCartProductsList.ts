@@ -14,26 +14,21 @@ import { cartActions } from 'entities/Cart/model/slice/cartSlice';
 import { CartItemType } from 'entities/Cart/model/types/cart';
 import { getCartProducts } from 'entities/Cart/model/selectors/getCartProducts/getCartProducts';
 import { getUserAuthData } from 'entities/User';
-import { getCartProductsQuery } from 'entities/Cart/api/cartApi';
-
-interface Carts {
-    products: CartItemType[];
-    userId: string;
-}
+import { CartType, getCartProductsQuery } from 'entities/Cart/api/cartApi';
 
 export const fetchCartProductsList = createAsyncThunk<
-    Carts,
+    CartType,
     void,
     ThunkConfig<string>
 >('cart/fetchCartProductsList', async (_, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
+    const authData = getUserAuthData(getState());
+    if (!authData?.id) {
+        return rejectWithValue('error');
+    }
 
     try {
-        const authData = getUserAuthData(getState());
-        if (!authData?.id) {
-            return rejectWithValue('error');
-        }
-        const response = await axios.get<Carts>(
+        const response = await axios.get(
             `http://localhost:8000/cart/${authData?.id}`,
         );
         if (!response.data) {

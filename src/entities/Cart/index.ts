@@ -1,3 +1,4 @@
+export { getCartTotalPrice } from './model/selectors/getCartTotalPrice/getCartTotalPrice';
 export { CartItem } from './ui/CartItem/CartItem';
 export { CartItemType } from './model/types/cart';
 export { updateCart } from './model/services/updateCart/updateCart';

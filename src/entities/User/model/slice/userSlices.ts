@@ -34,7 +34,6 @@ export const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-
             .addCase(initUserAuthData.fulfilled, (state, action) => {
                 state.authData = action.payload;
                 state._mounted = true;

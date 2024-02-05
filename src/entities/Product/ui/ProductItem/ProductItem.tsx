@@ -17,10 +17,11 @@ interface ProductItemProps {
     product: Product;
     view: ViewType;
     AddToCartButton?: ReactNode;
+    FavoriteButton?: ReactNode;
 }
 
 export const ProductItem = memo((props: ProductItemProps) => {
-    const { className, product, view, AddToCartButton } = props;
+    const { className, product, view, AddToCartButton, FavoriteButton } = props;
 
     if (view === ViewType.SMALL) {
         return (
@@ -33,11 +34,9 @@ export const ProductItem = memo((props: ProductItemProps) => {
                 <VStack gap="10">
                     <div className={cls.image}>
                         <img src={product.image} alt={product.title} />
-                        <Icon
-                            hover={false}
-                            Svg={favorites}
-                            className={cls.favorites}
-                        />
+                        <div className={cls.favorites}>
+                            {FavoriteButton && FavoriteButton}
+                        </div>
                     </div>
                     <StarRating selectedStars={product.starRating} />
                     <VStack gap="10">

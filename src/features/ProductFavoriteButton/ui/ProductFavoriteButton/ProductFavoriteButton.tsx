@@ -1,50 +1,41 @@
 import { useCallback, useEffect, useState } from 'react';
-import {
-    useChangeProductFavorite,
-    useGetProductFavorite,
-} from 'features/ProductFavoriteButton/api/productFavoriteApi';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { FavoriteButton } from 'entities/Favorite/ui/FavoriteButton/FavoriteButton';
+import {
+    getProductFavorites,
+    productFavoritesActions,
+} from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { StateSchema } from 'app/providers/StoreProvider';
 
 interface ProductFavoriteButtonProps {
     className?: string;
+    isFavorite?: boolean;
     productId: string;
 }
 
 export const ProductFavoriteButton = (props: ProductFavoriteButtonProps) => {
-    const { className, productId } = props;
-    const userData = useSelector(getUserAuthData);
-    const { data, isLoading } = useGetProductFavorite({
-        productId,
-        userId: userData?.id ?? '',
-    });
-
-    const [toggleProductFavorite] = useChangeProductFavorite();
+    const { className, isFavorite, productId } = props;
+    const dispatch = useAppDispatch();
 
     const onToggleFavorite = useCallback(
-        (isFavorite: boolean) => {
-            try {
-                toggleProductFavorite({
+        (isFav: boolean) => {
+            dispatch(
+                productFavoritesActions.onToggleFavorite({
                     productId,
-                    userId: userData?.id ?? '',
-                    isFavorite,
-                });
-            } catch (e) {
-                console.log(e);
-            }
+                    isFavorite: isFav,
+                    id: productId,
+                }),
+            );
         },
-        [productId, toggleProductFavorite, userData?.id],
+        [dispatch, productId],
     );
-    const fav = data?.[0];
 
-    if (isLoading) {
-        return null;
-    }
     return (
         <FavoriteButton
+            isFavorite={isFavorite}
             onToggleFavorite={onToggleFavorite}
-            isFavorite={fav?.isFavorite}
         />
     );
 };

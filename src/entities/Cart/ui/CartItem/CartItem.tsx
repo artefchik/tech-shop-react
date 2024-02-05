@@ -11,17 +11,13 @@ interface CartItemProps {
     product: CartItemType;
     counter?: ReactNode;
     removeButton?: ReactNode;
-    onUpdateCart: () => void;
 }
 
 export const CartItem = memo((props: CartItemProps) => {
-    const { className, product, counter, removeButton, onUpdateCart } = props;
+    const { className, product, counter, removeButton } = props;
 
     return (
-        <Card
-            className={classNames(cls.CartItem, {}, [className])}
-            onClick={onUpdateCart}
-        >
+        <Card className={classNames(cls.CartItem, {}, [className])}>
             <HStack align="center" gap="5">
                 <div className={cls.image}>
                     <img src={product.image} alt={product.title} />

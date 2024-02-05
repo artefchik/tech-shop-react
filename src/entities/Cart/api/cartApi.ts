@@ -16,7 +16,7 @@ interface ChangeCartProductsArg {
     userId: string;
 }
 
-interface CartItem {
+export interface CartType {
     products: CartItemType[];
     userId: string;
 }
@@ -27,7 +27,7 @@ const cartApiWithTag = rtkApi.enhanceEndpoints({
 
 export const cartApi = cartApiWithTag.injectEndpoints({
     endpoints: (build) => ({
-        getCartProducts: build.query<CartItemType[], string>({
+        getCartProducts: build.query<CartType, string>({
             query: (userId) => ({
                 url: '/cart',
                 params: {
@@ -36,7 +36,7 @@ export const cartApi = cartApiWithTag.injectEndpoints({
             }),
             providesTags: (result) => ['CART'],
         }),
-        updateProductFavorite: build.mutation<CartItem, CartItem>({
+        updateProducts: build.mutation<CartType, CartType>({
             query: ({ userId, products }) => ({
                 url: `/cart/${userId}`,
                 method: 'PATCH',
@@ -51,5 +51,4 @@ export const cartApi = cartApiWithTag.injectEndpoints({
 });
 
 export const getCartProductsQuery = cartApi.endpoints.getCartProducts.initiate;
-export const useUpdateProductFavorite =
-    cartApi.useUpdateProductFavoriteMutation;
+export const setUpdateProducts = cartApi.endpoints.updateProducts.initiate;
