@@ -804,10 +804,12 @@
   "products": [
     {
       "id": "1",
-      "title": "Apple iPhone 11, 64GB, Black - Unlocked (Renewed)",
+      "title": "Apple iPhone 11, 64GB, Pink",
       "image": "https://freepngimg.com/thumb/apple_iphone/133296-11-apple-iphone-free-transparent-image-hq.png",
       "starRating": 4,
       "priceSymbol": "$",
+      "colorItem": "pink",
+      "category": "phone",
       "price": {
         "current": 275.96,
         "previous": 300.2
@@ -816,9 +818,11 @@
     },
     {
       "id": "2ddd",
-      "title": "Apple iPhone 11, 64GB, Black - Unlocked (Renewed)",
-      "image": "https://freepngimg.com/thumb/apple_iphone/133296-11-apple-iphone-free-transparent-image-hq.png",
+      "title": "Apple iPhone 14,Pro Max 128GB, Deep Purple ",
+      "image": "https://i.ibb.co/L5rxJR9/iphone-14-pro-max-deeppurple.png",
       "starRating": 4,
+      "colorItem": "Deep Purple",
+      "category": "phone",
       "priceSymbol": "$",
       "price": {
         "current": 275.96,
@@ -828,10 +832,124 @@
     },
     {
       "id": "3ss",
-      "title": "Apple iPhone 15, 64GB, Black - Unlocked (Renewed)",
-      "image": "https://freepngimg.com/thumb/apple_iphone/133296-11-apple-iphone-free-transparent-image-hq.png",
+      "title": "Apple iPhone 14,Pro Max 128GB, Gold ",
+      "image": "https://i.ibb.co/9t21ch7/iphone-14-pro-max-gold.png",
+      "starRating": 4,
+      "colorItem": "gold",
+      "category": "phone",
+      "priceSymbol": "$",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "4ss",
+      "title": "Apple iPhone 14,Pro Max 128GB, Silver ",
+      "image": "https://i.ibb.co/BN7KS2t/iphone-14-pro-max-silver.png",
+      "starRating": 4,
+      "colorItem": "silver",
+      "category": "phone",
+      "priceSymbol": "$",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "4",
+      "title": "Apple iPhone 15, 64GB, Black ",
+      "image": "https://i.ibb.co/0K9v2Tb/iphone-15-black.png",
+      "starRating": 4,
+      "colorItem": "black",
+      "category": "phone",
+      "priceSymbol": "$",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "5",
+      "title": "Apple iPhone 15, 64GB, Pink",
+      "image": "https://i.ibb.co/g7S6DFL/iphone-15-pink.png",
+      "starRating": 4,
+      "colorItem": "pink",
+      "category": "phone",
+      "priceSymbol": "$",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "6",
+      "title": "Apple iPhone 15, 64GB, Yellow",
+      "image": "https://i.ibb.co/MVLs040/iphone-15-yellow.png",
       "starRating": 4,
       "priceSymbol": "$",
+      "colorItem": "yellow",
+      "category": "phone",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "7",
+      "title": "Apple iPhone 15, 64GB, Green",
+      "image": "https://i.ibb.co/5WGYkdd/iphone-15-green.png",
+      "starRating": 4,
+      "priceSymbol": "$",
+      "colorItem": "green",
+      "category": "phone",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "8",
+      "title": "Apple Mac Studio, 64GB, Silver",
+      "image": "https://i.ibb.co/tc0xdPY/mac-studio.png",
+      "starRating": 4,
+      "priceSymbol": "$",
+      "colorItem": "silver",
+      "category": "pc",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "9",
+      "title": "Apple MacBook Pro 14, 512GB, Silver",
+      "image": "https://i.ibb.co/pJQTg5G/macbook-pro-14-m3.png",
+      "starRating": 4,
+      "priceSymbol": "$",
+      "colorItem": "silver",
+      "category": "pc",
+      "price": {
+        "current": 275.96,
+        "previous": 300.2
+      },
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      "id": "10",
+      "title": "Apple IMac, 512GB, Silver",
+      "image": "https://i.ibb.co/3RNNb9N/imac-24.png",
+      "starRating": 4,
+      "priceSymbol": "$",
+      "colorItem": "silver",
+      "category": "pc",
       "price": {
         "current": 275.96,
         "previous": 300.2
@@ -863,6 +981,16 @@
           "productId": "3ss",
           "isFavorite": true,
           "id": "3ss"
+        },
+        {
+          "productId": "7",
+          "isFavorite": true,
+          "id": "7"
+        },
+        {
+          "productId": "9",
+          "isFavorite": true,
+          "id": "9"
         }
       ]
     }

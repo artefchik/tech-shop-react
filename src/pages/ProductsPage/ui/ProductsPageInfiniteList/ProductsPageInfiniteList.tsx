@@ -18,23 +18,25 @@ import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/ser
 import { getProductFavoritesIsLoading } from 'features/ProductFavoriteButton/model/selectors/getProductFavoritesIsLoading/getProductFavoritesIsLoading';
 import { getProductFavorites } from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
 import { useUpdateProductsFavorites } from 'features/ProductFavoriteButton/api/productFavoriteApi';
+import { fetchProductsList } from 'pages/ProductsPage/model/services/fetchProductsList/fetchProductsList';
 import { getProductsPageIsLoading } from '../../model/selectors/getProductsPageIsLoading/getProductsPageIsLoading';
 import { getProductsPageData } from '../../model/selectors/getProductsPageData/getProductsPageData';
 import { getProductsPageView } from '../../model/selectors/getProductsPageView/getProductsPageView';
 
 interface ArticlesInfiniteListProps {
     className?: string;
+    category?: string;
 }
 const getSkeletons = (view: ViewType) =>
-    new Array(view === ViewType.SMALL ? 6 : 3)
+    new Array(view === ViewType.SMALL ? 5 : 3)
         .fill(0)
         .map((item, index) => <ProductItemSkeleton key={index} />);
 
 export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
+    const { className, category } = props;
     const products = useSelector(getProductsPageData);
     const isLoading = useSelector(getProductsPageIsLoading);
     const view = useSelector(getProductsPageView);
-    const { className } = props;
     const authData = useSelector(getUserAuthData);
     const dispatch = useAppDispatch();
     const productsFavorites = useSelector(getProductFavorites.selectAll);
@@ -53,6 +55,14 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
         });
     }, [authData?.id, productsFavorites, updateProductsFavorites]);
 
+    useEffect(() => {
+        dispatch(fetchProductsList({ category }));
+    }, [category, dispatch]);
+
+    if (!category) {
+        return null;
+    }
+
     return (
         <div
             className={classNames(cls.ProductList, {}, [className, cls[view]])}
@@ -62,11 +72,6 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
                     const favoriteItem = productsFavorites.find(
                         (favorite) => favorite.productId === product.id,
                     );
-                    // const isFavorite = productsFavorites
-                    //     ? productsFavorites.find(
-                    //           (favorite) => favorite.productId === product.id,
-                    //       )?.isFavorite
-                    //     : false;
                     return (
                         <ProductItem
                             key={product.id}

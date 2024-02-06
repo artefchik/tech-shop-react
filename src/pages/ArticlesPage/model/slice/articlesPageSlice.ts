@@ -27,7 +27,7 @@ const articlesPageSlice = createSlice({
         entities: {},
         view: ViewType.SMALL,
         page: 1,
-        limit: 3,
+        limit: 5,
         hasMore: true,
         _inited: false,
     }),

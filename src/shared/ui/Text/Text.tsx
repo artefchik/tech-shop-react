@@ -11,6 +11,7 @@ export enum TextTheme {
     ERROR = 'error',
     PRICE = 'price',
     SECONDARY = 'secondary',
+    SLIDER = 'slider',
 }
 
 export enum TextSize {

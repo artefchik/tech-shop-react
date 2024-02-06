@@ -31,37 +31,39 @@ export const ProductItem = memo((props: ProductItemProps) => {
                     cls[view],
                 ])}
             >
-                <VStack gap="10">
+                <VStack gap="10" className={cls.body}>
                     <div className={cls.image}>
                         <img src={product.image} alt={product.title} />
                         <div className={cls.favorites}>
                             {FavoriteButton && FavoriteButton}
                         </div>
                     </div>
-                    <StarRating selectedStars={product.starRating} />
-                    <VStack gap="10">
-                        <Text
-                            title={product.title}
-                            theme={TextTheme.SMALL}
-                            className={cls.title}
-                        />
-                        <HStack align="center" gap="15">
+                    <VStack className={cls.content}>
+                        <StarRating selectedStars={product.starRating} />
+                        <VStack gap="10">
                             <Text
-                                title={`${product.priceSymbol}${String(
-                                    product.price.current,
-                                )}`}
-                                className={cls.currentPrice}
-                                theme={TextTheme.PRICE}
+                                title={product.title}
+                                theme={TextTheme.SMALL}
+                                className={cls.title}
                             />
+                            <HStack align="center" gap="15">
+                                <Text
+                                    title={`${product.priceSymbol}${String(
+                                        product.price.current,
+                                    )}`}
+                                    className={cls.currentPrice}
+                                    theme={TextTheme.PRICE}
+                                />
 
-                            <Text
-                                text={`${product.priceSymbol}${String(
-                                    product.price.previous,
-                                )}`}
-                                className={cls.previousPrice}
-                                theme={TextTheme.SECONDARY}
-                            />
-                        </HStack>
+                                <Text
+                                    text={`${product.priceSymbol}${String(
+                                        product.price.previous,
+                                    )}`}
+                                    className={cls.previousPrice}
+                                    theme={TextTheme.SECONDARY}
+                                />
+                            </HStack>
+                        </VStack>
                     </VStack>
                     {AddToCartButton}
                 </VStack>

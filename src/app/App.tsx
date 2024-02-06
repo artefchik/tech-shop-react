@@ -7,6 +7,7 @@ import { Header } from 'widgets/Header';
 import { getUserAuthData, getUserInitied, userActions } from 'entities/User';
 import { initUserAuthData } from 'entities/User/model/services/initUserAuthData/initUserAuthData';
 import { cartActions } from 'entities/Cart/model/slice/cartSlice';
+import { Footer } from 'widgets/Footer';
 
 function App() {
     const { theme } = useTheme();
@@ -23,6 +24,7 @@ function App() {
         <div className={classNames('app', {}, [theme])}>
             <Header />
             <Suspense fallback="load">{inited && <AppRouter />}</Suspense>
+            <Footer />
         </div>
     );
 }

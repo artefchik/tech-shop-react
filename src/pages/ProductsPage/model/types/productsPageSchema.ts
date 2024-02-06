@@ -1,5 +1,3 @@
-import { EntityState } from '@reduxjs/toolkit';
-import { Article, ArticleView } from 'entities/Article';
 import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { Product } from 'entities/Product';
 

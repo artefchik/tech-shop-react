@@ -4,7 +4,7 @@ import { Navbar } from 'widgets/Navbar';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import Logo from 'shared/assets/icons/logo.svg';
 import { ActionsNavbar } from 'widgets/Navbar/ui/ActionsNavbar/ActionsNavbar';
-import { RoutePath } from 'shared/const/router';
+import { getRoutePathMain, RoutePath } from 'shared/const/router';
 import cls from './Header.module.scss';
 
 interface HeaderProps {
@@ -17,7 +17,11 @@ export const Header = (props: HeaderProps) => {
     return (
         <div className={classNames(cls.Header, {}, [className])}>
             <Container className={cls.container}>
-                <AppLink to={RoutePath.main} className={cls.logo} theme={AppLinkTheme.CLEAR}>
+                <AppLink
+                    to={getRoutePathMain()}
+                    className={cls.logo}
+                    theme={AppLinkTheme.CLEAR}
+                >
                     <Logo />
                 </AppLink>
                 <Navbar className={cls.navbar} />
