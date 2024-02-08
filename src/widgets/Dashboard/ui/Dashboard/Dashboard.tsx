@@ -11,7 +11,11 @@ interface DashboardProps {
 
 export const Dashboard = ({ className }: DashboardProps) => (
     <Card className={classNames(cls.Dashboard, {}, [className])}>
-        <Text title="Account Dashboard" size={TextSize.MEDIUM} align={TextAlign.CENTER} className={cls.title} />
+        <Text
+            title="Dashboard"
+            align={TextAlign.CENTER}
+            className={cls.title}
+        />
         <div className={cls.list}>
             {DashboardList.map((item) => (
                 <DashboardItem item={item} key={item.path} />

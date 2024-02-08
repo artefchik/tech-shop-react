@@ -5,12 +5,14 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 import { Button } from 'shared/ui/Button/Button';
-import { FooterLinkItem } from '../FooterLinkItem/FooterLinkItem';
+import { Spoller } from 'shared/ui/Spoller/Spoller';
+
+import cls from './FooterTop.module.scss';
+import { FooterLinkItems } from '../FooterLinkItems/FooterLinkItems';
 import {
     footerCategoryLinksList,
     footerLinksList,
 } from '../../model/types/footer';
-import cls from './FooterTop.module.scss';
 
 interface FooterTopProps {
     className?: string;
@@ -43,10 +45,15 @@ export const FooterTop = ({ className }: FooterTopProps) => (
             </VStack>
         </VStack>
         <HStack className={cls.links} justify="center" gap="30">
-            <FooterLinkItem links={footerLinksList} title="Quick Link" />
-            <FooterLinkItem
-                links={footerCategoryLinksList}
+            <Spoller
+                open
+                title="Quick Link"
+                content={<FooterLinkItems links={footerLinksList} />}
+            />
+            <Spoller
+                open
                 title="Categories"
+                content={<FooterLinkItems links={footerCategoryLinksList} />}
             />
         </HStack>
         <Card className={cls.form}>

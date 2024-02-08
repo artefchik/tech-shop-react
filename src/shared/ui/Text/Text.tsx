@@ -12,14 +12,15 @@ export enum TextTheme {
     PRICE = 'price',
     SECONDARY = 'secondary',
     SLIDER = 'slider',
+    LINK = 'link',
+    DEFAULT = 'default',
 }
 
 export enum TextSize {
     SMALL = 'small',
     MEDIUM = 'medium',
-    DEFAULT = 'default',
+
     BIG = 'big',
-    LINK = 'link',
 }
 export enum TextAlign {
     START = 'start',
@@ -41,7 +42,7 @@ export const Text = memo((props: TextProps) => {
         className,
         title,
         text,
-        size = TextSize.DEFAULT,
+        size = TextSize.MEDIUM,
         align = TextAlign.START,
         theme = TextTheme.PRIMARY,
     } = props;

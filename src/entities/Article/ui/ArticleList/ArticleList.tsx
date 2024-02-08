@@ -21,19 +21,25 @@ const getSkeletons = (view: ViewType) =>
         ));
 
 export const ArticleList = memo((props: ArticleListProps) => {
-    const { className, isLoading, articles, view = ViewType.SMALL } = props;
+    const {
+        className,
+        isLoading,
+        articles = [],
+        view = ViewType.SMALL,
+    } = props;
     return (
         <div
             className={classNames(cls.ArticleList, {}, [className, cls[view]])}
         >
-            {articles.length > 0 &&
-                articles.map((article) => (
-                    <ArticleListItem
-                        key={article.id}
-                        article={article}
-                        view={view}
-                    />
-                ))}
+            {articles.length > 0
+                ? articles.map((article) => (
+                      <ArticleListItem
+                          key={article.id}
+                          article={article}
+                          view={view}
+                      />
+                  ))
+                : null}
             {isLoading && getSkeletons(view)}
         </div>
     );

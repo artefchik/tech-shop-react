@@ -1,12 +1,12 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppNavLink, AppNavLinkTheme } from 'shared/ui/AppNavLink/AppNavLink';
-import { Text, TextSize } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { DashboardItemType } from '../../model/items';
 import cls from './DashboardItem.module.scss';
 
 interface DashboardItemProps {
     className?: string;
-    item:DashboardItemType
+    item: DashboardItemType;
 }
 
 export const DashboardItem = (props: DashboardItemProps) => {
@@ -17,7 +17,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
             theme={AppNavLinkTheme.ACTIVE}
             className={classNames(cls.DashboardItem, {}, [className])}
         >
-            <Text title={item.text} size={TextSize.LINK} />
+            <Text title={item.text} theme={TextTheme.LINK} />
         </AppNavLink>
     );
 };

@@ -7,7 +7,6 @@ import { ArticleDetailsEditPage } from 'pages/ArticleDetailsEditPage';
 import { NotFoundPage } from 'pages/NotFoundPage/ui/NotFoundPage';
 import {
     AppRoutes,
-    AppRoutesProps,
     getRoutePathAbout,
     getRoutePathArticles,
     getRoutePathArticlesCreate,
@@ -23,6 +22,13 @@ import {
 import { ProductsPage } from 'pages/ProductsPage';
 import { ShoppingCartPage } from 'pages/ShoppingCartPage';
 import { ProductsCategoriesPage } from 'pages/ProductsCategoriesPage';
+import { RouteProps } from 'react-router-dom';
+import { UserRoles } from 'entities/User';
+
+export type AppRoutesProps = RouteProps & {
+    authOnly?: boolean;
+    roles?: UserRoles[];
+};
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -61,12 +67,14 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.PRODUCTS]: {
         path: getRoutePathProducts(),
         element: <ProductsCategoriesPage />,
-        authOnly: false,
+        authOnly: true,
+        roles: [UserRoles.ADMIN],
     },
     [AppRoutes.PRODUCTS_CATEGORIES]: {
         path: getRoutePathProductsCategories(':category'),
         element: <ProductsPage />,
-        authOnly: false,
+        authOnly: true,
+        roles: [UserRoles.ADMIN],
     },
     [AppRoutes.SHOPPING_CART]: {
         path: getRoutePathShoppingCart(),

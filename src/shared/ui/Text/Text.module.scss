@@ -73,11 +73,15 @@
 }
 
 .textBlock {
-  color: var(--color-text-block);
+  .text {
+    color: var(--color-text-block);
+    font: var(--font-m);
+  }
 }
 
 .default {
-  font: var(--font-m);
+  color: var(--primary-color);
+  font: var(--font-d);
 }
 
 .medium {
@@ -138,17 +142,19 @@
 .slider {
   .title {
     font: var(--font-xl);
-    color:#1c1c1c;
+    color: #1c1c1c;
     white-space: nowrap;
-      &:not(:last-child) {
-          margin-bottom: 5px;
-        }
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
 
     @media (max-width: 991.98px) {
       font: var(--font-l);
       font-weight: var(--font-weight-semiBold);
     }
   }
+
   .text {
     font: var(--font-l);
     color: var(--color-text-secondary);
