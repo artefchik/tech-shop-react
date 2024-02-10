@@ -1,0 +1,12 @@
+.TextArea {
+  textarea {
+    width: 100%;
+    min-height: 40px;
+    resize: none;
+    outline: none;
+    color: var(--color-text-block);
+    font: var(--font-m);
+    padding: 0 10px;
+    background-color: transparent;
+  }
+}

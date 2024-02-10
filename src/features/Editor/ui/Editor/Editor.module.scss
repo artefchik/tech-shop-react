@@ -1,0 +1,12 @@
+.Editor {
+}
+
+.title {
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+  padding: 0 25px;
+  @media (any-hover: none) {
+    padding: 0;
+  }
+}

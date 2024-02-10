@@ -5,6 +5,7 @@ import { Product } from 'entities/Product';
 
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { ProductsCategories } from 'shared/const/types';
+import { $api } from 'shared/api/api';
 
 interface fetchProductsListProps {
     replace?: boolean;
@@ -17,17 +18,12 @@ export const fetchProductsList = createAsyncThunk<
     ThunkConfig<string>
 >('articleDetails/fetchArticleById', async ({ category }, thunkAPI) => {
     try {
-        const response = await axios.get<Product[]>(
-            `http://localhost:8000/products`,
-            {
-                params: {
-                    category:
-                        category === ProductsCategories.ALL
-                            ? undefined
-                            : category,
-                },
+        const response = await $api.get<Product[]>(`/products`, {
+            params: {
+                category:
+                    category === ProductsCategories.ALL ? undefined : category,
             },
-        );
+        });
         if (!response.data) {
             return thunkAPI.rejectWithValue('error');
         }

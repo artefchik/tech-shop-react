@@ -1,0 +1,17 @@
+.EditorBaseBlock {
+}
+
+.input {
+  font: var(--font-l);
+}
+
+.area {
+  width: 100%;
+  min-height: 100px;
+  resize: none;
+  outline: none;
+  color: var(--color-text-block);
+  font: var(--font-m);
+  padding: 0 10px;
+  background-color: transparent;
+}

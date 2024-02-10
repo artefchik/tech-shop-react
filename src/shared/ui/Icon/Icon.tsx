@@ -2,23 +2,17 @@ import React, { memo } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import cls from './Icon.module.scss';
 
-interface IconProps extends React.SVGProps<SVGSVGElement> {
-  className?: string;
-  Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
-  inverted?: boolean;
-  hover?:boolean;
+export interface IconProps extends React.SVGProps<SVGSVGElement> {
+    className?: string;
+    Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
+    inverted?: boolean;
+    hover?: boolean;
 }
 
 export const Icon = memo((props: IconProps) => {
-    const {
-        className,
-        Svg,
-        inverted,
-        hover = true,
-        ...otherProps
-    } = props;
+    const { className, Svg, inverted, hover = true, ...otherProps } = props;
 
-    const mods:Mods = {
+    const mods: Mods = {
         [cls.hover]: hover,
     };
 

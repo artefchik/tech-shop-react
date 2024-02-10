@@ -15,7 +15,7 @@ export const Header = (props: HeaderProps) => {
     const { className } = props;
 
     return (
-        <div className={classNames(cls.Header, {}, [className])}>
+        <header className={classNames(cls.Header, {}, [className])}>
             <Container className={cls.container}>
                 <AppLink
                     to={getRoutePathMain()}
@@ -27,6 +27,6 @@ export const Header = (props: HeaderProps) => {
                 <Navbar className={cls.navbar} />
                 <ActionsNavbar className={cls.actions} />
             </Container>
-        </div>
+        </header>
     );
 };

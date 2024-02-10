@@ -18,8 +18,9 @@ import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/productsPageSchema';
-import { productFavoritesReducer } from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
 import { ProductFavoritesSchema } from 'features/ProductFavoriteButton/model/types/favorite';
+import { SandboxPageSchema } from 'pages/SandboxPage';
+import { EditorSchema } from 'features/Editor';
 
 export interface StateSchema {
     user: UserSchema;
@@ -35,6 +36,8 @@ export interface StateSchema {
     articlesPage?: ArticlesPageSchema;
     articleFilters?: ArticleFiltersSchema;
     productsPage?: ProductsPageSchema;
+    sandboxPage?: SandboxPageSchema;
+    editor?: EditorSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

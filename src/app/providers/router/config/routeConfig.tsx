@@ -24,6 +24,7 @@ import { ShoppingCartPage } from 'pages/ShoppingCartPage';
 import { ProductsCategoriesPage } from 'pages/ProductsCategoriesPage';
 import { RouteProps } from 'react-router-dom';
 import { UserRoles } from 'entities/User';
+import { SandboxPage } from 'pages/SandboxPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -56,7 +57,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.ARTICLE_CREATE]: {
         path: getRoutePathArticlesCreate(),
-        element: <ArticleDetailsPage />,
+        element: <SandboxPage />,
         authOnly: false,
     },
     [AppRoutes.ARTICLE_EDIT]: {

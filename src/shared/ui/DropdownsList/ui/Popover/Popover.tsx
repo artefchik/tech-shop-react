@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Popover as Pop } from '@headlessui/react';
-import React, { CSSProperties, ReactNode } from 'react';
+import { Popover as Pop, Transition } from '@headlessui/react';
+import React, { CSSProperties, Fragment, ReactNode } from 'react';
 import { VStack } from 'shared/ui/Stack';
 
 import {
@@ -66,15 +66,26 @@ export const Popover = (props: PopoverProps) => {
                             <Icon Svg={icon} className={cls.icon} />
                         </Button>
                     </Pop.Button>
-                    <Pop.Panel
-                        className={classNames(clsDrop.body, {}, [
-                            DropdownsListDirectionOpenClasses[openView],
-                        ])}
-                        as="div"
-                        style={styles}
+                    <Transition
+                        show={open}
+                        as={Fragment}
+                        enter="transition ease-out duration-500"
+                        enterFrom="opacity-0 translate-y-2"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-850"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-2"
                     >
-                        <VStack gap="15">{children}</VStack>
-                    </Pop.Panel>
+                        <Pop.Panel
+                            className={classNames(clsDrop.body, {}, [
+                                DropdownsListDirectionOpenClasses[openView],
+                            ])}
+                            as="div"
+                            style={styles}
+                        >
+                            <VStack gap="15">{children}</VStack>
+                        </Pop.Panel>
+                    </Transition>
                 </>
             )}
         </Pop>

@@ -17,11 +17,11 @@ interface FooterProps {
 export const Footer = (props: FooterProps) => {
     const { className } = props;
     return (
-        <div className={classNames(cls.Footer, {}, [className])}>
+        <footer className={classNames(cls.Footer, {}, [className])}>
             <Container>
                 <FooterTop className={cls.top} />
                 <FooterBottom />
             </Container>
-        </div>
+        </footer>
     );
 };

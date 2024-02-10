@@ -1,6 +1,12 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
-import React, { CSSProperties, Fragment, ReactNode, useMemo } from 'react';
+import React, {
+    CSSProperties,
+    Fragment,
+    memo,
+    ReactNode,
+    useMemo,
+} from 'react';
 import { Menu } from '@headlessui/react';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Link } from 'react-router-dom';
@@ -32,7 +38,7 @@ interface DropdownProps {
     triggerClear?: boolean;
 }
 
-export const Dropdown = (props: DropdownProps) => {
+export const Dropdown = memo((props: DropdownProps) => {
     const {
         className,
         defaultValue,
@@ -118,4 +124,4 @@ export const Dropdown = (props: DropdownProps) => {
             </Menu.Items>
         </Menu>
     );
-};
+});

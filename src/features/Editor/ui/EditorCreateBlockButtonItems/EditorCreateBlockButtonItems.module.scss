@@ -1,0 +1,30 @@
+.EditorCreateBlockButtonItems {
+  margin: -10px;
+}
+.item {
+  width: 100%;
+  transition: all 0.3s ease 0s;
+  min-height: 44px;
+  max-height: 44px;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--secelt-active);
+      color: var(--primary-color);
+      .icon {
+        path,
+        circle {
+          stroke: var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

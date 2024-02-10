@@ -1,0 +1,12 @@
+.SandboxEditorPage {
+  min-height: 70vh;
+}
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-secondary);
+    &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+}
