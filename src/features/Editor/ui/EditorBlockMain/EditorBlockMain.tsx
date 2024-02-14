@@ -27,6 +27,7 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
     const onClose = useCallback((value: string) => {
         setIsClose(Boolean(value));
     }, []);
+
     const renderBlock = useCallback(
         (type: ArticleBlockType) => {
             switch (type) {
@@ -38,8 +39,8 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
                                 item={{
                                     id: item.id,
                                     type: ArticleBlockType.IMAGE,
-                                    title: '',
-                                    image: '',
+                                    title: item.title,
+                                    image: item.image,
                                 }}
                             />
                             <EditorBaseBlock
@@ -47,8 +48,8 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
                                 item={{
                                     id: String(Date.now()),
                                     type: ArticleBlockType.TEXT,
-                                    title: '',
-                                    paragraphs: [],
+                                    title: item.title,
+                                    paragraphs: item.paragraphs,
                                 }}
                             />
                         </VStack>
@@ -61,8 +62,8 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
                             item={{
                                 id: item.id,
                                 type: ArticleBlockType.TEXT,
-                                title: '',
-                                paragraphs: [],
+                                title: item.title,
+                                paragraphs: item.paragraphs,
                             }}
                         />
                     );
@@ -104,7 +105,7 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
                     </div>
                     {block}
                     <div className={cls.button}>
-                        {/* {isClose && <EditorDeleteBlockButton id={item.id} />} */}
+                        <EditorDeleteBlockButton id={item.id} />
                     </div>
                 </HStack>
             </BrowserView>

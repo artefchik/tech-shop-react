@@ -1,7 +1,7 @@
 .Tabs {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .tab {
@@ -13,4 +13,11 @@
 .active {
     background-color: var(--secondary-color);
     color: var(--color-active-text-button);
+}
+
+.radio {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
 }

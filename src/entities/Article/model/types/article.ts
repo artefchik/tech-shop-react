@@ -21,10 +21,10 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 export type ArticleBlock = ArticleImageBlock | ArticleTextBlock;
 
 export enum ArticleType {
-    ALL = 'ALL',
+    ALL = 'All',
     IT = 'IT',
-    SCIENCE = 'SCIENCE',
-    POLITICS = 'POLITICS',
+    SCIENCE = 'Science',
+    POLITICS = 'Politics',
 }
 
 export enum ArticleView {

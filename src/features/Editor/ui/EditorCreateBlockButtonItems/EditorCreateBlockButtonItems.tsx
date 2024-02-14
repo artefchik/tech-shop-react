@@ -5,7 +5,9 @@ import React, { useCallback } from 'react';
 import imageIcon from 'shared/assets/icons/image-icon.svg';
 import textIcon from 'shared/assets/icons/text-icon.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Button, ButtonAlign, ThemeButton } from 'shared/ui/Button/Button';
+import { isBrowser, isMobile } from 'react-device-detect';
+import { EditorBlock } from 'features/Editor/model/types/editor';
 import cls from './EditorCreateBlockButtonItems.module.scss';
 import { editorActions } from '../../model/slice/editorSlice';
 
@@ -29,8 +31,35 @@ export const EditorCreateBlockButtonItems = (
     const { className, changeBlock, id, row = false } = props;
     const dispatch = useAppDispatch();
 
-    const create = useCallback(
-        (type: ArticleBlockType) => {
+    let create: (type: ArticleBlockType) => EditorBlock;
+
+    let createBlock: ((type: ArticleBlockType) => () => void) | undefined;
+
+    if (isMobile) {
+        create = (type: ArticleBlockType) => {
+            switch (type) {
+                case ArticleBlockType.IMAGE:
+                    return {
+                        id: String(Date.now()),
+                        type: ArticleBlockType.IMAGE,
+                        image: '',
+                        title: '',
+                        paragraphs: [],
+                    };
+
+                default:
+                    return {
+                        id: String(Date.now()),
+                        type: ArticleBlockType.TEXT,
+                        image: '',
+                        title: '',
+                        paragraphs: [],
+                    };
+            }
+        };
+    }
+    if (isBrowser) {
+        create = (type: ArticleBlockType) => {
             switch (type) {
                 case ArticleBlockType.IMAGE:
                     return {
@@ -50,14 +79,18 @@ export const EditorCreateBlockButtonItems = (
                         paragraphs: [],
                     };
             }
-        },
-        [id],
-    );
-
-    const createBlock = (type: ArticleBlockType) => () => {
+        };
+    }
+    createBlock = (type: ArticleBlockType) => () => {
         changeBlock(type);
         dispatch(editorActions.createBlock(create(type)));
     };
+    if (isMobile) {
+        createBlock = (type: ArticleBlockType) => () => {
+            // changeBlock(type);
+            dispatch(editorActions.createBlockOnMobile(create(type)));
+        };
+    }
 
     const items: EditorCreateButtonItem[] = [
         {
@@ -87,8 +120,10 @@ export const EditorCreateBlockButtonItems = (
             {items.map((item) => (
                 <Button
                     theme={ThemeButton.CLEAR}
+                    align={ButtonAlign.START}
                     key={item.content}
-                    onClick={createBlock(item.type)}
+                    borderRadius
+                    onClick={createBlock?.(item.type)}
                     className={classNames(cls.item, {}, [className])}
                 >
                     {!!item.icon && (

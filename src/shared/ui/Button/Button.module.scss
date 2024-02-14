@@ -60,3 +60,22 @@
         }
     }
 }
+
+.start {
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.border {
+    border-radius: 0;
+}
+
+.disabled {
+    opacity: 0.4;
+      @media (any-hover: hover) {
+          &:hover {
+              background-color: var(--secondary-color);
+          }
+        }
+
+}

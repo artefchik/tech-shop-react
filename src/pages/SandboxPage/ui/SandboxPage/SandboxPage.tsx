@@ -4,6 +4,7 @@ import { Container } from 'shared/ui/Container/Container';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { Card } from 'shared/ui/Card/Card';
 import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
+import { SandboxSettingsPage } from '../SandboxSettingsPage/SandboxSettingsPage';
 import cls from './SandboxPage.module.scss';
 import { SandboxEditorPage } from '../../ui/SandboxEditorPage/SandboxEditorPage';
 
@@ -16,12 +17,8 @@ const SandboxPage = (props: SandboxPageProps) => {
     return (
         <Page className={classNames(cls.SandboxPage, {}, [className])}>
             <Container>
-                <Text
-                    theme={TextTheme.HEADER}
-                    title="Создание статьи"
-                    className={cls.headerTitle}
-                />
                 <SandboxEditorPage />
+                <SandboxSettingsPage />
             </Container>
         </Page>
     );

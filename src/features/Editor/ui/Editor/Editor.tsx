@@ -7,6 +7,17 @@ import { useSelector } from 'react-redux';
 import { ArticleBlockType } from 'entities/Article/model/types/article';
 import { VStack } from 'shared/ui/Stack';
 import { Input, InputTextSize, InputTheme } from 'shared/ui/Input/Input';
+import {
+    EDITOR_CREATED_LOCALSTORAGE_KEY,
+    EDITOR_LOCALSTORAGE_KEY,
+} from 'shared/const/localStorage';
+import {
+    getStorageItem,
+    setStorageItem,
+} from 'shared/lib/helpers/localStorage';
+import { getEditorInited } from 'features/Editor/model/selectors/getEditorInited/getEditorInited';
+import { getDate } from 'shared/lib/helpers/date';
+import { getEditorShowBlocks } from 'features/Editor/model/selectors/getEditorShowBlocks/getEditorShowBlocks';
 import { EditorBlockMain } from '../../ui/EditorBlockMain/EditorBlockMain';
 import { getEditorBlocks } from '../../model/selectors/getEditorBlocks/getEditorBlocks';
 import { getEditorTitle } from '../../model/selectors/getEditorTitle/getEditorTitle';
@@ -24,6 +35,23 @@ export const Editor = (props: EditorProps) => {
     const dispatch = useAppDispatch();
     const enterKey = useKeyPress({ key: 'Enter' });
     const title = useSelector(getEditorTitle);
+    const inited = useSelector(getEditorInited);
+    const showBlocks = useSelector(getEditorShowBlocks);
+
+    useEffect(() => {
+        if (!inited) {
+            dispatch(editorActions.initEditor());
+        }
+    }, [dispatch, inited]);
+
+    useEffect(() => {
+        if (blocks) {
+            setStorageItem(EDITOR_LOCALSTORAGE_KEY, {
+                title,
+                blocks,
+            });
+        }
+    }, [blocks, title]);
 
     useEffect(() => {
         if (enterKey) {
@@ -57,6 +85,7 @@ export const Editor = (props: EditorProps) => {
                     className={cls.title}
                 />
                 {!!blocks?.length &&
+                    showBlocks &&
                     blocks.map((block) => (
                         <EditorBlockMain key={block.id} item={block} />
                     ))}

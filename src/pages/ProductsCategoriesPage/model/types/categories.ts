@@ -19,12 +19,12 @@ export const productsCategoriesList: ProductsCategoriesItem[] = [
     },
     {
         image: phone,
-        title: 'IPhone',
+        title: 'Phone',
         link: ProductsCategories.PHONE,
     },
     {
         image: pc,
-        title: 'Mac',
+        title: 'Pc',
         link: ProductsCategories.PC,
     },
     {

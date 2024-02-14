@@ -25,9 +25,18 @@ export type EditorBlock = ImageBlock & TextBlock;
 //     image?: string;
 //     title?: string;
 // }
+export interface DateChange {
+    hour: number;
+    minutes: number;
+    day?: number;
+    text?: string;
+}
+
 export interface EditorSchema {
     title: string;
     img?: string;
-
     blocks: EditorBlock[];
+    dateChange: DateChange;
+    _showBlocks: boolean;
+    _inited: boolean;
 }

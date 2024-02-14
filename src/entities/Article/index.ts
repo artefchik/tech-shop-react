@@ -1,3 +1,4 @@
+export { ArticleRenderBlock } from './ui/ArticleRenderBlock/ArticleRenderBlock';
 export { ArticleType } from './model/types/article';
 
 export { Article, ArticleView } from './model/types/article';

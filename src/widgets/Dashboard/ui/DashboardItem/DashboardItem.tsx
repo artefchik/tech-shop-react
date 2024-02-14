@@ -14,7 +14,7 @@ export const DashboardItem = (props: DashboardItemProps) => {
     return (
         <AppNavLink
             to={item.path}
-            theme={AppNavLinkTheme.ACTIVE}
+            theme={AppNavLinkTheme.NAVBAR}
             className={classNames(cls.DashboardItem, {}, [className])}
         >
             <Text title={item.text} theme={TextTheme.LINK} />

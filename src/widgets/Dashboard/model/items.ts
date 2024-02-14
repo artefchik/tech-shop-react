@@ -10,11 +10,6 @@ export const DashboardList: DashboardItemType[] = [
         path: RoutePath.profile,
         text: 'Profile',
     },
-
-    {
-        path: RoutePath.articles,
-        text: 'Articles',
-    },
     {
         path: RoutePath.articles,
         text: 'Publications',

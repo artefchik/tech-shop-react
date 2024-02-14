@@ -19,8 +19,9 @@ import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/productsPageSchema';
 import { ProductFavoritesSchema } from 'features/ProductFavoriteButton/model/types/favorite';
-import { SandboxPageSchema } from 'pages/SandboxPage';
+import { SandboxPageSchema, SandboxSettingsSchema } from 'pages/SandboxPage';
 import { EditorSchema } from 'features/Editor';
+import { MenuBurgerSchema } from 'features/MenuBurgerButton';
 
 export interface StateSchema {
     user: UserSchema;
@@ -38,6 +39,9 @@ export interface StateSchema {
     productsPage?: ProductsPageSchema;
     sandboxPage?: SandboxPageSchema;
     editor?: EditorSchema;
+    sandboxSettings?: SandboxSettingsSchema;
+
+    menuBurger?: MenuBurgerSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

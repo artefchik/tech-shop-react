@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { VStack } from 'shared/ui/Stack';
 import { TextArea } from 'shared/ui/TextArea/TextArea';
+import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { editorActions } from '../../model/slice/editorSlice';
 import cls from './EditorBaseBlock.module.scss';
 import { TextBlock } from '../../model/types/editor';
@@ -16,7 +17,7 @@ interface EditorBaseBlockProps {
 
 export const EditorBaseBlock = (props: EditorBaseBlockProps) => {
     const { className, item, onClose } = props;
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState(item.title);
     const dispatch = useAppDispatch();
     const [text, setText] = useState('');
     const onChangeTitle = useCallback(
@@ -39,7 +40,7 @@ export const EditorBaseBlock = (props: EditorBaseBlockProps) => {
             setText(value);
             onClose(value);
             dispatch(
-                editorActions.onChangeTitleInTextBlock({
+                editorActions.onChangeTextInTextBlock({
                     id: item.id,
                     type: item.type,
                     paragraphs: [value],

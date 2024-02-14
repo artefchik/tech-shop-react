@@ -13,6 +13,11 @@ export const fetchProfileData = createAsyncThunk<
     try {
         const response = await axios.get<Profile>(
             `http://localhost:8000/profile/${profileId}`,
+            {
+                params: {
+                    _expand: 'user',
+                },
+            },
         );
         if (!response.data) {
             return thunkAPI.rejectWithValue('error');

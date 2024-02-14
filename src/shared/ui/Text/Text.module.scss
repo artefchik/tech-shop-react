@@ -19,7 +19,6 @@
     color: var(--color-text-secondary);
   }
 }
-
 .price {
   .title {
     color: var(--primary-color);
@@ -38,9 +37,8 @@
   color: var(--primary-color);
 
   .title {
+    font-weight: 500;
     font: var(--font-m);
-    font-weight: var(--font-weight-medium);
-
     &:not(:last-child) {
       margin-bottom: 10px;
     }
@@ -73,6 +71,21 @@
 }
 
 .textBlock {
+
+
+  .title {
+    font: var(--font-xl);
+    color: var(--color-text-secondary);
+    @media (max-width: 767.98px) {
+      font: var(--font-m);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+
+  }
+
   .text {
     color: var(--color-text-block);
     font: var(--font-m);
@@ -121,10 +134,11 @@
 .secondary {
   .title {
     font: var(--font-l);
+    font-weight: var(--font-weight-semiBold);
     @media (max-width: 767.98px) {
       font: var(--font-m);
     }
-    //font-weight: var(--font-weight-medium);
+
     &:not(:last-child) {
       margin-bottom: 10px;
     }
@@ -165,5 +179,5 @@
       font: var(--font-s);
     }
   }
-
 }
+

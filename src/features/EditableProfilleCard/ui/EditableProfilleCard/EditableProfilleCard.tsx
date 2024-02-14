@@ -3,22 +3,27 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { memo, useCallback, useEffect } from 'react';
 import { Card } from 'shared/ui/Card/Card';
-import { EditableProfileFooter, ProfileCard } from 'entities/Profile';
-import { VStack } from 'shared/ui/Stack';
+import {
+    EditableProfileFooter,
+    ProfileCard,
+    ProfileEdit,
+} from 'entities/Profile';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 
-interface EditableProfilleCardProps {
+interface EditableProfileCardProps {
     className?: string;
     id: string;
 }
 
 export const EditableProfilleCard = memo(
-    ({ className, id }: EditableProfilleCardProps) => {
+    ({ className, id }: EditableProfileCardProps) => {
         const dispatch = useAppDispatch();
         const dataForm = useSelector(getProfileForm);
         const isLoading = useSelector(getProfileIsLoading);
@@ -51,17 +56,38 @@ export const EditableProfilleCard = memo(
 
         return (
             <DynamicModelLoader name="profile" reducer={profileReducer}>
-                <Card>
-                    <VStack gap="20">
-                        <ProfileCard
-                            readonly={readonly}
-                            data={dataForm}
-                            onChangeFirstname={onChangeFirstname}
-                            onChangeLastname={onChangeLastname}
+                <VStack gap="25">
+                    <HStack gap="10">
+                        <Text
+                            theme={TextTheme.HEADER}
+                            title="Профиль пользователя"
                         />
-                        {canEdit && <EditableProfileFooter />}
+                        <Text
+                            theme={TextTheme.TEXT}
+                            title={`${dataForm?.firstname} ${dataForm?.lastname}`}
+                        />
+                    </HStack>
+                    <VStack gap="20">
+                        <ProfileCard data={dataForm} />
+                        <VStack gap="15">
+                            <Text
+                                title="Настройки профиля"
+                                theme={TextTheme.SECONDARY}
+                            />
+                            <Card>
+                                <VStack gap="20">
+                                    <ProfileEdit
+                                        readonly={readonly}
+                                        data={dataForm}
+                                        onChangeFirstname={onChangeFirstname}
+                                        onChangeLastname={onChangeLastname}
+                                    />
+                                    {canEdit && <EditableProfileFooter />}
+                                </VStack>
+                            </Card>
+                        </VStack>
                     </VStack>
-                </Card>
+                </VStack>
             </DynamicModelLoader>
         );
     },

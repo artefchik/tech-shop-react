@@ -10,9 +10,10 @@ export const getStorageItem = (key: string) => {
             return null;
         }
     }
+    return null;
 };
 
-const setStorageItem = (key: string, value: any) => {
+export const setStorageItem = (key: string, value: any) => {
     try {
         localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {

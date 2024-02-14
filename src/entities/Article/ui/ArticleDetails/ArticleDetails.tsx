@@ -11,7 +11,6 @@ import {
 import { Text, TextAlign, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { Card } from 'shared/ui/Card/Card';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
-import { ArticleTypeBlock } from 'entities/Article/ui/ArticleTypeBlock/ArticleTypeBlock';
 import calendar from 'shared/assets/icons/calendar.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { HStack, VStack } from 'shared/ui/Stack';
@@ -19,16 +18,12 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { getRoutePathProfile } from 'shared/const/router';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import viewIcon from 'shared/assets/icons/view.svg';
-import { ArticleImageBlockComponent } from '../../ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
-import { ArticleTextBlockComponent } from '../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleTypeBlock } from '../ArticleTypeBlock/ArticleTypeBlock';
+import { ArticleRenderBlock } from '../ArticleRenderBlock/ArticleRenderBlock';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById';
 import cls from './ArticleDetails.module.scss';
-import {
-    ArticleBlock,
-    ArticleBlockType,
-    ArticleType,
-} from '../../model/types/article';
+import { ArticleType } from '../../model/types/article';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -45,30 +40,6 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         (type: ArticleType) => <ArticleTypeBlock type={type} key={type} />,
         [],
     );
-
-    const renderBlock = useCallback((block: ArticleBlock) => {
-        switch (block.type) {
-            case ArticleBlockType.IMAGE:
-                return (
-                    <ArticleImageBlockComponent
-                        key={block.id}
-                        block={block}
-                        className={cls.block}
-                    />
-                );
-            case ArticleBlockType.TEXT:
-                return (
-                    <ArticleTextBlockComponent
-                        key={block.id}
-                        className={cls.block}
-                        block={block}
-                    />
-                );
-            default:
-                return null;
-        }
-    }, []);
-
     useEffect(() => {
         if (id) {
             dispatch(fetchArticleById(id));
@@ -128,7 +99,9 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 </VStack>
 
                 <div className={cls.types}>{article?.type.map(renderType)}</div>
-                {article?.blocks.map(renderBlock)}
+                {article?.blocks.map((block) => (
+                    <ArticleRenderBlock block={block} key={block.id} />
+                ))}
             </>
         );
     }
