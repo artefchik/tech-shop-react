@@ -5,25 +5,25 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ImageBlock } from 'features/Editor/model/types/editor';
 import cls from './UploadImage.module.scss';
 
-interface UploadImageProps {
+interface UploadImageProps<T> {
     className?: string;
     height?: number | string;
     text?: string;
-    item: ImageBlock;
-    onChangeImageBlock?: (block: ImageBlock) => void;
+    image?: string;
+    onChangeImageBlock?: (image: string) => void;
 }
 
-export const UploadImage = (props: UploadImageProps) => {
+export function UploadImage<T>(props: UploadImageProps<T>) {
     const {
         className,
         height = 150,
         text = 'Добавить картинку',
+        image,
         onChangeImageBlock,
-        item,
     } = props;
 
     const [imageURL, setImageURL] = useState<string | ArrayBuffer | null>(
-        item?.image ?? null,
+        image ?? null,
     );
     const fileInputRef = useRef<HTMLInputElement>(null);
     const isVisible = Boolean(imageURL);
@@ -57,14 +57,9 @@ export const UploadImage = (props: UploadImageProps) => {
 
     useEffect(() => {
         if (onChangeImageBlock) {
-            onChangeImageBlock({
-                id: item.id,
-                image: imageURL as string,
-                type: item.type,
-                title: text,
-            });
+            onChangeImageBlock(imageURL as string);
         }
-    }, [imageURL, item.id, item.type, onChangeImageBlock, text]);
+    }, [imageURL, onChangeImageBlock]);
 
     return (
         <div className={classNames(cls.UploadImage, {}, [className])}>
@@ -99,4 +94,4 @@ export const UploadImage = (props: UploadImageProps) => {
             </div>
         </div>
     );
-};
+}

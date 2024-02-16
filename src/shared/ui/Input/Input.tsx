@@ -10,6 +10,7 @@ type HTMLInputProps = Omit<
 export enum InputTheme {
     DEFAULT = 'default',
     CLEAR = 'clear',
+    SECONDARY = 'secondary',
 }
 
 export enum InputTextAlign {

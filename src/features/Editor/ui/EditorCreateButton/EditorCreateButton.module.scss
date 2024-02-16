@@ -1,4 +1,4 @@
-.EditorCreateBlockButtonItems {
+.buttonItems {
   margin: -10px;
 }
 
@@ -29,8 +29,14 @@
 
 }
 
-.row {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.bodyMobile {
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  min-height: 60px;
+  width: 100%;
+  background-color: var(--color-editor-mobile);
+  z-index: 50;
+  border-top: 1px solid var(--border-color);
 }

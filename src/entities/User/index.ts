@@ -1,3 +1,5 @@
+export { UserLink } from './ui/UserLink/UserLink';
+
 export {
     getIsAdminRole,
     getUserRoles,

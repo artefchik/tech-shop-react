@@ -1,7 +1,4 @@
-import {
-    ArticleBlock,
-    ArticleBlockType,
-} from 'entities/Article/model/types/article';
+import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
 
 interface Block {
     id: string;
@@ -13,18 +10,11 @@ export interface ImageBlock extends Block {
 }
 
 export interface TextBlock extends Block {
-    paragraphs?: string[];
+    text?: string;
 }
 
-export type EditorBlock = ImageBlock & TextBlock;
+export type EditorBlock = ImageBlock | TextBlock;
 
-// export interface EditorBlock {
-//     id: string;
-//     type: ArticleBlockType;
-//     text?: string;
-//     image?: string;
-//     title?: string;
-// }
 export interface DateChange {
     hour: number;
     minutes: number;
@@ -32,11 +22,16 @@ export interface DateChange {
     text?: string;
 }
 
-export interface EditorSchema {
-    title: string;
-    img?: string;
+export interface Editor {
     blocks: EditorBlock[];
+    title: string;
+}
+
+export interface EditorSchema {
+    title?: string;
+    img?: string;
+    editorData: Editor;
     dateChange: DateChange;
-    _showBlocks: boolean;
-    _inited: boolean;
+    dataStorage?: Editor;
+    _initiated: boolean;
 }

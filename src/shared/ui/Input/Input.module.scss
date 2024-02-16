@@ -52,3 +52,8 @@
 .medium {
   font: var(--font-l);
 }
+
+.secondary {
+  background-color: transparent;
+  color: var(--inverted-bg-color);
+}

@@ -6,5 +6,6 @@
   "bracketSpacing": true,
   "bracketSameLine": false,
   "arrowParens": "always",
-  "stackElements": ["destruct"]
+  "stackElements": ["destruct"],
+  "printWidth":90
 }

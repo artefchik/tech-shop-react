@@ -11,18 +11,13 @@ import {
     EDITOR_CREATED_LOCALSTORAGE_KEY,
     EDITOR_LOCALSTORAGE_KEY,
 } from 'shared/const/localStorage';
-import {
-    getStorageItem,
-    setStorageItem,
-} from 'shared/lib/helpers/localStorage';
-import { getEditorInited } from 'features/Editor/model/selectors/getEditorInited/getEditorInited';
-import { getDate } from 'shared/lib/helpers/date';
-import { getEditorShowBlocks } from 'features/Editor/model/selectors/getEditorShowBlocks/getEditorShowBlocks';
+import { getStorageItem, setStorageItem } from 'shared/lib/helpers/localStorage';
+import { getEditorBlocks } from 'features/Editor/model/selectors/getEditorBlocks/getEditorBlocks';
 import { EditorBlockMain } from '../../ui/EditorBlockMain/EditorBlockMain';
-import { getEditorBlocks } from '../../model/selectors/getEditorBlocks/getEditorBlocks';
 import { getEditorTitle } from '../../model/selectors/getEditorTitle/getEditorTitle';
 import { editorActions, editorReducer } from '../../model/slice/editorSlice';
 import cls from './Editor.module.scss';
+import { getEditorInitiated } from '../../model/selectors/getEditorInited/getEditorInited';
 
 interface EditorProps {
     className?: string;
@@ -35,14 +30,12 @@ export const Editor = (props: EditorProps) => {
     const dispatch = useAppDispatch();
     const enterKey = useKeyPress({ key: 'Enter' });
     const title = useSelector(getEditorTitle);
-    const inited = useSelector(getEditorInited);
-    const showBlocks = useSelector(getEditorShowBlocks);
-
+    const initiated = useSelector(getEditorInitiated);
     useEffect(() => {
-        if (!inited) {
+        if (!initiated) {
             dispatch(editorActions.initEditor());
         }
-    }, [dispatch, inited]);
+    }, [dispatch, initiated]);
 
     useEffect(() => {
         if (blocks) {
@@ -51,7 +44,7 @@ export const Editor = (props: EditorProps) => {
                 blocks,
             });
         }
-    }, [blocks, title]);
+    }, [blocks, initiated, title]);
 
     useEffect(() => {
         if (enterKey) {
@@ -60,7 +53,7 @@ export const Editor = (props: EditorProps) => {
                     id: String(Date.now()),
                     type: ArticleBlockType.TEXT,
                     title: '',
-                    paragraphs: [],
+                    text: '',
                 }),
             );
         }
@@ -85,7 +78,6 @@ export const Editor = (props: EditorProps) => {
                     className={cls.title}
                 />
                 {!!blocks?.length &&
-                    showBlocks &&
                     blocks.map((block) => (
                         <EditorBlockMain key={block.id} item={block} />
                     ))}

@@ -4,6 +4,7 @@ import { VStack } from 'shared/ui/Stack';
 import { Input, InputTextAlign, InputTheme } from 'shared/ui/Input/Input';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { UploadImage } from 'shared/ui/UploadImage/UploadImage';
+import { ArticleBlockType } from 'entities/Article/model/types/article';
 import { ImageBlock } from '../../model/types/editor';
 import { editorActions } from '../../model/slice/editorSlice';
 import cls from './EditorImageBlock.module.scss';
@@ -11,7 +12,7 @@ import cls from './EditorImageBlock.module.scss';
 interface EditorImageBlockProps {
     className?: string;
     item: ImageBlock;
-    onClose: (value: string) => void;
+    onClose?: (value: string) => void;
 }
 
 export const EditorImageBlock = (props: EditorImageBlockProps) => {
@@ -24,24 +25,24 @@ export const EditorImageBlock = (props: EditorImageBlockProps) => {
         setTitle(value);
     }, []);
     const onChangeImage = useCallback(
-        (block: ImageBlock) => {
+        (image: string) => {
             dispatch(
                 editorActions.onChangeImageBlock({
-                    id: block.id,
-                    image: block.image,
-                    type: block.type,
+                    id: item.id,
+                    image,
+                    type: ArticleBlockType.IMAGE,
                     title,
                 }),
             );
         },
-        [dispatch, title],
+        [dispatch, item.id, title],
     );
 
     return (
         <div className={classNames(cls.EditorImageBlock, {}, [className])}>
             <VStack className={cls.body} gap="10">
                 <UploadImage
-                    item={item}
+                    image={item.image}
                     text="Добавить картинку"
                     height={90}
                     onChangeImageBlock={onChangeImage}

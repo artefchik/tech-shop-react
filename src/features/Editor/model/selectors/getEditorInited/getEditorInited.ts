@@ -1,3 +1,4 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getEditorInited = (state: StateSchema) => state.editor?._inited;
+export const getEditorInitiated = (state: StateSchema) =>
+    state.editor?._initiated ?? false;
