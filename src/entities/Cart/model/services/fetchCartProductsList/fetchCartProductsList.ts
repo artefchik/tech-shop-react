@@ -15,6 +15,7 @@ import { CartItemType } from 'entities/Cart/model/types/cart';
 import { getCartProducts } from 'entities/Cart/model/selectors/getCartProducts/getCartProducts';
 import { getUserAuthData } from 'entities/User';
 import { CartType, getCartProductsQuery } from 'entities/Cart/api/cartApi';
+import { $api } from 'shared/api/api';
 
 export const fetchCartProductsList = createAsyncThunk<
     CartType,
@@ -28,9 +29,7 @@ export const fetchCartProductsList = createAsyncThunk<
     }
 
     try {
-        const response = await axios.get(
-            `http://localhost:8000/cart/${authData?.id}`,
-        );
+        const response = await $api.get(`/cart/${authData?.id}`);
         if (!response.data) {
             return rejectWithValue('error');
         }

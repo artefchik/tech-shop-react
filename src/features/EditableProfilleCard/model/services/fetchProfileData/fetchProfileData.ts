@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios';
 import { Profile } from 'entities/Profile';
+import { $api } from 'shared/api/api';
 
 export const fetchProfileData = createAsyncThunk<
     Profile,
@@ -11,14 +12,11 @@ export const fetchProfileData = createAsyncThunk<
     }
 >('profile/fetchProfileData', async (profileId, thunkAPI) => {
     try {
-        const response = await axios.get<Profile>(
-            `http://localhost:8000/profile/${profileId}`,
-            {
-                params: {
-                    _expand: 'user',
-                },
+        const response = await $api.get<Profile>(`/profile/${profileId}`, {
+            params: {
+                _expand: 'user',
             },
-        );
+        });
         if (!response.data) {
             return thunkAPI.rejectWithValue('error');
         }

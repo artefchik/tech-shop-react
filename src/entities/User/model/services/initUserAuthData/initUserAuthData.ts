@@ -11,37 +11,35 @@ import {
 } from 'features/ArticleFilters';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { cartActions } from 'entities/Cart/model/slice/cartSlice';
+import { $api } from 'shared/api/api';
 import { User } from '../../types/user';
 
 interface fetchArticleListProps {
     replace?: boolean;
 }
 
-export const initUserAuthData = createAsyncThunk<
-    User,
-    void,
-    ThunkConfig<string>
->('user/initUserAuthData', async (_, thunkAPI) => {
-    const { getState, rejectWithValue, dispatch } = thunkAPI;
+export const initUserAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
+    'user/initUserAuthData',
+    async (_, thunkAPI) => {
+        const { getState, rejectWithValue, dispatch } = thunkAPI;
 
-    try {
-        const userId = JSON.parse?.(
-            localStorage.getItem(USER_LOCALSTORAGE_KEY) || '',
-        );
-        if (!userId) {
+        try {
+            const userId = JSON.parse?.(
+                localStorage.getItem(USER_LOCALSTORAGE_KEY) || '',
+            );
+            if (!userId) {
+                return rejectWithValue('error');
+            }
+
+            const response = await $api.get<User>(`/users/${userId}`);
+            if (!response.data) {
+                return rejectWithValue('error');
+            }
+            dispatch(cartActions.setInitUserId(response.data));
+            return response.data;
+        } catch (e) {
+            console.log(e);
             return rejectWithValue('error');
         }
-
-        const response = await axios.get<User>(
-            `http://localhost:8000/users/${userId}`,
-        );
-        if (!response.data) {
-            return rejectWithValue('error');
-        }
-        dispatch(cartActions.setInitUserId(response.data));
-        return response.data;
-    } catch (e) {
-        console.log(e);
-        return rejectWithValue('error');
-    }
-});
+    },
+);

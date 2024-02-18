@@ -10,6 +10,7 @@ import {
     getArticleFiltersType,
 } from 'features/ArticleFilters';
 import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
+import { $api } from 'shared/api/api';
 import { getArticleListLimit } from '../../selectors/getArticleListLimit/getArticleListLimit';
 import { getArticleListPage } from '../../selectors/getArticleListPage/getArticleListPage';
 
@@ -37,20 +38,17 @@ export const fetchArticleList = createAsyncThunk<
             sort,
             order,
         });
-        const response = await axios.get<Article[]>(
-            'http://localhost:8000/articles',
-            {
-                params: {
-                    _expand: 'user',
-                    _page: page,
-                    _limit: limit,
-                    _sort: sort,
-                    _order: order,
-                    _type: type === ArticleType.ALL ? undefined : type,
-                    q: search,
-                },
+        const response = await $api.get<Article[]>('/articles', {
+            params: {
+                _expand: 'user',
+                _page: page,
+                _limit: limit,
+                _sort: sort,
+                _order: order,
+                _type: type === ArticleType.ALL ? undefined : type,
+                q: search,
             },
-        );
+        });
         if (!response.data) {
             return rejectWithValue('error');
         }
