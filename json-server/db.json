@@ -221,7 +221,7 @@
       "img": "https://andreyex.ru/wp-content/uploads/2018/05/Kak-ustanovit-Java-s-apt-na-Ubuntu-18.04.jpg",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "userId": "1",
+      "userId": "2",
       "type": [
         "IT"
       ],
@@ -673,16 +673,22 @@
       "id": "4DxfmM0"
     },
     {
+      "articleId": "6",
+      "userId": "2",
+      "text": "dmdmdmmx dx dxmdm x",
+      "id": "uzzyrWM"
+    },
+    {
       "articleId": "7",
-      "userId": "1",
-      "text": "mmmc",
-      "id": "IfI73z6"
+      "userId": "2",
+      "text": "fooo",
+      "id": "ZE7VniK"
     },
     {
       "articleId": "6",
       "userId": "1",
-      "text": "dmdmdmmx dx dxmdm x",
-      "id": "uzzyrWM"
+      "text": "jjdjdjdj",
+      "id": "JTCF0zG"
     }
   ],
   "users": [
@@ -732,13 +738,13 @@
     {
       "id": "2",
       "userId": "2",
-      "firstname": "ulbi tv",
+      "firstname": "Pasha",
       "lastname": "asf",
       "age": 465,
       "currency": "RUB",
       "country": "Russia",
       "city": "Moscow",
-      "username": "ulbi tv",
+      "username": "pasha",
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     }
   ],
@@ -758,14 +764,14 @@
       "articleId": "2"
     },
     {
-      "userId": "1",
+      "userId": "2",
       "articleId": "3",
       "rate": 3,
       "feedback": "",
       "id": "I7ofk1u"
     },
     {
-      "userId": "1",
+      "userId": "2",
       "articleId": "9",
       "rate": 5,
       "feedback": "asdasdasdasd",
@@ -800,7 +806,7 @@
     },
     {
       "articleId": "6",
-      "userId": "1",
+      "userId": "2",
       "rate": 3,
       "feedback": "good",
       "id": "oPs0xX-"

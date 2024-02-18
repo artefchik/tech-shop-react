@@ -7,6 +7,8 @@ import { memo, useCallback } from 'react';
 import { RoutePath } from 'shared/const/router';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
 import cls from './CommentItem.module.scss';
 import { CommentType } from '../../model/types/comment';
 
@@ -19,6 +21,9 @@ interface CommentItemProps {
 
 export const CommentItem = memo((props: CommentItemProps) => {
     const { className, comment, isLoading, onDeleteComment } = props;
+    const authData = useSelector(getUserAuthData);
+    const isShowDelete = comment?.user.id === authData?.id;
+    console.log(comment?.user.id);
 
     if (!comment) {
         return null;
@@ -50,7 +55,12 @@ export const CommentItem = memo((props: CommentItemProps) => {
                     </AppLink>
                     <Text text={comment.text} theme={TextTheme.TEXT} />
                 </VStack>
-                <Button theme={ThemeButton.DELETE} onClick={onDeleteClick(comment.id)} />
+                {isShowDelete && (
+                    <Button
+                        theme={ThemeButton.DELETE}
+                        onClick={onDeleteClick(comment.id)}
+                    />
+                )}
             </HStack>
         </Card>
     );

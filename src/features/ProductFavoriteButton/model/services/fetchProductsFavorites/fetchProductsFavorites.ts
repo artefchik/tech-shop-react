@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { FavoriteType } from 'features/ProductFavoriteButton/model/types/favorite';
 import { getUserAuthData } from 'entities/User';
+import { $api } from 'shared/api/api';
 
 interface fetchArticleListProps {
     replace?: boolean;
@@ -21,8 +22,8 @@ export const fetchProductsFavorites = createAsyncThunk<
     }
 
     try {
-        const response = await axios.get<FavoriteType>(
-            `http://localhost:8000/product-favorites/${authData?.id}`,
+        const response = await $api.get<FavoriteType>(
+            `/product-favorites/${authData?.id}`,
         );
         if (!response.data) {
             return rejectWithValue('error');
