@@ -1,12 +1,34 @@
-export const getDate = (todayDate?: Date) => {
-    const date = new Date();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
-    const day = date.getDate();
-    if (todayDate) {
-        if (day === todayDate?.getDate()) {
-            return { minutes, hour, text: 'сегодня' };
-        }
+export interface getDateRes {
+    hour: number;
+    minutes: number;
+    day: number;
+    month: string;
+}
+
+const months: string[] = [
+    'январь',
+    'февраль',
+    'март',
+    'апрель',
+    'май',
+    'июнь',
+    'июль',
+    'август',
+    'сентябрь',
+    'октябрь',
+    'ноябрь',
+    'декабрь',
+];
+
+export const getDate = (value: string | undefined) => {
+    if (!value) {
+        return null;
     }
-    return { day, minutes, hour };
+    const date = new Date(value);
+    return {
+        hour: date.getHours(),
+        minutes: date.getMinutes(),
+        day: date.getDate(),
+        month: months[date.getMonth()],
+    } as getDateRes;
 };

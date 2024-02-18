@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LanguageType } from 'shared/const/types';
 import { ArticleType } from 'entities/Article';
-import { SandboxSettingsSchema } from '../../../../pages/SandboxPage/model/types/sandboxSettings';
+import { SandboxSettingsSchema } from '../types/settings';
 
 const initialState: SandboxSettingsSchema = {
     lang: LanguageType.RU,

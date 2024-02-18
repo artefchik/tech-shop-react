@@ -1,5 +1,8 @@
-import { memo, ReactNode } from 'react';
-import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
+import { memo } from 'react';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Popover } from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import filter from 'shared/assets/icons/filters.svg';
 import { ArticleSortOrder } from '../../ui/ArticleSortOrder/ArticleSortOrder';
@@ -12,14 +15,15 @@ interface ArticleFiltersProps {
     fetchData: () => void;
 }
 
+const reducers: ReducersList = {
+    articleFilters: articleFiltersReducer,
+};
+
 export const ArticleFilters = memo((props: ArticleFiltersProps) => {
     const { className, fetchData } = props;
 
     return (
-        <DynamicModelLoader
-            name="articleFilters"
-            reducer={articleFiltersReducer}
-        >
+        <DynamicModuleLoader reducers={reducers}>
             <Popover
                 title="Фильтры"
                 icon={filter}
@@ -30,6 +34,6 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
                 <ArticleSortFilters onSend={fetchData} />
                 <ArticleSortOrder onSend={fetchData} />
             </Popover>
-        </DynamicModelLoader>
+        </DynamicModuleLoader>
     );
 });

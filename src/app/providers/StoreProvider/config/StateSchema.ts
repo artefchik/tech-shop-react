@@ -1,11 +1,6 @@
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
-import {
-    AnyAction,
-    EnhancedStore,
-    Reducer,
-    ReducersMapObject,
-} from '@reduxjs/toolkit';
+import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
 import { AxiosInstance } from 'axios';
 import { To } from 'history';
@@ -17,11 +12,12 @@ import { ProfileSchema } from 'features/EditableProfilleCard';
 import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
-import { ProductsPageSchema } from 'pages/ProductsPage/model/types/productsPageSchema';
-import { ProductFavoritesSchema } from 'features/ProductFavoriteButton/model/types/favorite';
-import { SandboxPageSchema, SandboxSettingsSchema } from 'pages/SandboxPage';
+import { SandboxPageSchema } from 'pages/SandboxPage';
 import { EditorSchema } from 'features/Editor';
 import { MenuBurgerSchema } from 'features/MenuBurgerButton';
+import { ProductFavoritesSchema } from 'features/ProductFavoriteButton';
+import { ProductsPageSchema } from 'pages/ProductsPage';
+import { SandboxSettingsSchema } from 'features/SandboxSettings';
 
 export interface StateSchema {
     user: UserSchema;
@@ -45,15 +41,14 @@ export interface StateSchema {
 }
 
 export type StateSchemaKey = keyof StateSchema;
-
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
-    reduce: (
-        state: StateSchema,
-        action: AnyAction,
-    ) => CombinedState<StateSchema>;
+    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
+
+    getMountedReducers: () => MountedReducers;
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {

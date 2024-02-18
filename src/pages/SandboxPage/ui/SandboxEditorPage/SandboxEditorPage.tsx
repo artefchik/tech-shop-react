@@ -1,4 +1,3 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { useSelector } from 'react-redux';
 import { getUserAuthData, UserLink } from 'entities/User';
@@ -6,48 +5,78 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Editor } from 'features/Editor';
 import { Button } from 'shared/ui/Button/Button';
-import { getEditorTitle } from 'features/Editor/model/selectors/getEditorTitle/getEditorTitle';
 import { getEditorValidate } from 'features/Editor/model/selectors/getEditorValidate/getEditorValidate';
-import { getStorageItem, setStorageItem } from 'shared/lib/helpers/localStorage';
-import { EDITOR_CREATED_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { DateChange } from 'features/Editor/model/types/editor';
-import { useCallback, useEffect, useRef } from 'react';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { editorActions, editorReducer } from 'features/Editor/model/slice/editorSlice';
-import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
-import { getDate } from 'shared/lib/helpers/date';
-import { getStorageBlocks } from 'pages/SandboxPage/model/services/getStorageBlock/getStorageBlock';
-import { getIsEditorBlockInStorage } from 'features/Editor/model/selectors/getEditorBlockInStorage/getEditorBlockInStorage';
-import { getEditorInitiated } from 'features/Editor/model/selectors/getEditorInited/getEditorInited';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { SandboxEditorPageHeader } from 'pages/SandboxPage/ui/SandboxEditorPageHeader/SandboxEditorPageHeader';
+import { useCallback } from 'react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import {
+    sandboxPageActions,
+    sandboxPageReducer,
+} from 'pages/SandboxPage/model/slice/sandboxPageSlice/sandboxPageSlice';
+import { getSandboxShowSetting } from 'pages/SandboxPage/model/selectors/getSandboxShowSetting/getSandboxShowSetting';
+import { Popover } from 'shared/ui/DropdownsList';
+
+import tips from 'shared/assets/icons/tip-close.svg';
+import { TriggerTheme } from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import cls from './SandboxEditorPage.module.scss';
 
 interface SandboxEditorPageProps {
     className?: string;
 }
 
+const reducers: ReducersList = {
+    sandboxPage: sandboxPageReducer,
+};
+
 export const SandboxEditorPage = (props: SandboxEditorPageProps) => {
     const { className } = props;
     const authData = useSelector(getUserAuthData);
     const isValidateEditor = useSelector(getEditorValidate);
+    const dispatch = useAppDispatch();
+    const showSettings = useSelector(getSandboxShowSetting);
 
+    const onShowSettings = useCallback(() => {
+        dispatch(sandboxPageActions.setShowSettings());
+    }, [dispatch]);
     return (
-        <DynamicModelLoader name="editor" reducer={editorReducer}>
-            <VStack gap="20">
-                <Text theme={TextTheme.HEADER} title="Создание статьи" />
-                <SandboxEditorPageHeader />
-                <Card className={classNames(cls.SandboxEditorPage, {}, [className])}>
-                    <VStack gap="5">
-                        <UserLink user={authData} />
-                        <VStack>
+        <DynamicModuleLoader reducers={reducers}>
+            {!showSettings && (
+                <VStack gap="20" className={className}>
+                    <Text theme={TextTheme.HEADER} title="Создание статьи" />
+                    <SandboxEditorPageHeader />
+                    <Card fullWidth>
+                        <VStack gap="10" className={cls.editorBody}>
+                            <HStack justify="between">
+                                <UserLink user={authData} />
+                                <Popover
+                                    openView="bottomLeft"
+                                    triggerTheme={TriggerTheme.CLEAR}
+                                    icon={tips}
+                                    height={70}
+                                    width={320}
+                                >
+                                    <Text
+                                        theme={TextTheme.SMALL}
+                                        title={
+                                            'Для создания базового текстового блока нажмите "~" '
+                                        }
+                                    />
+                                </Popover>
+                            </HStack>
                             <Editor />
                         </VStack>
-                    </VStack>
-                </Card>
-                <div>
-                    <Button disabled={isValidateEditor}>Перейти к настройкам</Button>
-                </div>
-            </VStack>
-        </DynamicModelLoader>
+                    </Card>
+                    <div>
+                        <Button onClick={onShowSettings} disabled={isValidateEditor}>
+                            Перейти к настройкам
+                        </Button>
+                    </div>
+                </VStack>
+            )}
+        </DynamicModuleLoader>
     );
 };

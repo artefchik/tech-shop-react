@@ -3,7 +3,8 @@ import { createSelector } from '@reduxjs/toolkit';
 import { ArticleBlockType } from 'entities/Article/model/types/article';
 import { TextBlock } from 'features/Editor/model/types/editor';
 
-export const getEditorBlocks = (state: StateSchema) => state.editor?.editorData.blocks;
+export const getEditorBlocks = (state: StateSchema) =>
+    state.editor?.editorData.blocks ?? [];
 
 export const getEditorTextBlocks = createSelector(getEditorBlocks, (blocks) =>
     blocks?.filter((block) => block.type === ArticleBlockType.TEXT),

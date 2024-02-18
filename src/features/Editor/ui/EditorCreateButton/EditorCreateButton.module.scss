@@ -1,42 +1,44 @@
 .buttonItems {
-  margin: -10px;
+    margin: -10px;
 }
 
 .item {
-  width: 100%;
-  transition: all 0.3s ease 0s;
-  min-height: 44px;
-  max-height: 44px;
-  padding: 10px;
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  @media (any-hover: hover) {
-    &:hover {
-      background-color: var(--secelt-active);
-      color: var(--primary-color);
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    min-height: 44px;
+    max-height: 44px;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--color-text-secondary);
 
-      .icon {
-        path,
-        circle {
-          stroke: var(--primary-color);
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: var(--secelt-active);
+            color: var(--primary-color);
+
+            .icon {
+                path,
+                circle {
+                    stroke: var(--primary-color);
+                }
+            }
         }
-      }
     }
-  }
-  @media (any-hover: none) {
-    justify-content: center;
-  }
 
+    @media (any-hover: none) {
+        justify-content: center;
+    }
 }
 
 .bodyMobile {
-  padding: 5px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  min-height: 60px;
-  width: 100%;
-  background-color: var(--color-editor-mobile);
-  z-index: 50;
-  border-top: 1px solid var(--border-color);
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    min-height: 60px;
+    width: 100%;
+    background-color: var(--color-editor-mobile);
+    z-index: 50;
+    border-top: 1px solid var(--border-color);
+    transition: all 0.7s ease 0.1s;
 }

@@ -18,8 +18,8 @@ export enum TriggerTheme {
 }
 interface PopoverProps {
     className?: string;
-    title?: string;
-    icon: React.VFC<React.SVGProps<SVGSVGElement>>;
+    title?: ReactNode;
+    icon?: React.VFC<React.SVGProps<SVGSVGElement>>;
     children: ReactNode;
     width?: string | number;
     height?: string | number;
@@ -56,14 +56,13 @@ export const Popover = (props: PopoverProps) => {
                     <Pop.Button as="div">
                         <Button
                             theme={ThemeButton.CLEAR}
-                            className={classNames(
-                                cls.trigger,
-                                { [cls.active]: open },
-                                [className, cls[triggerTheme]],
-                            )}
+                            className={classNames(cls.trigger, { [cls.active]: open }, [
+                                className,
+                                cls[triggerTheme],
+                            ])}
                         >
                             {title}
-                            <Icon Svg={icon} className={cls.icon} />
+                            {icon && <Icon Svg={icon} className={cls.icon} />}
                         </Button>
                     </Pop.Button>
                     <Transition

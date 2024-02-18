@@ -14,7 +14,7 @@
     flex-direction: column;
     overflow: hidden;
 
-     main {
+    main {
         flex: 1 1 auto;
     }
 }
@@ -32,4 +32,3 @@
     background-color: var(--bg-color-block);    /* цвет бегунка */
     border-radius: 20px;       /* округлось бегунка */
 }
-

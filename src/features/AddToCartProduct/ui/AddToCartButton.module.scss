@@ -2,24 +2,23 @@
 }
 
 .cartPlus {
-  path {
-    stroke: var(--color-active-icon-btn);
-  }
+    path {
+        stroke: var(--color-active-icon-btn);
+    }
 }
 
-
 .AddToCartButton {
-  span {
-    white-space: nowrap;
-  }
+    span {
+        white-space: nowrap;
+    }
 }
 
 .big {
-  &.AddToCartButton {
-    @media (max-width: 767.98px) {
-      span {
-        display: none;
-      }
+    &.AddToCartButton {
+        @media (max-width: 767.98px) {
+            span {
+                display: none;
+            }
+        }
     }
-  }
 }

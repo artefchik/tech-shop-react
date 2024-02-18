@@ -6,7 +6,10 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
 import { getUserAuthData } from 'entities/User';
-import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { getArticleDetailsCommentsText } from '../model/selectors/getArticleDetailsCommentsText/getArticleDetailsCommentsText';
 import { getArticleDetailsCommentsIsLoading } from '../model/selectors/getArticleDetailsCommentsIsLoading/getArticleDetailsCommentsIsLoading';
 import { addCommentForArticle } from '../model/services/addNewCommentForArticle/addNewCommentForArticle';
@@ -22,6 +25,10 @@ interface ArticleDetailsCommentProps {
     className?: string;
     articleId: string;
 }
+
+const reducers: ReducersList = {
+    articleDetailsComments: articleDetailsCommentsReducer,
+};
 
 export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
     const { className, articleId } = props;
@@ -50,15 +57,10 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
     }, [dispatch, articleId]);
 
     return (
-        <DynamicModelLoader
-            name="articleDetailsComments"
-            reducer={articleDetailsCommentsReducer}
-        >
+        <DynamicModuleLoader reducers={reducers}>
             <VStack
                 gap="20"
-                className={classNames(cls.ArticleDetailsComment, {}, [
-                    className,
-                ])}
+                className={classNames(cls.ArticleDetailsComment, {}, [className])}
             >
                 <Text
                     size={TextSize.BIG}
@@ -73,6 +75,6 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
                 />
                 <CommentList comments={comments} isLoading={isLoading} />
             </VStack>
-        </DynamicModelLoader>
+        </DynamicModuleLoader>
     );
 };

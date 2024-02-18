@@ -1,7 +1,6 @@
 import { memo, useCallback, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
 import { useSelector } from 'react-redux';
 import {
     getArticleDetailsData,
@@ -18,6 +17,10 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { getRoutePathProfile } from 'shared/const/router';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import viewIcon from 'shared/assets/icons/view.svg';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ArticleTypeBlock } from '../ArticleTypeBlock/ArticleTypeBlock';
 import { ArticleRenderBlock } from '../ArticleRenderBlock/ArticleRenderBlock';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
@@ -29,6 +32,10 @@ interface ArticleDetailsProps {
     className?: string;
     id: string;
 }
+
+const reducers: ReducersList = {
+    articleDetails: articleDetailsReducer,
+};
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const { className, id } = props;
@@ -75,14 +82,8 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                         theme={AppLinkTheme.CLEAR}
                         className={cls.info}
                     >
-                        <Avatar
-                            src={article?.user.avatar}
-                            alt={article?.user.username}
-                        />
-                        <Text
-                            text={article?.user.username}
-                            theme={TextTheme.USER}
-                        />
+                        <Avatar src={article?.user.avatar} alt={article?.user.username} />
+                        <Text text={article?.user.username} theme={TextTheme.USER} />
                     </AppLink>
                     <HStack gap="5" align="center">
                         <Icon Svg={calendar} hover={false} />
@@ -107,13 +108,10 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     }
 
     return (
-        <DynamicModelLoader
-            name="articleDetails"
-            reducer={articleDetailsReducer}
-        >
+        <DynamicModuleLoader reducers={reducers}>
             <div className={classNames(cls.ArticleDetails, {}, [className])}>
                 <Card>{content}</Card>
             </div>
-        </DynamicModelLoader>
+        </DynamicModuleLoader>
     );
 });

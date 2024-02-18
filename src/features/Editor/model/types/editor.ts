@@ -15,23 +15,24 @@ export interface TextBlock extends Block {
 
 export type EditorBlock = ImageBlock | TextBlock;
 
-export interface DateChange {
+export interface TimeChange {
     hour: number;
     minutes: number;
     day?: number;
     text?: string;
 }
 
-export interface Editor {
+export interface EditorData {
     blocks: EditorBlock[];
     title: string;
 }
 
+export interface EditorSavedData extends EditorData {
+    savedDate?: string;
+}
+
 export interface EditorSchema {
-    title?: string;
-    img?: string;
-    editorData: Editor;
-    dateChange: DateChange;
-    dataStorage?: Editor;
+    editorData: EditorData;
+    savedData?: EditorSavedData;
     _initiated: boolean;
 }

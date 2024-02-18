@@ -1,43 +1,43 @@
 .CartButton {
-  position: relative;
+    position: relative;
 
-  span {
-    position: absolute;
-    top: -7px;
-    right: -6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    content: '';
-    width: 18px;
-    height: 18px;
-    background-color: var(--secondary-color);
-    border-radius: 50%;
-    font-size: 14px;
-  }
+    span {
+        position: absolute;
+        top: -7px;
+        right: -6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        content: "";
+        width: 18px;
+        height: 18px;
+        background-color: var(--secondary-color);
+        border-radius: 50%;
+        font-size: 14px;
+    }
 }
 
 .icon {
-  display: inline-block;
+    display: inline-block;
 
-  path,
-  circle {
-    transition: all 0.3s ease 0s;
-    stroke: var(--color-icon);
-    fill: var(--color-icon);
-  }
-
-  @media (any-hover: hover) {
-    &:hover {
-      path,
-      circle {
+    path,
+    circle {
         transition: all 0.3s ease 0s;
-        stroke: var(--primary-color);
-        fill: var(--primary-color);
-      }
+        stroke: var(--color-icon);
+        fill: var(--color-icon);
     }
-  }
 
-  //width: 25px;
-  //height: 25px;
+    @media (any-hover: hover) {
+        &:hover {
+            path,
+            circle {
+                transition: all 0.3s ease 0s;
+                stroke: var(--primary-color);
+                fill: var(--primary-color);
+            }
+        }
+    }
+
+    //width: 25px;
+    //height: 25px;
 }

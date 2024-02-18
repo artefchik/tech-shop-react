@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Card } from 'shared/ui/Card/Card';
 import { getArticleDetailsData } from 'entities/Article';
-import {
-    getCanEditArticleDetails,
-} from 'features/ArticleDetailsComment/model/selectors/getCanEditArticleDetails/getCanEditArticleDetails';
-import { RoutePath } from 'shared/const/router';
+import { getCanEditArticleDetails } from 'features/ArticleDetailsComment/model/selectors/getCanEditArticleDetails/getCanEditArticleDetails';
+import { getRoutePathArticlesEditById, RoutePath } from 'shared/const/router';
 import cls from './ArticleDetailsHeaderPage.module.scss';
 
 interface ArticleDetailsHeaderPageProps {
@@ -21,9 +19,11 @@ export const ArticleDetailsHeaderPage = (props: ArticleDetailsHeaderPageProps) =
     return (
         <Card className={classNames(cls.ArticleDetailsHeaderPage, {}, [className])}>
             <AppLink to={RoutePath.articles}>Назад</AppLink>
-            {
-                canEdit && <AppLink to={`${RoutePath.article_details}${article?.id}/edit`}>Редактировать</AppLink>
-            }
+            {canEdit && (
+                <AppLink to={getRoutePathArticlesEditById(article?.id ?? '')}>
+                    Редактировать
+                </AppLink>
+            )}
         </Card>
     );
 };

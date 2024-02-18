@@ -4,9 +4,8 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from 'widgets/Header';
-import { getUserAuthData, getUserInitied, userActions } from 'entities/User';
+import { getUserAuthData, getUserInitied } from 'entities/User';
 import { initUserAuthData } from 'entities/User/model/services/initUserAuthData/initUserAuthData';
-import { cartActions } from 'entities/Cart/model/slice/cartSlice';
 import { Footer } from 'widgets/Footer';
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
     const inited = useSelector(getUserInitied);
     const authData = useSelector(getUserAuthData);
 
-    //
     useEffect(() => {
         dispatch(initUserAuthData());
     }, [authData?.id, dispatch]);

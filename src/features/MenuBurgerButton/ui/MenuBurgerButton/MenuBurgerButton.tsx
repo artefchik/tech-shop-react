@@ -1,19 +1,23 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import cls from './MenuBurgerButton.module.scss';
 import {
-    menuBurgerActions,
-    menuBurgerReducer,
-} from '../../model/slice/menuBurgerSlice';
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import cls from './MenuBurgerButton.module.scss';
+import { menuBurgerActions, menuBurgerReducer } from '../../model/slice/menuBurgerSlice';
 import { getIsOpenMenuBurger } from '../../model/selectors/getIsOpenMenuBurger/getIsOpenMenuBurger';
 
 interface MenuBurgerButtonProps {
     className?: string;
 }
+
+const reducers: ReducersList = {
+    menuBurger: menuBurgerReducer,
+};
 
 export const MenuBurgerButton = (props: MenuBurgerButtonProps) => {
     const { className } = props;
@@ -28,7 +32,7 @@ export const MenuBurgerButton = (props: MenuBurgerButtonProps) => {
     };
 
     return (
-        <DynamicModelLoader name="menuBurger" reducer={menuBurgerReducer}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Button
                 onClick={onToggleMenu}
                 theme={ThemeButton.CLEAR}
@@ -36,6 +40,6 @@ export const MenuBurgerButton = (props: MenuBurgerButtonProps) => {
             >
                 <span />
             </Button>
-        </DynamicModelLoader>
+        </DynamicModuleLoader>
     );
 };

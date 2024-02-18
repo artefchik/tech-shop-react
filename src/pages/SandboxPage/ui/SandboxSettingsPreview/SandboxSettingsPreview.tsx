@@ -38,7 +38,8 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
             <Text theme={TextTheme.HEADER} title="Отображение статьи" />
             <VStack gap="10">
                 <UploadImage
-                    height={400}
+                    adaptive
+                    // height={350}
                     text="Добавить обложку"
                     image={previewImage}
                     onChangeImageBlock={onChangePreviewImage}
@@ -48,9 +49,13 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
                 <Card>
                     <Text title={title} theme={TextTheme.HEADER} className={cls.title} />
                     <VStack gap="20">
-                        {textBlocks?.map((textBlock) => (
-                            <ArticleRenderBlock key={textBlock.id} block={textBlock} />
-                        ))}
+                        {!!textBlocks?.length &&
+                            textBlocks.map((textBlock) => (
+                                <ArticleRenderBlock
+                                    key={textBlock.id}
+                                    block={textBlock}
+                                />
+                            ))}
                     </VStack>
                 </Card>
             </VStack>

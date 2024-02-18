@@ -10,7 +10,8 @@ interface UploadImageProps<T> {
     height?: number | string;
     text?: string;
     image?: string;
-    onChangeImageBlock?: (image: string) => void;
+    adaptive?: boolean;
+    onChangeImageBlock: (image: string) => void;
 }
 
 export function UploadImage<T>(props: UploadImageProps<T>) {
@@ -19,12 +20,11 @@ export function UploadImage<T>(props: UploadImageProps<T>) {
         height = 150,
         text = 'Добавить картинку',
         image,
+        adaptive = false,
         onChangeImageBlock,
     } = props;
 
-    const [imageURL, setImageURL] = useState<string | ArrayBuffer | null>(
-        image ?? null,
-    );
+    const [imageURL, setImageURL] = useState<string | ArrayBuffer | null>(image ?? null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const isVisible = Boolean(imageURL);
 
@@ -32,6 +32,7 @@ export function UploadImage<T>(props: UploadImageProps<T>) {
     fileReader.onloadend = (readerEvent: ProgressEvent<FileReader>) => {
         if (readerEvent?.target?.result) {
             setImageURL(fileReader.result);
+            onChangeImageBlock(fileReader.result as string);
         }
     };
     fileReader.onerror = () => {
@@ -55,12 +56,6 @@ export function UploadImage<T>(props: UploadImageProps<T>) {
         minHeight: height,
     };
 
-    useEffect(() => {
-        if (onChangeImageBlock) {
-            onChangeImageBlock(imageURL as string);
-        }
-    }, [imageURL, onChangeImageBlock]);
-
     return (
         <div className={classNames(cls.UploadImage, {}, [className])}>
             <input
@@ -80,14 +75,14 @@ export function UploadImage<T>(props: UploadImageProps<T>) {
                 style={styles}
             >
                 {!imageURL && (
-                    <Text
-                        className={cls.text}
-                        text={text}
-                        theme={TextTheme.TEXT}
-                    />
+                    <Text className={cls.text} text={text} theme={TextTheme.TEXT} />
                 )}
                 {imageURL && (
-                    <div className={cls.image}>
+                    <div
+                        className={classNames(cls.image, { [cls.adaptive]: adaptive }, [
+                            className,
+                        ])}
+                    >
                         <img src={imageURL as string} alt="" />
                     </div>
                 )}

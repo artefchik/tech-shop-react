@@ -1,12 +1,23 @@
 .TextArea {
-  textarea {
     width: 100%;
-    min-height: 40px;
     resize: none;
-    outline: none;
     color: var(--color-text-block);
     font: var(--font-m);
-    padding: 0 10px;
+    min-height: 20px;
+    display: block;
+
+}
+
+.clear {
     background-color: transparent;
-  }
+    outline: none;
+
+}
+
+.medium{
+    font: var(--font-l);
+}
+
+.big {
+    font: var(--font-xl);
 }

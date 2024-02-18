@@ -9,8 +9,9 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import React, { useCallback, useMemo } from 'react';
 import { editorActions } from 'features/Editor/model/slice/editorSlice';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { BrowserView, MobileView } from 'react-device-detect';
+import { BrowserView, isBrowser, isMobile, MobileView } from 'react-device-detect';
 import { HStack } from 'shared/ui/Stack';
+import { createBlockItem } from 'features/Editor/model/services/createBlock/createBlock';
 import cls from './EditorCreateButton.module.scss';
 
 interface EditorCreateButtonProps {
@@ -18,41 +19,23 @@ interface EditorCreateButtonProps {
     onChangeBlock: (type: ArticleBlockType) => void;
     id: string;
     row?: boolean;
+    showBlocks?: boolean;
 }
 
 export const EditorCreateButton = (props: EditorCreateButtonProps) => {
-    const { className, onChangeBlock, id, row = false } = props;
+    const { className, onChangeBlock, id, row = false, showBlocks } = props;
     const dispatch = useAppDispatch();
-
-    const createHandler = useCallback(
-        (type: ArticleBlockType) => {
-            switch (type) {
-                case ArticleBlockType.IMAGE:
-                    return {
-                        id,
-                        type: ArticleBlockType.IMAGE,
-                        image: '',
-                        title: '',
-                    };
-
-                default:
-                    return {
-                        id,
-                        type: ArticleBlockType.TEXT,
-                        title: '',
-                        text: '',
-                    };
-            }
-        },
-        [id],
-    );
 
     const createBlock = useCallback(
         (type: ArticleBlockType) => () => {
-            onChangeBlock(type);
-            dispatch(editorActions.createBlock(createHandler(type)));
+            if (isMobile) {
+                dispatch(editorActions.createBlock(createBlockItem(type, id)));
+            } else if (isBrowser) {
+                dispatch(editorActions.changeBlock(createBlockItem(type, id)));
+                onChangeBlock(type);
+            }
         },
-        [onChangeBlock, createHandler, dispatch],
+        [onChangeBlock, dispatch, id],
     );
 
     const itemsButton = useMemo(
@@ -87,9 +70,11 @@ export const EditorCreateButton = (props: EditorCreateButtonProps) => {
             </BrowserView>
 
             <MobileView>
-                <HStack gap="15" align="center" className={cls.bodyMobile}>
-                    {itemsButton}
-                </HStack>
+                {showBlocks && (
+                    <HStack gap="15" align="center" className={cls.bodyMobile}>
+                        {itemsButton}
+                    </HStack>
+                )}
             </MobileView>
         </>
     );

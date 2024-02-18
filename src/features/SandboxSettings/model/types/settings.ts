@@ -17,3 +17,10 @@ export const articleCategories: ArticleType[] = [
     ArticleType.POLITICS,
     ArticleType.SCIENCE,
 ];
+
+export interface SandboxSettingsSchema {
+    types: ArticleType[];
+    previewImage: string;
+    keyWords: string[];
+    lang: LanguageType;
+}
