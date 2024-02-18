@@ -1,181 +1,167 @@
 .small {
+    &.ProductCard {
+        padding: 10px;
+        cursor: pointer;
 
-  &.ProductCard {
-    padding: 10px;
-    cursor: pointer;
-    @media (any-hover: hover) {
-      &:hover {
-        .favorites {
-          path {
-          }
+        @media (any-hover: hover) {
+            &:hover {
+                .favorites {
+                    path {
+                    }
+                }
+            }
         }
-      }
     }
-  }
 
-  .body {
-    height: 100%;
-  }
-  .image {
-    position: relative;
-    display: block;
-
-    //padding-bottom: 60%;
-    aspect-ratio: 90/80;
-    border-radius: var(--border-radius-s);
-    overflow: hidden;
-
-    img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      object-fit: contain;
+    .body {
+        height: 100%;
     }
-  }
-  .content {
-    flex: 1 1 auto;
-  }
 
-  .favorites {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 5;
+    .image {
+        position: relative;
+        display: block;
 
-    path {
+        //padding-bottom: 60%;
+        aspect-ratio: 90/80;
+        border-radius: var(--border-radius-s);
+        overflow: hidden;
 
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: contain;
+        }
     }
-  }
 
-  .title {
-    //max-width: 210px;
-    //overflow: hidden;
-    //max-height: 45px;
-    //text-overflow: ellipsis;
+    .content {
+        flex: 1 1 auto;
+    }
 
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    word-wrap: break-word;
-    -webkit-box-orient: vertical;
-    box-orient: vertical;
-    display: -webkit-box;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-  }
+    .favorites {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 5;
 
-  .prevPrice {
-    text-decoration-line: line-through;
-    color: var(--color-text-secondary);
-  }
+        path {
 
+        }
+    }
 
+    .title {
+        //max-width: 210px;
+        //overflow: hidden;
+        //max-height: 45px;
+        //text-overflow: ellipsis;
+
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        word-wrap: break-word;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        display: box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+    .prevPrice {
+        text-decoration-line: line-through;
+        color: var(--color-text-secondary);
+    }
 }
 
-
 .big {
-  &.ProductCard {
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .card {
-    padding: 15px;
-    transition: all 0.3s ease 0s;
-    @media (max-width: 767.98px) {
-      padding: 10px;
-      gap: 10px;
+    &.ProductCard {
+        padding: 0;
+        overflow: hidden;
     }
-  }
 
-  @media (any-hover: hover) {
-    &:hover {
-      .card {
-        background-color: var(--hover-color-article);
-      }
+    .card {
+        padding: 15px;
+        transition: all 0.3s ease 0s;
+
+        @media (max-width: 767.98px) {
+            padding: 10px;
+            gap: 10px;
+        }
     }
-  }
 
-  .image {
-    position: relative;
-    display: block;
-    //padding-bottom: 60%;
-    aspect-ratio: 100/90;
-    border-radius: var(--border-radius-s);
-    overflow: hidden;
-
-    img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      //width: 250px;
-      //max-width: 100%;
-      top: 0;
-      left: 0;
-      object-fit: cover;
+    @media (any-hover: hover) {
+        &:hover {
+            .card {
+                background-color: var(--hover-color-article);
+            }
+        }
     }
-  }
 
-  .rating {
-    @media (max-width: 767.98px) {
-      width: 25px;
-      height: 25px;
-      overflow: hidden;
+    .image {
+        position: relative;
+        display: block;
+
+        //padding-bottom: 60%;
+        aspect-ratio: 100/90;
+        border-radius: var(--border-radius-s);
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+        }
     }
-  }
 
-  .imageBlock {
-    flex: 0 1 20%;
-  }
-
-  .textBlock {
-    flex: 0 1 50%;
-  }
-
-  .actionsBlock {
-    flex: 0 1 30%;
-    @media (max-width: 991.98px) {
-      align-items: flex-end;
+    .rating {
+        @media (max-width: 767.98px) {
+            width: 25px;
+            height: 25px;
+            overflow: hidden;
+        }
     }
-  }
 
-  .button {
-    @media (max-width: 767.98px) {
-      span {
-        display: none;
-      }
+    .imageBlock {
+        flex: 0 1 20%;
     }
-  }
 
+    .textBlock {
+        flex: 0 1 50%;
+    }
+
+    .actionsBlock {
+        flex: 0 1 30%;
+
+        @media (max-width: 991.98px) {
+            align-items: flex-end;
+        }
+    }
+
+    .button {
+        @media (max-width: 767.98px) {
+            span {
+                display: none;
+            }
+        }
+    }
 }
 
 .cartPlus {
-  path {
-    stroke: var(--color-active-icon-btn);
-  }
+    path {
+        stroke: var(--color-active-icon-btn);
+    }
 }
 
 .button {
-  span {
-    white-space: nowrap;
-  }
-}
-
-.currentPrice {
-  font-size: var(--font-size-xl);
-  @media (max-width: 767.98px) {
-    font-size: var(--font-size-l);
-
-  }
+    span {
+        white-space: nowrap;
+    }
 }
 
 .previousPrice {
-  font-size: var(--font-size-m);
-  text-decoration-line: line-through;
-  color: var(--color-text-secondary);
-  @media (max-width: 767.98px) {
-    font-size: var(--font-size-m);
-  }
+    text-decoration-line: line-through;
 }

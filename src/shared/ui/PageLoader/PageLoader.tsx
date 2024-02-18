@@ -3,11 +3,11 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import cls from './PageLoader.module.scss';
 
 interface PageLoaderProps {
-  className?: string;
+    className?: string;
 }
 
 export const PageLoader = ({ className }: PageLoaderProps) => (
     <div className={classNames(cls.PageLoader, {}, [className])}>
-        <Loader height={80} width={80} />
+        <Loader height={60} width={60} />
     </div>
 );

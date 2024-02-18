@@ -18,8 +18,7 @@ interface CommentFormProps {
 }
 
 export const CommentForm = memo((props: CommentFormProps) => {
-    const { className, onSendComment, onCommentChangeText, text, authData } =
-        props;
+    const { className, onSendComment, onCommentChangeText, text, authData } = props;
     const { isOpenModal, onCloseModal, onShowModal } = useToggleModal();
 
     const onSendCommentHandler = useCallback(
@@ -51,15 +50,12 @@ export const CommentForm = memo((props: CommentFormProps) => {
                     <>
                         <Text
                             theme={TextTheme.TEXT}
-                            title="Оставлять комментарии могут только зарегистрированные пользователи..."
+                            text="Оставлять комментарии могут только зарегистрированные пользователи..."
                             className={cls.input}
                         />
                         <Button onClick={onShowModal}>Войти</Button>
                         {isOpenModal && (
-                            <LoginModal
-                                isOpen={isOpenModal}
-                                onClose={onCloseModal}
-                            />
+                            <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />
                         )}
                     </>
                 )}

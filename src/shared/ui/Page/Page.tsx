@@ -1,26 +1,16 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import {
-    LegacyRef,
-    memo,
-    ReactNode,
-    useEffect,
-} from 'react';
+import { LegacyRef, memo, ReactNode, useEffect } from 'react';
 import cls from './Page.module.scss';
 
 interface PageProps {
-  className?: string;
-  children:ReactNode
-  onScrollEnd?:()=>void;
-  triggerRef?:LegacyRef<HTMLDivElement>
+    className?: string;
+    children: ReactNode;
+    onScrollEnd?: () => void;
+    triggerRef?: LegacyRef<HTMLDivElement>;
 }
 
-export const Page = memo((props: PageProps) => {
-    const {
-        className,
-        children,
-        onScrollEnd,
-        triggerRef,
-    } = props;
+export const Page = (props: PageProps) => {
+    const { className, children, onScrollEnd, triggerRef } = props;
 
     useEffect(() => {
         if (onScrollEnd) {
@@ -28,9 +18,9 @@ export const Page = memo((props: PageProps) => {
         }
     }, [onScrollEnd]);
     return (
-        <section className={classNames(cls.Page, {}, [className])}>
+        <main className={classNames(cls.Page, {}, [className])}>
             {children}
-            <div ref={triggerRef} className={cls.trigger} />
-        </section>
+            {triggerRef && <div ref={triggerRef} className={cls.trigger} />}
+        </main>
     );
-});
+};

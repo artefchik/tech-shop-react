@@ -1,62 +1,120 @@
 .Button {
-    cursor: pointer;
-    color: var(--primary-color);
-    display: inline-flex;
-    min-height: 40px;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0 20px;
-    border-radius: var(--border-radius-s);
-    position: relative;
+  cursor: pointer;
+  color: var(--primary-color);
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-radius: var(--border-radius-s);
+  position: relative;
 }
 
 .clear {
-    padding: 0;
-    border: none;
-    background: none;
-    outline: none;
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
 
-    //display: inline-flex;
-    //align-items: center;
-    //justify-content: center;
+  //display: inline-flex;
+  //align-items: center;
+  //justify-content: center;
 }
 
 .primary {
-    background-color: var(--secondary-color);
-    color: var(--color-active-text-button);
-    border-radius: var(--border-radius-s);
-    transition: all 0.4s ease 0s;
+  background-color: var(--secondary-color);
+  color: var(--color-active-text-button);
+  border-radius: var(--border-radius-s);
+  transition: all 0.4s ease 0s;
 
-    @media (any-hover: hover) {
-        &:hover {
-            background-color: var(--hover-button-color);
-        }
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--hover-button-color);
     }
+  }
 }
 
 .outline {
-    border: 1px solid var(--secondary-color);
-    background-color: transparent;
-    transition: all 0.3s ease 0s;
+  border: 1px solid var(--secondary-color);
+  background-color: transparent;
+  transition: all 0.3s ease 0s;
 
-    @media (any-hover: hover) {
-        &:hover {
-            background-color: var(--hover-button-color);
-        }
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--hover-button-color);
     }
+  }
 }
 
 .outline_red {
-    border: 1px solid var(--color-error);
-    background-color: transparent;
-    color: var(--color-error);
-    transition: all 0.3s ease 0s;
+  border: 1px solid var(--color-error);
+  background-color: transparent;
+  color: var(--color-error);
+  transition: all 0.3s ease 0s;
 
-    @media (any-hover: hover) {
-        &:hover {
-            color: #fff;
-            background-color: var(--color-error);
-        }
+  @media (any-hover: hover) {
+    &:hover {
+      color: #fff;
+      background-color: var(--color-error);
     }
+  }
+}
+
+.start {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.border {
+  border-radius: 0;
+}
+
+.disabled {
+  opacity: 0.4;
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--secondary-color);
+    }
+  }
+}
+
+.delete {
+  border: none;
+  background: none;
+  outline: none;
+  position: relative;
+  padding: 0;
+  height: 25px;
+  width: 25px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 2px;
+    height: 21px;
+    background-color: var(--color-text-secondary);
+    transition: all 0.4s ease 0s;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      &::before,
+      &::after {
+        background-color: var(--inverted-bg-color);
+      }
+    }
+  }
 }

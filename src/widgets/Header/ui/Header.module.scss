@@ -21,6 +21,10 @@
     margin-right: 30px;
     position: relative;
     z-index: 5;
+
+    path {
+        fill: var(--secondary-color);
+    }
 }
 
 .navbar {

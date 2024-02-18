@@ -6,7 +6,7 @@
 }
 
 .label {
-    color: var(--color-text-secondary);
+    color: var(--color-text-block);
 }
 
 .input {
@@ -19,7 +19,7 @@
     font-size: var(--font-size-m);
     outline: none;
     position: relative;
-    transition: all 0.3s ease 0s;
+    transition: all 0.4s ease 0s;
 
     &:focus, {
         box-shadow: 0 0 6px var(--box-shadow-color);
@@ -28,4 +28,32 @@
 
 .readonly {
     opacity: 0.8;
+}
+
+.clear {
+    background-color: transparent;
+    border: none;
+    color: var(--inverted-bg-color);
+    transition: all 0.4s ease 0s;
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+.big {
+    font: var(--font-xl);
+}
+
+.medium {
+    font: var(--font-l);
+}
+
+.secondary {
+    background-color: transparent;
+    color: var(--inverted-bg-color);
 }

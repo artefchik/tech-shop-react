@@ -4,7 +4,6 @@ import { getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import { memo, useCallback, useMemo } from 'react';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
-import { Burger } from 'shared/ui/Burger/Burger';
 import {
     Dropdown,
     DropdownItem,
@@ -18,6 +17,7 @@ import { AvatarDropdown } from 'features/AvatarDropdown/ui/AvatarDropdown';
 import { Button } from 'shared/ui/Button/Button';
 import { CartButton } from 'features/CartButton';
 import { HStack } from 'shared/ui/Stack';
+import { MenuBurgerButton } from 'features/MenuBurgerButton/ui/MenuBurgerButton/MenuBurgerButton';
 import cls from './ActionsNavbar.module.scss';
 
 interface ActionsNavbarProps {
@@ -65,7 +65,7 @@ export const ActionsNavbar = memo((props: ActionsNavbarProps) => {
                 <CartButton />
                 <AvatarDropdown />
                 <ThemeSwitcher />
-                <Burger />
+                <MenuBurgerButton />
             </HStack>
         </nav>
     );

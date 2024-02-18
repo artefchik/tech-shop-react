@@ -1,14 +1,12 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { Button } from 'shared/ui/Button/Button';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
 import favorites from 'shared/assets/icons/favorites.svg';
-import { memo, ReactNode, useState } from 'react';
+import { memo, ReactNode } from 'react';
 import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { StarRating } from 'shared/ui/StarRating/StarRating';
-import cartPlus from 'shared/assets/icons/cartPlus.svg';
 import { Product } from '../../model/product';
 import cls from './ProductItem.module.scss';
 
@@ -25,12 +23,7 @@ export const ProductItem = memo((props: ProductItemProps) => {
 
     if (view === ViewType.SMALL) {
         return (
-            <Card
-                className={classNames(cls.ProductCard, {}, [
-                    className,
-                    cls[view],
-                ])}
-            >
+            <Card className={classNames(cls.ProductCard, {}, [className, cls[view]])}>
                 <VStack gap="10" className={cls.body}>
                     <div className={cls.image}>
                         <img src={product.image} alt={product.title} />
@@ -40,19 +33,13 @@ export const ProductItem = memo((props: ProductItemProps) => {
                     </div>
                     <VStack className={cls.content}>
                         <StarRating selectedStars={product.starRating} />
-                        <VStack gap="10">
-                            <Text
-                                title={product.title}
-                                theme={TextTheme.SMALL}
-                                className={cls.title}
-                            />
+                        <VStack gap="5">
+                            <Text text={product.title} className={cls.title} />
                             <HStack align="center" gap="15">
                                 <Text
-                                    title={`${product.priceSymbol}${String(
+                                    text={`${product.priceSymbol}${String(
                                         product.price.current,
                                     )}`}
-                                    className={cls.currentPrice}
-                                    theme={TextTheme.PRICE}
                                 />
 
                                 <Text
@@ -72,9 +59,7 @@ export const ProductItem = memo((props: ProductItemProps) => {
     }
 
     return (
-        <Card
-            className={classNames(cls.ProductCard, {}, [className, cls[view]])}
-        >
+        <Card className={classNames(cls.ProductCard, {}, [className, cls[view]])}>
             <HStack gap="15" className={cls.card}>
                 <VStack gap="15" className={cls.imageBlock}>
                     <div className={cls.image}>
@@ -86,9 +71,9 @@ export const ProductItem = memo((props: ProductItemProps) => {
                 </VStack>
                 <VStack className={cls.textBlock} gap="20">
                     <Text
-                        title={product.title}
+                        text={product.title}
                         className={cls.title}
-                        theme={TextTheme.SECONDARY}
+                        size={TextSize.BIG}
                     />
                     <HStack className={cls.block}>
                         <div className={cls.specifications}>specifications</div>
@@ -97,11 +82,9 @@ export const ProductItem = memo((props: ProductItemProps) => {
                 <VStack className={cls.actionsBlock} gap="20">
                     <HStack align="center" gap="15">
                         <Text
-                            title={`${product.priceSymbol}${String(
+                            text={`${product.priceSymbol}${String(
                                 product.price.current,
                             )}`}
-                            className={cls.currentPrice}
-                            theme={TextTheme.SECONDARY}
                         />
 
                         <Text
@@ -114,11 +97,7 @@ export const ProductItem = memo((props: ProductItemProps) => {
                     </HStack>
                     <HStack align="center" gap="20">
                         {AddToCartButton}
-                        <Icon
-                            hover={false}
-                            Svg={favorites}
-                            className={cls.favorites}
-                        />
+                        {FavoriteButton && FavoriteButton}
                     </HStack>
                 </VStack>
             </HStack>

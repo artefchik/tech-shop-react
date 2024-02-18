@@ -1,15 +1,18 @@
 .FooterTop {
   row-gap: 15px;
+
   @media (max-width: 991.98px) {
     flex-wrap: wrap;
   }
+
   @media (max-width: 520px) {
-  gap: 20px;
+    gap: 20px;
   }
 }
 
 .infoText {
   max-width: 80%;
+  color: var(--color-base-link);
   @media (max-width: 520px) {
     max-width: 100%;
   }
@@ -17,17 +20,19 @@
 
 .info {
   flex: 0 1 33.333%;
+
   @media (max-width: 991.98px) {
     //flex: 0 1 50%;
   }
-
 }
 
 .links {
   flex: 0 1 33.333%;
+
   @media (max-width: 991.98px) {
     flex: 0 1 50%;
   }
+
   @media (max-width: 690px) {
     flex: 1 1 100%;
   }
@@ -36,10 +41,12 @@
 .form {
   display: flex;
   flex: 0 1 33.333%;
+
   @media (max-width: 991.98px) {
     flex: 0 1 50%;
     margin: 0 auto;
   }
+
   @media (max-width: 768px) {
     margin: 0;
     flex: 1 1 100%;

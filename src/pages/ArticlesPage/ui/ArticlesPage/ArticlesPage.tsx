@@ -2,7 +2,10 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Container } from 'shared/ui/Container/Container';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Page } from 'shared/ui/Page/Page';
 import { useInView } from 'react-intersection-observer';
 import { useSearchParams } from 'react-router-dom';
@@ -16,6 +19,10 @@ import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 interface ArticlesPageProps {
     className?: string;
 }
+
+const reducers: ReducersList = {
+    articlesPage: articlesPageReducer,
+};
 
 const ArticlesPage = (props: ArticlesPageProps) => {
     const { className } = props;
@@ -36,7 +43,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     }, [dispatch, searchParams]);
 
     return (
-        <DynamicModelLoader name="articlesPage" reducer={articlesPageReducer}>
+        <DynamicModuleLoader reducers={reducers}>
             <Page
                 triggerRef={ref}
                 onScrollEnd={onLoadNextPage}
@@ -47,7 +54,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                     <ArticlesInfiniteList />
                 </Container>
             </Page>
-        </DynamicModelLoader>
+        </DynamicModuleLoader>
     );
 };
 export default ArticlesPage;

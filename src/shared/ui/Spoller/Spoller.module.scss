@@ -2,49 +2,47 @@
 }
 
 .trigger {
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
+    &:not(:last-child) {
+        margin-bottom: 5px;
+    }
 }
 
-
-
 .arrow {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  width: 30px;
-  height: 12px;
-
-  &::before,
-  &::after, {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: 30px;
     height: 12px;
-    background-color: var(--primary-color);
-    transition: all 0.4s ease 0s;
-  }
 
-  &::before {
-    transform: rotate(45deg);
-  }
+    &::before,
+    &::after, {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 12px;
+        background-color: var(--primary-color);
+        transition: all 0.4s ease 0s;
+    }
 
-  &::after {
-    left: 8px;
-    transform: rotate(-45deg);
-  }
-
-  &.open {
     &::before {
-      transform: rotate(135deg);
+        transform: rotate(45deg);
     }
 
     &::after {
-      left: 8px;
-      transform: rotate(-135deg);
+        left: 8px;
+        transform: rotate(-45deg);
     }
-  }
+
+    &.open {
+        &::before {
+            transform: rotate(135deg);
+        }
+
+        &::after {
+            left: 8px;
+            transform: rotate(-135deg);
+        }
+    }
 }

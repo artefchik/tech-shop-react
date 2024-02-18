@@ -4,7 +4,7 @@ import cls from './Slider.module.scss';
 import './SliderBullets.scss';
 import 'swiper/scss';
 import { VStack } from 'shared/ui/Stack';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 
@@ -44,17 +44,21 @@ export const Slider = (props: SliderProps) => {
                 {slides.map((slide) => (
                     <SwiperSlide key={slide.id}>
                         <VStack className={cls.slide}>
-                            <VStack
-                                align="center"
-                                className={cls.content}
-                                gap="10"
-                            >
-                                <Text
-                                    align={TextAlign.CENTER}
-                                    title={slide.title}
-                                    text={slide.text}
-                                    theme={TextTheme.SLIDER}
-                                />
+                            <VStack align="center" className={cls.content} gap="10">
+                                <VStack gap="5" align="center">
+                                    <Text
+                                        align={TextAlign.CENTER}
+                                        theme={TextTheme.DEFAULT}
+                                        size={TextSize.LARGE}
+                                        text={slide.title}
+                                        As="h2"
+                                    />
+                                    <Text
+                                        align={TextAlign.CENTER}
+                                        theme={TextTheme.DEFAULT}
+                                        text={slide.text}
+                                    />
+                                </VStack>
                                 <Button>Купить</Button>
                             </VStack>
                             <div className={cls.image}>

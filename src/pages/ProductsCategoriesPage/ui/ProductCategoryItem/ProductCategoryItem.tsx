@@ -1,6 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { getRoutePathProductsCategories } from 'shared/const/router';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Card } from 'shared/ui/Card/Card';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
@@ -28,7 +27,7 @@ export const ProductCategoryItem = (props: ProductCategoryItemProps) => {
             <div className={cls.image}>
                 <img src={category.image} alt={category.title} />
             </div>
-            <Text title={category.title} align={TextAlign.CENTER} />
+            <Text text={category.title} align={TextAlign.CENTER} size={TextSize.BIG} />
         </Card>
     );
 };

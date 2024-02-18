@@ -3,22 +3,30 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { memo, useCallback, useEffect } from 'react';
 import { Card } from 'shared/ui/Card/Card';
-import { EditableProfileFooter, ProfileCard } from 'entities/Profile';
-import { VStack } from 'shared/ui/Stack';
-import { DynamicModelLoader } from 'shared/lib/components/DynamicModelLoader/DynamicModelLoader';
+import { EditableProfileFooter, ProfileCard, ProfileEdit } from 'entities/Profile';
+import { HStack, VStack } from 'shared/ui/Stack';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Text, TextSize, TextTheme, TextWeight } from 'shared/ui/Text/Text';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 
-interface EditableProfilleCardProps {
+interface EditableProfileCardProps {
     className?: string;
     id: string;
 }
 
+const reducers: ReducersList = {
+    profile: profileReducer,
+};
+
 export const EditableProfilleCard = memo(
-    ({ className, id }: EditableProfilleCardProps) => {
+    ({ className, id }: EditableProfileCardProps) => {
         const dispatch = useAppDispatch();
         const dataForm = useSelector(getProfileForm);
         const isLoading = useSelector(getProfileIsLoading);
@@ -33,36 +41,52 @@ export const EditableProfilleCard = memo(
 
         const onChangeFirstname = useCallback(
             (value?: string) => {
-                dispatch(
-                    profileActions.updateProfile({ firstname: value || '' }),
-                );
+                dispatch(profileActions.updateProfile({ firstname: value || '' }));
             },
             [dispatch],
         );
 
         const onChangeLastname = useCallback(
             (value?: string) => {
-                dispatch(
-                    profileActions.updateProfile({ lastname: value || '' }),
-                );
+                dispatch(profileActions.updateProfile({ lastname: value || '' }));
             },
             [dispatch],
         );
 
         return (
-            <DynamicModelLoader name="profile" reducer={profileReducer}>
-                <Card>
-                    <VStack gap="20">
-                        <ProfileCard
-                            readonly={readonly}
-                            data={dataForm}
-                            onChangeFirstname={onChangeFirstname}
-                            onChangeLastname={onChangeLastname}
+            <DynamicModuleLoader reducers={reducers}>
+                <VStack gap="25">
+                    <HStack gap="10">
+                        <Text text="Профиль пользователя" size={TextSize.LARGE} />
+                        <Text
+                            theme={TextTheme.SECONDARY}
+                            size={TextSize.LARGE}
+                            text={`${dataForm?.firstname} ${dataForm?.lastname}`}
                         />
-                        {canEdit && <EditableProfileFooter />}
+                    </HStack>
+                    <VStack gap="20">
+                        <ProfileCard data={dataForm} />
+                        <VStack gap="15">
+                            <Text
+                                text="Настройки профиля"
+                                size={TextSize.BIG}
+                                weight={TextWeight.SEMI}
+                            />
+                            <Card>
+                                <VStack gap="20">
+                                    <ProfileEdit
+                                        readonly={readonly}
+                                        data={dataForm}
+                                        onChangeFirstname={onChangeFirstname}
+                                        onChangeLastname={onChangeLastname}
+                                    />
+                                    {canEdit && <EditableProfileFooter />}
+                                </VStack>
+                            </Card>
+                        </VStack>
                     </VStack>
-                </Card>
-            </DynamicModelLoader>
+                </VStack>
+            </DynamicModuleLoader>
         );
     },
 );

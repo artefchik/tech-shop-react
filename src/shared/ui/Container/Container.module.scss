@@ -2,4 +2,8 @@
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 15px;
+
+    @media (max-width: 991.98px) {
+        padding: 0 7px;
+    }
 }

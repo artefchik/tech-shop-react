@@ -1,8 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Disclosure } from '@headlessui/react';
+import { Disclosure, Transition } from '@headlessui/react';
 import { HStack } from 'shared/ui/Stack';
-import { Text } from 'shared/ui/Text/Text';
-import { ReactNode } from 'react';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+import { Fragment, ReactNode } from 'react';
 import cls from './Spoller.module.scss';
 
 interface SpollerProps {
@@ -24,7 +24,7 @@ export const Spoller = (props: SpollerProps) => {
                 <>
                     <Disclosure.Button as="div" className={cls.trigger}>
                         <HStack justify="between" align="center" gap="20">
-                            <Text title={title} />
+                            <Text text={title} size={TextSize.BIG} />
                             <div
                                 className={classNames(
                                     cls.arrow,
@@ -34,7 +34,17 @@ export const Spoller = (props: SpollerProps) => {
                             />
                         </HStack>
                     </Disclosure.Button>
-                    <Disclosure.Panel>{content}</Disclosure.Panel>
+                    <Transition
+                        as={Fragment}
+                        enter="transition ease duration-350"
+                        enterFrom="opacity-30"
+                        enterTo="opacity-90"
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <Disclosure.Panel>{content}</Disclosure.Panel>
+                    </Transition>
                 </>
             )}
         </Disclosure>

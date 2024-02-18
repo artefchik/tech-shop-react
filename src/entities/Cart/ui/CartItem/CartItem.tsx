@@ -29,11 +29,8 @@ export const CartItem = memo((props: CartItemProps) => {
                     align="center"
                     className={cls.content}
                 >
-                    <Text title={product.title} />
-                    <Text
-                        text={String(product.price.current)}
-                        theme={TextTheme.PRICE}
-                    />
+                    <Text text={product.title} />
+                    <Text text={String(product.price.current)} />
                     <HStack gap="20" align="center" className={cls.actions}>
                         {counter && counter}
                         {removeButton && removeButton}

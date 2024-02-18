@@ -1,10 +1,10 @@
 .FavoriteButton {
-  min-height: 25px;
+    min-height: 25px;
 }
-.active {
 
-  path {
-    stroke: var(--favorites-color);
-    fill: var(--favorites-color);
-  }
+.active {
+    path {
+        stroke: var(--favorites-color);
+        fill: var(--favorites-color);
+    }
 }

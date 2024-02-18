@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { StarRating } from 'shared/ui/StarRating/StarRating';
 import { useCallback, useState } from 'react';
 import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
@@ -14,12 +14,12 @@ import cls from './RatingCard.module.scss';
 
 interface RatingCardProps {
     className?: string;
-    title?:string;
-    feedbackTitle?:string;
-    onCancel?:(starsCount:number)=>void;
-    onAccept?:(starsCount:number, feedback?:string)=>void;
-    hasFeedback?:boolean;
-    rate?:number
+    title?: string;
+    feedbackTitle?: string;
+    onCancel?: (starsCount: number) => void;
+    onAccept?: (starsCount: number, feedback?: string) => void;
+    hasFeedback?: boolean;
+    rate?: number;
 }
 
 export const RatingCard = (props: RatingCardProps) => {
@@ -37,14 +37,17 @@ export const RatingCard = (props: RatingCardProps) => {
     const [feedback, setFeedback] = useState('');
     const { isOpenModal, onShowModal, onCloseModal } = useToggleModal();
 
-    const onSelectStars = useCallback((selectStarsCount:number) => {
-        setStarsCount(selectStarsCount);
-        if (hasFeedback) {
-            onShowModal();
-        } else {
-            onAccept?.(selectStarsCount);
-        }
-    }, [hasFeedback, onAccept, onShowModal]);
+    const onSelectStars = useCallback(
+        (selectStarsCount: number) => {
+            setStarsCount(selectStarsCount);
+            if (hasFeedback) {
+                onShowModal();
+            } else {
+                onAccept?.(selectStarsCount);
+            }
+        },
+        [hasFeedback, onAccept, onShowModal],
+    );
 
     const onCancelHandler = useCallback(() => {
         onCloseModal();
@@ -58,7 +61,7 @@ export const RatingCard = (props: RatingCardProps) => {
 
     const modelContent = (
         <>
-            <Text title={feedbackTitle} align={TextAlign.CENTER} />
+            <Text text={feedbackTitle} align={TextAlign.CENTER} />
             <Input value={feedback} onChange={setFeedback} />
         </>
     );
@@ -66,17 +69,23 @@ export const RatingCard = (props: RatingCardProps) => {
     return (
         <Card className={classNames(cls.RatingCard, {}, [className])}>
             <VStack align="center" gap="15">
-                <Text title={starsCount ? 'Спасибо за оценку !' : title} />
+                <Text
+                    size={TextSize.BIG}
+                    text={starsCount ? 'Спасибо за оценку !' : title}
+                />
                 <StarRating selectedStars={starsCount} onSelect={onSelectStars} />
             </VStack>
             <BrowserView>
                 <Modal isOpen={isOpenModal} lazy onClose={onCancelHandler}>
                     <VStack gap="20">
-                        <VStack gap="15">
-                            {modelContent}
-                        </VStack>
+                        <VStack gap="15">{modelContent}</VStack>
                         <HStack justify="end" gap="15">
-                            <Button theme={ThemeButton.OUTLINE_RED} onClick={onCancelHandler}>close</Button>
+                            <Button
+                                theme={ThemeButton.OUTLINE_RED}
+                                onClick={onCancelHandler}
+                            >
+                                close
+                            </Button>
                             <Button onClick={onAcceptHandler}>save</Button>
                         </HStack>
                     </VStack>
@@ -85,9 +94,7 @@ export const RatingCard = (props: RatingCardProps) => {
             <MobileView>
                 <Drawer isOpen={isOpenModal} onClose={onCancelHandler} lazy>
                     <VStack gap="20">
-                        <VStack gap="15">
-                            {modelContent}
-                        </VStack>
+                        <VStack gap="15">{modelContent}</VStack>
                         <Button onClick={onAcceptHandler}>save</Button>
                     </VStack>
                 </Drawer>

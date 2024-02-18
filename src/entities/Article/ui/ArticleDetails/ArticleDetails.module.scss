@@ -3,7 +3,7 @@
 
 .headerBlock {
     &:not(:last-child) {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 }
 
@@ -26,12 +26,6 @@
 
 .icon {
     font-size: var(--font-size-m);
-}
-
-.block {
-    &:not(:last-child) {
-        margin-bottom: 25px;
-    }
 }
 
 .types {

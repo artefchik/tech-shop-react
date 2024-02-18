@@ -1,0 +1,23 @@
+.TextArea {
+    width: 100%;
+    resize: none;
+    color: var(--color-text-block);
+    font: var(--font-m);
+    min-height: 20px;
+    display: block;
+
+}
+
+.clear {
+    background-color: transparent;
+    outline: none;
+
+}
+
+.medium{
+    font: var(--font-l);
+}
+
+.big {
+    font: var(--font-xl);
+}

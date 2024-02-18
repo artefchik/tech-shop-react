@@ -15,14 +15,10 @@ export const ShoppingCartTotalSummary = ({
 }: ShoppingCartTotalSummaryProps) => {
     const totalPrice = useSelector(getCartTotalPrice);
     return (
-        <div
-            className={classNames(cls.ShoppingCartTotalSummary, {}, [
-                className,
-            ])}
-        >
+        <div className={classNames(cls.ShoppingCartTotalSummary, {}, [className])}>
             <HStack justify="end" align="center" gap="20">
-                <Text title="Итого" theme={TextTheme.HEADER} />
-                <Text text={String(totalPrice)} theme={TextTheme.HEADER} />
+                <Text text="Итого" />
+                <Text text={String(totalPrice)} />
             </HStack>
         </div>
     );

@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { HStack } from 'shared/ui/Stack';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { ProductsFilter } from 'features/ProductsFilter/ui/ProductsFilter/ProductsFilter';
 import { ProductsViewSelector } from 'pages/ProductsPage/ui/ProductsViewSelector/ui/ProductsViewSelector';
 import { ProductsCategories } from 'shared/const/types';
@@ -12,8 +12,7 @@ interface ProductsPageHeaderProps {
     category?: string;
 }
 
-const toUpperCaseFirstLetter = (str: string) =>
-    str[0].toUpperCase() + str.slice(1);
+const toUpperCaseFirstLetter = (str: string) => str[0].toUpperCase() + str.slice(1);
 
 export const ProductsPageHeader = memo((props: ProductsPageHeaderProps) => {
     const { className, category = 'Products' } = props;
@@ -41,7 +40,7 @@ export const ProductsPageHeader = memo((props: ProductsPageHeaderProps) => {
             gap="15"
             className={classNames(cls.ProductsPageHeader, {}, [className])}
         >
-            <Text title={renderTitle()} theme={TextTheme.HEADER} />
+            <Text text={renderTitle()} size={TextSize.LARGE} />
             <HStack align="center" gap="15">
                 <ProductsFilter />
                 <ProductsViewSelector />

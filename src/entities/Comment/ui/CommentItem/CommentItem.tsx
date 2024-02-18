@@ -3,35 +3,55 @@ import { Card } from 'shared/ui/Card/Card';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { RoutePath } from 'shared/const/router';
+import { HStack, VStack } from 'shared/ui/Stack';
+import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import cls from './CommentItem.module.scss';
 import { CommentType } from '../../model/types/comment';
 
 interface CommentItemProps {
     className?: string;
-    comment?:CommentType;
-    isLoading?:boolean
-
+    comment?: CommentType;
+    isLoading?: boolean;
+    onDeleteComment?: (id: string) => void;
 }
 
 export const CommentItem = memo((props: CommentItemProps) => {
-    const {
-        className,
-        comment,
-        isLoading,
-    } = props;
+    const { className, comment, isLoading, onDeleteComment } = props;
 
     if (!comment) {
         return null;
     }
+
+    const onDeleteClick = useCallback(
+        (id: string) => () => {
+            onDeleteComment?.(id);
+        },
+        [],
+    );
+
     return (
         <Card className={classNames(cls.CommentItem, {}, [className])}>
-            <AppLink to={`${RoutePath.profile}${comment.user.id}`} className={cls.header} theme={AppLinkTheme.CLEAR}>
-                {comment.user.avatar && <Avatar src={comment.user.avatar} alt={comment.user.username} />}
-                <Text title={comment.user.username} theme={TextTheme.USER} />
-            </AppLink>
-            <Text text={comment.text} theme={TextTheme.TEXT} />
+            <HStack align="center">
+                <VStack width gap="5">
+                    <AppLink
+                        to={`${RoutePath.profile}${comment.user.id}`}
+                        className={cls.header}
+                        theme={AppLinkTheme.CLEAR}
+                    >
+                        {comment.user.avatar && (
+                            <Avatar
+                                src={comment.user.avatar}
+                                alt={comment.user.username}
+                            />
+                        )}
+                        <Text text={comment.user.username} />
+                    </AppLink>
+                    <Text text={comment.text} theme={TextTheme.TEXT} />
+                </VStack>
+                <Button theme={ThemeButton.DELETE} onClick={onDeleteClick(comment.id)} />
+            </HStack>
         </Card>
     );
 });

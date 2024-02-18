@@ -1,0 +1,107 @@
+.DropdownBox {
+}
+
+.body {
+    height: 40px;
+    width: 100%;
+    padding: 0 10px;
+    border-radius: var(--border-radius-s);
+    border: 1px solid var(--border-color);
+    font-size: var(--font-size-m);
+    outline: none;
+    transition: all 0.4s ease 0s;
+    overflow: hidden;
+
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+    &.open {
+        box-shadow: 0 0 3px var(--box-shadow-color);
+    }
+}
+
+.input {
+    //background-color: tr;
+    //width: 80%;
+    flex: 0 1 100%;
+    height: 100%;
+    background-color: transparent;
+    color: var(--inverted-bg-color);
+    outline: none;
+}
+
+.triggerButton {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: 30px;
+    flex: 0 0 30px;
+    height: 100%;
+
+    &::before,
+    &::after, {
+        content: "";
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        width: 2px;
+        height: 13px;
+        background-color: var(--border-color);
+        transition: all 0.4s ease 0s;
+    }
+
+    &::before {
+        transform: rotate(45deg);
+    }
+
+    &::after {
+        left: 8px;
+        transform: rotate(-45deg);
+    }
+
+    &.open {
+        &::before,
+        &::after, {
+            background-color: var(--box-shadow-color);
+        }
+
+        &::before {
+            transform: rotate(135deg);
+        }
+
+        &::after {
+            left: 8px;
+            transform: rotate(-135deg);
+        }
+    }
+}
+
+.list {
+    border-radius: var(--border-radius-s);
+    border: 1px solid var(--border-color);
+    max-height: 200px;
+    overflow: auto;
+}
+
+.item {
+    padding: 10px;
+    transition: all 0.4s ease 0s;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    &.active {
+        background-color: var(--secelt-active);
+    }
+
+    &.selected {
+        background-color: var(--secelt-active);
+    }
+}
+
+.icon {
+    path {
+        stroke: var(--primary-color);
+    }
+}
