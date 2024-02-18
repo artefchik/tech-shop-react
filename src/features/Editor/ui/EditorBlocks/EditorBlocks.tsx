@@ -34,7 +34,7 @@ export const EditorBlocks = (props: EditorBlocksProps) => {
                     id: uuidv4(),
                     type: ArticleBlockType.TEXT,
                     title: '',
-                    text: '',
+                    paragraph: '',
                 }),
             );
         }

@@ -21,7 +21,6 @@ import {
     ArticleBlockType,
     ArticleTextBlock,
     ArticleType,
-    ArticleView,
 } from '../../model/types/article';
 import { ArticleTypeBlock } from '../ArticleTypeBlock/ArticleTypeBlock';
 
@@ -50,10 +49,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     if (view === ViewType.BIG) {
         return (
             <article
-                className={classNames(cls.ArticleListItem, {}, [
-                    className,
-                    cls[view],
-                ])}
+                className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
             >
                 <Card>
                     <VStack gap="10" className={cls.body}>
@@ -67,10 +63,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                                     src={article.user.avatar}
                                     alt={article.user.username}
                                 />
-                                <Text
-                                    text={article.user.username}
-                                    theme={TextTheme.USER}
-                                />
+                                <Text text={article.user.username} />
                             </AppLink>
                             <HStack gap="5" align="center">
                                 <Icon Svg={calendar} hover={false} />
@@ -81,14 +74,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                                 {article?.views}
                             </HStack>
                         </HStack>
-                        <Text
-                            theme={TextTheme.HEADER}
-                            title={article?.title}
-                            text={article?.subtitle}
-                        />
-                        <HStack gap="10">
-                            {article?.type.map(renderType)}
-                        </HStack>
+                        <VStack>
+                            <Text text={article?.title} size={TextSize.LARGE} />
+                            <Text text={article?.subtitle} size={TextSize.BIG} />
+                        </VStack>
+                        <HStack gap="10">{article?.type.map(renderType)}</HStack>
                         <ArticleTextBlockComponent
                             block={textBlock}
                             className={cls.textBlock}
@@ -106,28 +96,29 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     }
 
     return (
-        <article
-            className={classNames(cls.ArticleListItem, {}, [
-                className,
-                cls[view],
-            ])}
-        >
+        <article className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
             <Card
                 onClick={onOpenArticle}
                 className={classNames(cls.card, {}, [cls.flex])}
             >
                 <img src={article.img} alt="" className={cls.image} />
                 <VStack className={cls.body}>
-                    <Text theme={TextTheme.SMALL} text={article.createdAt} />
-                    <VStack className={cls.info} gap="10">
+                    <Text
+                        text={article.createdAt}
+                        theme={TextTheme.TEXT}
+                        size={TextSize.SMALL}
+                    />
+                    <VStack className={cls.info} gap="5">
                         <Text
-                            theme={TextTheme.SMALL}
+                            size={TextSize.MEDIUM}
                             className={cls.title}
-                            title={article.title}
+                            text={article.title}
                         />
                         <Text
                             text={textBlock.paragraphs?.[0]}
                             className={cls.text}
+                            size={TextSize.SMALL}
+                            theme={TextTheme.TEXT}
                         />
                     </VStack>
                 </VStack>

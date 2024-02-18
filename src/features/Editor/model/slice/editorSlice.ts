@@ -23,7 +23,7 @@ const initialState: EditorSchema = {
                 id: uuidv4(),
                 type: ArticleBlockType.TEXT,
                 title: '',
-                text: '',
+                paragraph: '',
             },
         ],
         title: '',

@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { VStack } from 'shared/ui/Stack';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import avatar from 'shared/assets/avatar.jpeg';
 import { Profile } from '../../model/types/profile';
 import cls from './ProfileCard.module.scss';
@@ -21,9 +21,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 <div className={cls.avatar}>
                     <img src={avatar} alt="avatar" />
                 </div>
-                <VStack gap="10" align="center">
-                    <Text title={name} />
-                    <Text text={data?.user?.roles.toString()} />
+                <VStack gap="5" align="center">
+                    <Text text={name} size={TextSize.BIG} />
+                    <Text text={data?.user?.roles.toString()} theme={TextTheme.TEXT} />
                 </VStack>
             </VStack>
         </Card>

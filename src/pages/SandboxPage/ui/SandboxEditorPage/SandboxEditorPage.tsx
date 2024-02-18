@@ -1,7 +1,7 @@
 import { Card } from 'shared/ui/Card/Card';
 import { useSelector } from 'react-redux';
 import { getUserAuthData, UserLink } from 'entities/User';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Editor } from 'features/Editor';
 import { Button } from 'shared/ui/Button/Button';
@@ -22,6 +22,7 @@ import { Popover } from 'shared/ui/DropdownsList';
 
 import tips from 'shared/assets/icons/tip-close.svg';
 import { TriggerTheme } from 'shared/ui/DropdownsList/ui/Popover/Popover';
+import { isBrowser, isMobile } from 'react-device-detect';
 import cls from './SandboxEditorPage.module.scss';
 
 interface SandboxEditorPageProps {
@@ -46,26 +47,28 @@ export const SandboxEditorPage = (props: SandboxEditorPageProps) => {
         <DynamicModuleLoader reducers={reducers}>
             {!showSettings && (
                 <VStack gap="20" className={className}>
-                    <Text theme={TextTheme.HEADER} title="Создание статьи" />
+                    <Text text="Создание статьи" />
                     <SandboxEditorPageHeader />
                     <Card fullWidth>
                         <VStack gap="10" className={cls.editorBody}>
                             <HStack justify="between">
                                 <UserLink user={authData} />
-                                <Popover
-                                    openView="bottomLeft"
-                                    triggerTheme={TriggerTheme.CLEAR}
-                                    icon={tips}
-                                    height={70}
-                                    width={320}
-                                >
-                                    <Text
-                                        theme={TextTheme.SMALL}
-                                        title={
-                                            'Для создания базового текстового блока нажмите "~" '
-                                        }
-                                    />
-                                </Popover>
+                                {isBrowser && (
+                                    <Popover
+                                        openView="bottomLeft"
+                                        triggerTheme={TriggerTheme.CLEAR}
+                                        icon={tips}
+                                        height={65}
+                                        width={320}
+                                    >
+                                        <Text
+                                            size={TextSize.SMALL}
+                                            text={
+                                                'Для создания базового текстового блока нажмите "~" '
+                                            }
+                                        />
+                                    </Popover>
+                                )}
                             </HStack>
                             <Editor />
                         </VStack>

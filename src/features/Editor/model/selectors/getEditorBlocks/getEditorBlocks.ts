@@ -15,6 +15,6 @@ export const getEditorTextBlocksT = createSelector(
     (texBlocks) =>
         texBlocks?.reduce((accum, text) => {
             const item = text as TextBlock;
-            return accum + (item.text?.length || 0);
+            return accum + (item.paragraph?.length || 0);
         }, 0) ?? 0,
 );

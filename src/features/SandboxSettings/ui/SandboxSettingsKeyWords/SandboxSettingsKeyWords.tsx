@@ -1,5 +1,5 @@
 import { VStack } from 'shared/ui/Stack';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { Input, InputTheme } from 'shared/ui/Input/Input';
 import { useCallback, useEffect, useState } from 'react';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
@@ -31,7 +31,7 @@ export const SandboxSettingsKeyWords = (props: SandboxSettingsKeyWordsProps) => 
 
     return (
         <VStack gap="10" className={className}>
-            <Text title="Ключевые слова" />
+            <Text text="Ключевые слова" />
             <Input
                 theme={InputTheme.SECONDARY}
                 value={keyWord}
@@ -40,7 +40,7 @@ export const SandboxSettingsKeyWords = (props: SandboxSettingsKeyWordsProps) => 
             />
             <Text
                 text="Введите  от 1 до 8 ключевых слов, отделяя их запятыми"
-                theme={TextTheme.SMALL}
+                size={TextSize.SMALL}
             />
         </VStack>
     );

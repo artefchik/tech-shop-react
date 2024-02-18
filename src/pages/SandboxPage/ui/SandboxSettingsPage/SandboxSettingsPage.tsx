@@ -26,7 +26,7 @@ export const SandboxSettingsPage = (props: SandboxSettingsPageProps) => {
         <DynamicModuleLoader reducers={reducers}>
             {showSettings && (
                 <VStack gap="20">
-                    <Text theme={TextTheme.HEADER} title="Настройки статьи" />
+                    <Text text="Настройки статьи" />
                     <Card>
                         <VStack gap="25">
                             <SandboxSettings />

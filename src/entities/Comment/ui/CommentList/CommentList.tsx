@@ -6,20 +6,22 @@ import { CommentType } from '../../model/types/comment';
 
 interface CommentListProps {
     className?: string;
-    comments?:CommentType[];
-    isLoading?:boolean
+    comments?: CommentType[];
+    isLoading?: boolean;
+    onDeleteComment?: (id: string) => void;
 }
 
 export const CommentList = memo((props: CommentListProps) => {
-    const {
-        className,
-        comments,
-        isLoading,
-    } = props;
+    const { className, comments, onDeleteComment, isLoading } = props;
     return (
         <div className={classNames(cls.CommentList, {}, [className])}>
             {comments?.map((comment) => (
-                <CommentItem comment={comment} isLoading={isLoading} key={comment.id} />
+                <CommentItem
+                    comment={comment}
+                    isLoading={isLoading}
+                    key={comment.id}
+                    onDeleteComment={onDeleteComment}
+                />
             ))}
         </div>
     );

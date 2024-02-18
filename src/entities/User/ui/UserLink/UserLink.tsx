@@ -20,7 +20,7 @@ export const UserLink = (props: UserLinkProps) => {
             className={classNames(cls.UserLink, {}, [className])}
         >
             <Avatar src={user?.avatar} alt={user?.username} />
-            <Text text={user?.username} theme={TextTheme.USER} />
+            <Text text={user?.username} />
         </AppLink>
     );
 };

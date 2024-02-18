@@ -15,7 +15,7 @@ export const getStorageBlocks = () => {
         const textBlocks = blocks.some((block) => {
             if (block.type === ArticleBlockType.TEXT) {
                 const item = block as TextBlock;
-                return item.text;
+                return item.paragraph;
             }
         });
         const isTitle = Boolean(title);

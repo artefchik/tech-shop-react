@@ -10,7 +10,7 @@ export interface ImageBlock extends Block {
 }
 
 export interface TextBlock extends Block {
-    text?: string;
+    paragraph?: string;
 }
 
 export type EditorBlock = ImageBlock | TextBlock;

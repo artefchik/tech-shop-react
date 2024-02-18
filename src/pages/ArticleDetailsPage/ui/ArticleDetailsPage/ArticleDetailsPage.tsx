@@ -7,9 +7,7 @@ import { Page } from 'shared/ui/Page/Page';
 import { ArticleDetailsComment } from 'features/ArticleDetailsComment';
 import { ArticleDetailsRating } from 'features/ArticleDetailsRating';
 import cls from './ArticleDetailsPage.module.scss';
-import {
-    ArticleDetailsHeaderPage,
-} from '../ArticleDetailsHeaderPage/ArticleDetailsHeaderPage';
+import { ArticleDetailsHeaderPage } from '../ArticleDetailsHeaderPage/ArticleDetailsHeaderPage';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -20,7 +18,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const { id } = useParams<{ id: string }>();
 
     if (!id) {
-        return <Text title="Статья не найдена" size={TextSize.BIG} />;
+        return <Text text="Статья не найдена" size={TextSize.BIG} />;
     }
 
     return (

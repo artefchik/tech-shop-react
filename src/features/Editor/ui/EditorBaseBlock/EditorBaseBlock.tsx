@@ -15,7 +15,7 @@ interface EditorBaseBlockProps {
 export const EditorBaseBlock = (props: EditorBaseBlockProps) => {
     const { className, item, onClose } = props;
     const [title, setTitle] = useState(item.title ?? '');
-    const [text, setText] = useState(item.text ?? '');
+    const [paragraph, setParagraph] = useState(item.paragraph ?? '');
     const dispatch = useAppDispatch();
 
     const onChangeBlock = useCallback(() => {
@@ -24,10 +24,10 @@ export const EditorBaseBlock = (props: EditorBaseBlockProps) => {
                 id: item.id,
                 type: item.type,
                 title,
-                text,
+                paragraph,
             }),
         );
-    }, [dispatch, item.id, item.type, title, text]);
+    }, [dispatch, item.id, item.type, title, paragraph]);
 
     const debounceChange = useDebounce(onChangeBlock, 600);
 
@@ -41,7 +41,7 @@ export const EditorBaseBlock = (props: EditorBaseBlockProps) => {
     );
     const onChangeText = useCallback(
         (value: string) => {
-            setText(value);
+            setParagraph(value);
             onClose?.(value);
             debounceChange();
         },
@@ -56,7 +56,11 @@ export const EditorBaseBlock = (props: EditorBaseBlockProps) => {
                 onChange={onChangeTitle}
                 value={title}
             />
-            <TextArea placeholder="Введите текст" onChange={onChangeText} value={text} />
+            <TextArea
+                placeholder="Введите текст"
+                onChange={onChangeText}
+                value={paragraph}
+            />
         </VStack>
     );
 };

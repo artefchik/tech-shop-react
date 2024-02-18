@@ -9,7 +9,7 @@ interface PageProps {
     triggerRef?: LegacyRef<HTMLDivElement>;
 }
 
-export const Page = memo((props: PageProps) => {
+export const Page = (props: PageProps) => {
     const { className, children, onScrollEnd, triggerRef } = props;
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export const Page = memo((props: PageProps) => {
     return (
         <main className={classNames(cls.Page, {}, [className])}>
             {children}
-            <div ref={triggerRef} className={cls.trigger} />
+            {triggerRef && <div ref={triggerRef} className={cls.trigger} />}
         </main>
     );
-});
+};

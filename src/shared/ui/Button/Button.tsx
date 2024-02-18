@@ -8,6 +8,7 @@ export enum ThemeButton {
     CLEAR = 'clear',
     OUTLINE_RED = 'outline_red',
     LOADED = 'loaded',
+    DELETE = 'delete',
 }
 
 export enum ButtonAlign {

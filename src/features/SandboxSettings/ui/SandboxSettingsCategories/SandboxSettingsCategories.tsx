@@ -25,7 +25,7 @@ export const SandboxSettingsCategories = (props: SandboxSettingsCategoriesProps)
 
     return (
         <VStack gap="10" className={className}>
-            <Text title="Категории" />
+            <Text text="Категории" />
             <DropdownBox items={articleCategories} onChange={onChangeType} />
         </VStack>
     );

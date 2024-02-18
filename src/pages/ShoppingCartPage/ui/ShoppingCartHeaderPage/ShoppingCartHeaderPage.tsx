@@ -12,9 +12,7 @@ interface ShoppingCartHeaderPageProps {
     className?: string;
 }
 
-export const ShoppingCartHeaderPage = ({
-    className,
-}: ShoppingCartHeaderPageProps) => {
+export const ShoppingCartHeaderPage = ({ className }: ShoppingCartHeaderPageProps) => {
     const dispatch = useAppDispatch();
     const totalProducts = useSelector(getCountTotalProducts);
     const total = `${totalProducts} ${declinationOfNumber(totalProducts, ['товар', 'товара', 'товаров'])}`;
@@ -30,8 +28,8 @@ export const ShoppingCartHeaderPage = ({
             className={classNames(cls.ShoppingCartHeaderPage, {}, [className])}
         >
             <HStack align="center" gap="10">
-                <Text title="Корзина" theme={TextTheme.HEADER} />
-                <Text title={total} theme={TextTheme.HEADER} />
+                <Text text="Корзина" />
+                <Text text={total} />
             </HStack>
             <Button onClick={onClearCart}>Очистить корзину</Button>
         </HStack>

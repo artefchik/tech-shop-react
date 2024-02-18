@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleTextBlock } from 'entities/Article/model/types/article';
-import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme, TextWeight } from 'shared/ui/Text/Text';
 import { memo } from 'react';
 import { VStack } from 'shared/ui/Stack';
 import cls from './ArticleTextBlockComponent.module.scss';
@@ -14,14 +14,13 @@ export const ArticleTextBlockComponent = memo(
     ({ className, block }: ArticleTextBlockComponentProps) => (
         <VStack
             gap="10"
-            className={classNames(cls.ArticleImageBlockComponent, {}, [
-                className,
-            ])}
+            className={classNames(cls.ArticleImageBlockComponent, {}, [className])}
         >
             {block.title && (
                 <Text
-                    size={TextSize.MEDIUM}
-                    title={block.title}
+                    size={TextSize.BIG}
+                    text={block.title}
+                    weight={TextWeight.MEDIUM}
                     className={cls.title}
                 />
             )}

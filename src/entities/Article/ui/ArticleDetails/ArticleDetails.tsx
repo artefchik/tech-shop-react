@@ -67,11 +67,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         );
     } else if (error) {
         content = (
-            <Text
-                align={TextAlign.CENTER}
-                size={TextSize.BIG}
-                title="Статья не найдена"
-            />
+            <Text align={TextAlign.CENTER} size={TextSize.BIG} text="Статья не найдена" />
         );
     } else {
         content = (
@@ -83,7 +79,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                         className={cls.info}
                     >
                         <Avatar src={article?.user.avatar} alt={article?.user.username} />
-                        <Text text={article?.user.username} theme={TextTheme.USER} />
+                        <Text text={article?.user.username} theme={TextTheme.SECONDARY} />
                     </AppLink>
                     <HStack gap="5" align="center">
                         <Icon Svg={calendar} hover={false} />
@@ -95,8 +91,8 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                     </HStack>
                 </HStack>
                 <VStack gap="5" className={cls.headerBlock}>
-                    <Text theme={TextTheme.HEADER} title={article?.title} />
-                    <Text title={article?.subtitle} />
+                    <Text text={article?.title} size={TextSize.LARGE} />
+                    <Text text={article?.subtitle} size={TextSize.BIG} />
                 </VStack>
 
                 <div className={cls.types}>{article?.type.map(renderType)}</div>

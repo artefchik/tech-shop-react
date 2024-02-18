@@ -9,7 +9,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme, TextWeight } from 'shared/ui/Text/Text';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
@@ -57,16 +57,21 @@ export const EditableProfilleCard = memo(
             <DynamicModuleLoader reducers={reducers}>
                 <VStack gap="25">
                     <HStack gap="10">
-                        <Text theme={TextTheme.HEADER} title="Профиль пользователя" />
+                        <Text text="Профиль пользователя" size={TextSize.LARGE} />
                         <Text
-                            theme={TextTheme.TEXT}
-                            title={`${dataForm?.firstname} ${dataForm?.lastname}`}
+                            theme={TextTheme.SECONDARY}
+                            size={TextSize.LARGE}
+                            text={`${dataForm?.firstname} ${dataForm?.lastname}`}
                         />
                     </HStack>
                     <VStack gap="20">
                         <ProfileCard data={dataForm} />
                         <VStack gap="15">
-                            <Text title="Настройки профиля" theme={TextTheme.SECONDARY} />
+                            <Text
+                                text="Настройки профиля"
+                                size={TextSize.BIG}
+                                weight={TextWeight.SEMI}
+                            />
                             <Card>
                                 <VStack gap="20">
                                     <ProfileEdit

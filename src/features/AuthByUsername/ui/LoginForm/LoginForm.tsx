@@ -83,10 +83,11 @@ const LoginForm = memo((props: LoginFormProps) => {
             <VStack gap="25" className={classNames(cls.LoginForm, {}, [className])}>
                 <Text
                     align={TextAlign.CENTER}
-                    title="Authorization"
+                    text="Authorization"
                     className={cls.title}
+                    As="h3"
                 />
-                {error && <Text theme={TextTheme.ERROR} title={error} />}
+                {error && <Text theme={TextTheme.ERROR} text={error} />}
                 <VStack gap="20">
                     <Input
                         label="Username"

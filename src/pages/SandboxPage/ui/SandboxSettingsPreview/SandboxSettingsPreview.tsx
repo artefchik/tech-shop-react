@@ -35,7 +35,7 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
             gap="10"
             className={classNames(cls.SandboxSettingsPreview, {}, [className])}
         >
-            <Text theme={TextTheme.HEADER} title="Отображение статьи" />
+            <Text text="Отображение статьи" />
             <VStack gap="10">
                 <UploadImage
                     adaptive
@@ -47,7 +47,7 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
                 />
 
                 <Card>
-                    <Text title={title} theme={TextTheme.HEADER} className={cls.title} />
+                    <Text text={title} className={cls.title} />
                     <VStack gap="20">
                         {!!textBlocks?.length &&
                             textBlocks.map((textBlock) => (

@@ -6,12 +6,20 @@ import { ArticleImageBlock } from '../../model/types/article';
 
 interface ArticleImageBlockComponentProps {
     className?: string;
-    block:ArticleImageBlock
+    block: ArticleImageBlock;
 }
 
-export const ArticleImageBlockComponent = memo(({ className, block }: ArticleImageBlockComponentProps) => (
-    <div className={classNames(cls.ArticleImageBlockComponent, {}, [className])}>
-        {block.src && <img src={block.src} alt={block.title} className={cls.image} />}
-        {block.title && <Text title={block.title} align={TextAlign.CENTER} theme={TextTheme.TEXT} />}
-    </div>
-));
+export const ArticleImageBlockComponent = memo(
+    ({ className, block }: ArticleImageBlockComponentProps) => (
+        <div className={classNames(cls.ArticleImageBlockComponent, {}, [className])}>
+            {block.src && <img src={block.src} alt={block.title} className={cls.image} />}
+            {block.title && (
+                <Text
+                    text={block.title}
+                    align={TextAlign.CENTER}
+                    theme={TextTheme.TEXT}
+                />
+            )}
+        </div>
+    ),
+);

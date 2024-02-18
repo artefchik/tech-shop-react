@@ -26,7 +26,7 @@ export const SandboxSettingLanguage = (props: SandboxSettingLanguageProps) => {
 
     return (
         <VStack gap="10" className={className}>
-            <Text title="Язык статьи" />
+            <Text text="Язык статьи" />
             <Tabs tabs={languageItems} value={lang} onTabClick={onTabClick} name="lang" />
         </VStack>
     );

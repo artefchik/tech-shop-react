@@ -3,16 +3,13 @@ import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { editorActions } from '../../model/slice/editorSlice';
-import cls from './EditorDeleteBlockButton.module.scss';
 
 interface EditorDeleteBlockButtonProps {
     className?: string;
     id: string;
 }
 
-export const EditorDeleteBlockButton = (
-    props: EditorDeleteBlockButtonProps,
-) => {
+export const EditorDeleteBlockButton = (props: EditorDeleteBlockButtonProps) => {
     const { className, id } = props;
     const dispatch = useAppDispatch();
 
@@ -23,8 +20,8 @@ export const EditorDeleteBlockButton = (
     return (
         <Button
             onClick={onDeleteBlock}
-            theme={ThemeButton.CLEAR}
-            className={classNames(cls.EditorDeleteBlockButton, {}, [className])}
+            theme={ThemeButton.DELETE}
+            className={className}
         />
     );
 };

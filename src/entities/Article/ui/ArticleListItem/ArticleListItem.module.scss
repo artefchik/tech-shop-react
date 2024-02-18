@@ -43,18 +43,15 @@
         word-wrap: break-word;
         -webkit-box-orient: vertical;
         box-orient: vertical;
+        display: -webkit-box;
         display: box;
         overflow: hidden;
-        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
     }
 
     .info {
         margin-top: auto;
-    }
-
-    .title {
-        color: #fff;
     }
 
     .flex {

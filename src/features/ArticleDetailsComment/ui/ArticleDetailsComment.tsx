@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CommentForm, CommentList } from 'entities/Comment';
-import { Text, TextSize } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextWeight } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { deleteCommentArticle } from '../model/services/deleteCommentArticle/deleteCommentArticle';
 import { getArticleDetailsCommentsText } from '../model/selectors/getArticleDetailsCommentsText/getArticleDetailsCommentsText';
 import { getArticleDetailsCommentsIsLoading } from '../model/selectors/getArticleDetailsCommentsIsLoading/getArticleDetailsCommentsIsLoading';
 import { addCommentForArticle } from '../model/services/addNewCommentForArticle/addNewCommentForArticle';
@@ -56,6 +57,12 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
         dispatch(fetchCommentsByArticleId(articleId));
     }, [dispatch, articleId]);
 
+    const onDeleteComment = useCallback((id: string) => {
+        dispatch(articleDetailsCommentsActions.deleteComment(id));
+        dispatch(deleteCommentArticle(id));
+        console.log(id);
+    }, []);
+
     return (
         <DynamicModuleLoader reducers={reducers}>
             <VStack
@@ -64,8 +71,9 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
             >
                 <Text
                     size={TextSize.BIG}
-                    title="Комментарии"
+                    text="Комментарии"
                     className={cls.commentTitle}
+                    weight={TextWeight.SEMI}
                 />
                 <CommentForm
                     onSendComment={onSendComment}
@@ -73,7 +81,11 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
                     text={text}
                     authData={authData}
                 />
-                <CommentList comments={comments} isLoading={isLoading} />
+                <CommentList
+                    comments={comments}
+                    isLoading={isLoading}
+                    onDeleteComment={onDeleteComment}
+                />
             </VStack>
         </DynamicModuleLoader>
     );
