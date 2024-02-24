@@ -8,7 +8,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from 'shared/ui/Button/Button';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
 import { getLoginStateError } from '../../model/selectors/getLoginStateError/getLoginStateError';
 import { getLoginStateIsLoading } from '../../model/selectors/getLoginStateIsLoading/getLoginStateIsLoading';
@@ -80,15 +80,16 @@ const LoginForm = memo((props: LoginFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="25" className={classNames(cls.LoginForm, {}, [className])}>
+            <VStack gap="20" className={classNames(cls.LoginForm, {}, [className])}>
                 <Text
+                    size={TextSize.BIG}
                     align={TextAlign.CENTER}
                     text="Authorization"
                     className={cls.title}
                     As="h3"
                 />
                 {error && <Text theme={TextTheme.ERROR} text={error} />}
-                <VStack gap="20">
+                <VStack gap="15">
                     <Input
                         label="Username"
                         onChange={onChangeUsername}
