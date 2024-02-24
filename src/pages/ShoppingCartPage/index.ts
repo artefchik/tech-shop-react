@@ -1,1 +1,1 @@
-export { ShoppingCartPageAsync as ShoppingCartPage } from 'pages/ShoppingCartPage/ui/ShoppingCartPage/ShoppingCartPage.async';
+export { ShoppingCartPageAsync as ShoppingCartPage } from './ui/ShoppingCartPage/ShoppingCartPage.async';

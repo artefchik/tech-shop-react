@@ -1,9 +1,14 @@
 import axios from 'axios';
-import { USER_LOCALSTORAGE_KEY } from '../const/localStorage';
 
 export const $api = axios.create({
+    withCredentials: true,
     baseURL: 'http://localhost:8000',
-    headers: {
-        // authorization: localStorage.getItem(USER_LOCALSTORAGE_KEY),
-    },
 });
+$api.interceptors.request.use((config) => {
+    // @ts-ignore
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+});
+$api.interceptors.response.use(
+    (config) => config,
+    (error) => {},
+);

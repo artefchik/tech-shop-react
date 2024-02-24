@@ -1,3 +1,5 @@
+export { initUserAuthData } from './model/services/initUserAuthData/initUserAuthData';
+
 export { UserLink } from './ui/UserLink/UserLink';
 
 export {

@@ -35,7 +35,6 @@ export const initUserAuthData = createAsyncThunk<User, void, ThunkConfig<string>
             if (!response.data) {
                 return rejectWithValue('error');
             }
-            dispatch(cartActions.setInitUserId(response.data));
             return response.data;
         } catch (e) {
             console.log(e);
