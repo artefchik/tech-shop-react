@@ -12,6 +12,7 @@ import {
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { cartActions } from 'entities/Cart/model/slice/cartSlice';
 import { $api } from 'shared/api/api';
+import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
 import { User } from '../../types/user';
 
 interface fetchArticleListProps {
@@ -24,18 +25,15 @@ export const initUserAuthData = createAsyncThunk<User, void, ThunkConfig<string>
         const { getState, rejectWithValue, dispatch } = thunkAPI;
 
         try {
-            const userId = JSON.parse?.(
-                localStorage.getItem(USER_LOCALSTORAGE_KEY) || '',
+            const response = await axios.get<AuthResponse>(
+                `http://localhost:8000/refresh`,
+                { withCredentials: true },
             );
-            if (!userId) {
-                return rejectWithValue('error');
-            }
-
-            const response = await $api.get<User>(`/users/${userId}`);
             if (!response.data) {
                 return rejectWithValue('error');
             }
-            return response.data;
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.accessToken);
+            return response.data.user;
         } catch (e) {
             console.log(e);
             return rejectWithValue('error');

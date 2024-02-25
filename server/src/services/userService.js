@@ -5,15 +5,22 @@ const tokenService = require('./tokenService');
 const ApiError = require('../exceptions/apiError');
 
 class UserService {
-    async registration(email, password) {
+    async registration(email, password, username) {
         const userFromDb = await UserModel.findOne({ email });
         if (userFromDb) {
             return ApiError.BadRequest(`Пользователь с таким ${email} уже существует.`);
+        }
+        const name = await UserModel.findOne({ username });
+        if (name) {
+            return ApiError.BadRequest(
+                `Пользователь с таким ${username} уже существует.`,
+            );
         }
         const hasPassword = await bcrypt.hash(password, 4);
         const activatedLinkEmail = hasPassword;
         const user = await UserModel.create({
             email,
+            username,
             password: hasPassword,
             activatedLinkEmail,
         });
@@ -54,12 +61,12 @@ class UserService {
 
     async refresh(refreshToken) {
         if (!refreshToken) {
-            throw ApiError.NotAuthorized();
+            throw ApiError.Unauthorized();
         }
         const userData = await tokenService.validateRefreshToken(refreshToken);
         const tokenInDb = await tokenService.findToken(refreshToken);
         if (!userData || !tokenInDb) {
-            throw ApiError.NotAuthorized();
+            throw ApiError.Unauthorized();
         }
         const user = await UserModel.findById(userData.id);
 

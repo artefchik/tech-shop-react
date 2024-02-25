@@ -70,13 +70,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRoutePathProducts(),
         element: <ProductsCategoriesPage />,
         authOnly: true,
-        roles: [UserRoles.ADMIN],
     },
     [AppRoutes.PRODUCTS_CATEGORIES]: {
         path: getRoutePathProductsCategories(':category'),
         element: <ProductsPage />,
         authOnly: true,
-        roles: [UserRoles.ADMIN],
+        // roles: [UserRoles.ADMIN],
     },
     [AppRoutes.SHOPPING_CART]: {
         path: getRoutePathShoppingCart(),

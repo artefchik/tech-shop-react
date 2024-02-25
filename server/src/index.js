@@ -8,6 +8,7 @@ const path = require('path');
 const errorMiddleware = require('./middleware/errorMiddleware');
 const userRouter = require('./router/userRouter');
 const productsRouter = require('./router/productsRouter');
+const articlesRouter = require('./router/articleRouter');
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -24,6 +25,7 @@ app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({}));
 app.use('', userRouter);
 app.use('', productsRouter);
+app.use('', articlesRouter);
 
 app.use(errorMiddleware);
 

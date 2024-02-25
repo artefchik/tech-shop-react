@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { a } from '@react-spring/web';
+import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
 import { initUserAuthData } from '../services/initUserAuthData/initUserAuthData';
 import { User, UserSchema } from '../types/user';
 
@@ -15,10 +16,6 @@ export const userSlice = createSlice({
     reducers: {
         setAuthData: (state, action: PayloadAction<User>) => {
             state.authData = action.payload;
-            localStorage.setItem(
-                USER_LOCALSTORAGE_KEY,
-                JSON.stringify(action.payload.id),
-            );
         },
         // setInitAuthData: (state) => {
         //     const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
@@ -40,6 +37,7 @@ export const userSlice = createSlice({
             })
             .addCase(initUserAuthData.rejected, (state, action) => {
                 state.error = action.payload;
+                state._mounted = true;
             });
     },
 });

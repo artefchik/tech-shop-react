@@ -5,27 +5,25 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { $api } from 'shared/api/api';
 import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
 
-interface LoginByUsernameProps {
+interface SignupByEmailProps {
+    username: string;
     email: string;
     password: string;
 }
 
-export const loginByUsername = createAsyncThunk<
+export const signupByEmail = createAsyncThunk<
     AuthResponse,
-    LoginByUsernameProps,
+    SignupByEmailProps,
     {
         rejectValue: string;
     }
->('login/loginByUsername', async (authData, thunkAPI) => {
+>('login/signupByEmail', async (authData, thunkAPI) => {
     try {
-        const response = await $api.post<AuthResponse>('/login', authData);
+        const response = await $api.post<AuthResponse>('/registration', authData);
         if (!response.data) {
             throw new Error();
         }
-        localStorage.setItem(
-            USER_LOCALSTORAGE_KEY,
-            JSON.stringify(response.data.accessToken),
-        );
+        // localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.accessToken);
         thunkAPI.dispatch(userActions.setAuthData(response.data.user));
         return response.data;
     } catch (e) {
