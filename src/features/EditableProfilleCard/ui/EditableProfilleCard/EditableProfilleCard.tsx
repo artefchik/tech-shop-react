@@ -32,7 +32,7 @@ export const EditableProfilleCard = memo(
         const isLoading = useSelector(getProfileIsLoading);
         const readonly = useSelector(getProfileReadonly);
         const authData = useSelector(getUserAuthData);
-        const canEdit = authData?.id === dataForm?.id;
+        const canEdit = authData?._id === dataForm?.id;
         useEffect(() => {
             if (id) {
                 dispatch(fetchProfileData(id));

@@ -1,8 +1,8 @@
 import { User } from 'entities/User';
 
 export interface CommentType {
+    _id: string;
     articleId: string;
-    id: string;
     text: string;
-    user: User;
+    userId: string;
 }

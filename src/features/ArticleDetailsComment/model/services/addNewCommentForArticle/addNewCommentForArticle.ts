@@ -23,8 +23,8 @@ export const addCommentForArticle = createAsyncThunk<
         const response = await extra.api.post<CommentType>(
             'http://localhost:8000/comments',
             {
-                articleId: article.id,
-                userId: userData.id,
+                articleId: article._id,
+                userId: userData._id,
                 text,
             },
         );
@@ -33,7 +33,7 @@ export const addCommentForArticle = createAsyncThunk<
             throw new Error();
         }
 
-        dispatch(fetchCommentsByArticleId(article.id));
+        dispatch(fetchCommentsByArticleId(article._id));
 
         return response.data;
     } catch (e) {

@@ -7,6 +7,6 @@ export const getCanEditArticleDetails = createSelector(
     getUserAuthData,
     (data, user) => {
         if (!data || !user) return false;
-        return data.user?.id === user?.id;
+        return data.user?._id === user?._id;
     },
 );

@@ -82,7 +82,7 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
                     authData={authData}
                 />
                 <CommentList
-                    comments={comments}
+                    comments={comments?.comments}
                     isLoading={isLoading}
                     onDeleteComment={onDeleteComment}
                 />

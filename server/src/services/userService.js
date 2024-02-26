@@ -61,12 +61,12 @@ class UserService {
 
     async refresh(refreshToken) {
         if (!refreshToken) {
-            throw ApiError.Unauthorized();
+            return ApiError.Unauthorized();
         }
         const userData = await tokenService.validateRefreshToken(refreshToken);
         const tokenInDb = await tokenService.findToken(refreshToken);
         if (!userData || !tokenInDb) {
-            throw ApiError.Unauthorized();
+            return ApiError.Unauthorized();
         }
         const user = await UserModel.findById(userData.id);
 
@@ -78,6 +78,12 @@ class UserService {
             ...tokens,
             user: userDto,
         };
+    }
+
+    async getOne(id) {
+        const user = await UserModel.findById(id);
+        const userDto = new UserDto(user);
+        return userDto;
     }
 }
 

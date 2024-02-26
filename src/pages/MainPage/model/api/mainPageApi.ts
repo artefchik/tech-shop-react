@@ -16,7 +16,7 @@ const mainPageApi = rtkApi.injectEndpoints({
             query: ({ limit, url }) => ({
                 url,
                 params: {
-                    _limit: limit,
+                    limit,
                 },
             }),
         }),

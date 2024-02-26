@@ -74,7 +74,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
             <>
                 <HStack wrap gap="20" className={cls.headerBlock}>
                     <AppLink
-                        to={getRoutePathProfile(article?.user.id || '')}
+                        to={getRoutePathProfile(article?.user._id || '')}
                         theme={AppLinkTheme.CLEAR}
                         className={cls.info}
                     >
@@ -92,12 +92,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 </HStack>
                 <VStack gap="5" className={cls.headerBlock}>
                     <Text text={article?.title} size={TextSize.LARGE} />
-                    <Text text={article?.subtitle} size={TextSize.BIG} />
                 </VStack>
 
-                <div className={cls.types}>{article?.type.map(renderType)}</div>
+                {/* <div className={cls.types}>{article?.types.map(renderType)}</div> */}
                 {article?.blocks.map((block) => (
-                    <ArticleRenderBlock block={block} key={block.id} />
+                    <ArticleRenderBlock block={block} key={block._id} />
                 ))}
             </>
         );

@@ -16,7 +16,7 @@ interface ArticleDetailsPageProps {
 const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const { className } = props;
     const { id } = useParams<{ id: string }>();
-
+    console.log(id);
     if (!id) {
         return <Text text="Статья не найдена" size={TextSize.BIG} />;
     }
@@ -26,7 +26,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
             <Container className={cls.body}>
                 <ArticleDetailsHeaderPage />
                 <ArticleDetails id={id} className={cls.article} />
-                <ArticleDetailsRating articleId={id} />
+                {/* <ArticleDetailsRating articleId={id} /> */}
                 <ArticleDetailsComment articleId={id} />
             </Container>
         </Page>

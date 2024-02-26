@@ -40,8 +40,8 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     );
 
     const onOpenArticle = useCallback(() => {
-        navigate(getRoutePathArticlesDetailsById(article.id));
-    }, [article.id, navigate]);
+        navigate(getRoutePathArticlesDetailsById(article._id));
+    }, [article._id, navigate]);
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
@@ -55,7 +55,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                     <VStack gap="10" className={cls.body}>
                         <HStack wrap gap="20">
                             <AppLink
-                                to={getRoutePathProfile(article.user.id)}
+                                to={getRoutePathProfile(article.user._id)}
                                 className={cls.info}
                                 theme={AppLinkTheme.CLEAR}
                             >
@@ -76,15 +76,14 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         </HStack>
                         <VStack>
                             <Text text={article?.title} size={TextSize.LARGE} />
-                            <Text text={article?.subtitle} size={TextSize.BIG} />
                         </VStack>
-                        <HStack gap="10">{article?.type.map(renderType)}</HStack>
+                        <HStack gap="10">{article?.types.map(renderType)}</HStack>
                         <ArticleTextBlockComponent
                             block={textBlock}
                             className={cls.textBlock}
                         />
                         <AppLink
-                            to={getRoutePathArticlesDetailsById(article.id)}
+                            to={getRoutePathArticlesDetailsById(article._id)}
                             theme={AppLinkTheme.PRIMARY}
                         >
                             Подробнее
@@ -101,7 +100,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 onClick={onOpenArticle}
                 className={classNames(cls.card, {}, [cls.flex])}
             >
-                <img src={article.img} alt="" className={cls.image} />
+                <img
+                    src={`http://localhost:8000${article.img}`}
+                    alt=""
+                    className={cls.image}
+                />
                 <VStack className={cls.body}>
                     <Text
                         text={article.createdAt}
@@ -115,7 +118,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                             text={article.title}
                         />
                         <Text
-                            text={textBlock.paragraphs?.[0]}
+                            text={textBlock.paragraph}
                             className={cls.text}
                             size={TextSize.SMALL}
                             theme={TextTheme.TEXT}

@@ -17,13 +17,13 @@ export const fetchProductsFavorites = createAsyncThunk<
 >('productFavorites/fetchProductsFavorites', async (_, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
     const authData = getUserAuthData(getState());
-    if (!authData?.id) {
+    if (!authData?._id) {
         return rejectWithValue('error');
     }
 
     try {
         const response = await $api.get<FavoriteType>(
-            `/product-favorites/${authData?.id}`,
+            `/product-favorites/${authData?._id}`,
         );
         if (!response.data) {
             return rejectWithValue('error');

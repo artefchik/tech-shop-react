@@ -50,10 +50,10 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
 
     useEffect(() => {
         updateProductsFavorites({
-            userId: authData?.id,
+            userId: authData?._id,
             favorites: productsFavorites,
         });
-    }, [authData?.id, productsFavorites, updateProductsFavorites]);
+    }, [authData?._id, productsFavorites, updateProductsFavorites]);
 
     useEffect(() => {
         dispatch(fetchProductsList({ category }));
@@ -64,9 +64,7 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
     }
 
     return (
-        <div
-            className={classNames(cls.ProductList, {}, [className, cls[view]])}
-        >
+        <div className={classNames(cls.ProductList, {}, [className, cls[view]])}>
             {products.length > 0 &&
                 products.map((product) => {
                     const favoriteItem = productsFavorites.find(
@@ -78,10 +76,7 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
                             product={product}
                             view={view}
                             AddToCartButton={
-                                <AddToCartButton
-                                    product={product}
-                                    view={view}
-                                />
+                                <AddToCartButton product={product} view={view} />
                             }
                             FavoriteButton={
                                 <ProductFavoriteButton

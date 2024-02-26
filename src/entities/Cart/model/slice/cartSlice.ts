@@ -1,8 +1,4 @@
-import {
-    createEntityAdapter,
-    createSlice,
-    PayloadAction,
-} from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Product } from 'entities/Product';
 import { User } from 'entities/User';
@@ -27,7 +23,7 @@ export const cartsSlice = createSlice({
     }),
     reducers: {
         setInitUserId: (state, action: PayloadAction<User>) => {
-            state.userId = action.payload.id;
+            state.userId = action.payload._id;
         },
         addItem: (state, action: PayloadAction<Product>) => {
             cartAdapter.setOne(state, {

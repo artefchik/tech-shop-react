@@ -2,16 +2,37 @@ const { ObjectId } = require('mongodb');
 const ArticleCommentsModel = require('../models/articleComments');
 const ApiError = require('../exceptions/apiError');
 const ArticleService = require('./articleService');
+const UserService = require('./userService');
+const CommentDto = require('../dtos/commentDto');
+const UserDto = require('../dtos/userDto');
 
 class ArticleCommentsService {
     async getById(articleId) {
-        const commentsData = await ArticleCommentsModel.findOne({
+        const commentsData = await ArticleCommentsModel.find({
             articleId: new ObjectId(articleId),
         });
+
         if (!commentsData) {
-            return ApiError.BadRequest('Комментарии не найдены');
+            throw ApiError.BadRequest('Комментарии не найдены');
         }
-        return commentsData;
+
+        async function processCommentsWithUsers(commentsData) {
+            const commentsWithUsers = [];
+
+            for (const comment of commentsData) {
+                try {
+                    const user = await UserService.getOne(comment.userId);
+                    const commentDto = new CommentDto(comment);
+                    const userDto = new UserDto(user);
+                    commentsWithUsers.push({ ...commentDto, user: { ...userDto } });
+                } catch (error) {
+                    console.error(`Error processing comment: ${error.message}`);
+                }
+            }
+
+            return commentsWithUsers;
+        }
+        return await processCommentsWithUsers(commentsData);
     }
 
     async createComment(commentData) {
@@ -19,58 +40,32 @@ class ArticleCommentsService {
         if (!articleId || !userId || !text) {
             return ApiError.BadRequest();
         }
-        // const article = await ArticleService.getById(articleId);
-        const commentsData = await ArticleCommentsModel.findOne({
+        const newComment = await ArticleCommentsModel.create({
             articleId: new ObjectId(articleId),
+            userId: new ObjectId(userId),
+            text,
         });
-        if (!commentsData) {
-            const newComment = await ArticleCommentsModel.create({
-                articleId: new ObjectId(articleId),
-                comments: [
-                    {
-                        userId: new ObjectId(userId),
-                        text,
-                    },
-                ],
-            });
-            return newComment;
-        }
-        const comment = await ArticleCommentsModel.updateOne(
-            { articleId: new ObjectId(articleId) },
-            {
-                $push: {
-                    comments: {
-                        $each: [{ text, userId: new ObjectId(userId) }],
-                        $position: 0,
-                    },
-                },
-            },
-        );
-        return comment;
+        return newComment;
     }
 
     async updateComment(commentData) {
-        const { articleId, userId, text, commentId } = commentData;
+        const { articleId, userId, text, id } = commentData;
         if (!articleId || !userId || !text) {
             return ApiError.BadRequest();
         }
         const updatedComment = await ArticleCommentsModel.updateOne(
             {
-                articleId: new ObjectId(articleId),
-                'comments._id': new ObjectId(commentId),
+                _id: new ObjectId(id),
             },
-            { $set: { 'comments.$.text': text } },
+            { $set: { text } },
         );
         return updatedComment;
     }
 
-    async deleteComment(comment, commentId) {
-        const { articleId } = comment;
-        console.log(comment);
-        const deleteComment = await ArticleCommentsModel.updateOne(
-            { articleId: new ObjectId(articleId) },
-            { $pull: { comments: { _id: new ObjectId(commentId) } } },
-        );
+    async deleteComment(id) {
+        const deleteComment = await ArticleCommentsModel.findByIdAndDelete({
+            _id: new ObjectId(id),
+        });
         return deleteComment;
     }
 }

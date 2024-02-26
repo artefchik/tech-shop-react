@@ -1,8 +1,9 @@
 import { CommentType } from 'entities/Comment';
+import { ArticleCommentType } from 'entities/Comment/model/types/comment';
 
 export interface ArticleDetailsCommentsSchema {
     isLoading: boolean;
     error?: string;
-    data?: CommentType[];
+    data?: ArticleCommentType;
     text?: string;
 }

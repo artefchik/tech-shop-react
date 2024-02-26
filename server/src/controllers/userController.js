@@ -52,6 +52,7 @@ class UserController {
     async refresh(req, res, next) {
         try {
             const { refreshToken } = req.cookies;
+            console.log(refreshToken);
             if (!refreshToken) {
                 return next(ApiError.BadRequest('ошибка валидации'));
             }

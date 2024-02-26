@@ -2,12 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const ArticleSchema = new Schema({
     title: { type: String, required: true },
-    subtitle: { type: String },
-    image: { type: String },
+    img: { type: String },
     views: { type: Number },
-    createdAt: { type: Date },
+    createdAt: { type: String },
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
-    type: [String],
+    types: [String],
     blocks: [
         {
             type: { type: String, required: true },

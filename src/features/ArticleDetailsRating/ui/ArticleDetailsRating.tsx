@@ -18,7 +18,7 @@ const ArticleDetailsRatingAsync = (props: ArticleDetailsRatingProps) => {
 
     const { data, isLoading } = useGetArticleDetailsRating({
         articleId,
-        userId: userData?.id ?? '',
+        userId: userData?._id ?? '',
     });
 
     const [changeArticleRatingMutation] = useChangeArticleDetailsRating();
@@ -28,7 +28,7 @@ const ArticleDetailsRatingAsync = (props: ArticleDetailsRatingProps) => {
             try {
                 changeArticleRatingMutation({
                     articleId,
-                    userId: userData?.id ?? '',
+                    userId: userData?._id ?? '',
                     rate: starsCount,
                     feedback,
                 });
@@ -36,7 +36,7 @@ const ArticleDetailsRatingAsync = (props: ArticleDetailsRatingProps) => {
                 console.log(e);
             }
         },
-        [articleId, changeArticleRatingMutation, userData?.id],
+        [articleId, changeArticleRatingMutation, userData?._id],
     );
 
     const onAccept = useCallback(

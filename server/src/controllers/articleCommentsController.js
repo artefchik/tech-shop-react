@@ -34,10 +34,7 @@ class ArticleCommentsController {
             if (!id) {
                 return next(ApiError.BadRequest('not articles'));
             }
-            const deleteComment = await articleCommentsService.deleteComment(
-                req.body,
-                id,
-            );
+            const deleteComment = await articleCommentsService.deleteComment(id);
             res.json(deleteComment);
         } catch (e) {
             console.log(e);

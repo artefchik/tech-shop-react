@@ -1,9 +1,10 @@
 const { Schema, model } = require('mongoose');
 
-const ArticleCommentsSchema = new Schema({
+const ArticleRatingSchema = new Schema({
     articleId: { type: Schema.Types.ObjectId, ref: 'Article' },
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
-    text: { type: String },
+    feedback: { type: String },
+    rate: { type: Number },
 });
 
-module.exports = model('ArticleComment', ArticleCommentsSchema);
+module.exports = model('ArticleRating', ArticleRatingSchema);

@@ -4,10 +4,10 @@ const TokenModel = require('../models/tokenModel');
 class TokenService {
     generateTokens(data) {
         const accessToken = jwt.sign(data, process.env.JWT_ACCESS_KEY, {
-            expiresIn: '1m',
+            expiresIn: '15m',
         });
         const refreshToken = jwt.sign(data, process.env.JWT_REFRESH_KEY, {
-            expiresIn: '2m',
+            expiresIn: '1h',
         });
 
         return {

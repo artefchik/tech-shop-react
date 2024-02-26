@@ -6,9 +6,7 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 const errorMiddleware = require('./middleware/errorMiddleware');
-const userRouter = require('./router/userRouter');
-const productsRouter = require('./router/productsRouter');
-const articlesRouter = require('./router/articleRouter');
+const router = require('./router');
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -23,9 +21,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({}));
-app.use('', userRouter);
-app.use('', productsRouter);
-app.use('', articlesRouter);
+app.use('', router);
 
 app.use(errorMiddleware);
 

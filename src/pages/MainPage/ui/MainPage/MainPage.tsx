@@ -18,7 +18,7 @@ const MainPage = (props: MainPageProps) => {
             <Container>
                 <VStack gap="20">
                     <MainSliderPage />
-                    {/* <MainArticleBlockPage /> */}
+                    <MainArticleBlockPage />
                 </VStack>
             </Container>
         </Page>

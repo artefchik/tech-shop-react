@@ -3,9 +3,10 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { CommentType } from 'entities/Comment';
 import axios from 'axios';
 import { $api } from 'shared/api/api';
+import { ArticleCommentType } from 'entities/Comment/model/types/comment';
 
 export const fetchCommentsByArticleId = createAsyncThunk<
-    CommentType[],
+    ArticleCommentType,
     string | undefined,
     ThunkConfig<string>
 >('articleDetailsComments/fetchCommentsByArticleId', async (articleId, thunkApi) => {
@@ -16,12 +17,15 @@ export const fetchCommentsByArticleId = createAsyncThunk<
     }
 
     try {
-        const response = await $api.get<CommentType[]>('/comments', {
-            params: {
-                articleId,
-                _expand: 'user',
+        const response = await $api.get<ArticleCommentType>(
+            `/articles/comments/${articleId}`,
+            {
+                // params: {
+                //     articleId,
+                //     _expand: 'user',
+                // },
             },
-        });
+        );
 
         if (!response.data) {
             throw new Error();

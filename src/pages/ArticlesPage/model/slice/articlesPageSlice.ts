@@ -1,8 +1,4 @@
-import {
-    createEntityAdapter,
-    createSlice,
-    PayloadAction,
-} from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Article, ArticleView } from 'entities/Article';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
@@ -11,7 +7,7 @@ import { ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticleList } from '../services/fetchArticleList/fetchArticleList';
 
 const articlesAdapter = createEntityAdapter<Article>({
-    selectId: (article: Article) => article.id,
+    selectId: (article: Article) => article._id,
 });
 
 export const getArticles = articlesAdapter.getSelectors<StateSchema>(
@@ -34,18 +30,13 @@ const articlesPageSlice = createSlice({
     reducers: {
         setView: (state, action: PayloadAction<ViewType>) => {
             state.view = action.payload;
-            localStorage.setItem(
-                ARTICLES_VIEW_LOCALSTORAGE_KEY,
-                action.payload,
-            );
+            localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
         initState: (state) => {
-            const view = localStorage.getItem(
-                ARTICLES_VIEW_LOCALSTORAGE_KEY,
-            ) as ViewType;
+            const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ViewType;
             state.view = view;
             state.limit = view === ViewType.SMALL ? 9 : 3;
             state._inited = true;

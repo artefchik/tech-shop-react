@@ -20,7 +20,7 @@ export const ArticleDetailsHeaderPage = (props: ArticleDetailsHeaderPageProps) =
         <Card className={classNames(cls.ArticleDetailsHeaderPage, {}, [className])}>
             <AppLink to={RoutePath.articles}>Назад</AppLink>
             {canEdit && (
-                <AppLink to={getRoutePathArticlesEditById(article?.id ?? '')}>
+                <AppLink to={getRoutePathArticlesEditById(article?._id ?? '')}>
                     Редактировать
                 </AppLink>
             )}

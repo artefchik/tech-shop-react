@@ -25,15 +25,13 @@ export const ArticleTextBlockComponent = memo(
                 />
             )}
             <VStack gap="15">
-                {block.paragraphs &&
-                    block.paragraphs.map((paragraph, index) => (
-                        <Text
-                            key={index}
-                            theme={TextTheme.TEXT}
-                            text={paragraph}
-                            className={cls.text}
-                        />
-                    ))}
+                {block.paragraph && (
+                    <Text
+                        theme={TextTheme.TEXT}
+                        text={block.paragraph}
+                        className={cls.text}
+                    />
+                )}
             </VStack>
         </VStack>
     ),

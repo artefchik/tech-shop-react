@@ -6,13 +6,13 @@ export enum ArticleBlockType {
 }
 
 export interface ArticleBlockBase {
-    id: string;
+    _id: string;
     type: ArticleBlockType;
     title?: string;
 }
 
 export interface ArticleTextBlock extends ArticleBlockBase {
-    paragraphs?: string[];
+    paragraph?: string;
 }
 export interface ArticleImageBlock extends ArticleBlockBase {
     src?: string;
@@ -33,13 +33,12 @@ export enum ArticleView {
 }
 
 export interface Article {
-    id: string;
+    _id: string;
     title: string;
-    subtitle: string;
     user: User;
     img: string;
     views: number;
     createdAt: string;
-    type: ArticleType[];
+    types: ArticleType[];
     blocks: ArticleBlock[];
 }
