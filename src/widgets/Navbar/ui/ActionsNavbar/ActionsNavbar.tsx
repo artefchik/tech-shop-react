@@ -45,7 +45,7 @@ export const ActionsNavbar = memo((props: ActionsNavbarProps) => {
             ? [
                   {
                       content: 'Профиль',
-                      href: RoutePath.profile + authData._id,
+                      href: RoutePath.profile + authData.id,
                   },
                   {
                       content: 'Выйти',

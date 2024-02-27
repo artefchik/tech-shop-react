@@ -50,10 +50,10 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
 
     useEffect(() => {
         updateProductsFavorites({
-            userId: authData?._id,
+            userId: authData?.id,
             favorites: productsFavorites,
         });
-    }, [authData?._id, productsFavorites, updateProductsFavorites]);
+    }, [authData?.id, productsFavorites, updateProductsFavorites]);
 
     useEffect(() => {
         dispatch(fetchProductsList({ category }));

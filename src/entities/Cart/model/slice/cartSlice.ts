@@ -23,7 +23,7 @@ export const cartsSlice = createSlice({
     }),
     reducers: {
         setInitUserId: (state, action: PayloadAction<User>) => {
-            state.userId = action.payload._id;
+            state.userId = action.payload.id;
         },
         addItem: (state, action: PayloadAction<Product>) => {
             cartAdapter.setOne(state, {

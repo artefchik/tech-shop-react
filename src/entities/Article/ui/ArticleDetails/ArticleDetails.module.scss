@@ -29,11 +29,7 @@
 }
 
 .types {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
     &:not(:last-child) {
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
 }

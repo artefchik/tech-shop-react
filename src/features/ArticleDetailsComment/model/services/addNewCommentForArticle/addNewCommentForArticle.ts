@@ -3,6 +3,7 @@ import { getUserAuthData } from 'entities/User';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { CommentType } from 'entities/Comment/model/types/comment';
 import { getArticleDetailsData } from 'entities/Article';
+import { $api } from 'shared/api/api';
 import { fetchCommentsByArticleId } from '../fetchCommentByArticleId/fetchCommentByArticleId';
 
 export const addCommentForArticle = createAsyncThunk<
@@ -20,11 +21,11 @@ export const addCommentForArticle = createAsyncThunk<
     }
 
     try {
-        const response = await extra.api.post<CommentType>(
-            'http://localhost:8000/comments',
+        const response = await $api.post<CommentType>(
+            `/articles/comments/${article.id}`,
             {
-                articleId: article._id,
-                userId: userData._id,
+                articleId: article.id,
+                userId: userData.id,
                 text,
             },
         );
@@ -33,7 +34,7 @@ export const addCommentForArticle = createAsyncThunk<
             throw new Error();
         }
 
-        dispatch(fetchCommentsByArticleId(article._id));
+        dispatch(fetchCommentsByArticleId(article.id));
 
         return response.data;
     } catch (e) {

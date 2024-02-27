@@ -17,7 +17,7 @@ export const CommentList = memo((props: CommentListProps) => {
         <div className={classNames(cls.CommentList, {}, [className])}>
             {comments?.map((comment) => (
                 <CommentItem
-                    key={comment._id}
+                    key={comment.id}
                     comment={comment}
                     isLoading={isLoading}
                     onDeleteComment={onDeleteComment}

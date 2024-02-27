@@ -8,7 +8,7 @@ import { NavigateOptions } from 'react-router';
 import { ArticleDetailsSchema } from 'entities/Article';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { ArticleFiltersSchema } from 'features/ArticleFilters';
-import { ProfileSchema } from 'features/EditableProfilleCard';
+import { ProfileSchema } from 'features/EditableProfileCard';
 import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';

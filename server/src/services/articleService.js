@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const ArticleModel = require('../models/articleModel');
 const ApiError = require('../exceptions/apiError');
 const articleRatingService = require('./articleRatingService');
@@ -7,14 +8,24 @@ const UserDto = require('../dtos/userDto');
 
 class ArticleService {
     async getAll(query) {
-        const limit = query.limit ?? 0;
-        const page = query.page ?? 0;
-        const order = query.order ?? 1;
+        const limit = query.limit ?? 2;
+        const page = query.page ?? 1;
+        const order = query.order ?? 'asc';
         const sort = query.sort ?? 'views';
-        const articles = await ArticleModel.find()
-            .skip(page * limit)
-            .limit(limit)
-            .sort({ [sort]: order });
+        let articles;
+        if (!query.type) {
+            articles = await ArticleModel.find()
+                .skip(page * limit - limit)
+                .limit(limit)
+                .sort({ [sort]: order });
+        } else {
+            articles = await ArticleModel.find({
+                types: { $elemMatch: { $eq: query.type } },
+            })
+                .skip(page * limit - limit)
+                .limit(limit)
+                .sort({ [sort]: order });
+        }
 
         async function processArticlesWithUsers(articles) {
             const articlesWithUsers = [];

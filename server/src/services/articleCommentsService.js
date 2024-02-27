@@ -24,7 +24,7 @@ class ArticleCommentsService {
                     const user = await UserService.getOne(comment.userId);
                     const commentDto = new CommentDto(comment);
                     const userDto = new UserDto(user);
-                    commentsWithUsers.push({ ...commentDto, user: { ...userDto } });
+                    commentsWithUsers.push({ ...commentDto, user });
                 } catch (error) {
                     console.error(`Error processing comment: ${error.message}`);
                 }
@@ -45,7 +45,10 @@ class ArticleCommentsService {
             userId: new ObjectId(userId),
             text,
         });
-        return newComment;
+        const user = await UserService.getOne(newComment.userId);
+        const commentDto = new CommentDto(newComment);
+
+        return { ...commentDto, user };
     }
 
     async updateComment(commentData) {
@@ -63,9 +66,7 @@ class ArticleCommentsService {
     }
 
     async deleteComment(id) {
-        const deleteComment = await ArticleCommentsModel.findByIdAndDelete({
-            _id: new ObjectId(id),
-        });
+        const deleteComment = await ArticleCommentsModel.findByIdAndDelete(id);
         return deleteComment;
     }
 }

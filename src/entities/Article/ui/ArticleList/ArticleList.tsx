@@ -24,7 +24,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
             {articles.length > 0
                 ? articles.map((article) => (
-                      <ArticleListItem key={article._id} article={article} view={view} />
+                      <ArticleListItem key={article.id} article={article} view={view} />
                   ))
                 : null}
             {isLoading && getSkeletons(view)}

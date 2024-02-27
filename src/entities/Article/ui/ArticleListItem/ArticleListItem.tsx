@@ -40,8 +40,8 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     );
 
     const onOpenArticle = useCallback(() => {
-        navigate(getRoutePathArticlesDetailsById(article._id));
-    }, [article._id, navigate]);
+        navigate(getRoutePathArticlesDetailsById(article.id));
+    }, [article.id, navigate]);
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
@@ -55,7 +55,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                     <VStack gap="10" className={cls.body}>
                         <HStack wrap gap="20">
                             <AppLink
-                                to={getRoutePathProfile(article.user._id)}
+                                to={getRoutePathProfile(article.user.id)}
                                 className={cls.info}
                                 theme={AppLinkTheme.CLEAR}
                             >
@@ -83,7 +83,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                             className={cls.textBlock}
                         />
                         <AppLink
-                            to={getRoutePathArticlesDetailsById(article._id)}
+                            to={getRoutePathArticlesDetailsById(article.id)}
                             theme={AppLinkTheme.PRIMARY}
                         >
                             Подробнее
@@ -114,15 +114,15 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                     <VStack className={cls.info} gap="5">
                         <Text
                             size={TextSize.MEDIUM}
-                            className={cls.title}
                             text={article.title}
-                        />
-                        <Text
-                            text={textBlock.paragraph}
                             className={cls.text}
-                            size={TextSize.SMALL}
-                            theme={TextTheme.TEXT}
                         />
+                        {/* <Text */}
+                        {/*    text={textBlock.paragraph} */}
+                        {/*  */}
+                        {/*    size={TextSize.SMALL} */}
+                        {/*    theme={TextTheme.TEXT} */}
+                        {/* /> */}
                     </VStack>
                 </VStack>
             </Card>

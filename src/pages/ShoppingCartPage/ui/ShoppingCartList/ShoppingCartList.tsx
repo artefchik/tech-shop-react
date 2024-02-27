@@ -19,7 +19,7 @@ export const ShoppingCartList = ({ className }: ShoppingCartListProps) => {
     const authData = useSelector(getUserAuthData);
     // const [updateProduct] = useUpdateProduct();
 
-    const { data: favorites } = useGetProductsFavorites(authData?._id || '');
+    const { data: favorites } = useGetProductsFavorites(authData?.id || '');
     // useEffect(() => {
     //     dispatch(updateCart());
     // }, [dispatch]);

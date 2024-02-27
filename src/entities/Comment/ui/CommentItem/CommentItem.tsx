@@ -22,8 +22,9 @@ interface CommentItemProps {
 export const CommentItem = memo((props: CommentItemProps) => {
     const { className, comment, isLoading, onDeleteComment } = props;
     const authData = useSelector(getUserAuthData);
-    const isShowDelete = comment?.userId === authData?._id;
-
+    const isShowDelete = comment?.user.id === authData?.id;
+    console.log(comment?.user.id);
+    console.log(authData?.id);
     const onDeleteClick = useCallback(
         (id: string) => () => {
             onDeleteComment?.(id);
@@ -39,25 +40,25 @@ export const CommentItem = memo((props: CommentItemProps) => {
         <Card className={classNames(cls.CommentItem, {}, [className])}>
             <HStack align="center">
                 <VStack width gap="5">
-                    {/* <AppLink */}
-                    {/*    to={`${RoutePath.profile}${comment.user._id}`} */}
-                    {/*    className={cls.header} */}
-                    {/*    theme={AppLinkTheme.CLEAR} */}
-                    {/* > */}
-                    {/*    /!* {comment.user.avatar && ( *!/ */}
-                    {/*    /!*    <Avatar *!/ */}
-                    {/*    /!*        src={comment.user.avatar} *!/ */}
-                    {/*    /!*        alt={comment.user.username} *!/ */}
-                    {/*    /!*    /> *!/ */}
-                    {/*    /!* )} *!/ */}
-                    {/*    /!* <Text text={comment.user.username} /> *!/ */}
-                    {/* </AppLink> */}
+                    <AppLink
+                        to={`${RoutePath.profile}${comment.user.id}`}
+                        className={cls.header}
+                        theme={AppLinkTheme.CLEAR}
+                    >
+                        {comment.user.avatar && (
+                            <Avatar
+                                src={comment?.user.avatar}
+                                alt={comment.user.username}
+                            />
+                        )}
+                        <Text text={comment.user.username} />
+                    </AppLink>
                     <Text text={comment.text} theme={TextTheme.TEXT} />
                 </VStack>
                 {isShowDelete && (
                     <Button
                         theme={ThemeButton.DELETE}
-                        onClick={onDeleteClick(comment._id)}
+                        onClick={onDeleteClick(comment.id)}
                     />
                 )}
             </HStack>

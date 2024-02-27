@@ -15,7 +15,7 @@ export const UserLink = (props: UserLinkProps) => {
     const { className, user } = props;
     return (
         <AppLink
-            to={getRoutePathProfile(user?._id || '')}
+            to={getRoutePathProfile(user?.id || '')}
             theme={AppLinkTheme.CLEAR}
             className={classNames(cls.UserLink, {}, [className])}
         >

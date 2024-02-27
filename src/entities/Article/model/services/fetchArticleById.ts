@@ -5,11 +5,6 @@ import { $api } from 'shared/api/api';
 import { User } from 'entities/User';
 import { Article } from '../types/article';
 
-interface ArticleResponse {
-    article: Article;
-    user: User;
-}
-
 export const fetchArticleById = createAsyncThunk<
     Article,
     string,
@@ -18,11 +13,11 @@ export const fetchArticleById = createAsyncThunk<
     }
 >('articleDetails/fetchArticleById', async (articleId, thunkAPI) => {
     try {
-        const response = await $api.get<ArticleResponse>(`/articles/${articleId}`, {});
+        const response = await $api.get<Article>(`/articles/${articleId}`, {});
         if (!response.data) {
             return thunkAPI.rejectWithValue('error');
         }
-        return { ...response.data.article, user: response.data.user };
+        return response.data;
     } catch (e) {
         console.log(e);
         return thunkAPI.rejectWithValue('error');

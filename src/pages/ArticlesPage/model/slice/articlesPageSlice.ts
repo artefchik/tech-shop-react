@@ -7,7 +7,7 @@ import { ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticleList } from '../services/fetchArticleList/fetchArticleList';
 
 const articlesAdapter = createEntityAdapter<Article>({
-    selectId: (article: Article) => article._id,
+    selectId: (article: Article) => article.id,
 });
 
 export const getArticles = articlesAdapter.getSelectors<StateSchema>(
@@ -23,7 +23,7 @@ const articlesPageSlice = createSlice({
         entities: {},
         view: ViewType.SMALL,
         page: 1,
-        limit: 5,
+        limit: 2,
         hasMore: true,
         _inited: false,
     }),
@@ -53,7 +53,7 @@ const articlesPageSlice = createSlice({
             })
             .addCase(fetchArticleList.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.hasMore = action.payload.length > 0;
+                state.hasMore = action.payload.length >= state.limit;
                 if (action.meta.arg.replace) {
                     articlesAdapter.setAll(state, action.payload);
                 } else {

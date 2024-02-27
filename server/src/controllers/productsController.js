@@ -1,10 +1,10 @@
 const ApiError = require('../exceptions/apiError');
-const productsService = require('../services/productsService');
+const ProductsService = require('../services/productsService');
 
 class ProductsController {
     async getAll(req, res, next) {
         try {
-            const products = await productsService.getAll();
+            const products = await ProductsService.getAll();
             return res.json(products);
         } catch (e) {
             console.log(e);
@@ -17,7 +17,7 @@ class ProductsController {
             if (!id) {
                 return next(ApiError.BadRequest(''));
             }
-            const product = await productsService.getOne(id);
+            const product = await ProductsService.getOne(id);
             return res.json(product);
         } catch (e) {
             return next(ApiError.BadRequest(''));

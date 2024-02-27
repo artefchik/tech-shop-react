@@ -2,9 +2,10 @@ const { Schema, model } = require('mongoose');
 
 const ArticleSchema = new Schema({
     title: { type: String, required: true },
-    img: { type: String },
-    views: { type: Number },
-    createdAt: { type: String },
+    img: { type: String, required: true },
+    views: { type: Number, required: true },
+    createdAt: { type: Date, required: true },
+    isUpdate: { type: Boolean, default: false },
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
     types: [String],
     blocks: [

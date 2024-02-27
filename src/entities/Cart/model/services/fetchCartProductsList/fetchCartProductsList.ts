@@ -24,12 +24,12 @@ export const fetchCartProductsList = createAsyncThunk<
 >('cart/fetchCartProductsList', async (_, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
     const authData = getUserAuthData(getState());
-    if (!authData?._id) {
+    if (!authData?.id) {
         return rejectWithValue('error');
     }
 
     try {
-        const response = await $api.get(`/cart/${authData?._id}`);
+        const response = await $api.get(`/cart/${authData?.id}`);
         if (!response.data) {
             return rejectWithValue('error');
         }

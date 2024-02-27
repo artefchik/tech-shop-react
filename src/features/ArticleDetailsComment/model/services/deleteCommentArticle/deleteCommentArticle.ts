@@ -19,12 +19,14 @@ export const deleteCommentArticle = createAsyncThunk<
     }
 
     try {
-        const response = await $api.delete<CommentType>(`/comments/${commentId}`);
+        const response = await $api.delete<CommentType>(
+            `/articles/comments/${commentId}`,
+        );
 
         if (!response.data) {
             throw new Error();
         }
-        // dispatch(fetchCommentsByArticleId(response.data.articleId));
+        dispatch(fetchCommentsByArticleId(response.data.articleId));
 
         return response.data;
     } catch (e) {

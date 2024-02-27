@@ -27,7 +27,7 @@ export const AvatarDropdown = (props: AvatarDropdownProps) => {
     const profileActions: DropdownItem[] = [
         {
             content: 'Профиль',
-            href: authData ? getRoutePathProfile(authData._id) : '',
+            href: authData ? getRoutePathProfile(authData.id) : '',
         },
         {
             content: 'Выйти',

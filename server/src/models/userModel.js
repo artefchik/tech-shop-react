@@ -6,6 +6,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     isActivatedEmail: { type: Boolean, default: false },
     activatedLinkEmail: { type: String },
+    avatar: { type: String, default: '' },
     roles: {
         type: [String],
         default: 'user',

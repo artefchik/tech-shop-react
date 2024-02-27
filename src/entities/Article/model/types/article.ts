@@ -33,12 +33,13 @@ export enum ArticleView {
 }
 
 export interface Article {
-    _id: string;
+    id: string;
     title: string;
     user: User;
     img: string;
     views: number;
-    createdAt: string;
+    createdAt: Date;
+    isUpdate: string;
     types: ArticleType[];
     blocks: ArticleBlock[];
 }

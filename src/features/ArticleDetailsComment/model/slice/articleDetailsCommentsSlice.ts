@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { CommentType } from 'entities/Comment';
-import { ArticleCommentType } from 'entities/Comment/model/types/comment';
 import { deleteCommentArticle } from '../services/deleteCommentArticle/deleteCommentArticle';
 import { fetchCommentsByArticleId } from '../services/fetchCommentByArticleId/fetchCommentByArticleId';
 
@@ -20,7 +19,7 @@ export const articleDetailsCommentsSlice = createSlice({
             state.text = action.payload;
         },
         deleteComment: (state, action: PayloadAction<string>) => {
-            // state.data = state.data?.filter((comment) => comment._id !== action.payload);
+            state.data = state.data?.filter((comment) => comment.id !== action.payload);
         },
     },
     extraReducers: (builder) => {
@@ -31,7 +30,7 @@ export const articleDetailsCommentsSlice = createSlice({
             })
             .addCase(
                 fetchCommentsByArticleId.fulfilled,
-                (state, action: PayloadAction<ArticleCommentType>) => {
+                (state, action: PayloadAction<CommentType[]>) => {
                     state.isLoading = false;
                     state.data = action.payload;
                 },
