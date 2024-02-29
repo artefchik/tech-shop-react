@@ -107,7 +107,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 />
                 <VStack className={cls.body}>
                     <Text
-                        text={article.createdAt}
+                        text={String(article.createdAt)}
                         theme={TextTheme.TEXT}
                         size={TextSize.SMALL}
                     />

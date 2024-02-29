@@ -5,10 +5,10 @@ const ProductSchema = new Schema({
     category: { type: String, required: true },
     color: { type: String, required: true },
     imageSrc: { type: String, required: true },
-    memory: [{ memoryVariant: String, isInStock: Boolean }],
+    memory: { type: String },
     price: {
-        current: [String],
-        previous: [String],
+        current: { type: Number },
+        previous: { type: Number },
     },
 });
 

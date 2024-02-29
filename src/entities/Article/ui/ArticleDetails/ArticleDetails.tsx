@@ -83,7 +83,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                     </AppLink>
                     <HStack gap="5" align="center">
                         <Icon Svg={calendar} hover={false} />
-                        <Text text={article?.createdAt} theme={TextTheme.TEXT} />
+                        <Text text={String(article?.createdAt)} theme={TextTheme.TEXT} />
                     </HStack>
                     <HStack gap="5" align="center">
                         <Icon Svg={viewIcon} hover={false} />

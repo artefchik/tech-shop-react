@@ -2,8 +2,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import { Icon } from 'shared/ui/Icon/Icon';
-import favorites from 'shared/assets/icons/favorites.svg';
 import { memo, ReactNode } from 'react';
 import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { StarRating } from 'shared/ui/StarRating/StarRating';
@@ -36,16 +34,10 @@ export const ProductItem = memo((props: ProductItemProps) => {
                         <VStack gap="5">
                             <Text text={product.title} className={cls.title} />
                             <HStack align="center" gap="15">
-                                <Text
-                                    text={`${product.priceSymbol}${String(
-                                        product.price.current,
-                                    )}`}
-                                />
+                                <Text text={String(product.price.current)} />
 
                                 <Text
-                                    text={`${product.priceSymbol}${String(
-                                        product.price.previous,
-                                    )}`}
+                                    text={String(product.price.previous)}
                                     className={cls.previousPrice}
                                     theme={TextTheme.SECONDARY}
                                 />

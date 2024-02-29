@@ -4,7 +4,8 @@ const ProductsService = require('../services/productsService');
 class ProductsController {
     async getAll(req, res, next) {
         try {
-            const products = await ProductsService.getAll();
+            const { query } = req;
+            const products = await ProductsService.getAll(query);
             return res.json(products);
         } catch (e) {
             console.log(e);
