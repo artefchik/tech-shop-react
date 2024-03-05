@@ -45,7 +45,6 @@ export const Popover = (props: PopoverProps) => {
         minWidth: width,
         maxWidth: width,
         minHeight: height,
-        maxHeight: height,
     };
 
     return (

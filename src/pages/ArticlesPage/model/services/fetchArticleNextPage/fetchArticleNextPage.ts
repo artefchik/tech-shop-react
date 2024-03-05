@@ -9,15 +9,14 @@ import { getArticleListIsLoading } from '../../selectors/getArticleListIsLoading
 
 export const fetchArticleNextPage = createAsyncThunk<void, void, ThunkConfig<string>>(
     'articlesPage/fetchArticleNextPage',
-    async (_, thunkAPI) => {
-        const hasMore = getArticleListHasMore(thunkAPI.getState());
-        const page = getArticleListPage(thunkAPI.getState());
-        const isLoading = getArticleListIsLoading(thunkAPI.getState());
+    async (_, { dispatch, getState }) => {
+        const hasMore = getArticleListHasMore(getState());
+        const page = getArticleListPage(getState());
+        const isLoading = getArticleListIsLoading(getState());
 
         if (hasMore && !isLoading) {
-            thunkAPI.dispatch(articlesPageActions.setPage(page + 1));
-            console.log(page);
-            thunkAPI.dispatch(fetchArticleList({}));
+            dispatch(articlesPageActions.setPage(page + 1));
+            dispatch(fetchArticleList({}));
         }
     },
 );

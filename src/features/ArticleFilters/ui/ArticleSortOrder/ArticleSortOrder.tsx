@@ -5,15 +5,11 @@ import { useSelector } from 'react-redux';
 import { getArticleFiltersOrder } from 'features/ArticleFilters';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { articleFiltersActions } from 'features/ArticleFilters/model/slice/articleFiltersSlice';
+import { sortOrderOptions } from 'shared/const/order';
 
 interface ArticleSortOrderProps {
     className?: string;
     onSend: () => void;
-}
-
-interface SortOrderOption {
-    value: SortOrder;
-    content: ReactNode;
 }
 
 export const ArticleSortOrder = (props: ArticleSortOrderProps) => {
@@ -27,21 +23,6 @@ export const ArticleSortOrder = (props: ArticleSortOrderProps) => {
             onSend();
         },
         [dispatch, onSend],
-    );
-
-    const sortOrderOptions = useMemo<SortOrderOption[]>(
-        () => [
-            {
-                value: SortOrder.ASK,
-                content: 'по возрастанию',
-            },
-            {
-                value: SortOrder.DESK,
-                content: 'по убыванию',
-            },
-        ],
-
-        [],
     );
 
     return (

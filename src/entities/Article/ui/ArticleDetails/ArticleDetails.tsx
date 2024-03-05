@@ -21,6 +21,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { formatToDate } from 'shared/lib/helpers/formatToDate';
 import { ArticleTypeBlock } from '../ArticleTypeBlock/ArticleTypeBlock';
 import { ArticleRenderBlock } from '../ArticleRenderBlock/ArticleRenderBlock';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
@@ -83,7 +84,10 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                     </AppLink>
                     <HStack gap="5" align="center">
                         <Icon Svg={calendar} hover={false} />
-                        <Text text={String(article?.createdAt)} theme={TextTheme.TEXT} />
+                        <Text
+                            text={formatToDate(article?.createdAt)}
+                            theme={TextTheme.TEXT}
+                        />
                     </HStack>
                     <HStack gap="5" align="center">
                         <Icon Svg={viewIcon} hover={false} />

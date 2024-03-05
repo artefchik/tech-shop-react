@@ -20,7 +20,7 @@ export const CartItem = memo((props: CartItemProps) => {
         <Card className={classNames(cls.CartItem, {}, [className])}>
             <HStack align="center" gap="5">
                 <div className={cls.image}>
-                    <img src={product.image} alt={product.title} />
+                    <img src={product.imageSrc} alt={product.title} />
                 </div>
                 <HStack
                     gap="15"

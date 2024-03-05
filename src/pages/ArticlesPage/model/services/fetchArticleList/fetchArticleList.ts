@@ -1,6 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-import axios from 'axios';
 import { Article, ArticleType } from 'entities/Article';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import {
@@ -42,10 +40,10 @@ export const fetchArticleList = createAsyncThunk<
             params: {
                 // _expand: 'user',
                 page,
-                // _limit: limit,
+                // limit,
                 // sort,
-                // order,
-                type: type === ArticleType.ALL ? undefined : type,
+                o: order,
+                category: type === ArticleType.ALL ? undefined : type,
                 // q: search,
             },
         });

@@ -6,17 +6,16 @@ import { getProductsPageIsLoading } from '../../selectors/getProductsPageIsLoadi
 import { productsPageActions } from '../../slice/productsPageSlice';
 import { fetchProductsList } from '../../services/fetchProductsList/fetchProductsList';
 
-export const fetchProductsNextPage = createAsyncThunk<
-    void,
-    string | undefined,
-    ThunkConfig<string>
->('productsPage/fetchProductsNextPage', async (category, thunkAPI) => {
-    const { getState, dispatch } = thunkAPI;
-    const hasMore = getProductsPageHasMore(getState());
-    const page = getProductsListPage(getState());
-    const isLoading = getProductsPageIsLoading(getState());
-    if (hasMore && !isLoading) {
-        dispatch(productsPageActions.setPage(page + 1));
-        dispatch(fetchProductsList({}));
-    }
-});
+export const fetchProductsNextPage = createAsyncThunk<void, void, ThunkConfig<string>>(
+    'productsPage/fetchProductsNextPage',
+    async (_, thunkAPI) => {
+        const { getState, dispatch } = thunkAPI;
+        const hasMore = getProductsPageHasMore(getState());
+        const page = getProductsListPage(getState());
+        const isLoading = getProductsPageIsLoading(getState());
+        if (hasMore && !isLoading) {
+            dispatch(productsPageActions.setPage(page + 1));
+            dispatch(fetchProductsList({}));
+        }
+    },
+);

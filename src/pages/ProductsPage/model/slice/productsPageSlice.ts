@@ -8,6 +8,7 @@ import { LoginSchema } from 'features/AuthByUsername';
 import { fetchProductsList } from 'pages/ProductsPage/model/services/fetchProductsList/fetchProductsList';
 import { Article } from 'entities/Article';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
+import { ProductsCategories } from 'shared/const/types';
 
 const productsAdapter = createEntityAdapter<Product>({
     selectId: (product: Product) => product.id,
@@ -25,6 +26,7 @@ const productsPageSlice = createSlice({
         ids: [],
         entities: {},
         view: ViewType.SMALL,
+        category: ProductsCategories.ALL,
         page: 1,
         limit: 2,
         hasMore: true,
@@ -38,6 +40,10 @@ const productsPageSlice = createSlice({
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
+        setCategory: (state, action: PayloadAction<ProductsCategories>) => {
+            state.category = action.payload;
+        },
+
         initState: (state) => {
             const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ViewType;
             state.view = view;

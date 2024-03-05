@@ -18,6 +18,7 @@ import { MenuBurgerSchema } from 'features/MenuBurgerButton';
 import { ProductFavoritesSchema } from 'features/ProductFavoriteButton';
 import { ProductsPageSchema } from 'pages/ProductsPage';
 import { SandboxSettingsSchema } from 'features/SandboxSettings';
+import { ProductsFiltersSchema } from 'features/ProductsFilter';
 
 export interface StateSchema {
     user: UserSchema;
@@ -33,6 +34,7 @@ export interface StateSchema {
     articlesPage?: ArticlesPageSchema;
     articleFilters?: ArticleFiltersSchema;
     productsPage?: ProductsPageSchema;
+    productsFilters?: ProductsFiltersSchema;
     sandboxPage?: SandboxPageSchema;
     editor?: EditorSchema;
     sandboxSettings?: SandboxSettingsSchema;

@@ -3,19 +3,23 @@ export interface Price {
     previous: number;
 }
 
-export enum ProductType {
+export enum ProductCategory {
     PC = 'pc',
     PHONE = 'phone',
     ACCESSORIES = 'accessories',
 }
 
+export enum ProductModel {
+    APPLE = 'apple',
+}
+
 export interface Product {
     id: string;
-    image: string;
+    imageSrc: string;
     title: string;
     price: Price;
-    type: ProductType;
-    starRating: number;
-    priceSymbol: string;
-    description: string;
+    color: string;
+    category: ProductCategory;
+    starRating?: number;
+    description?: string;
 }

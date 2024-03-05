@@ -1,22 +1,38 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { Popover } from 'shared/ui/DropdownsList';
 import filter from 'shared/assets/icons/filters.svg';
-import { ArticleSortTypes } from 'features/ArticleFilters/ui/ArticleSortTypes/ArticleSortTypes';
-import { ArticleSortFilters } from 'features/ArticleFilters/ui/ArticleSortFilters/ArticleSortFilters';
-import { ArticleSortOrder } from 'features/ArticleFilters/ui/ArticleSortOrder/ArticleSortOrder';
-import cls from './ProductsFilter.module.scss';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { ProductsBrandFilter } from 'features/ProductsFilter/ui/ProductsBrandFilter/ProductsBrandFilter';
+import { ProductsSortOrder } from '../ProductsSortOrder/ProductsSortOrder';
+import { ProductsModelFilter } from '../ProductsModelFilter/ProductsModelFilter';
+import { ProductsColorFilter } from '../ProductsColorFilter/ProductsColorFilter';
+import { productsFiltersReducer } from '../../model/slice/ProductsFilterSlice';
 
 interface ProductsFilterProps {
     className?: string;
+    fetchData: () => void;
 }
+const reducers: ReducersList = {
+    productsFilters: productsFiltersReducer,
+};
 
-export const ProductsFilter = ({ className }: ProductsFilterProps) => (
-    <Popover
-        title="Фильтры"
-        icon={filter}
-        openView="bottomLeft"
-        className={className}
-    >
-        hfhhfhhf
-    </Popover>
-);
+export const ProductsFilter = (props: ProductsFilterProps) => {
+    const { className, fetchData } = props;
+    return (
+        <DynamicModuleLoader reducers={reducers}>
+            <Popover
+                title="Фильтры"
+                icon={filter}
+                openView="bottomLeft"
+                className={className}
+            >
+                <ProductsModelFilter onSend={fetchData} />
+                <ProductsBrandFilter onSend={fetchData} />
+                <ProductsColorFilter onSend={fetchData} />
+                <ProductsSortOrder onSend={fetchData} />
+            </Popover>
+        </DynamicModuleLoader>
+    );
+};

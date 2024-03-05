@@ -14,6 +14,7 @@ export const MainArticleBlockPage = (props: MainArticleBlockPageProps) => {
     const { data: articles, isLoading } = useGetMainBlockPage({
         url: '/articles',
         limit: 5,
+        order: 'asc',
     });
 
     return (
