@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container } from 'shared/ui/Container/Container';
 import { Page } from 'shared/ui/Page/Page';
 import { Text } from 'shared/ui/Text/Text';
-import { EditableProfilleCard } from 'features/EditableProfilleCard';
+import { EditableProfileCard } from 'features/EditableProfileCard';
 import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
@@ -21,7 +21,7 @@ export const ProfilePage = (props: ProfilePageProps) => {
     return (
         <Page className={classNames(cls.ProfilePage, {}, [className])}>
             <Container>
-                <EditableProfilleCard id={id} />
+                <EditableProfileCard id={id} />
             </Container>
         </Page>
     );

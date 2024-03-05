@@ -2,11 +2,10 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import { Icon } from 'shared/ui/Icon/Icon';
-import favorites from 'shared/assets/icons/favorites.svg';
 import { memo, ReactNode } from 'react';
 import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { StarRating } from 'shared/ui/StarRating/StarRating';
+import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
 import { Product } from '../../model/product';
 import cls from './ProductItem.module.scss';
 
@@ -26,7 +25,7 @@ export const ProductItem = memo((props: ProductItemProps) => {
             <Card className={classNames(cls.ProductCard, {}, [className, cls[view]])}>
                 <VStack gap="10" className={cls.body}>
                     <div className={cls.image}>
-                        <img src={product.image} alt={product.title} />
+                        <img src={__API__ + product.imageSrc} alt={product.title} />
                         <div className={cls.favorites}>
                             {FavoriteButton && FavoriteButton}
                         </div>
@@ -36,16 +35,10 @@ export const ProductItem = memo((props: ProductItemProps) => {
                         <VStack gap="5">
                             <Text text={product.title} className={cls.title} />
                             <HStack align="center" gap="15">
-                                <Text
-                                    text={`${product.priceSymbol}${String(
-                                        product.price.current,
-                                    )}`}
-                                />
+                                <Text text={formatToCurrency(product.price.current)} />
 
                                 <Text
-                                    text={`${product.priceSymbol}${String(
-                                        product.price.previous,
-                                    )}`}
+                                    text={formatToCurrency(product.price.current)}
                                     className={cls.previousPrice}
                                     theme={TextTheme.SECONDARY}
                                 />
@@ -63,7 +56,7 @@ export const ProductItem = memo((props: ProductItemProps) => {
             <HStack gap="15" className={cls.card}>
                 <VStack gap="15" className={cls.imageBlock}>
                     <div className={cls.image}>
-                        <img src={product.image} alt={product.title} />
+                        <img src={__API__ + product.imageSrc} alt={product.title} />
                     </div>
                     <HStack justify="center" className={cls.rating}>
                         <StarRating selectedStars={product.starRating} />
@@ -81,16 +74,10 @@ export const ProductItem = memo((props: ProductItemProps) => {
                 </VStack>
                 <VStack className={cls.actionsBlock} gap="20">
                     <HStack align="center" gap="15">
-                        <Text
-                            text={`${product.priceSymbol}${String(
-                                product.price.current,
-                            )}`}
-                        />
+                        <Text text={formatToCurrency(product.price.current)} />
 
                         <Text
-                            text={`${product.priceSymbol}${String(
-                                product.price.previous,
-                            )}`}
+                            text={formatToCurrency(product.price.previous)}
                             className={cls.previousPrice}
                             theme={TextTheme.SECONDARY}
                         />

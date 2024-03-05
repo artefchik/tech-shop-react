@@ -16,28 +16,15 @@ interface ArticleListProps {
 const getSkeletons = (view: ViewType) =>
     new Array(view === ViewType.BIG ? 3 : 6)
         .fill(0)
-        .map((item, index) => (
-            <ArticleListItemSkeleton key={index} view={view} />
-        ));
+        .map((item, index) => <ArticleListItemSkeleton key={index} view={view} />);
 
 export const ArticleList = memo((props: ArticleListProps) => {
-    const {
-        className,
-        isLoading,
-        articles = [],
-        view = ViewType.SMALL,
-    } = props;
+    const { className, isLoading, articles = [], view = ViewType.SMALL } = props;
     return (
-        <div
-            className={classNames(cls.ArticleList, {}, [className, cls[view]])}
-        >
+        <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
             {articles.length > 0
                 ? articles.map((article) => (
-                      <ArticleListItem
-                          key={article.id}
-                          article={article}
-                          view={view}
-                      />
+                      <ArticleListItem key={article.id} article={article} view={view} />
                   ))
                 : null}
             {isLoading && getSkeletons(view)}

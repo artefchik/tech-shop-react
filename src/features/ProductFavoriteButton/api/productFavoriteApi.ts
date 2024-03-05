@@ -40,8 +40,7 @@ const productFavoriteApi = productFavoriteApiWithTag.injectEndpoints({
     }),
 });
 
-export const useGetProductsFavorites =
-    productFavoriteApi.useGetProductsFavoritesQuery;
+export const useGetProductsFavorites = productFavoriteApi.useGetProductsFavoritesQuery;
 
 export const useUpdateProductsFavorites =
     productFavoriteApi.useUpdateProductsFavoritesMutation;

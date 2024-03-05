@@ -8,7 +8,7 @@ import { NavigateOptions } from 'react-router';
 import { ArticleDetailsSchema } from 'entities/Article';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { ArticleFiltersSchema } from 'features/ArticleFilters';
-import { ProfileSchema } from 'features/EditableProfilleCard';
+import { ProfileSchema } from 'features/EditableProfileCard';
 import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
@@ -18,6 +18,7 @@ import { MenuBurgerSchema } from 'features/MenuBurgerButton';
 import { ProductFavoritesSchema } from 'features/ProductFavoriteButton';
 import { ProductsPageSchema } from 'pages/ProductsPage';
 import { SandboxSettingsSchema } from 'features/SandboxSettings';
+import { ProductsFiltersSchema } from 'features/ProductsFilter';
 
 export interface StateSchema {
     user: UserSchema;
@@ -33,6 +34,7 @@ export interface StateSchema {
     articlesPage?: ArticlesPageSchema;
     articleFilters?: ArticleFiltersSchema;
     productsPage?: ProductsPageSchema;
+    productsFilters?: ProductsFiltersSchema;
     sandboxPage?: SandboxPageSchema;
     editor?: EditorSchema;
     sandboxSettings?: SandboxSettingsSchema;

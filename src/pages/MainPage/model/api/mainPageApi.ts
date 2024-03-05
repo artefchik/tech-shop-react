@@ -3,6 +3,7 @@ import { Article } from 'entities/Article';
 
 interface MainPageApiArg {
     limit: number;
+    order: string;
     url: string;
 }
 
@@ -13,10 +14,11 @@ interface MainPageApiResponse<T> {
 const mainPageApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getMainBlockPage: build.query<Article[], MainPageApiArg>({
-            query: ({ limit, url }) => ({
+            query: ({ limit, url, order }) => ({
                 url,
                 params: {
-                    _limit: limit,
+                    limit,
+                    order,
                 },
             }),
         }),

@@ -21,6 +21,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { formatToDate } from 'shared/lib/helpers/formatToDate';
 import { ArticleTypeBlock } from '../ArticleTypeBlock/ArticleTypeBlock';
 import { ArticleRenderBlock } from '../ArticleRenderBlock/ArticleRenderBlock';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
@@ -79,26 +80,31 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                         className={cls.info}
                     >
                         <Avatar src={article?.user.avatar} alt={article?.user.username} />
-                        <Text text={article?.user.username} theme={TextTheme.SECONDARY} />
+                        <Text text={article?.user.username} theme={TextTheme.TEXT} />
                     </AppLink>
                     <HStack gap="5" align="center">
                         <Icon Svg={calendar} hover={false} />
-                        {article?.createdAt}
+                        <Text
+                            text={formatToDate(article?.createdAt)}
+                            theme={TextTheme.TEXT}
+                        />
                     </HStack>
                     <HStack gap="5" align="center">
                         <Icon Svg={viewIcon} hover={false} />
-                        {article?.views}
+                        <Text text={String(article?.views)} theme={TextTheme.TEXT} />
                     </HStack>
                 </HStack>
                 <VStack gap="5" className={cls.headerBlock}>
                     <Text text={article?.title} size={TextSize.LARGE} />
-                    <Text text={article?.subtitle} size={TextSize.BIG} />
                 </VStack>
-
-                <div className={cls.types}>{article?.type.map(renderType)}</div>
-                {article?.blocks.map((block) => (
-                    <ArticleRenderBlock block={block} key={block.id} />
-                ))}
+                <HStack align="center" gap="10" className={cls.types}>
+                    {article?.types.map(renderType)}
+                </HStack>
+                <VStack gap="15">
+                    {article?.blocks.map((block) => (
+                        <ArticleRenderBlock block={block} key={block._id} />
+                    ))}
+                </VStack>
             </>
         );
     }

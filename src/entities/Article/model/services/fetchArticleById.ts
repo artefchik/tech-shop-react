@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios';
 import { $api } from 'shared/api/api';
+import { User } from 'entities/User';
 import { Article } from '../types/article';
 
 export const fetchArticleById = createAsyncThunk<
@@ -12,11 +13,7 @@ export const fetchArticleById = createAsyncThunk<
     }
 >('articleDetails/fetchArticleById', async (articleId, thunkAPI) => {
     try {
-        const response = await $api.get<Article>(`/articles/${articleId}`, {
-            params: {
-                _expand: 'user',
-            },
-        });
+        const response = await $api.get<Article>(`/articles/${articleId}`, {});
         if (!response.data) {
             return thunkAPI.rejectWithValue('error');
         }

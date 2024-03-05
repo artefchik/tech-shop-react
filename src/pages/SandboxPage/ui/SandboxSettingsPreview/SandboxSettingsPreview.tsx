@@ -51,10 +51,11 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
                     <VStack gap="20">
                         {!!textBlocks?.length &&
                             textBlocks.map((textBlock) => (
-                                <ArticleRenderBlock
-                                    key={textBlock.id}
-                                    block={textBlock}
-                                />
+                                // <ArticleRenderBlock
+                                //     key={textBlock.id}
+                                //     block={textBlock}
+                                // />
+                                <div />
                             ))}
                     </VStack>
                 </Card>

@@ -1,7 +1,4 @@
-import {
-    Dropdown,
-    DropdownItem,
-} from 'shared/ui/DropdownsList/ui/Dropdown/Dropdown';
+import { Dropdown, DropdownItem } from 'shared/ui/DropdownsList/ui/Dropdown/Dropdown';
 import { getRoutePathProfile } from 'shared/const/router';
 import { useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';

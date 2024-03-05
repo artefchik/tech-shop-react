@@ -1,9 +1,7 @@
 import { ArticleList } from 'entities/Article';
 import { useSelector } from 'react-redux';
 import { getArticles } from '../../model/slice/articlesPageSlice';
-import {
-    getArticleListIsLoading,
-} from '../../model/selectors/getArticleListIsLoading/getArticleListIsLoading';
+import { getArticleListIsLoading } from '../../model/selectors/getArticleListIsLoading/getArticleListIsLoading';
 import { getArticleListError } from '../../model/selectors/getArticleListError/getArticleListError';
 import { getArticleListView } from '../../model/selectors/getArticleListView/getArticleListView';
 
@@ -19,6 +17,11 @@ export const ArticlesInfiniteList = (props: ArticlesInfiniteListProps) => {
     const { className } = props;
 
     return (
-        <ArticleList articles={articles} isLoading={isLoading} view={view} />
+        <ArticleList
+            articles={articles}
+            isLoading={isLoading}
+            view={view}
+            className={className}
+        />
     );
 };

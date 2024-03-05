@@ -14,7 +14,7 @@ interface ProfileCardProps {
 export const ProfileCard = (props: ProfileCardProps) => {
     const { className, data } = props;
     const name = `${data?.firstname} ${data?.lastname}`;
-    const srcAvatar = data?.avatar ? data?.avatar : avatar;
+    const srcAvatar = data?.user?.avatar ? data?.user?.avatar : avatar;
     return (
         <Card className={classNames(cls.ProfileCard, {}, [className])}>
             <VStack align="center" gap="20">

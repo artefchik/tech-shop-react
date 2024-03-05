@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
     DynamicModuleLoader,
@@ -8,8 +8,11 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from 'shared/ui/Button/Button';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
+import { TabItem, Tabs } from 'shared/ui/Tabs/Tabs';
+import { signupByEmail } from 'features/AuthByUsername/model/services/signupByEmail/signupByEmail';
+import { getLoginStateByEmail } from '../../model/selectors/getLoginStateByEmail/getLoginStateByEmail';
 import { getLoginStateError } from '../../model/selectors/getLoginStateError/getLoginStateError';
 import { getLoginStateIsLoading } from '../../model/selectors/getLoginStateIsLoading/getLoginStateIsLoading';
 import cls from './LoginForm.module.scss';
@@ -27,6 +30,17 @@ const reducers: ReducersList = {
     login: loginReducer,
 };
 
+const loginOptions: TabItem[] = [
+    {
+        value: 'registration',
+        content: 'Registration',
+    },
+    {
+        value: 'authorization',
+        content: 'Authorization',
+    },
+];
+
 const LoginForm = memo((props: LoginFormProps) => {
     const { className, onSuccess } = props;
 
@@ -34,11 +48,22 @@ const LoginForm = memo((props: LoginFormProps) => {
 
     const username = useSelector(getLoginStateByUsername);
     const password = useSelector(getLoginStateByPassword);
+    const email = useSelector(getLoginStateByEmail);
     const isLoading = useSelector(getLoginStateIsLoading);
     const error = useSelector(getLoginStateError);
+
+    const [loginOption, setLoginOption] = useState(loginOptions[0].value);
+
     const onChangeUsername = useCallback(
         (value: string) => {
             dispatch(loginActions.setUsername(value));
+        },
+        [dispatch],
+    );
+
+    const onChangeEmail = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setEmail(value));
         },
         [dispatch],
     );
@@ -53,14 +78,15 @@ const LoginForm = memo((props: LoginFormProps) => {
     const onLoginClick = useCallback(async () => {
         const result = await dispatch(
             loginByUsername({
-                username,
+                email,
                 password,
             }),
         );
+
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess?.();
         }
-    }, [dispatch, onSuccess, password, username]);
+    }, [dispatch, email, onSuccess, password]);
 
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
@@ -78,22 +104,44 @@ const LoginForm = memo((props: LoginFormProps) => {
         };
     }, [onKeyDown]);
 
+    const onTabClick = useCallback((tab: TabItem) => {
+        setLoginOption(tab.value);
+    }, []);
+
+    const onSighupClick = useCallback(() => {
+        dispatch(
+            signupByEmail({
+                username,
+                email,
+                password,
+            }),
+        );
+    }, [dispatch, email, password, username]);
+
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="25" className={classNames(cls.LoginForm, {}, [className])}>
+            <VStack gap="20" className={classNames(cls.LoginForm, {}, [className])}>
                 <Text
+                    size={TextSize.BIG}
                     align={TextAlign.CENTER}
-                    text="Authorization"
-                    className={cls.title}
+                    text={loginOption}
                     As="h3"
                 />
+
+                <Tabs
+                    name="auth"
+                    tabs={loginOptions}
+                    onTabClick={onTabClick}
+                    value={loginOption}
+                />
                 {error && <Text theme={TextTheme.ERROR} text={error} />}
-                <VStack gap="20">
+                <VStack gap="15">
                     <Input
                         label="Username"
                         onChange={onChangeUsername}
                         value={username}
                     />
+                    <Input label="Email" onChange={onChangeEmail} value={email} />
                     <Input
                         label="Password"
                         onChange={onChangePassword}
@@ -103,7 +151,7 @@ const LoginForm = memo((props: LoginFormProps) => {
                 <Button
                     isLoading={isLoading}
                     className={cls.button}
-                    onClick={onLoginClick}
+                    onClick={onSighupClick}
                     type="button"
                 >
                     submit

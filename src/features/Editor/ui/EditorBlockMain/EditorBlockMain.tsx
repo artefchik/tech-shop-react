@@ -31,10 +31,13 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
     });
 
     const onClose = useCallback((value: string) => {
+        console.log(value);
         setIsClose(Boolean(value));
     }, []);
 
-    const renderBlock = <EditorRenderBlock block={item} type={item.type} />;
+    const renderBlock = (
+        <EditorRenderBlock block={item} type={item.type} onClose={onClose} />
+    );
 
     const [block, setBlock] = useState<ReactNode>(renderBlock);
     const onChangeBlock = useCallback(
@@ -47,7 +50,8 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
         [item, onClose],
     );
 
-    const condition = !isClose || item.type === ArticleBlockType.IMAGE;
+    const condition = !isClose;
+    console.log(isClose);
     return (
         <>
             <BrowserView>
@@ -55,12 +59,14 @@ export const EditorBlockMain = (props: EditorBlockMainProps) => {
                     gap="5"
                     className={classNames(cls.EditorBlockMain, {}, [className])}
                 >
-                    {condition && (
+                    {!isClose ? (
                         <EditorCreateButton
                             onChangeBlock={onChangeBlock}
                             id={item.id}
                             className={cls.button}
                         />
+                    ) : (
+                        <div>lll</div>
                     )}
                     {block}
                     <EditorDeleteBlockButton id={item.id} className={cls.button} />

@@ -1,3 +1,5 @@
+import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
+
 export enum UserRoles {
     ADMIN = 'admin',
     USER = 'user',
@@ -5,9 +7,11 @@ export enum UserRoles {
 
 export interface User {
     id: string;
-    username: string;
+    username?: string;
+    email: string;
     avatar?: string;
     roles: UserRoles;
+    isActivatedEmail: boolean;
 }
 export interface UserSchema {
     authData?: User;

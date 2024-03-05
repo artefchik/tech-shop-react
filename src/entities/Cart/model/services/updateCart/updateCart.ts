@@ -12,9 +12,7 @@ export const updateCart = createAsyncThunk<CartType, void, ThunkConfig<string>>(
         const { getState, rejectWithValue, dispatch } = thunkAPI;
 
         const products = getCartProducts(getState());
-        const userId = JSON.parse?.(
-            localStorage.getItem(USER_LOCALSTORAGE_KEY) || '',
-        );
+        const userId = JSON.parse?.(localStorage.getItem(USER_LOCALSTORAGE_KEY) || '');
         try {
             if (!userId) {
                 return rejectWithValue('error');

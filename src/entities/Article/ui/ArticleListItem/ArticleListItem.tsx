@@ -14,6 +14,7 @@ import {
     getRoutePathProfile,
 } from 'shared/const/router';
 import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
+import { formatToDate } from 'shared/lib/helpers/formatToDate';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -67,7 +68,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                             </AppLink>
                             <HStack gap="5" align="center">
                                 <Icon Svg={calendar} hover={false} />
-                                {article?.createdAt}
+                                <Text text={formatToDate(article?.createdAt)} />
                             </HStack>
                             <HStack gap="5" align="center">
                                 <Icon Svg={viewIcon} hover={false} />
@@ -76,9 +77,8 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         </HStack>
                         <VStack>
                             <Text text={article?.title} size={TextSize.LARGE} />
-                            <Text text={article?.subtitle} size={TextSize.BIG} />
                         </VStack>
-                        <HStack gap="10">{article?.type.map(renderType)}</HStack>
+                        <HStack gap="10">{article?.types.map(renderType)}</HStack>
                         <ArticleTextBlockComponent
                             block={textBlock}
                             className={cls.textBlock}
@@ -101,25 +101,25 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 onClick={onOpenArticle}
                 className={classNames(cls.card, {}, [cls.flex])}
             >
-                <img src={article.img} alt="" className={cls.image} />
+                <img src={__API__ + article.img} alt="" className={cls.image} />
                 <VStack className={cls.body}>
                     <Text
-                        text={article.createdAt}
+                        text={formatToDate(article.createdAt)}
                         theme={TextTheme.TEXT}
                         size={TextSize.SMALL}
                     />
                     <VStack className={cls.info} gap="5">
                         <Text
                             size={TextSize.MEDIUM}
-                            className={cls.title}
                             text={article.title}
-                        />
-                        <Text
-                            text={textBlock.paragraphs?.[0]}
                             className={cls.text}
-                            size={TextSize.SMALL}
-                            theme={TextTheme.TEXT}
                         />
+                        {/* <Text */}
+                        {/*    text={textBlock.paragraph} */}
+                        {/*  */}
+                        {/*    size={TextSize.SMALL} */}
+                        {/*    theme={TextTheme.TEXT} */}
+                        {/* /> */}
                     </VStack>
                 </VStack>
             </Card>

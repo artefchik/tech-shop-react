@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { CommentType } from 'entities/Comment';
-import { deleteCommentArticle } from 'features/ArticleDetailsComment/model/services/deleteCommentArticle/deleteCommentArticle';
+import { deleteCommentArticle } from '../services/deleteCommentArticle/deleteCommentArticle';
 import { fetchCommentsByArticleId } from '../services/fetchCommentByArticleId/fetchCommentByArticleId';
 
 const initialState: ArticleDetailsCommentsSchema = {

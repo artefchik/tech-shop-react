@@ -5,11 +5,7 @@ import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { CartProduct } from 'widgets/CartProduct/ui/CartProduct';
 import { getUserAuthData } from 'entities/User';
-import {
-    fetchCartProductsList,
-    getCartProducts,
-    updateCart,
-} from 'entities/Cart';
+import { fetchCartProductsList, getCartProducts, updateCart } from 'entities/Cart';
 import { useGetProductsFavorites } from 'features/ProductFavoriteButton';
 import cls from './ShoppingCartList.module.scss';
 
@@ -33,10 +29,7 @@ export const ShoppingCartList = ({ className }: ShoppingCartListProps) => {
     }, [dispatch]);
 
     return (
-        <VStack
-            gap="20"
-            className={classNames(cls.ShoppingCartList, {}, [className])}
-        >
+        <VStack gap="20" className={classNames(cls.ShoppingCartList, {}, [className])}>
             {!!products.length &&
                 products.map((product) => (
                     <CartProduct key={product.id} product={product} />

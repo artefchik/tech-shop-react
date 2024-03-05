@@ -5,6 +5,5 @@ export interface Profile {
     lastname?: string | undefined;
     firstname?: string | undefined;
     age?: number | undefined;
-    avatar?: string;
     user?: User;
 }

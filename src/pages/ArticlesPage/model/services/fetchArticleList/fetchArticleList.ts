@@ -1,6 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-import axios from 'axios';
 import { Article, ArticleType } from 'entities/Article';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import {
@@ -40,13 +38,13 @@ export const fetchArticleList = createAsyncThunk<
         });
         const response = await $api.get<Article[]>('/articles', {
             params: {
-                _expand: 'user',
-                _page: page,
-                _limit: limit,
-                _sort: sort,
-                _order: order,
-                _type: type === ArticleType.ALL ? undefined : type,
-                q: search,
+                // _expand: 'user',
+                page,
+                // limit,
+                // sort,
+                o: order,
+                category: type === ArticleType.ALL ? undefined : type,
+                // q: search,
             },
         });
         if (!response.data) {

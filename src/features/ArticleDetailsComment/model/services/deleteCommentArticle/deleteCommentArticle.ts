@@ -4,8 +4,8 @@ import { CommentType } from 'entities/Comment';
 import axios from 'axios';
 import { userActions } from 'entities/User';
 import { articleDetailsCommentsActions } from 'features/ArticleDetailsComment/model/slice/articleDetailsCommentsSlice';
-import { fetchCommentsByArticleId } from 'features/ArticleDetailsComment/model/services/fetchCommentByArticleId/fetchCommentByArticleId';
 import { $api } from 'shared/api/api';
+import { fetchCommentsByArticleId } from '../../services/fetchCommentByArticleId/fetchCommentByArticleId';
 
 export const deleteCommentArticle = createAsyncThunk<
     CommentType,
@@ -19,7 +19,9 @@ export const deleteCommentArticle = createAsyncThunk<
     }
 
     try {
-        const response = await $api.delete<CommentType>(`/comments/${commentId}`);
+        const response = await $api.delete<CommentType>(
+            `/articles/comments/${commentId}`,
+        );
 
         if (!response.data) {
             throw new Error();

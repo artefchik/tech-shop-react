@@ -1,35 +1,46 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-import axios from 'axios';
 import { Product } from 'entities/Product';
-
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { ProductsCategories } from 'shared/const/types';
 import { $api } from 'shared/api/api';
+import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
+import { getProductsFilterOrder } from 'features/ProductsFilter';
+import { getProductsCategory } from 'pages/ProductsPage/model/selectors/getProductsCategory/getProductsCategory';
+import { getProductsListPage } from '../../selectors/getProductsListPage/getProductsListPage';
+import { getProductsPageLimit } from '../../selectors/getProductsPageLimit/getProductsPageLimit';
 
 interface fetchProductsListProps {
     replace?: boolean;
-    category?: string;
 }
 
 export const fetchProductsList = createAsyncThunk<
     Product[],
     fetchProductsListProps,
     ThunkConfig<string>
->('articleDetails/fetchArticleById', async ({ category }, thunkAPI) => {
+>('productsPage/fetchProductsList', async (_, thunkAPI) => {
+    const { getState, dispatch, rejectWithValue } = thunkAPI;
+
+    const limit = getProductsPageLimit(getState());
+    const page = getProductsListPage(getState());
+    const order = getProductsFilterOrder(getState());
+    const sort = getProductsFilterOrder(getState());
+    const category = getProductsCategory(getState());
     try {
+        addQueryParams({
+            order,
+        });
         const response = await $api.get<Product[]>(`/products`, {
             params: {
-                category:
-                    category === ProductsCategories.ALL ? undefined : category,
+                category: category === ProductsCategories.ALL ? undefined : category,
+                page,
+                order,
             },
         });
         if (!response.data) {
-            return thunkAPI.rejectWithValue('error');
+            return rejectWithValue('error');
         }
         return response.data;
     } catch (e) {
-        console.log(e);
-        return thunkAPI.rejectWithValue('error');
+        return rejectWithValue('error');
     }
 });

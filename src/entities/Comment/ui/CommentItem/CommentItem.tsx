@@ -24,17 +24,17 @@ export const CommentItem = memo((props: CommentItemProps) => {
     const authData = useSelector(getUserAuthData);
     const isShowDelete = comment?.user.id === authData?.id;
     console.log(comment?.user.id);
-
-    if (!comment) {
-        return null;
-    }
-
+    console.log(authData?.id);
     const onDeleteClick = useCallback(
         (id: string) => () => {
             onDeleteComment?.(id);
         },
         [],
     );
+
+    if (!comment) {
+        return null;
+    }
 
     return (
         <Card className={classNames(cls.CommentItem, {}, [className])}>
@@ -47,7 +47,7 @@ export const CommentItem = memo((props: CommentItemProps) => {
                     >
                         {comment.user.avatar && (
                             <Avatar
-                                src={comment.user.avatar}
+                                src={comment?.user.avatar}
                                 alt={comment.user.username}
                             />
                         )}

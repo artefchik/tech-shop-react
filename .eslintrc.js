@@ -48,6 +48,7 @@ module.exports = {
         'no-undef': 'off',
         'react/no-array-index-key': 'off',
         'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
+        'class-methods-use-this': ['error', { enforceForClassFields: false }],
     },
     globals: {
         __IS_DEV__: true,

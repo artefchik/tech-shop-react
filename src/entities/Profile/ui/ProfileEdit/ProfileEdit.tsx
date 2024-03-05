@@ -9,12 +9,19 @@ interface ProfileEditProps {
     data: Profile | undefined;
     onChangeFirstname: (value: string) => void;
     onChangeLastname: (value: string) => void;
+    onChangeAge: (value: string) => void;
     readonly?: boolean;
 }
 
 export const ProfileEdit = memo((props: ProfileEditProps) => {
-    const { className, data, onChangeLastname, onChangeFirstname, readonly } =
-        props;
+    const {
+        className,
+        data,
+        onChangeLastname,
+        onChangeFirstname,
+        onChangeAge,
+        readonly,
+    } = props;
     return (
         <VStack width gap="15" className={classNames('', {}, [className])}>
             <Input
@@ -28,6 +35,13 @@ export const ProfileEdit = memo((props: ProfileEditProps) => {
                 readonly={readonly}
                 value={data?.lastname}
                 onChange={onChangeLastname}
+            />
+            <Input
+                type="number"
+                label="Age"
+                readonly={readonly}
+                value={String(data?.age)}
+                onChange={onChangeAge}
             />
         </VStack>
     );
