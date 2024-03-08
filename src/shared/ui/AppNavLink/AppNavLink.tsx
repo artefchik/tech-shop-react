@@ -1,29 +1,16 @@
 import { NavLink, NavLinkProps } from 'react-router-dom';
-import { InputHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import cls from './AppNavLink.module.scss';
-
-export enum AppNavLinkTheme {
-    NAVBAR = 'navbarActive',
-    ACTIVE = 'active',
-}
 
 interface AppNavLinkProps extends NavLinkProps {
     className?: string;
     isActive?: boolean;
-    theme?: AppNavLinkTheme;
+    activeClassname: string;
 }
 
 export const AppNavLink = (props: AppNavLinkProps) => {
-    const {
-        to,
-        className,
-        children,
-        isActive,
-        theme = AppNavLinkTheme.NAVBAR,
-        onClick,
-        ...otherProps
-    } = props;
+    const { to, className, children, isActive, activeClassname, onClick, ...otherProps } =
+        props;
 
     const onClickHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
         if (onClick) {
@@ -38,7 +25,7 @@ export const AppNavLink = (props: AppNavLinkProps) => {
                 classNames(
                     cls.AppNavLink,
                     {
-                        [cls[theme]]: isActive,
+                        [activeClassname]: isActive,
                     },
                     [className],
                 )

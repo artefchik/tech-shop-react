@@ -1,15 +1,10 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
-import React, {
-    CSSProperties,
-    Fragment,
-    memo,
-    ReactNode,
-    useMemo,
-} from 'react';
+import React, { CSSProperties, Fragment, memo, ReactNode } from 'react';
 import { Menu } from '@headlessui/react';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Link } from 'react-router-dom';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import {
     DropdownsListDirectionOpen,
     DropdownsListDirectionOpenClasses,
@@ -53,11 +48,6 @@ export const Dropdown = memo((props: DropdownProps) => {
         triggerClear = false,
     } = props;
 
-    const classes = useMemo(
-        () => [className, DropdownsListDirectionOpenClasses[open]],
-        [className, open],
-    );
-
     const styles: CSSProperties = {
         minWidth: width,
         maxWidth: width,
@@ -74,10 +64,10 @@ export const Dropdown = memo((props: DropdownProps) => {
         <Menu as="div" className={classNames(cls.Dropdown, mods, [className])}>
             <Menu.Button as="button" className={cls.trigger}>
                 {icon ? (
-                    <span className={clsDrop.bodyText}>
-                        {defaultValue}
+                    <>
                         <Icon className={clsDrop.icon} Svg={icon} />
-                    </span>
+                        <Text As="span" text={defaultValue} theme={TextTheme.TEXT} />
+                    </>
                 ) : (
                     value || defaultValue
                 )}
@@ -104,11 +94,7 @@ export const Dropdown = memo((props: DropdownProps) => {
                     const content = ({ active }: { active: boolean }) => (
                         <button
                             onClick={item.onClick}
-                            className={classNames(
-                                cls.item,
-                                { [cls.active]: active },
-                                [],
-                            )}
+                            className={classNames(cls.item, { [cls.active]: active }, [])}
                         >
                             {item.content}
                         </button>

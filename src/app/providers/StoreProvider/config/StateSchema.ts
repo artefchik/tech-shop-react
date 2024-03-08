@@ -14,11 +14,11 @@ import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
 import { SandboxPageSchema } from 'pages/SandboxPage';
 import { EditorSchema } from 'features/Editor';
-import { MenuBurgerSchema } from 'features/MenuBurgerButton';
 import { ProductFavoritesSchema } from 'features/ProductFavoriteButton';
 import { ProductsPageSchema } from 'pages/ProductsPage';
 import { SandboxSettingsSchema } from 'features/SandboxSettings';
 import { ProductsFiltersSchema } from 'features/ProductsFilter';
+import { MobileBarSchema } from 'features/MobileBar';
 
 export interface StateSchema {
     user: UserSchema;
@@ -39,7 +39,7 @@ export interface StateSchema {
     editor?: EditorSchema;
     sandboxSettings?: SandboxSettingsSchema;
 
-    menuBurger?: MenuBurgerSchema;
+    mobileBar?: MobileBarSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

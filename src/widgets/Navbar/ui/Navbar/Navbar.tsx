@@ -1,9 +1,6 @@
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { NavbarItem } from 'widgets/Navbar/ui/NavbarItem/NavbarItem';
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
-import { getIsOpenMenuBurger } from 'features/MenuBurgerButton';
-import cls from './Navbar.module.scss';
+import { HStack } from 'shared/ui/Stack';
 import { NavbarItemsList } from '../../model/items';
 
 interface NavbarProps {
@@ -12,20 +9,15 @@ interface NavbarProps {
 
 export const Navbar = memo((props: NavbarProps) => {
     const { className } = props;
-    const isOpenMenuBurger = useSelector(getIsOpenMenuBurger);
-
-    const mods: Mods = {
-        [cls.open]: isOpenMenuBurger,
-    };
     return (
-        <nav className={classNames(cls.Navbar, mods, [className])}>
-            <ul className={cls.list}>
+        <nav className={className}>
+            <HStack As="ul" align="center" gap="35">
                 {NavbarItemsList.map((item) => (
-                    <li key={item.path} className={cls.item}>
-                        <NavbarItem item={item} className={cls.link} />
+                    <li key={item.path}>
+                        <NavbarItem item={item} />
                     </li>
                 ))}
-            </ul>
+            </HStack>
         </nav>
     );
 });

@@ -14,7 +14,7 @@ import {
     getRoutePathProfile,
 } from 'shared/const/router';
 import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
-import { formatToDate } from 'shared/lib/helpers/formatToDate';
+import { timeAgo } from 'shared/lib/helpers/date';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -68,7 +68,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                             </AppLink>
                             <HStack gap="5" align="center">
                                 <Icon Svg={calendar} hover={false} />
-                                <Text text={formatToDate(article?.createdAt)} />
+                                <Text text={timeAgo(article?.createdAt)} />
                             </HStack>
                             <HStack gap="5" align="center">
                                 <Icon Svg={viewIcon} hover={false} />
@@ -104,7 +104,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 <img src={__API__ + article.img} alt="" className={cls.image} />
                 <VStack className={cls.body}>
                     <Text
-                        text={formatToDate(article.createdAt)}
+                        text={timeAgo(article.createdAt)}
                         theme={TextTheme.TEXT}
                         size={TextSize.SMALL}
                     />
