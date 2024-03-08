@@ -26,16 +26,16 @@ export const SandboxEditorPageHeader = (props: SandboxEditorPageHeaderProps) => 
 
     const isSavedData = useSelector(isEditorSavedDate);
 
-    const { savedDate, title: savedTitle } = useSelector(getEditorSavedData);
+    // const { savedDate, title: savedTitle } = useSelector(getEditorSavedData);
     const dispatch = useAppDispatch();
 
     const onReCreateData = useCallback(() => {
         dispatch(editorActions.renderBlocksStorage());
     }, [dispatch]);
 
-    const date = getDate(savedDate);
+    // const date = getDate(savedDate);
 
-    const dateNotice = `${date?.day} ${date?.month} ${date?.hour}:${date?.minutes}`;
+    // const dateNotice = `${date?.day} ${date?.month} ${date?.hour}:${date?.minutes}`;
 
     return (
         <>
@@ -46,7 +46,7 @@ export const SandboxEditorPageHeader = (props: SandboxEditorPageHeaderProps) => 
                     <HStack align="center" justify="between" gap="20">
                         <Text
                             theme={TextTheme.TEXT}
-                            text={`У вас есть резервное сохранение «${savedTitle}» от ${dateNotice}`}
+                            // text={`У вас есть резервное сохранение «${''}» от ${dateNotice}`}
                         />
                         <Button onClick={onReCreateData}>Восстановить</Button>
                     </HStack>

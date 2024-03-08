@@ -21,8 +21,11 @@
     --size-icon: 20px;
     --size-icon-l: 26px;
     --font-link: var(--font-weight-medium) var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
+    //border
     --border-radius: 40px;
     --border-radius-s: 8px;
+    //
     --min-width: 320px;
     --header-height: 50px;
     --header-height-min: 40px;
@@ -30,5 +33,11 @@
     --tablet-width: 991.98px;
     --mobile-width: 767.98px;
     --mobileSmall-width: 479.98px;
+
+    //z-index
+    --z-index-header: 1000;
     --z-index-modal: 10;
+    --z-index-mobile-bar: 50;
+    --z-index-open-bar:100;
+
 }

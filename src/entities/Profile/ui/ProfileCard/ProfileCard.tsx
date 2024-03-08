@@ -19,7 +19,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         <Card className={classNames(cls.ProfileCard, {}, [className])}>
             <VStack align="center" gap="20">
                 <div className={cls.avatar}>
-                    <img src={avatar} alt="avatar" />
+                    <img src={srcAvatar} alt="avatar" />
                 </div>
                 <VStack gap="5" align="center">
                     <Text text={name} size={TextSize.BIG} />

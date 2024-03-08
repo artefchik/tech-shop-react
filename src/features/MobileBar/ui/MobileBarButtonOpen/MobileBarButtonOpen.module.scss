@@ -1,0 +1,58 @@
+.MobileBarButtonOpen {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  bottom: 15px;
+  border-radius: 14px;
+  left: 15px;
+  z-index: var(--z-index-open-bar);
+  transition: all 0.6s ease 0s;
+
+  span,
+  &::before,
+  &::after {
+    content: "";
+    transition: all 0.3s ease 0s;
+    left: 20%;
+    position: absolute;
+    height: 2px;
+    background-color: var(--color-active-icon-btn);
+  }
+
+  &::before {
+    top: 16px;
+    width: 30%;
+  }
+
+  &::after {
+    bottom: 16px;
+    width: 40%;
+  }
+
+  span {
+    width: 65%;
+    top: calc(50% - 1px);
+  }
+
+}
+
+.open {
+  background-color: var(--color-mobile-open-btn);
+
+  span {
+    transform: rotate(-45deg);
+    left: 13%;
+  }
+
+  &::before {
+    left: 13%;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(45deg);
+    left: 50%;
+    width: 30%;
+  }
+}

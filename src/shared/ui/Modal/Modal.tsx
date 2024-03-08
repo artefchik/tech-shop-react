@@ -1,6 +1,4 @@
-import React, {
-    ReactNode,
-} from 'react';
+import React, { ReactNode } from 'react';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { useModal } from 'shared/lib/hooks/useModal/useModal';
 import { Overlay } from 'shared/ui/Overlay/Overlay';
@@ -13,7 +11,7 @@ interface ModalProps {
     isOpen?: boolean;
     onClose?: () => void;
     lazy?: boolean;
-    children:ReactNode
+    children: ReactNode;
 }
 
 interface KeyboardEvent {
@@ -22,21 +20,11 @@ interface KeyboardEvent {
 
 const ANIMATION_DELAY = 300;
 
-export const Modal = (props:ModalProps) => {
-    const {
-        className,
-        children,
-        isOpen,
-        onClose,
-        lazy,
-    } = props;
-    const { theme } = useTheme();
+export const Modal = (props: ModalProps) => {
+    const { className, children, isOpen, onClose, lazy } = props;
+    const { themeVariant } = useTheme();
 
-    const {
-        close,
-        isClosing,
-        isMounted,
-    } = useModal({
+    const { close, isClosing, isMounted } = useModal({
         animationDelay: ANIMATION_DELAY,
         onClose,
         isOpen,
@@ -51,11 +39,9 @@ export const Modal = (props:ModalProps) => {
 
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className, theme])}>
+            <div className={classNames(cls.Modal, mods, [className, themeVariant])}>
                 <Overlay onClick={close} />
-                <div
-                    className={classNames(cls.content, mods, [className])}
-                >
+                <div className={classNames(cls.content, mods, [className])}>
                     {children}
                 </div>
             </div>
