@@ -9,22 +9,32 @@ import { Footer } from 'widgets/Footer';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { isBrowser, isMobile } from 'react-device-detect';
 import { MobileBar } from 'features/MobileBar';
+import { initFavoriteData } from 'entities/Favorite/model/services/initFavoriteData/initFavoriteData';
 
 function App() {
     const { themeVariant } = useTheme();
     const dispatch = useAppDispatch();
     const inited = useSelector(getUserInitied);
 
+    const userData = useSelector(getUserAuthData);
     useEffect(() => {
         dispatch(initUserAuthData());
     }, [dispatch]);
 
+    useEffect(() => {
+        if (userData) {
+            dispatch(initFavoriteData(userData.id));
+        }
+    }, [dispatch, userData]);
+
     return (
         <div className={classNames('app', {}, [themeVariant])}>
-            {isBrowser && <Header />}
-            <MobileBar />
-            {inited && <AppRouter />}
-            <Footer />
+            <Suspense fallback="">
+                {isBrowser && <Header />}
+                <MobileBar />
+                {inited && <AppRouter />}
+                <Footer />
+            </Suspense>
         </div>
     );
 }

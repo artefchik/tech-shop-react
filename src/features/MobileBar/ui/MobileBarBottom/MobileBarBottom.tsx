@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { HStack } from 'shared/ui/Stack';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { MobileBarButtonOpen } from 'features/MobileBar/ui/MobileBarButtonOpen/MobileBarButtonOpen';
@@ -19,7 +19,7 @@ export const MobileBarBottom = (props: MobileBarBottomProps) => {
             className={classNames(cls.MobileBarBottom, {}, [className])}
         >
             <HStack gap="30" align="center">
-                <Suspense fallback={<div>...</div>}>
+                <Suspense fallback="">
                     <LangSwitcher />
                 </Suspense>
                 <ThemeSwitcher />

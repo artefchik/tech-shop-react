@@ -17,9 +17,9 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { fetchProductsNextPage } from 'pages/ProductsPage/model/services/fetchProductsNextPage/fetchProductsNextPage';
-import { initArticlePage } from 'pages/ArticlesPage/model/services/initArticlePage/initArticlePage';
 import { initProductsPage } from 'pages/ProductsPage/model/services/initProductsPage/initProductsPage';
 import { ProductsCategories } from 'shared/const/types';
+import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/services/fetchProductsFavorites/fetchProductsFavorites';
 import cls from './ProductsPage.module.scss';
 
 interface ProductsPageProps {

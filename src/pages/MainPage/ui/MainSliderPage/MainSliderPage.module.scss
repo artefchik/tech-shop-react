@@ -1,3 +1,9 @@
+.slider {
+    box-shadow: 0 0 7px  var(--box-shadow-slider);
+    border-radius: var(--border-radius-s);
+    overflow: hidden;
+}
+
 .slide {
     position: relative;
     max-height: 500px;

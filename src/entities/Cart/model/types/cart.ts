@@ -7,7 +7,7 @@ import { Id } from '@reduxjs/toolkit/dist/query/tsHelpers';
 export type ProductId = string;
 
 export interface CartItemType extends Product {
-    quantity: number;
+    count: number;
 }
 
 export interface CartSchema extends EntityState<CartItemType> {

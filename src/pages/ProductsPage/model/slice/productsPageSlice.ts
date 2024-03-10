@@ -1,14 +1,10 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { Product } from 'entities/Product';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/productsPageSchema';
-import { LoginSchema } from 'features/AuthByUsername';
 import { fetchProductsList } from 'pages/ProductsPage/model/services/fetchProductsList/fetchProductsList';
-import { Article } from 'entities/Article';
-import { ArticlesPageSchema } from 'pages/ArticlesPage';
-import { ProductsCategories } from 'shared/const/types';
+import { ProductsCategories, ViewType } from 'shared/const/types';
 
 const productsAdapter = createEntityAdapter<Product>({
     selectId: (product: Product) => product.id,

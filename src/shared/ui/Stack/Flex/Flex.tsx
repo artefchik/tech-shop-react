@@ -9,7 +9,7 @@ type FlexDirection = 'row' | 'column';
 
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-type TagType = 'div' | 'section' | 'nav' | 'ul';
+type TagType = 'div' | 'section' | 'nav' | 'ul' | 'li';
 
 export interface FlexProps extends DivProps {
     className?: string;

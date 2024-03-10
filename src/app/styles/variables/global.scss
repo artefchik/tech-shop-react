@@ -1,5 +1,5 @@
 :root {
-    --font-family-main: "Poppins", sans-serif;
+    --font-family-main: "Open Sans", sans-serif;
     --font-size-s: 14px;
     --font-line-s: 20px;
     --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
@@ -34,6 +34,9 @@
     --mobile-width: 767.98px;
     --mobileSmall-width: 479.98px;
 
+
+    --container-padding-big:15px;
+    --container-padding-small:7px;
     //z-index
     --z-index-header: 1000;
     --z-index-modal: 10;

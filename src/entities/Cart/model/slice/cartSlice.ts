@@ -22,26 +22,12 @@ export const cartsSlice = createSlice({
         userId: undefined,
     }),
     reducers: {
-        setInitUserId: (state, action: PayloadAction<User>) => {
-            state.userId = action.payload.id;
-        },
-        addItem: (state, action: PayloadAction<Product>) => {
-            cartAdapter.setOne(state, {
-                ...action.payload,
-                quantity: 1,
-            });
-            // const productInCart = state.items.find(
-            //     ({ product }) => product.id === action.payload.id,
-            // );
-            // if (productInCart) {
-            //     productInCart.quantity += 1;
-            // } else {
-            //     state.items.push({
-            //         product: action.payload,
-            //         quantity: 1,
-            //     });
-            // }
-        },
+        // addItem: (state, action: PayloadAction<ProductItem>) => {
+        //     cartAdapter.setOne(state, {
+        //         ...action.payload,
+        //         quantity: 1,
+        //     });
+        // },
 
         addOneItem: (state, action: PayloadAction<CartItemType>) => {
             cartAdapter.updateOne(state, {
@@ -50,7 +36,7 @@ export const cartsSlice = createSlice({
             });
         },
         removeOneItem: (state, action: PayloadAction<CartItemType>) => {
-            if (action.payload.quantity) {
+            if (action.payload.count) {
                 cartAdapter.updateOne(state, {
                     id: action.payload.id,
                     changes: action.payload,

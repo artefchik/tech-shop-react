@@ -8,6 +8,7 @@ import { Button } from 'shared/ui/Button/Button';
 import { Card } from 'shared/ui/Card/Card';
 import { FooterTop } from 'widgets/Footer/ui/FooterTop/FooterTop';
 import { FooterBottom } from 'widgets/Footer/ui/FooterBottom/FooterBottom';
+import { Suspense } from 'react';
 import cls from './Footer.module.scss';
 
 interface FooterProps {
@@ -19,7 +20,9 @@ export const Footer = (props: FooterProps) => {
     return (
         <footer className={classNames(cls.Footer, {}, [className])}>
             <Container>
-                <FooterTop className={cls.top} />
+                <Suspense fallback="">
+                    <FooterTop className={cls.top} />
+                </Suspense>
                 <FooterBottom />
             </Container>
         </footer>

@@ -5,12 +5,8 @@ import { useCallback } from 'react';
 import { HStack } from 'shared/ui/Stack';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { ViewType } from 'shared/const/types';
 import cls from './ViewSelector.module.scss';
-
-export enum ViewType {
-    BIG = 'big',
-    SMALL = 'small',
-}
 
 const viewSelectorTypes = [
     {
@@ -40,10 +36,7 @@ export const ViewSelector = (props: ViewSelectorProps) => {
     );
 
     return (
-        <HStack
-            align="center"
-            className={classNames(cls.ViewSelector, {}, [className])}
-        >
+        <HStack align="center" className={classNames(cls.ViewSelector, {}, [className])}>
             {viewSelectorTypes.map((viewType) => (
                 <Button
                     key={viewType.view}

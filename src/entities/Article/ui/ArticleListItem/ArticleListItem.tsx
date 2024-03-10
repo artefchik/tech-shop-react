@@ -13,8 +13,8 @@ import {
     getRoutePathArticlesDetailsById,
     getRoutePathProfile,
 } from 'shared/const/router';
-import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { timeAgo } from 'shared/lib/helpers/date';
+import { ViewType } from 'shared/const/types';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {

@@ -10,6 +10,7 @@ import { MobileBarButtonOpen } from 'features/MobileBar/ui/MobileBarButtonOpen/M
 import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useCallback } from 'react';
+import { Overlay } from 'shared/ui/Overlay/Overlay';
 import { mobileBarActions, mobileBarReducer } from '../../model/slice/mobileBarSlice';
 import { classNames, Mods } from '../../../../shared/lib/classNames/classNames';
 import { MobileBarContent } from '../MobileBarContent/MobileBarContent';
@@ -28,10 +29,14 @@ const reducers: ReducersList = {
 export const MobileBar = (props: MobileBarProps) => {
     const { className } = props;
     const isOpenBar = useSelector(getMobileBarIsOpen);
-
+    const dispatch = useAppDispatch();
     const mods: Mods = {
         [cls.open]: isOpenBar,
     };
+
+    const onCloseBar = useCallback(() => {
+        dispatch(mobileBarActions.setOpenBar(false));
+    }, [dispatch]);
 
     return (
         <>
@@ -39,9 +44,13 @@ export const MobileBar = (props: MobileBarProps) => {
                 <DynamicModuleLoader reducers={reducers}>
                     <MobileBarButtonOpen />
                     <VStack className={classNames(cls.MobileBar, mods, [className])}>
-                        <MobileBarTop />
-                        <MobileBarContent />
-                        <MobileBarBottom />
+                        {isOpenBar && <Overlay onClick={onCloseBar} />}
+
+                        <>
+                            <MobileBarTop />
+                            <MobileBarContent />
+                            <MobileBarBottom />
+                        </>
                     </VStack>
                 </DynamicModuleLoader>
             )}

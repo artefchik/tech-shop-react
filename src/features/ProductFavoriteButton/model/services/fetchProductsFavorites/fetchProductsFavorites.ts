@@ -1,30 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-import axios from 'axios';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { FavoriteType } from 'features/ProductFavoriteButton/model/types/favorite';
-import { getUserAuthData } from 'entities/User';
+import { FavoriteProduct } from 'features/ProductFavoriteButton/model/types/favorite';
 import { $api } from 'shared/api/api';
+import { getFavoriteData } from 'entities/Favorite/model/selectors/getFavoriteData/getFavoriteData';
 
 interface fetchArticleListProps {
     replace?: boolean;
 }
 
 export const fetchProductsFavorites = createAsyncThunk<
-    FavoriteType,
+    FavoriteProduct[],
     void,
     ThunkConfig<string>
 >('productFavorites/fetchProductsFavorites', async (_, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
-    const authData = getUserAuthData(getState());
-    if (!authData?.id) {
+
+    const favorite = getFavoriteData(getState());
+    if (!favorite) {
         return rejectWithValue('error');
     }
 
     try {
-        const response = await $api.get<FavoriteType>(
-            `/product-favorites/${authData?.id}`,
-        );
+        const response = await $api.get(`/favorites/${favorite.id}`);
+
         if (!response.data) {
             return rejectWithValue('error');
         }

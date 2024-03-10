@@ -11,24 +11,22 @@ interface CounterCartProductProps {
 export const CounterCartProduct = (props: CounterCartProductProps) => {
     const { className, product } = props;
     const dispatch = useAppDispatch();
-    const onIncrement = (quantity: number) => () => {
-        dispatch(
-            cartActions.addOneItem({ ...product, quantity: (quantity += 1) }),
-        );
+    const onIncrement = (count: number) => () => {
+        dispatch(cartActions.addOneItem({ ...product, count: (count += 1) }));
     };
     const onDecrement = (quantity: number) => () => {
         dispatch(
             cartActions.removeOneItem({
                 ...product,
-                quantity: (quantity -= 1),
+                count: (quantity -= 1),
             }),
         );
     };
     return (
         <Counter
-            quantity={product.quantity}
-            onIncrement={onIncrement(product.quantity)}
-            onDecrement={onDecrement(product.quantity)}
+            quantity={product.count}
+            onIncrement={onIncrement(product.count)}
+            onDecrement={onDecrement(product.count)}
             className={className}
         />
     );

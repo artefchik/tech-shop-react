@@ -3,9 +3,9 @@ import { Card } from 'shared/ui/Card/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { memo, ReactNode } from 'react';
-import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
 import { StarRating } from 'shared/ui/StarRating/StarRating';
 import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
+import { ViewType } from 'shared/const/types';
 import { Product } from '../../model/product';
 import cls from './ProductItem.module.scss';
 

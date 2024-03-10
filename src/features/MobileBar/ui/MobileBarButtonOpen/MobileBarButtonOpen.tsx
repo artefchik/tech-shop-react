@@ -2,9 +2,9 @@ import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from 'shared/ui/Button/Button';
 import { useCallback } from 'react';
-import { mobileBarActions } from 'features/MobileBar/model/slice/mobileBarSlice';
 import { useSelector } from 'react-redux';
-import { getMobileBarIsOpen } from 'features/MobileBar/model/selectors/getMobileBarIsOpen/getMobileBarIsOpen';
+import { mobileBarActions } from '../../model/slice/mobileBarSlice';
+import { getMobileBarIsOpen } from '../../model/selectors/getMobileBarIsOpen/getMobileBarIsOpen';
 import cls from './MobileBarButtonOpen.module.scss';
 
 interface MobileBarButtonOpenProps {

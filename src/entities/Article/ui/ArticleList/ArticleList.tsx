@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleListItemSkeleton } from 'entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from 'entities/Article/ui/ArticleListItem/ArticleListItem';
 import { memo } from 'react';
-import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
+import { ViewType } from 'shared/const/types';
 import { Article, ArticleView } from '../../model/types/article';
 import cls from './ArticleList.module.scss';
 

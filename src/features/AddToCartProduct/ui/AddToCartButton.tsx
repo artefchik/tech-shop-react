@@ -8,35 +8,34 @@ import { Product } from 'entities/Product';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { useCallback } from 'react';
-import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
-import { updateCart } from 'entities/Cart';
+import { ViewType } from 'shared/const/types';
+import { useTranslation } from 'react-i18next';
 import cls from './AddToCartButton.module.scss';
 
 interface AddToCartButtonProps {
     className?: string;
-    product: Product;
+    productId: string;
     view: ViewType;
 }
 
 export const AddToCartButton = (props: AddToCartButtonProps) => {
-    const { className, product, view } = props;
+    const { className, productId, view } = props;
     const dispatch = useAppDispatch();
     // const [addToCartProduct] = useAddToCartProduct();
     const userData = useSelector(getUserAuthData);
+    const { t } = useTranslation();
+    // const addToCart = useCallback(() => {
+    //     dispatch(cartActions.addOneItem(product));
+    // }, [dispatch, product]);
+    //
 
-    const addToCart = useCallback(() => {
-        dispatch(cartActions.addItem(product));
-    }, [dispatch, product]);
     return (
         <Button
-            onClick={addToCart}
-            className={classNames(cls.AddToCartButton, {}, [
-                className,
-                cls[view],
-            ])}
+            // onClick={addToCart}
+            className={classNames(cls.AddToCartButton, {}, [className, cls[view]])}
         >
             <Icon Svg={cartPlus} hover={false} className={cls.cartPlus} />
-            <span> Add To Cart</span>
+            <span>{t('Add To Cart')}</span>
         </Button>
     );
 };

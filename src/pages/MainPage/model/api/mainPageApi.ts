@@ -1,24 +1,17 @@
 import { rtkApi } from 'shared/api/rtkApi';
 import { Article } from 'entities/Article';
-
-interface MainPageApiArg {
-    limit: number;
-    order: string;
-    url: string;
-}
-
-interface MainPageApiResponse<T> {
-    items: T;
-}
+import { Product } from 'entities/Product';
+import { MainPageApiArg } from '../types/cardBlocks';
 
 const mainPageApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
-        getMainBlockPage: build.query<Article[], MainPageApiArg>({
-            query: ({ limit, url, order }) => ({
+        getMainBlockPage: build.query<Product[], MainPageApiArg>({
+            query: ({ limit, url, order, category }) => ({
                 url,
                 params: {
                     limit,
                     order,
+                    category,
                 },
             }),
         }),

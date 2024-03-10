@@ -1,6 +1,6 @@
 import { EntityState } from '@reduxjs/toolkit';
-import { Article, ArticleView } from 'entities/Article';
-import { ViewType } from 'shared/ui/ViewSelector/ViewSelector';
+import { Article } from 'entities/Article';
+import { ViewType } from 'shared/const/types';
 
 export interface ArticlesPageSchema extends EntityState<Article> {
     isLoading?: boolean;
