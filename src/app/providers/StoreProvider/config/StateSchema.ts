@@ -20,11 +20,13 @@ import { SandboxSettingsSchema } from 'features/SandboxSettings';
 import { ProductsFiltersSchema } from 'features/ProductsFilter';
 import { MobileBarSchema } from 'features/MobileBar';
 import { FavoriteSchema } from 'entities/Favorite';
+import { CartProductSchema } from 'features/CartProduct';
 
 export interface StateSchema {
     user: UserSchema;
     cart: CartSchema;
     favorite: FavoriteSchema;
+    cartProducts: CartProductSchema;
     productFavorites: ProductFavoritesSchema;
 
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;

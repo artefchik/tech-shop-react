@@ -1,11 +1,12 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { VStack } from 'shared/ui/Stack';
 import { useSelector } from 'react-redux';
-import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { CartProduct } from 'widgets/CartProduct/ui/CartProduct';
-import { fetchCartProductsList, getCartProducts, updateCart } from 'entities/Cart';
-import { getUserAuthData } from 'entities/User';
+import { CartProduct } from 'features/CartProduct/ui/CartProduct/CartProduct';
+import { getCartData } from 'entities/Cart/model/selectors/getCartData/getCartData';
+import { useEffect } from 'react';
+import { getCartProducts } from 'features/CartProduct/model/slice/cartProductsSlice';
+import { fetchCartProductsList } from 'features/CartProduct/model/services/fetchCartProductsList/fetchCartProductsList';
 import cls from './ShoppingCartList.module.scss';
 
 interface ShoppingCartListProps {
@@ -13,13 +14,13 @@ interface ShoppingCartListProps {
 }
 
 export const ShoppingCartList = ({ className }: ShoppingCartListProps) => {
-    const products = useSelector(getCartProducts);
+    const products = useSelector(getCartProducts.selectAll);
     const dispatch = useAppDispatch();
-    const authData = useSelector(getUserAuthData);
+    const cart = useSelector(getCartData);
 
     useEffect(() => {
-        dispatch(fetchCartProductsList());
-    }, [dispatch]);
+        dispatch(fetchCartProductsList(cart?.id ?? ''));
+    }, [cart?.id, dispatch]);
 
     return (
         <VStack gap="20" className={classNames(cls.ShoppingCartList, {}, [className])}>

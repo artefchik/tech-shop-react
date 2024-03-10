@@ -10,12 +10,12 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { isBrowser, isMobile } from 'react-device-detect';
 import { MobileBar } from 'features/MobileBar';
 import { initFavoriteData } from 'entities/Favorite/model/services/initFavoriteData/initFavoriteData';
+import { initCartData } from 'entities/Cart/model/services/initCartData/initCartData';
 
 function App() {
     const { themeVariant } = useTheme();
     const dispatch = useAppDispatch();
     const inited = useSelector(getUserInitied);
-
     const userData = useSelector(getUserAuthData);
     useEffect(() => {
         dispatch(initUserAuthData());
@@ -24,6 +24,7 @@ function App() {
     useEffect(() => {
         if (userData) {
             dispatch(initFavoriteData(userData.id));
+            dispatch(initCartData(userData.id));
         }
     }, [dispatch, userData]);
 

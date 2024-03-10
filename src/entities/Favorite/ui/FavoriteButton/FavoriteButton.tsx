@@ -15,10 +15,10 @@ interface FavoriteButtonProps {
 
 export const FavoriteButton = memo((props: FavoriteButtonProps) => {
     const { className, onToggleFavorite, isFavorite = false } = props;
-    const [isFav, setIsFav] = useState(isFavorite);
+    const [isSelectedFavorite, setIsSelectedFavorite] = useState(isFavorite);
 
     const onToggleFavoriteHandler = useCallback(() => {
-        setIsFav((prevState) => !prevState);
+        setIsSelectedFavorite((prevState) => !prevState);
         onToggleFavorite?.();
     }, [onToggleFavorite]);
 

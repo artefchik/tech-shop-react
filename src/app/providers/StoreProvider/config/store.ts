@@ -6,6 +6,7 @@ import { rtkApi } from 'shared/api/rtkApi';
 import { favoriteReducer } from 'entities/Favorite';
 import { cartReducer } from 'entities/Cart';
 import { productFavoritesReducer } from 'features/ProductFavoriteButton';
+import { cartProductsReducer } from 'features/CartProduct';
 import { createReducerManager } from './reducerManager';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 
@@ -18,6 +19,7 @@ export function createReduxStore(
         user: userReducer,
         favorite: favoriteReducer,
         cart: cartReducer,
+        cartProducts: cartProductsReducer,
         productFavorites: productFavoritesReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     };

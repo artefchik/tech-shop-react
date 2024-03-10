@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { getRoutePathProducts } from 'shared/const/router';
 import { ProductCategory } from 'entities/Product/model/product';
 import { SwiperSlide } from 'swiper/react';
-import { ProductItem } from 'entities/Product/ui/ProductItem/ProductItem';
+import { ProductCard } from 'entities/Product/ui/ProductCard/ProductCard';
 import { ViewType } from 'shared/const/types';
 import { useGetMainBlockPage } from '../../model/api/mainPageApi';
 import { MainPageCardHeader } from '../MainPageCardHeader/MainPageCardHeader';
@@ -60,7 +60,7 @@ export const MainPageProductsCards = (props: MainPageProductsCardsProps) => {
                 {products &&
                     products.map((product) => (
                         <SwiperSlide key={product.id}>
-                            <ProductItem product={product} view={ViewType.SMALL} />
+                            <ProductCard product={product} view={ViewType.SMALL} />
                         </SwiperSlide>
                     ))}
             </Slider>

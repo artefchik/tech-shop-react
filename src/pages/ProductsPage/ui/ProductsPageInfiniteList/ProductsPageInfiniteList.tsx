@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from 'entities/Product/ui/ProductList/ProductList.module.scss';
-import { ProductItem } from 'entities/Product/ui/ProductItem/ProductItem';
-import { ProductItemSkeleton } from 'entities/Product/ui/ProductItem/ProductItemSkeleton';
+import { ProductCard } from 'entities/Product/ui/ProductCard/ProductCard';
+import { ProductCardSkeleton } from 'entities/Product/ui/ProductCard/ProductCardSkeleton';
 import { ProductFavoriteButton } from 'features/ProductFavoriteButton';
 import { getUserAuthData } from 'entities/User';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -12,6 +12,7 @@ import { getProducts } from 'pages/ProductsPage/model/slice/productsPageSlice';
 import { ViewType } from 'shared/const/types';
 import { useEffect } from 'react';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/services/fetchProductsFavorites/fetchProductsFavorites';
+import { AddToCartButton } from 'features/AddToCartProduct/ui/AddToCartButton';
 import { getProductsPageIsLoading } from '../../model/selectors/getProductsPageIsLoading/getProductsPageIsLoading';
 import { getProductsPageView } from '../../model/selectors/getProductsPageView/getProductsPageView';
 
@@ -21,7 +22,7 @@ interface ArticlesInfiniteListProps {
 const getSkeletons = (view: ViewType) =>
     new Array(view === ViewType.SMALL ? 5 : 3)
         .fill(0)
-        .map((item, index) => <ProductItemSkeleton key={index} />);
+        .map((item, index) => <ProductCardSkeleton key={index} />);
 
 export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
     const { className } = props;
@@ -39,13 +40,13 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
         <div className={classNames(cls.ProductList, {}, [className, cls[view]])}>
             {products.length > 0 &&
                 products.map((product) => (
-                    <ProductItem
+                    <ProductCard
                         key={product.id}
                         product={product}
                         view={view}
-                        // AddToCartButton={
-                        //     <AddToCartButton product={product} view={view} />
-                        // }
+                        AddToCartButton={
+                            <AddToCartButton product={product} view={view} />
+                        }
                         FavoriteButton={<ProductFavoriteButton productId={product.id} />}
                     />
                 ))}

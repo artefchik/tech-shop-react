@@ -4,10 +4,6 @@ import { FavoriteProduct } from 'features/ProductFavoriteButton/model/types/favo
 import { $api } from 'shared/api/api';
 import { getFavoriteData } from 'entities/Favorite/model/selectors/getFavoriteData/getFavoriteData';
 
-interface fetchArticleListProps {
-    replace?: boolean;
-}
-
 export const fetchProductsFavorites = createAsyncThunk<
     FavoriteProduct[],
     void,

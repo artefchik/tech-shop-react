@@ -4,8 +4,12 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { Button } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { cartActions, getCountTotalProducts } from 'entities/Cart';
 import { declinationOfNumber } from 'shared/lib/helpers/declinationOfNumber';
+import { useTranslation } from 'react-i18next';
+import { getCartData } from 'entities/Cart';
+import { getCountTotalProducts } from 'features/CartProduct/model/selectors/getCountTotalProducts/getCountTotalProducts';
+import { clearCartProducts } from 'features/CartProduct/model/services/clearCartProducts/clearCartProducts';
+import { cartProductsActions } from 'features/CartProduct/model/slice/cartProductsSlice';
 import cls from './ShoppingCartHeaderPage.module.scss';
 
 interface ShoppingCartHeaderPageProps {
@@ -16,8 +20,13 @@ export const ShoppingCartHeaderPage = ({ className }: ShoppingCartHeaderPageProp
     const dispatch = useAppDispatch();
     const totalProducts = useSelector(getCountTotalProducts);
     const total = `${totalProducts} ${declinationOfNumber(totalProducts, ['товар', 'товара', 'товаров'])}`;
+    const { t } = useTranslation();
+
+    const cart = useSelector(getCartData);
+
     const onClearCart = () => {
-        dispatch(cartActions.clearCart());
+        dispatch(cartProductsActions.clearCart());
+        dispatch(clearCartProducts(cart?.id ?? ''));
     };
 
     return (
@@ -31,7 +40,7 @@ export const ShoppingCartHeaderPage = ({ className }: ShoppingCartHeaderPageProp
                 <Text text="Корзина" />
                 <Text text={total} />
             </HStack>
-            <Button onClick={onClearCart}>Очистить корзину</Button>
+            <Button onClick={onClearCart}>{t('Очистить корзину')}</Button>
         </HStack>
     );
 };
