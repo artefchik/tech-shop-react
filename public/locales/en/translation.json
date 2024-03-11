@@ -2,7 +2,6 @@
   "Купить": "Buy",
   "Home": "Home",
   "Products": "Products",
-  "About": "About",
   "Articles": "Articles",
   "См.все": "See all",
   "Email": "Email",
@@ -16,5 +15,6 @@
   "Очистить корзину": "Clear the cart",
   "Итого": "Total",
   "Your cart is empty": "Your cart is empty",
-  "Go to products": "Go to products"
+  "Go to products": "Go to products",
+  "About Us": "About Us"
 }

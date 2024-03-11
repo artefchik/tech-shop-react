@@ -1,6 +1,5 @@
 import { EntityState } from '@reduxjs/toolkit';
-import { Product } from 'entities/Product';
-import { CartItemType } from 'entities/CartItem/model/types/cartItem';
+import { CartItemType } from 'entities/Cart';
 
 export interface CartProductSchema extends EntityState<CartItemType> {
     isLoading?: boolean;

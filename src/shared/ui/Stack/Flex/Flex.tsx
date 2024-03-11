@@ -5,7 +5,7 @@ import cls from './Flex.module.scss';
 type FlexJustify = 'center' | 'start' | 'end' | 'between';
 type FlexAlign = 'center' | 'start' | 'end' | 'stretch';
 type FlexGap = '5' | '10' | '15' | '20' | '25' | '30' | '35';
-type FlexDirection = 'row' | 'column';
+type FlexDirection = 'row' | 'column' | 'rowReverse';
 
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
@@ -39,6 +39,7 @@ const alignClasses: Record<FlexAlign, string> = {
 
 const directionClasses: Record<FlexDirection, string> = {
     row: cls.directionRow,
+    rowReverse: cls.directionRowReverse,
     column: cls.directionColumn,
 };
 

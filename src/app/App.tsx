@@ -11,6 +11,8 @@ import { isBrowser, isMobile } from 'react-device-detect';
 import { MobileBar } from 'features/MobileBar';
 import { initFavoriteData } from 'entities/Favorite/model/services/initFavoriteData/initFavoriteData';
 import { initCartData } from 'entities/Cart/model/services/initCartData/initCartData';
+import { fetchProductsList } from 'pages/ProductsPage/model/services/fetchProductsList/fetchProductsList';
+import { fetchCartProductsList } from 'features/CartProduct';
 
 function App() {
     const { themeVariant } = useTheme();

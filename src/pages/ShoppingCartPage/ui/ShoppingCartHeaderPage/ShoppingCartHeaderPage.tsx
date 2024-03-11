@@ -6,10 +6,11 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { declinationOfNumber } from 'shared/lib/helpers/declinationOfNumber';
 import { useTranslation } from 'react-i18next';
-import { getCartData } from 'entities/Cart';
-import { getCountTotalProducts } from 'features/CartProduct/model/selectors/getCountTotalProducts/getCountTotalProducts';
-import { clearCartProducts } from 'features/CartProduct/model/services/clearCartProducts/clearCartProducts';
-import { cartProductsActions } from 'features/CartProduct/model/slice/cartProductsSlice';
+import {
+    cartProductsActions,
+    clearCartProducts,
+    getCartProductsTotal,
+} from 'features/CartProduct';
 import cls from './ShoppingCartHeaderPage.module.scss';
 
 interface ShoppingCartHeaderPageProps {
@@ -18,15 +19,13 @@ interface ShoppingCartHeaderPageProps {
 
 export const ShoppingCartHeaderPage = ({ className }: ShoppingCartHeaderPageProps) => {
     const dispatch = useAppDispatch();
-    const totalProducts = useSelector(getCountTotalProducts);
+    const totalProducts = useSelector(getCartProductsTotal);
     const total = `${totalProducts} ${declinationOfNumber(totalProducts, ['товар', 'товара', 'товаров'])}`;
     const { t } = useTranslation();
 
-    const cart = useSelector(getCartData);
-
     const onClearCart = () => {
         dispatch(cartProductsActions.clearCart());
-        dispatch(clearCartProducts(cart?.id ?? ''));
+        dispatch(clearCartProducts());
     };
 
     return (

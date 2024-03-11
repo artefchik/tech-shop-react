@@ -46,7 +46,7 @@ export const ProductsPageHeader = memo((props: ProductsPageHeaderProps) => {
             gap="15"
             className={classNames(cls.ProductsPageHeader, {}, [className])}
         >
-            <Text text={renderTitle()} size={TextSize.LARGE} />
+            <Text text={renderTitle()} size={TextSize.LARGE} As="h3" />
             <HStack align="center" gap="15">
                 <ProductsFilter className={cls.filters} fetchData={fetchData} />
                 <ProductsViewSelector />

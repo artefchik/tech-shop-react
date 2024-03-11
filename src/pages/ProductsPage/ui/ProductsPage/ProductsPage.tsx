@@ -52,6 +52,7 @@ const ProductsPage = (props: ProductsPageProps) => {
     useEffect(() => {
         dispatch(initProductsPage(searchParams));
     }, [dispatch, searchParams]);
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page

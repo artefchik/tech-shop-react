@@ -3,7 +3,7 @@ import { HStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text/Text';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { getCartTotalPrice } from 'features/CartProduct/model/selectors/getCartTotalPrice/getCartTotalPrice';
+import { getCartTotalPrice } from 'features/CartProduct';
 import cls from './ShoppingCartTotalSummary.module.scss';
 
 interface ShoppingCartTotalSummaryProps {

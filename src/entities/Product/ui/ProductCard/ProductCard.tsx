@@ -13,12 +13,12 @@ interface ProductItemProps {
     className?: string;
     product: Product;
     view: ViewType;
-    AddToCartButton?: ReactNode;
+    AddProductButton?: ReactNode;
     FavoriteButton?: ReactNode;
 }
 
 export const ProductCard = memo((props: ProductItemProps) => {
-    const { className, product, view, AddToCartButton, FavoriteButton } = props;
+    const { className, product, view, AddProductButton, FavoriteButton } = props;
 
     if (view === ViewType.SMALL) {
         return (
@@ -45,7 +45,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                             </HStack>
                         </VStack>
                     </VStack>
-                    {AddToCartButton}
+                    {AddProductButton && AddProductButton}
                 </VStack>
             </Card>
         );
@@ -83,7 +83,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                         />
                     </HStack>
                     <HStack align="center" gap="20">
-                        {AddToCartButton}
+                        {AddProductButton && AddProductButton}
                         {FavoriteButton && FavoriteButton}
                     </HStack>
                 </VStack>

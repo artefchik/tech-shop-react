@@ -1,23 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { $api } from 'shared/api/api';
-import { CartItemType } from 'entities/CartItem';
 import { fetchCartProductsList } from 'features/CartProduct/model/services/fetchCartProductsList/fetchCartProductsList';
+import { CartItemType, getCartId } from 'entities/Cart';
 
-interface RemoveProductCartArg {
-    basketId: string;
-    productId: string;
-}
-
-export const removeCartProduct = createAsyncThunk<
+export const deleteCartProduct = createAsyncThunk<
     CartItemType,
-    RemoveProductCartArg,
+    string,
     ThunkConfig<string>
->('cartProduct/removeCartProduct', async ({ productId, basketId }, thunkAPI) => {
+>('basketProduct/deleteCartProduct', async (productId, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
+    const cartId = getCartId(getState());
+    if (!cartId) {
+        return rejectWithValue('error');
+    }
     try {
-        const response = await $api.delete(`/basket/${basketId}`, {
+        const response = await $api.delete(`/basket/${cartId}`, {
             params: {
                 productId,
             },
@@ -25,7 +24,7 @@ export const removeCartProduct = createAsyncThunk<
         if (!response.data) {
             return rejectWithValue('error');
         }
-        dispatch(fetchCartProductsList(basketId));
+        dispatch(fetchCartProductsList());
         return response.data;
     } catch (e) {
         console.log(e);

@@ -8,6 +8,7 @@ export enum TextTheme {
     ERROR = 'error',
     SECONDARY = 'secondary',
     DEFAULT = 'default',
+    INVERTED_PRIMARY = 'inverted',
 }
 
 export enum TextWeight {

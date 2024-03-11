@@ -1,14 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { $api } from 'shared/api/api';
-import { CartItemType } from 'entities/CartItem';
+import { CartItemType, getCartId } from 'entities/Cart';
 
 export const fetchCartProductsList = createAsyncThunk<
     CartItemType[],
-    string,
+    void,
     ThunkConfig<string>
->('cartProduct/fetchCartProductsList', async (cartId, thunkAPI) => {
+>('cartProducts/fetchCartProductsList', async (_, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
+
+    const cartId = getCartId(getState());
+    if (!cartId) {
+        return rejectWithValue('error');
+    }
     try {
         const response = await $api.get(`/basket/${cartId}`);
         if (!response.data) {

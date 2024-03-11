@@ -1,4 +1,4 @@
-.AddToCartButton {
+.AddProductButton {
 }
 
 .cartPlus {
@@ -7,14 +7,14 @@
     }
 }
 
-.AddToCartButton {
+.AddProductButton {
     span {
         white-space: nowrap;
     }
 }
 
 .big {
-    &.AddToCartButton {
+    &.AddProductButton {
         @media (max-width: 767.98px) {
             span {
                 display: none;

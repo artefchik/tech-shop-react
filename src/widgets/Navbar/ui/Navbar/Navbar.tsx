@@ -25,7 +25,7 @@ export const Navbar = memo((props: NavbarProps) => {
         },
         {
             path: getRoutePathAbout(),
-            text: t('About'),
+            text: t('About Us'),
         },
         {
             path: getRoutePathArticles(),

@@ -1,8 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Product, ProductCard } from 'entities/Product';
-import { AddToCartButton } from 'features/AddToCartProduct/ui/AddToCartButton';
 import { ProductFavoriteButton } from 'features/ProductFavoriteButton';
 import { ViewType } from 'shared/const/types';
+import { AddProductButton } from 'features/CartProduct';
 import cls from './ProductItem.module.scss';
 
 interface ProductCartItemProps {
@@ -18,7 +18,7 @@ export const ProductItem = (props: ProductCartItemProps) => {
             key={product.id}
             product={product}
             view={view}
-            AddToCartButton={<AddToCartButton product={product} view={view} />}
+            AddProductButton={<AddProductButton product={product} view={view} />}
             FavoriteButton={<ProductFavoriteButton productId={product.id} />}
         />
     );

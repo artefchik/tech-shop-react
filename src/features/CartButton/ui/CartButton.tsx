@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { getRoutePathShoppingCart } from 'shared/const/router';
-import { getCountTotalProducts } from 'features/CartProduct/model/selectors/getCountTotalProducts/getCountTotalProducts';
+import { getCartProductsTotal } from 'features/CartProduct/model/selectors/getCartProductsTotal/getCartProductsTotal';
 import cls from './CartButton.module.scss';
 
 interface CartButtonProps {
@@ -14,8 +14,7 @@ interface CartButtonProps {
 
 export const CartButton = (props: CartButtonProps) => {
     const { className } = props;
-    const authData = useSelector(getUserAuthData);
-    const totalProducts = useSelector(getCountTotalProducts);
+    const totalProducts = useSelector(getCartProductsTotal);
     return (
         <AppLink
             to={getRoutePathShoppingCart()}

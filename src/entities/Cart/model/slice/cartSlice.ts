@@ -1,7 +1,4 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
-import { Product } from 'entities/Product';
-import { User } from 'entities/User';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initCartData } from 'entities/Cart/model/services/initCartData/initCartData';
 import { Cart, CartSchema } from '../types/cart';
 
@@ -10,7 +7,7 @@ const initialState: CartSchema = {
     error: undefined,
 };
 
-export const cartsSlice = createSlice({
+export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {},
@@ -25,5 +22,5 @@ export const cartsSlice = createSlice({
     },
 });
 
-export const { actions: cartActions } = cartsSlice;
-export const { reducer: cartReducer } = cartsSlice;
+export const { actions: cartActions } = cartSlice;
+export const { reducer: cartReducer } = cartSlice;

@@ -1,11 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { $api } from 'shared/api/api';
-import { CartItemType } from 'entities/CartItem';
+import { CartItemType, getCartId } from 'entities/Cart';
 import { fetchCartProductsList } from '../fetchCartProductsList/fetchCartProductsList';
 
 interface updateCartArg {
-    basketId: string;
     count: number;
     productId: string;
 }
@@ -14,18 +13,22 @@ export const updateCartProduct = createAsyncThunk<
     CartItemType,
     updateCartArg,
     ThunkConfig<string>
->('cartProduct/updateCartProduct', async ({ count, productId, basketId }, thunkAPI) => {
+>('cartProducts/updateCartProduct', async ({ count, productId }, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
+    const cartId = getCartId(getState());
+    if (!cartId) {
+        return rejectWithValue('error');
+    }
     try {
-        const response = await $api.patch(`/basket/${basketId}`, {
+        const response = await $api.patch(`/basket/${cartId}`, {
             productId,
             count,
         });
         if (!response.data) {
             return rejectWithValue('error');
         }
-        dispatch(fetchCartProductsList(basketId));
+        dispatch(fetchCartProductsList());
         return response.data;
     } catch (e) {
         console.log(e);

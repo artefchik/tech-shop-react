@@ -1,4 +1,11 @@
-export { cartProductsReducer } from './model/slice/cartProductsSlice';
-
-export { CartProductSchema } from './model/types/CartProductSchema';
+export { cartProductsActions } from './model/slice/cartProductsSlice';
+export { clearCartProducts } from './model/services/clearCartProducts/clearCartProducts';
+export { getCartAllProducts } from './model/selectors/getCartProducts/getCartProducts';
+export { AddProductButton } from './ui/AddProductButton/AddProductButton';
+export { getCartProductsTotal } from './model/selectors/getCartProductsTotal/getCartProductsTotal';
+export { getCartTotalPrice } from './model/selectors/getCartTotalPrice/getCartTotalPrice';
 export { CartProduct } from './ui/CartProduct/CartProduct';
+export { fetchCartProductsList } from './model/services/fetchCartProductsList/fetchCartProductsList';
+export { getCartProducts } from './model/slice/cartProductsSlice';
+export { cartProductsReducer } from './model/slice/cartProductsSlice';
+export { CartProductSchema } from './model/types/CartProductSchema';
