@@ -16,5 +16,18 @@
   "Итого": "Итого",
   "Your cart is empty": "Ваша корзина пуста",
   "Go to products": "Перейти к покупкам",
-  "About Us": "О нас"
+  "About Us": "О нас",
+  "Корзина": "Корзина",
+  "товар": "товар",
+  "товарa": "товарa",
+  "товаров": "товаров",
+  "Read more": "Читать далее",
+  "Filters": "Фильтры",
+  "Shop is a proudly Australian open, Melbourne based supplier of IT": {
+    " goods and services, operating since 1991": {
+      " We provide complete business IT solutions, centred on high quality hardware and exceptional customer service": {
+        "": "Shop с гордостью представляет Australian open, базирующийся в Мельбурне поставщик IT-товаров и услуг, работающий с 1991 года. Мы предоставляем комплексные ИТ-решения для бизнеса, основанные на высококачественном оборудовании и исключительном обслуживании клиентов."
+      }
+    }
+  }
 }

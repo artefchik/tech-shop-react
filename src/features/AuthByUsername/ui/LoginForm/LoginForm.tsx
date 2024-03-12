@@ -12,6 +12,7 @@ import { Text, TextAlign, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
 import { TabItem, Tabs } from 'shared/ui/Tabs/Tabs';
 import { signupByEmail } from 'features/AuthByUsername/model/services/signupByEmail/signupByEmail';
+import { useTranslation } from 'react-i18next';
 import { getLoginStateByEmail } from '../../model/selectors/getLoginStateByEmail/getLoginStateByEmail';
 import { getLoginStateError } from '../../model/selectors/getLoginStateError/getLoginStateError';
 import { getLoginStateIsLoading } from '../../model/selectors/getLoginStateIsLoading/getLoginStateIsLoading';
@@ -43,7 +44,7 @@ const loginOptions: TabItem[] = [
 
 const LoginForm = memo((props: LoginFormProps) => {
     const { className, onSuccess } = props;
-
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
     const username = useSelector(getLoginStateByUsername);
@@ -122,7 +123,7 @@ const LoginForm = memo((props: LoginFormProps) => {
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="20" className={classNames(cls.LoginForm, {}, [className])}>
                 <Text
-                    size={TextSize.BIG}
+                    size={TextSize.LARGE}
                     align={TextAlign.CENTER}
                     text={loginOption}
                     As="h3"
@@ -135,15 +136,15 @@ const LoginForm = memo((props: LoginFormProps) => {
                     value={loginOption}
                 />
                 {error && <Text theme={TextTheme.ERROR} text={error} />}
-                <VStack gap="15">
+                <VStack gap="10">
                     <Input
-                        label="Username"
                         onChange={onChangeUsername}
                         value={username}
+                        label={t('Username')}
                     />
-                    <Input label="Email" onChange={onChangeEmail} value={email} />
+                    <Input label={t('Email')} onChange={onChangeEmail} value={email} />
                     <Input
-                        label="Password"
+                        label={t('Password')}
                         onChange={onChangePassword}
                         value={password}
                     />

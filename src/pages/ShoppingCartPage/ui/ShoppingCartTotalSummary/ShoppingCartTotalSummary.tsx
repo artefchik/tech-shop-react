@@ -4,6 +4,7 @@ import { Text } from 'shared/ui/Text/Text';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getCartTotalPrice } from 'features/CartProduct';
+import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
 import cls from './ShoppingCartTotalSummary.module.scss';
 
 interface ShoppingCartTotalSummaryProps {
@@ -19,7 +20,7 @@ export const ShoppingCartTotalSummary = ({
         <div className={classNames(cls.ShoppingCartTotalSummary, {}, [className])}>
             <HStack justify="end" align="center" gap="20">
                 <Text text={t('Итого')} />
-                <Text text={String(totalPrice)} />
+                <Text text={formatToCurrency(totalPrice)} />
             </HStack>
         </div>
     );

@@ -54,7 +54,7 @@ const AboutPage = ({ className }: AboutPageProps) => {
                 <Text
                     text={t('About Us')}
                     size={TextSize.LARGE}
-                    As="h3"
+                    As="h2"
                     weight={TextWeight.SEMI}
                     className={cls.title}
                 />

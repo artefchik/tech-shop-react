@@ -25,15 +25,21 @@ export const FavoriteButton = memo((props: FavoriteButtonProps) => {
     return (
         <Button
             onClick={onToggleFavoriteHandler}
-            className={classNames(cls.FavoriteButton, { [cls.active]: isFavorite }, [
-                className,
-            ])}
+            className={classNames(
+                cls.FavoriteButton,
+                { [cls.active]: isSelectedFavorite },
+                [className],
+            )}
             theme={ThemeButton.CLEAR}
         >
             <Icon
                 hover={false}
                 Svg={favorites}
-                className={classNames(cls.favorites, { [cls.active]: isFavorite }, [])}
+                className={classNames(
+                    cls.favorites,
+                    { [cls.active]: isSelectedFavorite },
+                    [],
+                )}
             />
         </Button>
     );

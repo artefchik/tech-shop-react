@@ -1,8 +1,8 @@
 .MainPage {
-
-
 }
 
-//.body {
-//  min-height: 80vh;
-//}
+.container {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+}

@@ -19,7 +19,7 @@ export const AboutPageBlock = (props: AboutPageBlockProps) => {
     const reverse = block.isReverse ? 'rowReverse' : 'row';
 
     return (
-        <div className={classNames(cls.wrapper, mods, [])}>
+        <section className={classNames('', mods, [])}>
             <Flex
                 gap="20"
                 direction={reverse}
@@ -49,6 +49,6 @@ export const AboutPageBlock = (props: AboutPageBlockProps) => {
                     </VStack>
                 </VStack>
             </Flex>
-        </div>
+        </section>
     );
 };

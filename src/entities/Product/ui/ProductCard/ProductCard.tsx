@@ -22,7 +22,10 @@ export const ProductCard = memo((props: ProductItemProps) => {
 
     if (view === ViewType.SMALL) {
         return (
-            <Card className={classNames(cls.ProductCard, {}, [className, cls[view]])}>
+            <Card
+                As="article"
+                className={classNames(cls.ProductCard, {}, [className, cls[view]])}
+            >
                 <VStack gap="10" className={cls.body}>
                     <div className={cls.image}>
                         <img src={__API__ + product.imageSrc} alt={product.title} />

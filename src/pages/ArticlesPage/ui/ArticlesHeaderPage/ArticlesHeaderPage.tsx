@@ -28,6 +28,7 @@ export const ArticlesHeaderPage = (props: ArticlesHeaderPageProps) => {
 
     const debounceFetchData = useDebounce(fetchData, 600);
 
+    // TODO filter on mobile
     return (
         <HStack
             align="center"

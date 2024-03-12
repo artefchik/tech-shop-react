@@ -16,5 +16,19 @@
   "Итого": "Total",
   "Your cart is empty": "Your cart is empty",
   "Go to products": "Go to products",
-  "About Us": "About Us"
+  "About Us": "About Us",
+  "Корзина": "Cart",
+  "товар": "product",
+  "товарa": "products",
+  "товаров": "products",
+  "Read more": "Read more",
+  "Filters": "Filters",
+  "Shop is a proudly Australian open, Melbourne based supplier of IT": {
+    " goods and services, operating since 1991": {
+      " We provide complete business IT solutions, centred on high quality hardware and exceptional customer service": {
+        "": "Shop is a proudly Australian open, Melbourne based supplier of IT. goods and services, operating since 1991. We provide complete business IT solutions, centred on high quality hardware and exceptional customer service."
+      }
+    }
+  },
+  "Password": "Password"
 }

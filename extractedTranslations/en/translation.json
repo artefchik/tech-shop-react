@@ -1,4 +1,5 @@
 {
+  "": "",
   "About": "About",
   "About As": "About As",
   "About Us": "About Us",
@@ -6,20 +7,45 @@
   "Articles": "Articles",
   "Categories": "Categories",
   "Email": "Email",
+  "Filters": "Filters",
   "Get blog articles and offers via email": "Get blog articles and offers via email",
   "Go to products": "Go to products",
   "Home": "Home",
   "Links": "Links",
+  "Password": "Password",
   "Phone": "Phone",
   "Products": "Products",
+  "Read more": "Read more",
+  "Shop is a proudly Australian open, Melbourne based supplier of I": {
+    "T": {
+      " goods and services, operating since 1991": {
+        " We provide complete business IT solutions, centred on high quality hardware and exceptional customer service": {
+          "": ""
+        }
+      }
+    }
+  },
+  "Shop is a proudly Australian open, Melbourne based supplier of IT": {
+    " goods and services, operating since 1991": {
+      " We provide complete business IT solutions, centred on high quality hardware and exceptional customer service": {
+        "": ""
+      }
+    }
+  },
   "Subscribe": "Subscribe",
+  "Username": "Username",
   "Weekly Newsletter": "Weekly Newsletter",
   "Your cart is empty": "Your cart is empty",
   "Итого": "Итого",
+  "Кead more": "Кead more",
+  "Корзина": "Корзина",
   "Купить": "Buy",
   "Очистить корзину": "Очистить корзину",
   "См": {
     "все": "все"
   },
-  "См.все": "See all"
+  "См.все": "See all",
+  "товар": "товар",
+  "товарa": "товарa",
+  "товаров": "товаров"
 }

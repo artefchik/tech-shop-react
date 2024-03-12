@@ -14,7 +14,7 @@ import about from 'shared/assets/icons/about.svg';
 export interface MobileNavbarItemType {
     path: string;
     text: string;
-    icon: React.VFC<React.SVGProps<SVGSVGElement>>;
+    icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 export const mobileNavbarItemsList: MobileNavbarItemType[] = [

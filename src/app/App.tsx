@@ -4,21 +4,29 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { useSelector } from 'react-redux';
 import { Header } from 'widgets/Header';
-import { getUserAuthData, getUserInitied, initUserAuthData } from 'entities/User';
+import { getUserAuthData, getUserInitiated, initUserAuthData } from 'entities/User';
 import { Footer } from 'widgets/Footer';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { isBrowser, isMobile } from 'react-device-detect';
-import { MobileBar } from 'features/MobileBar';
-import { initFavoriteData } from 'entities/Favorite/model/services/initFavoriteData/initFavoriteData';
-import { initCartData } from 'entities/Cart/model/services/initCartData/initCartData';
-import { fetchProductsList } from 'pages/ProductsPage/model/services/fetchProductsList/fetchProductsList';
+import { isBrowser } from 'react-device-detect';
+import { getMobileBarIsOpen, MobileBar } from 'features/MobileBar';
+import { initFavoriteData } from 'entities/Favorite';
+import { getCartId, initCartData } from 'entities/Cart';
+import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/services/fetchProductsFavorites/fetchProductsFavorites';
+import { getFavoriteDataId } from 'entities/Favorite/model/selectors/getFavoriteData/getFavoriteData';
 import { fetchCartProductsList } from 'features/CartProduct';
+
+import 'shared/config/i18n/i18n';
 
 function App() {
     const { themeVariant } = useTheme();
     const dispatch = useAppDispatch();
-    const inited = useSelector(getUserInitied);
+    const initiated = useSelector(getUserInitiated);
     const userData = useSelector(getUserAuthData);
+    const isOpenMobileBar = useSelector(getMobileBarIsOpen);
+
+    const favorite = useSelector(getFavoriteDataId);
+    const cart = useSelector(getCartId);
+
     useEffect(() => {
         dispatch(initUserAuthData());
     }, [dispatch]);
@@ -30,12 +38,20 @@ function App() {
         }
     }, [dispatch, userData]);
 
+    useEffect(() => {
+        if (favorite) {
+            dispatch(fetchProductsFavorites());
+        }
+        if (cart) {
+            dispatch(fetchCartProductsList());
+        }
+    }, [cart, dispatch, favorite]);
     return (
-        <div className={classNames('app', {}, [themeVariant])}>
+        <div className={classNames('app', { lock: isOpenMobileBar }, [themeVariant])}>
             <Suspense fallback="">
                 {isBrowser && <Header />}
                 <MobileBar />
-                {inited && <AppRouter />}
+                {initiated && <AppRouter />}
                 <Footer />
             </Suspense>
         </div>

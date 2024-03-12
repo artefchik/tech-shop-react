@@ -1,0 +1,14 @@
+.AdvantagesItem {
+}
+.icon {
+  display: inline-flex;
+  background-color: var(--secondary-color);
+  justify-content:center;
+  align-items: center;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  path,circle {
+    stroke: var(--color-active-icon-btn);
+  }
+}

@@ -21,6 +21,7 @@ export const ArticleTextBlockComponent = memo(
                     size={TextSize.BIG}
                     text={block.title}
                     weight={TextWeight.MEDIUM}
+                    As="h5"
                     className={cls.title}
                 />
             )}

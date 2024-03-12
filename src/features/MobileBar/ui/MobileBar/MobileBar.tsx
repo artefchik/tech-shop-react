@@ -5,12 +5,11 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { MobileBarBottom } from 'features/MobileBar/ui/MobileBarBottom/MobileBarBottom';
-import { MobileBarButtonOpen } from 'features/MobileBar/ui/MobileBarButtonOpen/MobileBarButtonOpen';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Overlay } from 'shared/ui/Overlay/Overlay';
+import { MobileBarButtonOpen } from '../MobileBarButtonOpen/MobileBarButtonOpen';
+import { MobileBarBottom } from '../MobileBarBottom/MobileBarBottom';
 import { mobileBarActions, mobileBarReducer } from '../../model/slice/mobileBarSlice';
 import { classNames, Mods } from '../../../../shared/lib/classNames/classNames';
 import { MobileBarContent } from '../MobileBarContent/MobileBarContent';
@@ -37,6 +36,15 @@ export const MobileBar = (props: MobileBarProps) => {
     const onCloseBar = useCallback(() => {
         dispatch(mobileBarActions.setOpenBar(false));
     }, [dispatch]);
+
+    useEffect(() => {
+        if (isOpenBar) {
+            document.body.classList.add('lock');
+        }
+        return () => {
+            document.body.classList.remove('lock');
+        };
+    }, [isOpenBar]);
 
     return (
         <>

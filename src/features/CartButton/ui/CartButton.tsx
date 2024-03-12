@@ -6,13 +6,14 @@ import { getUserAuthData } from 'entities/User';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { getRoutePathShoppingCart } from 'shared/const/router';
 import { getCartProductsTotal } from 'features/CartProduct/model/selectors/getCartProductsTotal/getCartProductsTotal';
+import { memo } from 'react';
 import cls from './CartButton.module.scss';
 
 interface CartButtonProps {
     className?: string;
 }
 
-export const CartButton = (props: CartButtonProps) => {
+export const CartButton = memo((props: CartButtonProps) => {
     const { className } = props;
     const totalProducts = useSelector(getCartProductsTotal);
     return (
@@ -25,4 +26,4 @@ export const CartButton = (props: CartButtonProps) => {
             {!!totalProducts && <span>{totalProducts}</span>}
         </AppLink>
     );
-};
+});

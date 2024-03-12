@@ -30,7 +30,7 @@ export enum TextAlign {
     END = 'alignEnd',
 }
 
-type TagType = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
+type TagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'span';
 
 interface TextProps {
     className?: string;

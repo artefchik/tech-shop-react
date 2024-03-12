@@ -1,0 +1,17 @@
+.AdvantagesItemList {
+  background-color: var(--accent-bg-color);
+}
+
+.AdvantagesItemList > div {
+
+  padding: 30px 0;
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+}
+
+.item {
+  max-width: 300px;
+}

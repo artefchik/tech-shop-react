@@ -7,6 +7,7 @@ import { ProductCategory } from 'entities/Product/model/product';
 import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/services/fetchProductsFavorites/fetchProductsFavorites';
+import { AdvantagesItemList } from 'widgets/Advantages';
 import cls from './MainPage.module.scss';
 import { MainSliderPage } from '../../ui/MainSliderPage/MainSliderPage';
 
@@ -19,12 +20,13 @@ const MainPage = (props: MainPageProps) => {
 
     return (
         <Page className={classNames(cls.MainPage, {}, [className])}>
-            <Container>
+            <Container className={cls.container}>
                 <VStack gap="20">
                     <MainSliderPage />
                     <MainPageProductsCards category={ProductCategory.PHONE} />
                 </VStack>
             </Container>
+            <AdvantagesItemList />
         </Page>
     );
 };

@@ -19,6 +19,11 @@
     }
 }
 
+.lock  {
+    overflow: hidden;
+    touch-action: none;
+}
+
 *::-webkit-scrollbar {
     width: 5px;
     height: 5px;

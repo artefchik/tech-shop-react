@@ -15,6 +15,7 @@ import {
 } from 'shared/const/router';
 import { timeAgo } from 'shared/lib/helpers/date';
 import { ViewType } from 'shared/const/types';
+import { useTranslation } from 'react-i18next';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -34,7 +35,7 @@ interface ArticleListItemProps {
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const { className, article, view } = props;
     const navigate = useNavigate();
-
+    const { t } = useTranslation();
     const renderType = useCallback(
         (type: ArticleType) => <ArticleTypeBlock type={type} key={type} />,
         [],
@@ -64,19 +65,19 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                                     src={article.user.avatar}
                                     alt={article.user.username}
                                 />
-                                <Text text={article.user.username} />
+                                <Text text={article.user.username} As="span" />
                             </AppLink>
                             <HStack gap="5" align="center">
                                 <Icon Svg={calendar} hover={false} />
-                                <Text text={timeAgo(article?.createdAt)} />
+                                <Text text={timeAgo(article?.createdAt)} As="span" />
                             </HStack>
                             <HStack gap="5" align="center">
                                 <Icon Svg={viewIcon} hover={false} />
-                                {article?.views}
+                                <Text text={String(article?.views)} As="span" />
                             </HStack>
                         </HStack>
                         <VStack>
-                            <Text text={article?.title} size={TextSize.LARGE} />
+                            <Text text={article?.title} size={TextSize.LARGE} As="h3" />
                         </VStack>
                         <HStack gap="10">{article?.types.map(renderType)}</HStack>
                         <ArticleTextBlockComponent
@@ -87,7 +88,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                             to={getRoutePathArticlesDetailsById(article.id)}
                             theme={AppLinkTheme.PRIMARY}
                         >
-                            Подробнее
+                            {t('Read more')}
                         </AppLink>
                     </VStack>
                 </Card>
@@ -112,14 +113,9 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         <Text
                             size={TextSize.MEDIUM}
                             text={article.title}
+                            As="h5"
                             className={cls.text}
                         />
-                        {/* <Text */}
-                        {/*    text={textBlock.paragraph} */}
-                        {/*  */}
-                        {/*    size={TextSize.SMALL} */}
-                        {/*    theme={TextTheme.TEXT} */}
-                        {/* /> */}
                     </VStack>
                 </VStack>
             </Card>
