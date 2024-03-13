@@ -1,5 +1,3 @@
-import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
-
 export enum UserRoles {
     ADMIN = 'admin',
     USER = 'user',
@@ -17,4 +15,9 @@ export interface UserSchema {
     authData?: User;
     _mounted: boolean;
     error?: string;
+}
+export interface AuthResponse {
+    accessToken: string;
+    refreshToken: string;
+    user: User;
 }

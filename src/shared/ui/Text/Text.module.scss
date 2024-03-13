@@ -2,9 +2,23 @@
   color: var(--primary-color);
 }
 
-
+.inverted {
+  color: var(--inverted-primary-color);
+}
 .secondary {
   color: var(--color-text-secondary);
+}
+
+.link{
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+    @media (any-hover: hover) {
+        &:hover {
+        text-decoration: underline;
+        }
+      }
+
 }
 
 .error {
@@ -59,193 +73,3 @@
 .weightSemi {
   font-weight: var(--font-weight-semiBold);
 }
-
-
-//
-//.primary {
-//    color: var(--primary-color);
-//
-//    .title {
-//        font: var(--font-l);
-//
-//        //font-weight: var(--font-weight-medium);
-//        @media (max-width: 767.98px) {
-//            font: var(--font-m);
-//        }
-//
-//        &:not(:last-child) {
-//            margin-bottom: 5px;
-//        }
-//    }
-//
-//    .text {
-//        font: var(--font-s);
-//    }
-//}
-//
-//.price {
-//    .title {
-//        color: var(--primary-color);
-//        font: var(--font-m);
-//    }
-//}
-//
-//.error {
-//    .title {
-//        color: var(--color-error);
-//        font: var(--font-m);
-//    }
-//}
-//
-//.small {
-//    color: var(--primary-color);
-//
-//    .title {
-//        font-weight: 500;
-//        font: var(--font-m);
-//
-//        &:not(:last-child) {
-//            margin-bottom: 10px;
-//        }
-//    }
-//
-//    .text {
-//        font: var(--font-s);
-//        color: var(--color-base-link);
-//    }
-//}
-//
-//.header {
-//    .title {
-//        font: var(--font-xl);
-//
-//        &:not(:last-child) {
-//            margin-bottom: 5px;
-//        }
-//
-//        @media (max-width: 767.98px) {
-//            font: var(--font-l);
-//            font-weight: var(--font-weight-Bold);
-//        }
-//    }
-//
-//    .text {
-//        font: var(--font-l);
-//        color: var(--color-text-block);
-//    }
-//}
-//
-//.textBlock {
-//    .title {
-//        font: var(--font-xl);
-//        color: var(--color-text-secondary);
-//
-//        @media (max-width: 767.98px) {
-//            font: var(--font-l);
-//        }
-//
-//        &:not(:last-child) {
-//            margin-bottom: 5px;
-//        }
-//    }
-//
-//    .text {
-//        color: var(--color-text-block);
-//        font: var(--font-m);
-//    }
-//}
-//
-//.default {
-//    color: var(--primary-color);
-//    font: var(--font-d);
-//}
-//
-//.medium {
-//    font: var(--font-l);
-//}
-//
-//.link {
-//    font-size: var(--font-link);
-//    letter-spacing: 0.7px;
-//}
-//
-//.big {
-//    font: var(--font-xl);
-//}
-//
-//.center {
-//    text-align: center;
-//}
-//
-//.end {
-//    text-align: end;
-//}
-//
-//.user {
-//    font: var(--font-link);
-//    font-size: 18px;
-//    color: var(--color-text-block);
-//    transition: all 0.3s ease 0s;
-//
-//    @media (any-hover: hover) {
-//        &:hover {
-//            color: var(--primary-color);
-//        }
-//    }
-//}
-//
-//.secondary {
-//    .title {
-//        font: var(--font-l);
-//        font-weight: var(--font-weight-semiBold);
-//
-//        @media (max-width: 767.98px) {
-//            font: var(--font-m);
-//            font-weight: var(--font-weight-semiBold);
-//
-//        }
-//
-//        &:not(:last-child) {
-//            margin-bottom: 10px;
-//        }
-//    }
-//
-//    .text {
-//        font: var(--font-m);
-//        color: var(--color-text-secondary);
-//
-//        @media (max-width: 767.98px) {
-//            font: var(--font-s);
-//        }
-//    }
-//}
-//
-//.slider {
-//    .title {
-//        font: var(--font-xl);
-//        color: #1c1c1c;
-//        white-space: nowrap;
-//
-//        &:not(:last-child) {
-//            margin-bottom: 5px;
-//        }
-//
-//        @media (max-width: 991.98px) {
-//            font: var(--font-l);
-//            font-weight: var(--font-weight-semiBold);
-//        }
-//    }
-//
-//    .text {
-//        font: var(--font-l);
-//        color: var(--color-text-secondary);
-//
-//        @media (max-width: 991.98px) {
-//            font: var(--font-m);
-//        }
-//
-//        @media (max-width: 767.98px) {
-//            font: var(--font-s);
-//        }
-//    }
-//}

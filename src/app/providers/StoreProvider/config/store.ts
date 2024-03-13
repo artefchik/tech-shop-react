@@ -3,10 +3,12 @@ import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
 import { CombinedState, Reducer } from 'redux';
 import { rtkApi } from 'shared/api/rtkApi';
+import { favoriteReducer } from 'entities/Favorite';
+import { productFavoritesReducer } from 'features/ProductFavoriteButton';
 import { cartReducer } from 'entities/Cart';
-import { productFavoritesReducer } from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
-import { StateSchema, ThunkExtraArg } from './StateSchema';
+import { cartProductsReducer } from 'features/CartProduct';
 import { createReducerManager } from './reducerManager';
+import { StateSchema, ThunkExtraArg } from './StateSchema';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -15,7 +17,9 @@ export function createReduxStore(
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         user: userReducer,
+        favorite: favoriteReducer,
         cart: cartReducer,
+        cartProducts: cartProductsReducer,
         productFavorites: productFavoritesReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     };

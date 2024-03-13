@@ -26,6 +26,7 @@ interface PopoverProps {
     openView?: DropdownsListDirectionOpen;
     triggerClear?: boolean;
     triggerTheme?: TriggerTheme;
+    fullWidthClass?: string;
 }
 
 export const Popover = (props: PopoverProps) => {
@@ -38,19 +39,18 @@ export const Popover = (props: PopoverProps) => {
         height = 310,
         openView = 'bottom',
         triggerClear = false,
+        fullWidthClass = '',
         triggerTheme = TriggerTheme.DEFAULT,
     } = props;
 
     const styles: CSSProperties = {
-        minWidth: width,
-        maxWidth: width,
+        width,
         minHeight: height,
     };
 
     return (
         <Pop className={classNames(clsDrop.DropdownsList, {}, [className])}>
             {({ open }) => (
-                /* Use the `open` state to conditionally change the direction of the chevron icon. */
                 <>
                     <Pop.Button as="div">
                         <Button
@@ -77,6 +77,7 @@ export const Popover = (props: PopoverProps) => {
                         <Pop.Panel
                             className={classNames(clsDrop.body, {}, [
                                 DropdownsListDirectionOpenClasses[openView],
+                                cls[fullWidthClass],
                             ])}
                             as="div"
                             style={styles}

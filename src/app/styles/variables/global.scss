@@ -1,5 +1,5 @@
 :root {
-    --font-family-main: "Poppins", sans-serif;
+    --font-family-main: "Open Sans", sans-serif;
     --font-size-s: 14px;
     --font-line-s: 20px;
     --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
@@ -9,8 +9,8 @@
     --font-size-m: 16px;
     --font-line-m: 22px;
     --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
-    --font-size-l: 21px;
-    --font-line-l: 30px;
+    --font-size-l: 22px;
+    --font-line-l: 32px;
     --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
     --font-size-xl: 30px;
     --font-line-xl: 42px;
@@ -34,10 +34,14 @@
     --mobile-width: 767.98px;
     --mobileSmall-width: 479.98px;
 
+
+    --container-padding-big:15px;
+    --container-padding-small:7px;
     //z-index
-    --z-index-header: 1000;
-    --z-index-modal: 10;
-    --z-index-mobile-bar: 50;
-    --z-index-open-bar:100;
+    --z-index-header: 50;
+    --z-index-modal: 10000;
+    --z-index-mobile-bar: 100;
+    --z-index-open-bar:1000;
+    --z-index-overlay:-1;
 
 }

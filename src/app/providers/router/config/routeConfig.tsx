@@ -69,12 +69,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.PRODUCTS]: {
         path: getRoutePathProducts(),
         element: <ProductsCategoriesPage />,
-        authOnly: true,
     },
     [AppRoutes.PRODUCTS_CATEGORIES]: {
         path: getRoutePathProductsCategories(':category'),
         element: <ProductsPage />,
-        authOnly: true,
         // roles: [UserRoles.ADMIN],
     },
     [AppRoutes.SHOPPING_CART]: {

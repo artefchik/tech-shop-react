@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 @import "reset";
 @import "variables/global";
 @import "themes/normal";
 @import "themes/dark";
 
-.app,
+
 .app {
     font: var(--font-m);
     background: var(--bg-color);
@@ -19,16 +19,8 @@
     }
 }
 
-*::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+.lock  {
+    overflow: hidden;
+    touch-action: none;
 }
 
-*::-webkit-scrollbar-track {
-    //background: var(--bg-color);        /* цвет зоны отслеживания */
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: var(--bg-color-block);    /* цвет бегунка */
-    border-radius: 20px;       /* округлось бегунка */
-}

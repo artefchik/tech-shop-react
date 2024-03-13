@@ -9,38 +9,31 @@ import cls from './FavoriteButton.module.scss';
 
 interface FavoriteButtonProps {
     className?: string;
-    onToggleFavorite?: (isFavorite: boolean) => void;
+    onToggleFavorite?: () => void;
     isFavorite?: boolean;
 }
 
 export const FavoriteButton = memo((props: FavoriteButtonProps) => {
     const { className, onToggleFavorite, isFavorite = false } = props;
-    const [isFav, setIsFav] = useState(isFavorite);
-    const dispatch = useAppDispatch();
+    const [isSelectedFavorite, setIsSelectedFavorite] = useState(isFavorite);
 
     const onToggleFavoriteHandler = useCallback(() => {
-        setIsFav((prevState) => !prevState);
-        onToggleFavorite?.(isFav);
-    }, [isFav, onToggleFavorite]);
+        setIsSelectedFavorite((prevState) => !prevState);
+        onToggleFavorite?.();
+    }, [onToggleFavorite]);
 
     return (
         <Button
             onClick={onToggleFavoriteHandler}
-            className={classNames(
-                cls.FavoriteButton,
-                { [cls.active]: isFavorite },
-                [className],
-            )}
+            className={classNames(cls.FavoriteButton, { [cls.active]: isFavorite }, [
+                className,
+            ])}
             theme={ThemeButton.CLEAR}
         >
             <Icon
                 hover={false}
                 Svg={favorites}
-                className={classNames(
-                    cls.favorites,
-                    { [cls.active]: isFavorite },
-                    [],
-                )}
+                className={classNames(cls.favorites, { [cls.active]: isFavorite }, [])}
             />
         </Button>
     );

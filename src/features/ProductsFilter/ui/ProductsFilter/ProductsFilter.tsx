@@ -4,7 +4,8 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { ProductsBrandFilter } from 'features/ProductsFilter/ui/ProductsBrandFilter/ProductsBrandFilter';
+import { isMobile } from 'react-device-detect';
+import { ProductsBrandFilter } from '../ProductsBrandFilter/ProductsBrandFilter';
 import { ProductsSortOrder } from '../ProductsSortOrder/ProductsSortOrder';
 import { ProductsModelFilter } from '../ProductsModelFilter/ProductsModelFilter';
 import { ProductsColorFilter } from '../ProductsColorFilter/ProductsColorFilter';
@@ -20,13 +21,16 @@ const reducers: ReducersList = {
 
 export const ProductsFilter = (props: ProductsFilterProps) => {
     const { className, fetchData } = props;
+    const openView = isMobile ? 'bottom' : 'bottomLeft';
+    const width = isMobile ? '97vw' : 280;
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Popover
+                width={width}
                 title="Фильтры"
                 icon={filter}
-                openView="bottomLeft"
-                className={className}
+                openView={openView}
+                fullWidthClass={className}
             >
                 <ProductsModelFilter onSend={fetchData} />
                 <ProductsBrandFilter onSend={fetchData} />

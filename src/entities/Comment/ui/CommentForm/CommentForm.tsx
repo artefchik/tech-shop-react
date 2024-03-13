@@ -6,7 +6,7 @@ import { Card } from 'shared/ui/Card/Card';
 import { FormEvent, memo, useCallback } from 'react';
 import { User } from 'entities/User';
 import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
-import { LoginModal } from 'features/AuthByUsername';
+import { AuthModal } from 'widgets/AuthModal/ui/AuthModal';
 import cls from './CommentForm.module.scss';
 
 interface CommentFormProps {
@@ -55,7 +55,7 @@ export const CommentForm = memo((props: CommentFormProps) => {
                         />
                         <Button onClick={onShowModal}>Войти</Button>
                         {isOpenModal && (
-                            <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />
+                            <AuthModal isOpen={isOpenModal} onClose={onCloseModal} />
                         )}
                     </>
                 )}

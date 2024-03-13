@@ -4,8 +4,13 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { Button } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { cartActions, getCountTotalProducts } from 'entities/Cart';
 import { declinationOfNumber } from 'shared/lib/helpers/declinationOfNumber';
+import { useTranslation } from 'react-i18next';
+import {
+    cartProductsActions,
+    clearCartProducts,
+    getCartProductsTotal,
+} from 'features/CartProduct';
 import cls from './ShoppingCartHeaderPage.module.scss';
 
 interface ShoppingCartHeaderPageProps {
@@ -14,10 +19,13 @@ interface ShoppingCartHeaderPageProps {
 
 export const ShoppingCartHeaderPage = ({ className }: ShoppingCartHeaderPageProps) => {
     const dispatch = useAppDispatch();
-    const totalProducts = useSelector(getCountTotalProducts);
+    const totalProducts = useSelector(getCartProductsTotal);
     const total = `${totalProducts} ${declinationOfNumber(totalProducts, ['товар', 'товара', 'товаров'])}`;
+    const { t } = useTranslation();
+
     const onClearCart = () => {
-        dispatch(cartActions.clearCart());
+        dispatch(cartProductsActions.clearCart());
+        dispatch(clearCartProducts());
     };
 
     return (
@@ -31,7 +39,7 @@ export const ShoppingCartHeaderPage = ({ className }: ShoppingCartHeaderPageProp
                 <Text text="Корзина" />
                 <Text text={total} />
             </HStack>
-            <Button onClick={onClearCart}>Очистить корзину</Button>
+            <Button onClick={onClearCart}>{t('Очистить корзину')}</Button>
         </HStack>
     );
 };

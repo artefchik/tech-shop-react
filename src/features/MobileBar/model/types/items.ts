@@ -9,6 +9,7 @@ import {
 import home from 'shared/assets/icons/home.svg';
 import articles from 'shared/assets/icons/article.svg';
 import cart from 'shared/assets/icons/cart.svg';
+import about from 'shared/assets/icons/about.svg';
 
 export interface MobileNavbarItemType {
     path: string;
@@ -25,7 +26,7 @@ export const mobileNavbarItemsList: MobileNavbarItemType[] = [
     {
         path: getRoutePathAbout(),
         text: 'About',
-        icon: home,
+        icon: about,
     },
     {
         path: getRoutePathArticles(),

@@ -1,19 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import axios from 'axios';
-import { Article, ArticleType } from 'entities/Article';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import {
-    getArticleFiltersOrder,
-    getArticleFiltersSearch,
-    getArticleFiltersSort,
-    getArticleFiltersType,
-} from 'features/ArticleFilters';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { cartActions } from 'entities/Cart/model/slice/cartSlice';
-import { $api } from 'shared/api/api';
-import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
-import { User } from '../../types/user';
+import { AuthResponse, User } from '../../types/user';
 
 interface fetchArticleListProps {
     replace?: boolean;

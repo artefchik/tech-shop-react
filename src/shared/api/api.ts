@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
+import { AuthResponse } from 'entities/User';
 
 export const $api = axios.create({
     withCredentials: true,

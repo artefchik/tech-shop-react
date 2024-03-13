@@ -13,6 +13,7 @@
     @media (any-hover: hover) {
         &:hover {
             path,
+            rect,
             circle {
                 stroke: var(--primary-color);
             }

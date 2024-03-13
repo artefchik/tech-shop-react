@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { useModal } from 'shared/lib/hooks/useModal/useModal';
 import { Overlay } from 'shared/ui/Overlay/Overlay';
@@ -29,6 +29,15 @@ export const Modal = (props: ModalProps) => {
         onClose,
         isOpen,
     });
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('lock');
+        }
+        return () => {
+            document.body.classList.remove('lock');
+        };
+    }, [isOpen]);
 
     const mods: Mods = {
         [cls.opened]: isOpen,

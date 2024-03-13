@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { a } from '@react-spring/web';
-import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
 import { initUserAuthData } from '../services/initUserAuthData/initUserAuthData';
 import { User, UserSchema } from '../types/user';
 

@@ -1,9 +1,10 @@
 import { memo, useCallback } from 'react';
-import { ViewSelector, ViewType } from 'shared/ui/ViewSelector/ViewSelector';
+import { ViewSelector } from 'shared/ui/ViewSelector/ViewSelector';
 import { useSelector } from 'react-redux';
 import { getArticleListView } from 'pages/ArticlesPage/model/selectors/getArticleListView/getArticleListView';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { articlesPageActions } from 'pages/ArticlesPage/model/slice/articlesPageSlice';
+import { ViewType } from 'shared/const/types';
 
 interface ArticleViewSelectorProps {
     className?: string;
@@ -22,11 +23,5 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
         [dispatch],
     );
 
-    return (
-        <ViewSelector
-            view={view}
-            onViewClick={onChangeView}
-            className={className}
-        />
-    );
+    return <ViewSelector view={view} onViewClick={onChangeView} className={className} />;
 });

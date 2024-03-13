@@ -16,10 +16,5 @@ export const Icon = memo((props: IconProps) => {
         [cls.hover]: hover,
     };
 
-    return (
-        <Svg
-            className={classNames(cls.Icon, mods, [className])}
-            {...otherProps}
-        />
-    );
+    return <Svg className={classNames(cls.Icon, mods, [className])} {...otherProps} />;
 });

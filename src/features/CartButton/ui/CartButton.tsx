@@ -3,10 +3,9 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import cart from 'shared/assets/icons/cart.svg';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
-import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { getRoutePathShoppingCart } from 'shared/const/router';
-import { getCountTotalProducts } from 'entities/Cart';
+import { getCartProductsTotal } from 'features/CartProduct/model/selectors/getCartProductsTotal/getCartProductsTotal';
 import cls from './CartButton.module.scss';
 
 interface CartButtonProps {
@@ -15,8 +14,7 @@ interface CartButtonProps {
 
 export const CartButton = (props: CartButtonProps) => {
     const { className } = props;
-    const authData = useSelector(getUserAuthData);
-    const totalProducts = useSelector(getCountTotalProducts);
+    const totalProducts = useSelector(getCartProductsTotal);
     return (
         <AppLink
             to={getRoutePathShoppingCart()}

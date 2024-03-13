@@ -1,20 +1,20 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
-import { CartItemType } from 'entities/Cart/model/types/cart';
 import { HStack } from 'shared/ui/Stack';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Text } from 'shared/ui/Text/Text';
 import { memo, ReactNode } from 'react';
 import cls from './CartItem.module.scss';
+import { CartItemType } from '../../model/types/cart';
 
 interface CartItemProps {
     className?: string;
     product: CartItemType;
     counter?: ReactNode;
-    removeButton?: ReactNode;
+    deleteButton?: ReactNode;
 }
 
 export const CartItem = memo((props: CartItemProps) => {
-    const { className, product, counter, removeButton } = props;
+    const { className, product, counter, deleteButton } = props;
 
     return (
         <Card className={classNames(cls.CartItem, {}, [className])}>
@@ -33,7 +33,7 @@ export const CartItem = memo((props: CartItemProps) => {
                     <Text text={String(product.price.current)} />
                     <HStack gap="20" align="center" className={cls.actions}>
                         {counter && counter}
-                        {removeButton && removeButton}
+                        {deleteButton && deleteButton}
                     </HStack>
                 </HStack>
             </HStack>

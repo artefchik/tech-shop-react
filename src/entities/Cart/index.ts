@@ -1,9 +1,7 @@
-export { getCartTotalPrice } from './model/selectors/getCartTotalPrice/getCartTotalPrice';
-export { CartItem } from './ui/CartItem/CartItem';
+export { initCartData } from './model/services/initCartData/initCartData';
+export { getCartId } from './model/selectors/getCartData/getCartData';
+export { cartReducer } from './model/slice/cartSlice';
 export { CartItemType } from './model/types/cart';
-export { updateCart } from './model/services/updateCart/updateCart';
-export { fetchCartProductsList } from './model/services/fetchCartProductsList/fetchCartProductsList';
-export { getCartProducts } from './model/selectors/getCartProducts/getCartProducts';
-export { getCountTotalProducts } from './model/selectors/getCountTotalProducts/getCountTotalProducts';
-export { cartReducer, cartActions } from './model/slice/cartSlice';
+export { CartItem } from './ui/CartItem/CartItem';
 export { CartSchema } from './model/types/cart';
+export { getCartData } from './model/selectors/getCartData/getCartData';

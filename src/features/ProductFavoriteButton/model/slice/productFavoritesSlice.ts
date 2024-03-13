@@ -16,7 +16,7 @@ const initialState: ProductFavoritesSchema = {
 };
 
 const productFavoritesAdapter = createEntityAdapter<FavoriteProduct>({
-    selectId: (favorite: FavoriteProduct) => favorite.id,
+    selectId: (favorite: FavoriteProduct) => favorite.productId,
 });
 
 export const getProductFavorites = productFavoritesAdapter.getSelectors<StateSchema>(
@@ -28,11 +28,20 @@ export const productFavoritesSlice = createSlice({
     initialState,
     reducers: {
         onToggleFavorite: (state, action: PayloadAction<FavoriteProduct>) => {
-            if (action.payload.isFavorite) {
-                productFavoritesAdapter.setOne(state, action.payload);
+            const favorite = productFavoritesAdapter.selectId(action.payload);
+            if (favorite) {
+                productFavoritesAdapter.removeOne(state, favorite);
             } else {
-                productFavoritesAdapter.removeOne(state, action.payload.id);
+                productFavoritesAdapter.setOne(state, action.payload);
             }
+            // if (action.payload.isFavorite) {
+            //     productFavoritesAdapter.setOne(state, action.payload);
+            // } else {
+            //     productFavoritesAdapter.removeOne(state, action.payload.id);
+            // }
+        },
+        updateData: (state, action: PayloadAction<FavoriteProduct[]>) => {
+            productFavoritesAdapter.setAll(state, action.payload);
         },
     },
     extraReducers: (builder) => {
@@ -41,15 +50,13 @@ export const productFavoritesSlice = createSlice({
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(fetchProductsFavorites.fulfilled, (state, action) => {
-                state.isLoading = false;
-                productFavoritesAdapter.setAll(state, action.payload.favorites);
-                // if (action.meta.arg.replace) {
-                //     productAdapter.setAll(state, action.payload);
-                // } else {
-                //     productAdapter.addMany(state, action.payload);
-                // }
-            })
+            .addCase(
+                fetchProductsFavorites.fulfilled,
+                (state, action: PayloadAction<FavoriteProduct[]>) => {
+                    state.isLoading = false;
+                    productFavoritesAdapter.setAll(state, action.payload);
+                },
+            )
             .addCase(fetchProductsFavorites.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;

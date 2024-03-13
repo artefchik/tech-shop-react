@@ -5,37 +5,46 @@ import { FavoriteButton } from 'entities/Favorite/ui/FavoriteButton/FavoriteButt
 import {
     getProductFavorites,
     productFavoritesActions,
+    productFavoritesReducer,
 } from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { StateSchema } from 'app/providers/StoreProvider';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { toggleProductsFavorites } from '../../model/services/toggleProductsFavorites/toggleProductsFavorites';
 
 interface ProductFavoriteButtonProps {
     className?: string;
-    isFavorite?: boolean;
     productId: string;
+    isFavorite?: boolean;
 }
 
+const reducers: ReducersList = {
+    productFavorites: productFavoritesReducer,
+};
+
 export const ProductFavoriteButton = (props: ProductFavoriteButtonProps) => {
-    const { className, isFavorite, productId } = props;
+    const { className, productId, isFavorite } = props;
     const dispatch = useAppDispatch();
 
-    const onToggleFavorite = useCallback(
-        (isFav: boolean) => {
-            dispatch(
-                productFavoritesActions.onToggleFavorite({
-                    productId,
-                    isFavorite: isFav,
-                    id: productId,
-                }),
-            );
-        },
-        [dispatch, productId],
+    const favoriteItem = useSelector((state: StateSchema) =>
+        getProductFavorites.selectById(state, productId),
     );
+    const onToggleFavorite = useCallback(() => {
+        dispatch(toggleProductsFavorites(productId));
+        if (favoriteItem) {
+            dispatch(productFavoritesActions.onToggleFavorite(favoriteItem));
+        }
+    }, [dispatch, favoriteItem, productId]);
 
     return (
-        <FavoriteButton
-            isFavorite={isFavorite}
-            onToggleFavorite={onToggleFavorite}
-        />
+        <DynamicModuleLoader reducers={reducers}>
+            <FavoriteButton
+                isFavorite={Boolean(favoriteItem)}
+                onToggleFavorite={onToggleFavorite}
+            />
+        </DynamicModuleLoader>
     );
 };

@@ -1,9 +1,12 @@
 .light {
     --bg-color: #fff;
+    --inverted-bg: #262626;
+
     --inverted-bg-color: #242535;
     --bg-color-block: #f6f6f7;
     --accent-bg-color: #f8f8f8;
     --primary-color: #181a2a;
+    --inverted-primary-color: #fff;
     --secondary-color: #5e69ee;
 
     // skeleton
@@ -30,6 +33,10 @@
     --color-active-icon-btn: #fff;
 
     //select color
+
+    --color-input-bg:#f6f6f7;
+    --color-input-hover-bg:#eaeaea;
+
 
     --color-trigger: #f6f6f7;
     --color-options: #f6f6f6;
