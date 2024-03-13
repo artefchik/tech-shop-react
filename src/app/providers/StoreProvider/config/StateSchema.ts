@@ -1,5 +1,4 @@
 import { UserSchema } from 'entities/User';
-import { LoginSchema } from 'features/AuthByUsername';
 import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
 import { AxiosInstance } from 'axios';
@@ -31,7 +30,6 @@ export interface StateSchema {
 
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     // Асинхронные редюсеры
-    login?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: ArticleDetailsCommentsSchema;

@@ -5,9 +5,9 @@ import { getUserAuthData, User } from 'entities/User';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { getRoutePathProfile } from 'shared/const/router';
 import { useSelector } from 'react-redux';
-import { LoginModal } from 'features/AuthByUsername';
 import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
 import { Button } from 'shared/ui/Button/Button';
+import { AuthModal } from 'widgets/AuthModal/ui/AuthModal';
 import cls from './MobileBarTop.module.scss';
 
 interface MobileBarTopProps {
@@ -23,9 +23,7 @@ export const MobileBarTop = (props: MobileBarTopProps) => {
         return (
             <div className={classNames(cls.MobileBarTop, {}, [className])}>
                 <Button onClick={onShowModal}>Войти</Button>
-                {isOpenModal && (
-                    <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />
-                )}
+                {isOpenModal && <AuthModal isOpen={isOpenModal} onClose={onCloseModal} />}
             </div>
         );
     }

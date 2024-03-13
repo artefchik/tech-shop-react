@@ -5,6 +5,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Popover } from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import filter from 'shared/assets/icons/filters.svg';
+import { useTranslation } from 'react-i18next';
 import { ArticleSortOrder } from '../../ui/ArticleSortOrder/ArticleSortOrder';
 import { ArticleSortFilters } from '../../ui/ArticleSortFilters/ArticleSortFilters';
 import { ArticleSortTypes } from '../../ui/ArticleSortTypes/ArticleSortTypes';
@@ -21,11 +22,11 @@ const reducers: ReducersList = {
 
 export const ArticleFilters = memo((props: ArticleFiltersProps) => {
     const { className, fetchData } = props;
-
+    const { t } = useTranslation();
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Popover
-                title="Фильтры"
+                title={t('Filters')}
                 icon={filter}
                 openView="bottomLeft"
                 className={className}

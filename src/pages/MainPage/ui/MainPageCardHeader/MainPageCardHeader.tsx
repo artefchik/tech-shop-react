@@ -1,9 +1,7 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { HStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextWeight } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
-import cls from './MainPageCardHeader.module.scss';
 
 interface MainPageCardHeaderProps {
     className?: string;

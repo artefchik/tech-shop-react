@@ -4,7 +4,7 @@
 @import "themes/normal";
 @import "themes/dark";
 
-.app,
+
 .app {
     font: var(--font-m);
     background: var(--bg-color);
@@ -19,16 +19,8 @@
     }
 }
 
-*::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+.lock  {
+    overflow: hidden;
+    touch-action: none;
 }
 
-*::-webkit-scrollbar-track {
-    //background: var(--bg-color);        /* цвет зоны отслеживания */
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: var(--bg-color-block);    /* цвет бегунка */
-    border-radius: 20px;       /* округлось бегунка */
-}

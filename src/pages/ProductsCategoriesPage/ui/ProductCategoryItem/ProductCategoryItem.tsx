@@ -21,13 +21,19 @@ export const ProductCategoryItem = (props: ProductCategoryItemProps) => {
 
     return (
         <Card
+            As="article"
             className={classNames(cls.ProductCategoryItem, {}, [className])}
             onClick={openProducts}
         >
             <div className={cls.image}>
                 <img src={category.image} alt={category.title} />
             </div>
-            <Text text={category.title} align={TextAlign.CENTER} size={TextSize.BIG} />
+            <Text
+                text={category.title}
+                align={TextAlign.CENTER}
+                size={TextSize.BIG}
+                As="h5"
+            />
         </Card>
     );
 };

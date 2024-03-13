@@ -72,7 +72,7 @@ export const MainSliderPage = ({ className }: MainSliderPageProps) => {
                         <Button>{t('Купить')}</Button>
                     </VStack>
                     <div className={cls.image}>
-                        <img src={slide.image} alt="" />
+                        <img src={slide.image} alt={slide.title} />
                     </div>
                 </VStack>
             </SwiperSlide>

@@ -8,7 +8,7 @@ import user from 'shared/assets/icons/user.svg';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { LoginModal } from 'features/AuthByUsername';
+import { AuthModal } from 'widgets/AuthModal/ui/AuthModal';
 
 interface AvatarDropdownProps {
     className?: string;
@@ -42,7 +42,8 @@ export const AvatarDropdown = (props: AvatarDropdownProps) => {
                     <Icon Svg={user} />
                 </Button>
                 {isOpenModal && (
-                    <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />
+                    // <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />
+                    <AuthModal isOpen={isOpenModal} onClose={onCloseModal} />
                 )}
             </>
         );

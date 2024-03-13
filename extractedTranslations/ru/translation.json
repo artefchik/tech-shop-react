@@ -1,25 +1,57 @@
 {
+  "": "",
   "About": "О нас",
   "About As": "About As",
   "About Us": "About Us",
   "Add To Cart": "Add To Cart",
   "Articles": "Статьи",
   "Categories": "Категории",
+  "Confirm Password": "Confirm Password",
+  "Don't have an account?": "Don't have an account?",
   "Email": "Почта",
+  "Filters": "Filters",
   "Get blog articles and offers via email": "Получайте статьи из  блога и предложения по электронной почте",
   "Go to products": "Go to products",
+  "Have an account?": "Have an account?",
   "Home": "Главная",
   "Links": "Ссылки",
+  "Login": "Login",
+  "Password": "Password",
   "Phone": "Телефон",
   "Products": "Товары",
+  "Read more": "Read more",
+  "Shop is a proudly Australian open, Melbourne based supplier of I": {
+    "T": {
+      " goods and services, operating since 1991": {
+        " We provide complete business IT solutions, centred on high quality hardware and exceptional customer service": {
+          "": ""
+        }
+      }
+    }
+  },
+  "Shop is a proudly Australian open, Melbourne based supplier of IT": {
+    " goods and services, operating since 1991": {
+      " We provide complete business IT solutions, centred on high quality hardware and exceptional customer service": {
+        "": ""
+      }
+    }
+  },
+  "Sign Up": "Sign Up",
+  "Submit": "Submit",
   "Subscribe": "Подписаться",
+  "Username": "Username",
   "Weekly Newsletter": "Еженедельная информационная рассылка",
   "Your cart is empty": "Your cart is empty",
   "Итого": "Итого",
+  "Кead more": "Кead more",
+  "Корзина": "Корзина",
   "Купить": "Купить",
   "Очистить корзину": "Очистить корзину",
   "См": {
     "все": "все"
   },
-  "См.все": "См.все"
+  "См.все": "См.все",
+  "товар": "товар",
+  "товарa": "товарa",
+  "товаров": "товаров"
 }

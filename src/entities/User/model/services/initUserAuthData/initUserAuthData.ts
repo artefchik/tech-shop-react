@@ -2,8 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { AuthResponse } from 'features/AuthByUsername/model/types/loginSchema';
-import { User } from '../../types/user';
+import { AuthResponse, User } from '../../types/user';
 
 interface fetchArticleListProps {
     replace?: boolean;

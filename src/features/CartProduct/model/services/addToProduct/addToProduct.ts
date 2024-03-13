@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { $api } from 'shared/api/api';
 import { CartItemType, getCartId } from 'entities/Cart';
-import { fetchCartProductsList } from 'features/CartProduct/model/services/fetchCartProductsList/fetchCartProductsList';
+import { fetchCartProductsList } from '../fetchCartProductsList/fetchCartProductsList';
 
 export const addToProduct = createAsyncThunk<CartItemType, string, ThunkConfig<string>>(
     'cartProduct/addToProduct',

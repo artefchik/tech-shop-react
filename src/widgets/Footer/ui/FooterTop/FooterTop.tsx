@@ -22,11 +22,13 @@ export const FooterTop = ({ className }: FooterTopProps) => {
         <HStack className={classNames(cls.FooterTop, {}, [className])}>
             <VStack className={cls.links} gap="25">
                 <VStack gap="5">
-                    <Text text="About" size={TextSize.BIG} />
+                    <Text text={t('About Us')} size={TextSize.BIG} As="h4" />
                     <Text
                         className={cls.infoText}
                         size={TextSize.SMALL}
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+                        text={t(
+                            'Shop is a proudly Australian open, Melbourne based supplier of IT. goods and services, operating since 1991. We provide complete business IT solutions, centred on high quality hardware and exceptional customer service',
+                        )}
                     />
                 </VStack>
                 <VStack gap="15">

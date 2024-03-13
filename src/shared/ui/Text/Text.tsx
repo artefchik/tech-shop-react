@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react';
+import { HTMLAttributes, memo, ReactNode } from 'react';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import cls from './Text.module.scss';
 
@@ -8,6 +8,7 @@ export enum TextTheme {
     ERROR = 'error',
     SECONDARY = 'secondary',
     DEFAULT = 'default',
+    LINKCOLOR = 'link',
     INVERTED_PRIMARY = 'inverted',
 }
 
@@ -30,9 +31,9 @@ export enum TextAlign {
     END = 'alignEnd',
 }
 
-type TagType = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
+type TagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'span';
 
-interface TextProps {
+interface TextProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
     text?: string;
     theme?: TextTheme;
@@ -51,6 +52,7 @@ export const Text = memo((props: TextProps) => {
         weight = TextWeight.REGULAR,
         As = 'p',
         theme = TextTheme.PRIMARY,
+        ...otherProps
     } = props;
 
     const mods: Mods = {
@@ -61,6 +63,12 @@ export const Text = memo((props: TextProps) => {
     };
 
     return (
-        <>{text && <As className={classNames(cls.Text, mods, [className])}>{text}</As>}</>
+        <>
+            {text && (
+                <As className={classNames(cls.Text, mods, [className])} {...otherProps}>
+                    {text}
+                </As>
+            )}
+        </>
     );
 });

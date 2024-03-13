@@ -22,7 +22,10 @@ export const ProductCard = memo((props: ProductItemProps) => {
 
     if (view === ViewType.SMALL) {
         return (
-            <Card className={classNames(cls.ProductCard, {}, [className, cls[view]])}>
+            <Card
+                As="article"
+                className={classNames(cls.ProductCard, {}, [className, cls[view]])}
+            >
                 <VStack gap="10" className={cls.body}>
                     <div className={cls.image}>
                         <img src={__API__ + product.imageSrc} alt={product.title} />
@@ -33,14 +36,17 @@ export const ProductCard = memo((props: ProductItemProps) => {
                     <VStack className={cls.content}>
                         <StarRating selectedStars={product.starRating} />
                         <VStack gap="5">
-                            <Text text={product.title} className={cls.title} />
+                            <Text text={product.title} className={cls.title} As="h5" />
                             <HStack align="center" gap="15">
-                                <Text text={formatToCurrency(product.price.current)} />
-
+                                <Text
+                                    text={formatToCurrency(product.price.current)}
+                                    As="span"
+                                />
                                 <Text
                                     text={formatToCurrency(product.price.current)}
                                     className={cls.previousPrice}
                                     theme={TextTheme.SECONDARY}
+                                    As="span"
                                 />
                             </HStack>
                         </VStack>
@@ -67,19 +73,22 @@ export const ProductCard = memo((props: ProductItemProps) => {
                         text={product.title}
                         className={cls.title}
                         size={TextSize.BIG}
+                        As="h5"
                     />
+
                     <HStack className={cls.block}>
                         <div className={cls.specifications}>specifications</div>
                     </HStack>
                 </VStack>
                 <VStack className={cls.actionsBlock} gap="20">
                     <HStack align="center" gap="15">
-                        <Text text={formatToCurrency(product.price.current)} />
+                        <Text text={formatToCurrency(product.price.current)} As="span" />
 
                         <Text
                             text={formatToCurrency(product.price.previous)}
                             className={cls.previousPrice}
                             theme={TextTheme.SECONDARY}
+                            As="span"
                         />
                     </HStack>
                     <HStack align="center" gap="20">

@@ -14,10 +14,11 @@
 }
 
 .content {
-    padding: 15px;
+    padding: 25px 32px;
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius-s);
     background-color: var(--bg-color);
-    width: 30%;
+    width: 32%;
     transition: transform 0.4s ease 0s;
     transform: scale(0.5);
 
