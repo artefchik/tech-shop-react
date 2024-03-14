@@ -6,11 +6,9 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getProducts } from 'pages/ProductsPage/model/slice/productsPageSlice';
 import { ViewType } from 'shared/const/types';
 import { useEffect } from 'react';
-import { ProductItem } from 'widgets/ProductItem/ProductItem';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/services/fetchProductsFavorites/fetchProductsFavorites';
 import { getProductFavoritesIsLoading } from 'features/ProductFavoriteButton/model/selectors/getProductFavoritesIsLoading/getProductFavoritesIsLoading';
-import { ProductCard } from 'entities/Product';
-import { AddProductButton } from 'features/CartProduct';
+import { ProductItem } from 'widgets/ProductItem';
 import { getProductsPageIsLoading } from '../../model/selectors/getProductsPageIsLoading/getProductsPageIsLoading';
 import { getProductsPageView } from '../../model/selectors/getProductsPageView/getProductsPageView';
 

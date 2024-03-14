@@ -2,6 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
 import { memo } from 'react';
 import { VStack } from 'shared/ui/Stack';
+import { useTranslation } from 'react-i18next';
 import { Profile } from '../../model/types/profile';
 
 interface ProfileEditProps {
@@ -22,23 +23,24 @@ export const ProfileEdit = memo((props: ProfileEditProps) => {
         onChangeAge,
         readonly,
     } = props;
+    const { t } = useTranslation();
     return (
         <VStack width gap="15" className={classNames('', {}, [className])}>
             <Input
-                label="First name"
+                label={t('First name')}
                 readonly={readonly}
                 value={data?.firstname}
                 onChange={onChangeFirstname}
             />
             <Input
-                label="Last name"
+                label={t('Last name')}
                 readonly={readonly}
                 value={data?.lastname}
                 onChange={onChangeLastname}
             />
             <Input
                 type="number"
-                label="Age"
+                label={t('Age')}
                 readonly={readonly}
                 value={String(data?.age)}
                 onChange={onChangeAge}

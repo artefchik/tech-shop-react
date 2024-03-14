@@ -12,11 +12,7 @@ export const fetchProfileData = createAsyncThunk<
     }
 >('profile/fetchProfileData', async (profileId, thunkAPI) => {
     try {
-        const response = await $api.get<Profile>(`/profile/${profileId}`, {
-            params: {
-                _expand: 'user',
-            },
-        });
+        const response = await $api.get<Profile>(`/profile/${profileId}`, {});
         if (!response.data) {
             return thunkAPI.rejectWithValue('error');
         }

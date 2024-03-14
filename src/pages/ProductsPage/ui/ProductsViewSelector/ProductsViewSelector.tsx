@@ -3,8 +3,8 @@ import { ViewSelector } from 'shared/ui/ViewSelector/ViewSelector';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ViewType } from 'shared/const/types';
-import { getProductsPageView } from '../../../model/selectors/getProductsPageView/getProductsPageView';
-import { productsPageActions } from '../../../model/slice/productsPageSlice';
+import { getProductsPageView } from '../../model/selectors/getProductsPageView/getProductsPageView';
+import { productsPageActions } from '../../model/slice/productsPageSlice';
 
 interface ProductsViewSelectorProps {
     className?: string;

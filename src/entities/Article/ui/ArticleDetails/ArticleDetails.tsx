@@ -21,7 +21,6 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { formatToDate } from 'shared/lib/helpers/formatToDate';
 import { timeAgo } from 'shared/lib/helpers/date';
 import { ArticleTypeBlock } from '../ArticleTypeBlock/ArticleTypeBlock';
 import { ArticleRenderBlock } from '../ArticleRenderBlock/ArticleRenderBlock';

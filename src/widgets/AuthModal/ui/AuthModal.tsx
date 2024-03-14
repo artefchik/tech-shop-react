@@ -1,15 +1,13 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Suspense, useState } from 'react';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { SignUpFormAsync } from 'features/SignUpByEmail';
 import { LoginFormAsync } from 'features/LoginByEmail';
-import cls from './AuthModal.module.scss';
 
 interface AuthModalProps {
     className?: string;
     isOpen?: boolean;
-    onClose?: () => void;
+    onClose: () => void;
 }
 
 export const AuthModal = (props: AuthModalProps) => {
@@ -22,18 +20,13 @@ export const AuthModal = (props: AuthModalProps) => {
     };
 
     return (
-        <Modal
-            lazy
-            isOpen={isOpen}
-            onClose={onClose}
-            className={classNames(cls.LoginModal, {}, [className])}
-        >
+        <Modal lazy isOpen={isOpen} onClose={onClose} className={className}>
             {currentForm ? (
-                <Suspense fallback={<div>.....</div>}>
+                <Suspense fallback="">
                     <LoginFormAsync onSuccess={onClose} onChangeForm={onChangeForm} />
                 </Suspense>
             ) : (
-                <Suspense fallback={<Loader />}>
+                <Suspense fallback="">
                     <SignUpFormAsync onSuccess={onClose} onChangeForm={onChangeForm} />
                 </Suspense>
             )}

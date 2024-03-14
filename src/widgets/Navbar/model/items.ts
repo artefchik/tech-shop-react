@@ -15,3 +15,22 @@ export interface NavbarItemType {
 export interface ActionNavbarItemType {
     path: string;
 }
+
+export const navbarItemsList: NavbarItemType[] = [
+    {
+        path: getRoutePathMain(),
+        text: i18n.t('Home'),
+    },
+    {
+        path: getRoutePathAbout(),
+        text: i18n.t('About Us'),
+    },
+    {
+        path: getRoutePathArticles(),
+        text: i18n.t('Articles'),
+    },
+    {
+        path: getRoutePathProducts(),
+        text: i18n.t('Products'),
+    },
+];

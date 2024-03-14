@@ -38,11 +38,10 @@ export const fetchArticleList = createAsyncThunk<
         });
         const response = await $api.get<Article[]>('/articles', {
             params: {
-                // _expand: 'user',
-                page,
-                // limit,
-                // sort,
                 order,
+                page,
+                limit,
+                sort,
                 types: type === ArticleType.ALL ? undefined : type,
                 // q: search,
             },

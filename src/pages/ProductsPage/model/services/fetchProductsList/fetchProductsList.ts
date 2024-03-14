@@ -4,7 +4,11 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { ProductsCategories } from 'shared/const/types';
 import { $api } from 'shared/api/api';
 import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
-import { getProductsFilterOrder } from 'features/ProductsFilter';
+import {
+    getProductsFilterColor,
+    getProductsFilterModel,
+    getProductsFilterOrder,
+} from 'features/ProductsFilter';
 import { getProductsCategory } from 'pages/ProductsPage/model/selectors/getProductsCategory/getProductsCategory';
 import { getProductsListPage } from '../../selectors/getProductsListPage/getProductsListPage';
 import { getProductsPageLimit } from '../../selectors/getProductsPageLimit/getProductsPageLimit';
@@ -23,8 +27,8 @@ export const fetchProductsList = createAsyncThunk<
     const limit = getProductsPageLimit(getState());
     const page = getProductsListPage(getState());
     const order = getProductsFilterOrder(getState());
-    const sort = getProductsFilterOrder(getState());
     const category = getProductsCategory(getState());
+    const color = getProductsFilterColor(getState());
     try {
         addQueryParams({
             order,
@@ -33,6 +37,7 @@ export const fetchProductsList = createAsyncThunk<
             params: {
                 category: category === ProductsCategories.ALL ? undefined : category,
                 page,
+                color,
                 order,
             },
         });

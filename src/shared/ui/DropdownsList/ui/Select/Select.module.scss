@@ -1,62 +1,122 @@
 .options {
-    position: absolute;
-    z-index: 100;
-    border-radius: var(--border-radius-s);
-    background-color: var(--color-options);
-    box-shadow: 0 5 10px var(--box-shadow-color-select);
-    border: 1px solid var(--color-border-select);
-    left: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    width: 100%;
-    min-height: 86px;
-    max-height: 120px;
+  position: absolute;
+  z-index: 100;
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-options);
+  box-shadow: 0 5 10px var(--box-shadow-color-select);
+  border: 1px solid var(--color-border-select);
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  min-height: 86px;
+  max-height: 120px;
 }
 
 .icon {
-    path {
-        stroke: var(--primary-color);
-    }
+  path {
+    stroke: var(--primary-color);
+  }
 }
 
 .selectTrigger {
-    justify-content: flex-start;
-    width: 100%;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .topOpen {
-    left: 0;
-    bottom: 120%;
+  left: 0;
+  bottom: 120%;
 }
 
 .bottomOpen {
-    left: 0;
-    top: 120%;
+  left: 0;
+  top: 120%;
 }
 
 .bottomLeftOpen {
-    right: 0;
-    top: 120%;
+  right: 0;
+  top: 120%;
 }
 
 .topLeftOpen {
-    right: -20px;
-    bottom: 130%;
+  right: -20px;
+  bottom: 130%;
 }
 
 .item {
-    list-style-type: none;
-    width: 100%;
-    transition: all 0.3s ease 0s;
-    padding: 10px;
+  list-style-type: none;
+  width: 100%;
+  transition: all 0.3s ease 0s;
+  padding: 10px;
 }
 
 .active {
-    background-color: var(--secelt-active);
+  background-color: var(--secelt-active);
 }
 
 .selected {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.openIcon {
+  display: inline-block;
+  cursor: pointer;
+  width: 30px;
+  height: 12px;
+  position: absolute;
+  bottom: 12px;
+  right: 0;
+
+  &::before,
+  &::after, {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 10px;
+    background-color: var(--color-text-secondary);
+    transition: all 0.4s ease 0s;
+  }
+
+  &::before {
+    transform: rotate(135deg);
+
+  }
+
+  &::after {
+    left: 6px;
+    transform: rotate(-135deg);
+
+  }
+
+  &.open {
+    &::before,
+    &::after {
+      background-color: var(--color-text-block);
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      left: 6px;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.clearBtn {
+  position: absolute;
+  bottom: -3px;
+  right: 13px;
+
+  &::before,
+  &::after {
+    height: 15px;
+  }
 }

@@ -9,7 +9,7 @@ import {
 } from 'shared/const/router';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
-import { NavbarItemType } from '../../model/items';
+import { navbarItemsList } from '../../model/items';
 
 interface NavbarProps {
     className?: string;
@@ -18,24 +18,7 @@ interface NavbarProps {
 export const Navbar = memo((props: NavbarProps) => {
     const { className } = props;
     const { t } = useTranslation();
-    const navbarItemsList: NavbarItemType[] = [
-        {
-            path: getRoutePathMain(),
-            text: t('Home'),
-        },
-        {
-            path: getRoutePathAbout(),
-            text: t('About Us'),
-        },
-        {
-            path: getRoutePathArticles(),
-            text: t('Articles'),
-        },
-        {
-            path: getRoutePathProducts(),
-            text: t('Products'),
-        },
-    ];
+
     return (
         <nav className={className}>
             <HStack As="ul" align="center" gap="35">

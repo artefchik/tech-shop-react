@@ -46,7 +46,9 @@ module.exports = {
                     'direction',
                     'gap',
                     'label',
-                    'name'
+                    'name',
+                    'open',
+                    'as'
                 ],
             },
         ],

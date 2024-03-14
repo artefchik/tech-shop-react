@@ -1,11 +1,7 @@
-import { memo, useCallback } from 'react';
-import {
-    ArticleBlock,
-    ArticleBlockType,
-} from 'entities/Article/model/types/article';
-import { ArticleImageBlockComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
-import cls from 'entities/Article/ui/ArticleDetails/ArticleDetails.module.scss';
-import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { memo } from 'react';
+import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 interface ArticleRenderBlockProps {
     block: ArticleBlock;

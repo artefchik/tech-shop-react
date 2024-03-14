@@ -8,11 +8,11 @@ export interface SortOrderOption {
 
 export const sortOrderOptions: SortOrderOption[] = [
     {
-        value: SortOrder.ASK,
+        value: SortOrder.ASC,
         content: 'по возрастанию',
     },
     {
-        value: SortOrder.DESK,
+        value: SortOrder.DESC,
         content: 'по убыванию',
     },
 ];

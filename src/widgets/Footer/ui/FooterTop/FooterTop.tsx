@@ -33,13 +33,13 @@ export const FooterTop = ({ className }: FooterTopProps) => {
                 </VStack>
                 <VStack gap="15">
                     <HStack align="center" gap="5">
-                        <Text text={`${t('Email')}:`} size={TextSize.SMALL} />
+                        <Text text={`${t('Email')}:`} size={TextSize.SMALL} As="span" />
                         <AppLink theme={AppLinkTheme.BASE} to="info@gmail.com">
                             artemadeev42@gmail.com
                         </AppLink>
                     </HStack>
                     <HStack align="center" gap="5">
-                        <Text text={`${t('Phone')}:`} size={TextSize.SMALL} />
+                        <Text text={`${t('Phone')}:`} size={TextSize.SMALL} As="span" />
                         <AppLink theme={AppLinkTheme.BASE} to="tell:+88007553555">
                             88007553555
                         </AppLink>
@@ -65,6 +65,7 @@ export const FooterTop = ({ className }: FooterTopProps) => {
                             align={TextAlign.CENTER}
                             size={TextSize.BIG}
                             text={t('Weekly Newsletter')}
+                            As="h5"
                         />
                         <Text
                             align={TextAlign.CENTER}

@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
+import { useCallback } from 'react';
+import { RatingCard } from 'entities/Rating';
 import {
     useChangeArticleDetailsRating,
     useGetArticleDetailsRating,
-} from 'features/ArticleDetailsRating/api/articleRatingApi';
-import { useCallback } from 'react';
-import { RatingCard } from 'entities/Rating';
+} from '../api/articleRatingApi';
 
 interface ArticleDetailsRatingProps {
     className?: string;

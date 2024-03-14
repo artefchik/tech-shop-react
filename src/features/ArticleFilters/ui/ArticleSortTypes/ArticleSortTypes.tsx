@@ -4,16 +4,18 @@ import { TabItem } from 'shared/ui/Tabs/Tabs';
 import { ArticleType } from 'entities/Article';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useTranslation } from 'react-i18next';
 import { articleFiltersActions } from '../../model/slice/articleFiltersSlice';
 import { getArticleFiltersType } from '../../model/selectors/getArticleFiltersType/getArticleFiltersType';
 
 interface ArticleSortTypesProps {
-  className?: string;
-  onSend: () => void;
+    className?: string;
+    onSend: () => void;
 }
 
 export const ArticleSortTypes = (props: ArticleSortTypesProps) => {
     const { className, onSend } = props;
+    const { t } = useTranslation();
     const type = useSelector(getArticleFiltersType);
     const dispatch = useAppDispatch();
     const sortTypesOptions = useMemo<TabItem[]>(
@@ -38,17 +40,20 @@ export const ArticleSortTypes = (props: ArticleSortTypesProps) => {
         [],
     );
 
-    const onChangeTypes = useCallback((value: string) => {
-        dispatch(articleFiltersActions.setType(value as ArticleType));
-        onSend();
-    }, [dispatch, onSend]);
+    const onChangeTypes = useCallback(
+        (value: string) => {
+            dispatch(articleFiltersActions.setType(value as ArticleType));
+            onSend();
+        },
+        [dispatch, onSend],
+    );
 
     return (
         <Select
             value={type}
             onChange={onChangeTypes}
             items={sortTypesOptions}
-            defaultValue="Категории"
+            defaultValue={type !== ArticleType.ALL ? type : t('Categories')}
             className={className}
         />
     );

@@ -3,6 +3,7 @@ import { Card } from 'shared/ui/Card/Card';
 import { HStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text/Text';
 import { memo, ReactNode } from 'react';
+import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
 import cls from './CartItem.module.scss';
 import { CartItemType } from '../../model/types/cart';
 
@@ -30,7 +31,7 @@ export const CartItem = memo((props: CartItemProps) => {
                     className={cls.content}
                 >
                     <Text text={product.title} />
-                    <Text text={String(product.price.current)} />
+                    <Text text={formatToCurrency(product.price.current)} />
                     <HStack gap="20" align="center" className={cls.actions}>
                         {counter && counter}
                         {deleteButton && deleteButton}

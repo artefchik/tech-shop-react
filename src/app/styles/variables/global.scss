@@ -38,10 +38,13 @@
     --container-padding-big:15px;
     --container-padding-small:7px;
     //z-index
-    --z-index-header: 50;
-    --z-index-modal: 10000;
-    --z-index-mobile-bar: 100;
-    --z-index-open-bar:1000;
+    --z-index-header: 300;
+    --z-index-modal: 2000;
+    --z-index-mobile-bar: 1000;
+    --z-index-open-bar:10000;
     --z-index-overlay:-1;
 
+    --height-input:46px;
+
+    --height-select:40px;
 }

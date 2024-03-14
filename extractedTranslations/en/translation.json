@@ -4,22 +4,39 @@
   "About As": "About As",
   "About Us": "About Us",
   "Add To Cart": "Add To Cart",
+  "Age": "Age",
   "Articles": "Articles",
+  "Brand": "Brand",
+  "Cancel": "Cancel",
+  "Categorie": "Categorie",
   "Categories": "Categories",
+  "Color": {
+    "": {
+      "": {
+        "": ""
+      }
+    }
+  },
   "Confirm Password": "Confirm Password",
   "Don't have an account?": "Don't have an account?",
+  "Edit": "Edit",
   "Email": "Email",
   "Filters": "Filters",
+  "First name": "First name",
   "Get blog articles and offers via email": "Get blog articles and offers via email",
   "Go to products": "Go to products",
   "Have an account?": "Have an account?",
   "Home": "Home",
+  "Last name": "Last name",
   "Links": "Links",
   "Login": "Login",
+  "Model": "Model",
   "Password": "Password",
   "Phone": "Phone",
   "Products": "Products",
+  "Profile settings": "Profile settings",
   "Read more": "Read more",
+  "Save": "Save",
   "Shop is a proudly Australian open, Melbourne based supplier of I": {
     "T": {
       " goods and services, operating since 1991": {
@@ -37,12 +54,16 @@
     }
   },
   "Sign Up": "Sign Up",
+  "Sort by": "Sort by",
   "Submit": "Submit",
   "Subscribe": "Subscribe",
+  "User not Found": "User not Found",
+  "User not found": "User not found",
+  "User profile": "User profile",
   "Username": "Username",
   "Weekly Newsletter": "Weekly Newsletter",
   "Your cart is empty": "Your cart is empty",
-  "Итого": "Итого",
+  "Итого": "Total",
   "Кead more": "Кead more",
   "Корзина": "Корзина",
   "Купить": "Buy",
@@ -51,7 +72,22 @@
     "все": "все"
   },
   "См.все": "See all",
+  "Цвет": {
+    "": {
+      "": {
+        "": ""
+      }
+    }
+  },
+  "Цвет ": {
+    "": {
+      "": {
+        "": ""
+      }
+    }
+  },
   "товар": "товар",
   "товарa": "товарa",
+  "товара": "товара",
   "товаров": "товаров"
 }

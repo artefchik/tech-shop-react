@@ -52,11 +52,6 @@
     }
 
     .title {
-        //max-width: 210px;
-        //overflow: hidden;
-        //max-height: 45px;
-        //text-overflow: ellipsis;
-
         -webkit-line-clamp: 3;
         line-clamp: 3;
         word-wrap: break-word;

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SortOrder } from 'shared/const/types';
-import { ProductModel } from 'entities/Product/model/product';
 import { ProductsFiltersSchema, ProductsSortField } from '../types/ProductsFiltersSchema';
 
 const initialState: ProductsFiltersSchema = {
@@ -8,7 +7,7 @@ const initialState: ProductsFiltersSchema = {
     model: '',
     sort: ProductsSortField.PRICE,
     color: '',
-    order: SortOrder.ASK,
+    order: SortOrder.ASC,
 };
 
 export const productsFiltersSlice = createSlice({

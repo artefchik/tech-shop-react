@@ -1,8 +1,8 @@
 import { ReactNode, useMemo } from 'react';
 
 export enum SortOrder {
-    ASK = 'ask',
-    DESK = 'desk',
+    ASC = 'asc',
+    DESC = 'desc',
 }
 export enum LanguageType {
     EN = 'en',

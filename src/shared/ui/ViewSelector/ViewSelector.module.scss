@@ -2,8 +2,10 @@
     border: 1px solid var(--color-border-select);
     border-radius: var(--border-radius-s);
     overflow: hidden;
-    min-height: 40px;
+    min-height: var(--height-input);
     background-color: var(--accent-bg-color);
+    min-width: 88px;
+    max-width: 88px;
 }
 
 .button {

@@ -15,16 +15,14 @@ interface ActionsNavbarProps {
 export const ActionsNavbar = memo((props: ActionsNavbarProps) => {
     const { className } = props;
     return (
-        <nav className={classNames(cls.ActionsNavbar, {}, [className])}>
-            <HStack gap="20" align="center">
-                <Suspense fallback="">
-                    <LangSwitcher open="bottomLeft" />
-                </Suspense>
-                <NotificationButton />
-                <CartButton />
-                <AvatarDropdown />
-                <ThemeSwitcher />
-            </HStack>
-        </nav>
+        <HStack gap="20" align="center" className={className} As="nav">
+            <Suspense fallback="">
+                <LangSwitcher open="bottomLeft" />
+            </Suspense>
+            <NotificationButton />
+            <CartButton />
+            <AvatarDropdown />
+            <ThemeSwitcher />
+        </HStack>
     );
 });

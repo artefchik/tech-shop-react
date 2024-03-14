@@ -30,6 +30,20 @@
   "Confirm Password": "Подтвердите пароль",
   "Don't have an account?": "У вас нет аккаунта?",
   "Have an account?":"Есть аккаунт?",
-  "Username":"Имя пользователя"
-
+  "Username":"Имя пользователя",
+  "Edit": "Редактировать",
+  "Cancel": "Отменить",
+  "Save": "Сохранить",
+  "User profile":"Профиль пользователя",
+  "Profile settings": "Настройки профиля",
+  "First name": "Имя ",
+  "Last name": "Фамилия",
+  "Age": "Возраст",
+  "ascending  price": "по возрастанию цены",
+  "descending  price": "по убыванию цены",
+  "Shopping Cart": "Корзина товаров",
+  "Sort by": "Сортировать по...",
+  "Color": "Цвет...",
+  "Brand": "Бренд...",
+  "Model": "Модель..."
 }

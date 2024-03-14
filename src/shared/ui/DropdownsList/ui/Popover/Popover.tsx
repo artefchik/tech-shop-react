@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Popover as Pop, Transition } from '@headlessui/react';
-import React, { CSSProperties, Fragment, ReactNode } from 'react';
+import React, { CSSProperties, Fragment, ReactNode, useRef } from 'react';
 import { VStack } from 'shared/ui/Stack';
 
 import {
@@ -8,7 +8,6 @@ import {
     DropdownsListDirectionOpenClasses,
 } from 'shared/ui/DropdownsList/styles/const';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import clsDrop from '../../styles/DropdownsList.module.scss';
 import cls from './Popover.module.scss';
 
@@ -16,6 +15,7 @@ export enum TriggerTheme {
     DEFAULT = 'default',
     CLEAR = 'clear',
 }
+
 interface PopoverProps {
     className?: string;
     title?: ReactNode;
@@ -35,7 +35,7 @@ export const Popover = (props: PopoverProps) => {
         title,
         icon,
         children,
-        width = 270,
+        width,
         height = 310,
         openView = 'bottom',
         triggerClear = false,
@@ -43,26 +43,26 @@ export const Popover = (props: PopoverProps) => {
         triggerTheme = TriggerTheme.DEFAULT,
     } = props;
 
+    const bodyItems = useRef<HTMLDivElement>(null);
+
     const styles: CSSProperties = {
         width,
         minHeight: height,
     };
 
     return (
-        <Pop className={classNames(clsDrop.DropdownsList, {}, [className])}>
+        <Pop className={classNames(cls.Popover, {}, [className])}>
             {({ open }) => (
                 <>
-                    <Pop.Button as="div">
-                        <Button
-                            theme={ThemeButton.CLEAR}
-                            className={classNames(cls.trigger, { [cls.active]: open }, [
-                                className,
-                                cls[triggerTheme],
-                            ])}
-                        >
-                            {title}
-                            {icon && <Icon Svg={icon} className={cls.icon} />}
-                        </Button>
+                    <Pop.Button
+                        as="div"
+                        className={classNames(cls.trigger, { [cls.active]: open }, [
+                            className,
+                            cls[triggerTheme],
+                        ])}
+                    >
+                        <span>{title}</span>
+                        {icon && <Icon Svg={icon} className={cls.icon} />}
                     </Pop.Button>
                     <Transition
                         show={open}
@@ -75,12 +75,12 @@ export const Popover = (props: PopoverProps) => {
                         leaveTo="opacity-0 translate-y-2"
                     >
                         <Pop.Panel
-                            className={classNames(clsDrop.body, {}, [
-                                DropdownsListDirectionOpenClasses[openView],
+                            className={classNames(cls.body, { [cls.open]: open }, [
+                                // DropdownsListDirectionOpenClasses[openView],
                                 cls[fullWidthClass],
                             ])}
                             as="div"
-                            style={styles}
+                            // style={styles}
                         >
                             <VStack gap="15">{children}</VStack>
                         </Pop.Panel>

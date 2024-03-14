@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 0;
+    z-index:100;
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
@@ -19,9 +19,11 @@
     border-radius: var(--border-radius-s);
     background-color: var(--bg-color);
     width: 32%;
+
+    z-index: var(--z-index-modal);
+
     transition: transform 0.4s ease 0s;
     transform: scale(0.5);
-
     @media (max-width: 1023.98px) {
         width: 60%;
     }
@@ -33,10 +35,13 @@
 
 .opened {
     opacity: 1;
-    pointer-events: auto;
     visibility: visible;
+    overflow: auto;
+    pointer-events:auto;
     z-index: var(--z-index-modal);
-    transform: scale(1);
+    .content{
+        transform: scale(1);
+    }
 }
 
 .isClosing {

@@ -1,34 +1,33 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import React, { Fragment, memo, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { HStack } from 'shared/ui/Stack';
 import { Icon } from 'shared/ui/Icon/Icon';
 import check from 'shared/assets/icons/check.svg';
-import { ArticleType } from 'entities/Article';
 import cls from './DropdownBox.module.scss';
 
 export interface DropdownBoxItem {
     content: string;
-    value: ArticleType;
+    value: string;
 }
 
 interface DropdownBoxProps {
     className?: string;
-    items: ArticleType[];
-    onChange?: (items: ArticleType[]) => void;
+    items: DropdownBoxItem[];
+    onChange?: (items: DropdownBoxItem[]) => void;
 }
 
-export const DropdownBox = memo((props: DropdownBoxProps) => {
+export function DropdownBox(props: DropdownBoxProps) {
     const { className, items, onChange } = props;
 
-    const [selectedItems, setSelectedItems] = useState<ArticleType[]>([]);
+    const [selectedItems, setSelectedItems] = useState<DropdownBoxItem[]>([]);
     const [query, setQuery] = useState('');
     console.log(selectedItems);
     const filteredItems =
         query === ''
             ? items
             : items.filter((item) =>
-                  item.toLowerCase().includes(query.toLowerCase()),
+                  item.content.toLowerCase().includes(query.toLowerCase()),
               );
 
     const onChangeHandler = (value: any) => {
@@ -81,8 +80,8 @@ export const DropdownBox = memo((props: DropdownBoxProps) => {
                         <Combobox.Options as="ul" className={cls.list}>
                             {filteredItems.map((item) => (
                                 <Combobox.Option
-                                    key={item}
-                                    value={item}
+                                    key={item.value}
+                                    value={item.value}
                                     as={Fragment}
                                 >
                                     {({ active, selected }) => (
@@ -110,4 +109,4 @@ export const DropdownBox = memo((props: DropdownBoxProps) => {
             )}
         </Combobox>
     );
-});
+}

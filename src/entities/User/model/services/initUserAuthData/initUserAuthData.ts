@@ -4,10 +4,6 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { AuthResponse, User } from '../../types/user';
 
-interface fetchArticleListProps {
-    replace?: boolean;
-}
-
 export const initUserAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
     'user/initUserAuthData',
     async (_, thunkAPI) => {

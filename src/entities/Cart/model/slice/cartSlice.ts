@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initCartData } from 'entities/Cart/model/services/initCartData/initCartData';
+import { initCartData } from '../services/initCartData/initCartData';
 import { Cart, CartSchema } from '../types/cart';
 
 const initialState: CartSchema = {

@@ -8,7 +8,7 @@ const initialState: ArticleFiltersSchema = {
     search: '',
     sort: ArticleSortField.CREATED,
     type: ArticleType.ALL,
-    order: SortOrder.ASK,
+    order: SortOrder.ASC,
 };
 
 export const articleFiltersSlice = createSlice({

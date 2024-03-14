@@ -57,11 +57,13 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
         dispatch(fetchCommentsByArticleId(articleId));
     }, [dispatch, articleId]);
 
-    const onDeleteComment = useCallback((id: string) => {
-        dispatch(articleDetailsCommentsActions.deleteComment(id));
-        dispatch(deleteCommentArticle(id));
-        console.log(id);
-    }, []);
+    const onDeleteComment = useCallback(
+        (id: string) => {
+            dispatch(articleDetailsCommentsActions.deleteComment(id));
+            dispatch(deleteCommentArticle(id));
+        },
+        [dispatch],
+    );
 
     return (
         <DynamicModuleLoader reducers={reducers}>

@@ -10,11 +10,13 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Text, TextSize, TextTheme, TextWeight } from 'shared/ui/Text/Text';
+import { useTranslation } from 'react-i18next';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
+import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -25,12 +27,16 @@ const reducers: ReducersList = {
     profile: profileReducer,
 };
 
-export const EditableProfileCard = memo(({ className, id }: EditableProfileCardProps) => {
+export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
+    const { className, id } = props;
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const dataForm = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
     const readonly = useSelector(getProfileReadonly);
     const authData = useSelector(getUserAuthData);
+
+    const profileData = useSelector(getProfileData);
     const canEdit = authData?.id === dataForm?.id;
     useEffect(() => {
         if (id) {
@@ -60,20 +66,20 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="25">
+            <VStack gap="25" className={className}>
                 <HStack gap="10">
-                    <Text text="Профиль пользователя" size={TextSize.LARGE} />
+                    <Text text={t('User profile')} size={TextSize.LARGE} />
                     <Text
                         theme={TextTheme.SECONDARY}
                         size={TextSize.LARGE}
-                        text={`${dataForm?.firstname} ${dataForm?.lastname}`}
+                        text={`${profileData?.firstname} ${profileData?.lastname}`}
                     />
                 </HStack>
                 <VStack gap="20">
-                    <ProfileCard data={dataForm} />
+                    <ProfileCard data={profileData} />
                     <VStack gap="15">
                         <Text
-                            text="Настройки профиля"
+                            text={t('Profile settings')}
                             size={TextSize.BIG}
                             weight={TextWeight.SEMI}
                         />

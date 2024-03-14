@@ -53,12 +53,9 @@ export const MobileBar = (props: MobileBarProps) => {
                     <MobileBarButtonOpen />
                     <VStack className={classNames(cls.MobileBar, mods, [className])}>
                         {isOpenBar && <Overlay onClick={onCloseBar} />}
-
-                        <>
-                            <MobileBarTop />
-                            <MobileBarContent />
-                            <MobileBarBottom />
-                        </>
+                        <MobileBarTop />
+                        <MobileBarContent />
+                        <MobileBarBottom />
                     </VStack>
                 </DynamicModuleLoader>
             )}
