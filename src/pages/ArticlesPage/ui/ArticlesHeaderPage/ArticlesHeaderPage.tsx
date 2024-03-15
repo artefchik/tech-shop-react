@@ -35,7 +35,12 @@ export const ArticlesHeaderPage = (props: ArticlesHeaderPageProps) => {
             className={classNames(cls.ArticlesHeaderPage, {}, [className])}
         >
             <ArticleSearch onSend={debounceFetchData} />
-            <HStack gap="15" align="center" justify="end">
+            <HStack
+                gap="15"
+                align="center"
+                justify="end"
+                className={cls.filters}
+            >
                 <ArticleFilters fetchData={debounceFetchData} />
                 <ArticleViewSelector />
             </HStack>

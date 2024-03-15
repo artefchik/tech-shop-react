@@ -11,6 +11,7 @@ export enum AppRoutes {
     PRODUCTS = 'products',
     PRODUCTS_CATEGORIES = 'products_categories',
     SHOPPING_CART = 'shopping_cart',
+    AUTH = 'auth',
 
     NOT_FOUND = 'not_found',
 }
@@ -19,14 +20,17 @@ export const getRoutePathMain = () => '/';
 export const getRoutePathAbout = () => '/about';
 export const getRoutePathProfile = (id: string) => `/profile/${id}`;
 export const getRoutePathArticles = () => '/articles';
-export const getRoutePathArticlesDetailsById = (id: string) => `/articles/${id}`;
+export const getRoutePathArticlesDetailsById = (id: string) =>
+    `/articles/${id}`;
 export const getRoutePathArticlesCreate = () => '/articles/new';
-export const getRoutePathArticlesEditById = (id: string) => `/articles/${id}/edit`;
+export const getRoutePathArticlesEditById = (id: string) =>
+    `/articles/${id}/edit`;
 
 export const getRoutePathProducts = () => '/products';
 export const getRoutePathProductsCategories = (category: string) =>
     `/products/${category}`;
 export const getRoutePathShoppingCart = () => '/shopping_cart';
+export const getRoutePathAuth = () => '/auth';
 
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: getRoutePathMain(),
@@ -37,8 +41,10 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.ARTICLE_CREATE]: getRoutePathArticlesCreate(),
     [AppRoutes.ARTICLE_EDIT]: getRoutePathArticlesEditById(':id'), // + :id
     [AppRoutes.PRODUCTS]: getRoutePathProducts(),
-    [AppRoutes.PRODUCTS_CATEGORIES]: getRoutePathProductsCategories(':category'), // + :id
+    [AppRoutes.PRODUCTS_CATEGORIES]:
+        getRoutePathProductsCategories(':category'), // + :id
     [AppRoutes.SHOPPING_CART]: getRoutePathShoppingCart(),
+    [AppRoutes.AUTH]: getRoutePathAuth(),
 
     [AppRoutes.NOT_FOUND]: '*',
 };

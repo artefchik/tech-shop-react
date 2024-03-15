@@ -6,6 +6,9 @@ import { memo, ReactNode } from 'react';
 import { StarRating } from 'shared/ui/StarRating/StarRating';
 import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
 import { ViewType } from 'shared/const/types';
+import { AppImage } from 'shared/ui/AppImage/AppImage';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { NotFoundImage } from 'shared/ui/NotFoundImage/NotFoundImage';
 import { Product } from '../../model/product';
 import cls from './ProductCard.module.scss';
 
@@ -18,17 +21,27 @@ interface ProductItemProps {
 }
 
 export const ProductCard = memo((props: ProductItemProps) => {
-    const { className, product, view, AddProductButton, FavoriteButton } = props;
+    const { className, product, view, AddProductButton, FavoriteButton } =
+        props;
 
     if (view === ViewType.SMALL) {
         return (
             <Card
                 As="article"
-                className={classNames(cls.ProductCard, {}, [className, cls[view]])}
+                className={classNames(cls.ProductCard, {}, [
+                    className,
+                    cls[view],
+                ])}
             >
                 <VStack gap="10" className={cls.body}>
                     <div className={cls.image}>
-                        <img src={__API__ + product.imageSrc} alt={product.title} />
+                        <AppImage
+                            fallback={<Skeleton height="100%" />}
+                            errorFallback={<NotFoundImage />}
+                            src={__API__ + product.imageSrc}
+                            alt={product.title}
+                        />
+                        {/* <img  /> */}
                         <div className={cls.favorites}>
                             {FavoriteButton && FavoriteButton}
                         </div>
@@ -36,14 +49,22 @@ export const ProductCard = memo((props: ProductItemProps) => {
                     <VStack className={cls.content}>
                         <StarRating selectedStars={product.starRating} />
                         <VStack gap="5">
-                            <Text text={product.title} className={cls.title} As="h5" />
+                            <Text
+                                text={product.title}
+                                className={cls.title}
+                                As="h5"
+                            />
                             <HStack align="center" gap="15">
                                 <Text
-                                    text={formatToCurrency(product.price.current)}
+                                    text={formatToCurrency(
+                                        product.price.current,
+                                    )}
                                     As="span"
                                 />
                                 <Text
-                                    text={formatToCurrency(product.price.current)}
+                                    text={formatToCurrency(
+                                        product.price.current,
+                                    )}
                                     className={cls.previousPrice}
                                     theme={TextTheme.SECONDARY}
                                     As="span"
@@ -58,11 +79,16 @@ export const ProductCard = memo((props: ProductItemProps) => {
     }
 
     return (
-        <Card className={classNames(cls.ProductCard, {}, [className, cls[view]])}>
+        <Card
+            className={classNames(cls.ProductCard, {}, [className, cls[view]])}
+        >
             <HStack gap="15" className={cls.card}>
                 <VStack gap="15" className={cls.imageBlock}>
                     <div className={cls.image}>
-                        <img src={__API__ + product.imageSrc} alt={product.title} />
+                        <img
+                            src={__API__ + product.imageSrc}
+                            alt={product.title}
+                        />
                     </div>
                     <HStack justify="center" className={cls.rating}>
                         <StarRating selectedStars={product.starRating} />
@@ -82,7 +108,10 @@ export const ProductCard = memo((props: ProductItemProps) => {
                 </VStack>
                 <VStack className={cls.actionsBlock} gap="20">
                     <HStack align="center" gap="15">
-                        <Text text={formatToCurrency(product.price.current)} As="span" />
+                        <Text
+                            text={formatToCurrency(product.price.current)}
+                            As="span"
+                        />
 
                         <Text
                             text={formatToCurrency(product.price.previous)}

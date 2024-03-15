@@ -1,4 +1,3 @@
-import { VStack } from 'shared/ui/Stack';
 import { useSelector } from 'react-redux';
 import { isMobile } from 'react-device-detect';
 import {
@@ -7,11 +6,15 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useCallback, useEffect } from 'react';
-import { Overlay } from 'shared/ui/Overlay/Overlay';
+import { Drawer } from 'shared/ui/Drawer/Drawer';
+import { VStack } from 'shared/ui/Stack';
 import { MobileBarButtonOpen } from '../MobileBarButtonOpen/MobileBarButtonOpen';
 import { MobileBarBottom } from '../MobileBarBottom/MobileBarBottom';
-import { mobileBarActions, mobileBarReducer } from '../../model/slice/mobileBarSlice';
-import { classNames, Mods } from '../../../../shared/lib/classNames/classNames';
+import {
+    mobileBarActions,
+    mobileBarReducer,
+} from '../../model/slice/mobileBarSlice';
+import { Mods } from '../../../../shared/lib/classNames/classNames';
 import { MobileBarContent } from '../MobileBarContent/MobileBarContent';
 import { MobileBarTop } from '../MobileBarTop/MobileBarTop';
 import cls from './MobileBar.module.scss';
@@ -51,12 +54,13 @@ export const MobileBar = (props: MobileBarProps) => {
             {isMobile && (
                 <DynamicModuleLoader reducers={reducers}>
                     <MobileBarButtonOpen />
-                    <VStack className={classNames(cls.MobileBar, mods, [className])}>
-                        {isOpenBar && <Overlay onClick={onCloseBar} />}
-                        <MobileBarTop />
-                        <MobileBarContent />
-                        <MobileBarBottom />
-                    </VStack>
+                    <Drawer isOpen={isOpenBar} onClose={onCloseBar}>
+                        <VStack>
+                            <MobileBarTop />
+                            <MobileBarContent />
+                            <MobileBarBottom />
+                        </VStack>
+                    </Drawer>
                 </DynamicModuleLoader>
             )}
         </>

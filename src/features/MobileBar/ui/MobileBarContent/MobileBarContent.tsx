@@ -16,7 +16,7 @@ export const MobileBarContent = (props: MobileBarContentProps) => {
             As="nav"
             className={classNames(cls.MobileBarContent, {}, [className])}
         >
-            <VStack As="ul">
+            <VStack As="ul" className={cls.content}>
                 {mobileNavbarItemsList.map((item) => (
                     <li key={item.path}>
                         <MobileContentItem item={item} />

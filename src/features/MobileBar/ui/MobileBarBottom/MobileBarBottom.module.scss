@@ -1,6 +1,10 @@
 .MobileBarBottom {
-  background-color: var(--bg-mobile-bar);
+  position: absolute;
+  bottom: 0;
+  right:0;
+  background-color: var(--bg-color);
+}
+.content {
   padding: 10px 15px;
-  min-height: 85px;;
-  max-height: 85px;
+  height: 85px;
 }

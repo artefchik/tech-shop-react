@@ -45,5 +45,7 @@
   "Sort by": "Сортировать по...",
   "Color": "Цвет...",
   "Brand": "Бренд...",
-  "Model": "Модель..."
+  "Model": "Модель...",
+  "Only authorized users can add products to the shopping cart": "Добавлять в товары в корзины могут только авторизованные пользователи.",
+  "Only authorized users can add products to favorites": "Только авторизованные пользователи могут добавлять товары в избранное"
 }

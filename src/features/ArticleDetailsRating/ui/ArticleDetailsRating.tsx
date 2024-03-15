@@ -12,7 +12,7 @@ interface ArticleDetailsRatingProps {
     articleId: string;
 }
 
-const ArticleDetailsRatingAsync = (props: ArticleDetailsRatingProps) => {
+const ArticleDetailsRating = (props: ArticleDetailsRatingProps) => {
     const { className, articleId } = props;
     const userData = useSelector(getUserAuthData);
 
@@ -71,4 +71,4 @@ const ArticleDetailsRatingAsync = (props: ArticleDetailsRatingProps) => {
         />
     );
 };
-export default ArticleDetailsRatingAsync;
+export default ArticleDetailsRating;

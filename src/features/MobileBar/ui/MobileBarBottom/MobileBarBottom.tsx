@@ -18,7 +18,7 @@ export const MobileBarBottom = (props: MobileBarBottomProps) => {
             justify="end"
             className={classNames(cls.MobileBarBottom, {}, [className])}
         >
-            <HStack gap="30" align="center">
+            <HStack gap="30" align="center" className={cls.content}>
                 <Suspense fallback="">
                     <LangSwitcher />
                 </Suspense>

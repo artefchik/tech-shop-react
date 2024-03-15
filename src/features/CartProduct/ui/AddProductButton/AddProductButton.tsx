@@ -11,6 +11,14 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
+import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
+import { Modal } from 'shared/ui/Modal/Modal';
+import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { getRoutePathAuth } from 'shared/const/router';
+import { VStack } from 'shared/ui/Stack';
 import {
     cartProductsActions,
     cartProductsReducer,
@@ -31,21 +39,51 @@ const reducers: ReducersList = {
 export const AddProductButton = (props: AddProductButtonProps) => {
     const { className, product, view } = props;
     const dispatch = useAppDispatch();
+    const { isOpenModal, onShowModal, onCloseModal } = useToggleModal();
     const { t } = useTranslation();
+    const userData = useSelector(getUserAuthData);
 
     const addToCart = useCallback(() => {
-        dispatch(cartProductsActions.addItem(product));
-        dispatch(addToProduct(product.id));
-    }, [dispatch, product]);
+        if (!userData?.id) {
+            onShowModal();
+        } else {
+            dispatch(cartProductsActions.addItem(product));
+            dispatch(addToProduct(product.id));
+        }
+    }, [dispatch, onShowModal, product, userData?.id]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
+            <Modal isOpen={isOpenModal} lazy onClose={onCloseModal}>
+                <VStack align="center" gap="5">
+                    <Text
+                        text={t(
+                            'Only authorized users can add products to the shopping cart',
+                        )}
+                        align={TextAlign.CENTER}
+                    />
+                    <AppLink
+                        theme={AppLinkTheme.SECONDARY}
+                        to={getRoutePathAuth()}
+                    >
+                        {t('Sign Up')}
+                    </AppLink>
+                </VStack>
+            </Modal>
+
             <Button
                 onClick={addToCart}
-                className={classNames(cls.AddProductButton, {}, [className, cls[view]])}
+                className={classNames(cls.AddProductButton, {}, [
+                    className,
+                    cls[view],
+                ])}
             >
                 <>
-                    <Icon Svg={cartPlus} hover={false} className={cls.cartPlus} />
+                    <Icon
+                        Svg={cartPlus}
+                        hover={false}
+                        className={cls.cartPlus}
+                    />
                     <span>{t('Add To Cart')}</span>
                 </>
             </Button>

@@ -45,5 +45,7 @@
   "Brand": "Brand...",
   "Model": "Model...",
   "Color": "Color...",
-  "Sort by": "Sort by..."
+  "Sort by": "Sort by...",
+  "Only authorized users can add products to the shopping cart": "Only authorized users can add products to the shopping cart.",
+  "Only authorized users can add products to favorites": "Only authorized users can add products to favorites"
 }

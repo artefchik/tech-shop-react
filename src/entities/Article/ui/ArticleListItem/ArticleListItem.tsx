@@ -16,6 +16,8 @@ import {
 import { timeAgo } from 'shared/lib/helpers/date';
 import { ViewType } from 'shared/const/types';
 import { useTranslation } from 'react-i18next';
+import { AppImage } from 'shared/ui/AppImage/AppImage';
+import { NotFoundImage } from 'shared/ui/NotFoundImage/NotFoundImage';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -51,7 +53,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     if (view === ViewType.BIG) {
         return (
             <article
-                className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+                className={classNames(cls.ArticleListItem, {}, [
+                    className,
+                    cls[view],
+                ])}
             >
                 <Card>
                     <VStack gap="10" className={cls.body}>
@@ -79,7 +84,9 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         <VStack>
                             <Text text={article?.title} size={TextSize.LARGE} />
                         </VStack>
-                        <HStack gap="10">{article?.types.map(renderType)}</HStack>
+                        <HStack gap="10">
+                            {article?.types.map(renderType)}
+                        </HStack>
                         <ArticleTextBlockComponent
                             block={textBlock}
                             className={cls.textBlock}
@@ -97,18 +104,38 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     }
 
     return (
-        <article className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
+        <article
+            className={classNames(cls.ArticleListItem, {}, [
+                className,
+                cls[view],
+            ])}
+        >
             <Card
                 onClick={onOpenArticle}
                 className={classNames(cls.card, {}, [cls.flex])}
             >
-                <img src={__API__ + article.img} alt="" className={cls.image} />
+                <AppImage
+                    src={__API__ + article.img}
+                    alt=""
+                    errorFallback={<NotFoundImage className={cls.image} />}
+                    className={cls.image}
+                />
                 <VStack className={cls.body}>
-                    <Text
-                        text={timeAgo(article.createdAt)}
-                        theme={TextTheme.TEXT}
-                        size={TextSize.SMALL}
-                    />
+                    <HStack justify="between" align="center">
+                        <Text
+                            text={timeAgo(article.createdAt)}
+                            theme={TextTheme.TEXT}
+                            size={TextSize.SMALL}
+                        />
+                        <HStack gap="5" align="center">
+                            <Icon Svg={viewIcon} hover={false} />
+                            <Text
+                                text={String(article.views)}
+                                size={TextSize.SMALL}
+                                As="span"
+                            />
+                        </HStack>
+                    </HStack>
                     <VStack className={cls.info} gap="5">
                         <Text
                             As="h5"

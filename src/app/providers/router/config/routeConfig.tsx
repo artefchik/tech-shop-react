@@ -12,6 +12,7 @@ import {
     getRoutePathArticlesCreate,
     getRoutePathArticlesDetailsById,
     getRoutePathArticlesEditById,
+    getRoutePathAuth,
     getRoutePathMain,
     getRoutePathProducts,
     getRoutePathProductsCategories,
@@ -25,6 +26,7 @@ import { ProductsCategoriesPage } from 'pages/ProductsCategoriesPage';
 import { RouteProps } from 'react-router-dom';
 import { UserRoles } from 'entities/User';
 import { SandboxPage } from 'pages/SandboxPage';
+import { AuthPage } from 'pages/AuthPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -78,6 +80,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.SHOPPING_CART]: {
         path: getRoutePathShoppingCart(),
         element: <ShoppingCartPage />,
+    },
+    [AppRoutes.AUTH]: {
+        path: getRoutePathAuth(),
+        element: <AuthPage />,
     },
     // last
     [AppRoutes.NOT_FOUND]: {

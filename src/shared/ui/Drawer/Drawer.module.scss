@@ -1,46 +1,35 @@
 .Drawer {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 100;
-    display: flex;
-    align-items: flex-end;
-
-    //overflow: hidden;
-}
-
-.opened {
-    pointer-events: auto;
-    opacity: 1;
-    z-index: 40;
-
-    .content {
-        transform: translateY(0%);
-    }
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  //align-items: flex-end;
+  //overflow: hidden;
+  //transition: all 0.7s ease 0s;
 }
 
 .sheet {
-    z-index: 40;
-    position: fixed;
-    left: 2vw;
-    height: 80vh;
-    width: 96vw;
-    border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
-    background: var(--bg-color);
-    touch-action: none;
-    padding: 20px 15px;
+  z-index: 40;
+  position: fixed;
+  left: 2vw;
+  height: 80vh;
+  width: 96vw;
+  border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
+  background: var(--bg-color);
+  transition: all 0.1s ease 0s;
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        width: 30%;
-        height: 3px;
-        border-radius: var(--border-radius-s);
-        background-color: var(--bg-color-block);
-        transform: translateX(-50%);
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 30%;
+    height: 3px;
+    border-radius: var(--border-radius-s);
+    background-color: var(--color-text-block);
+    transform: translateX(-50%);
+  }
 }

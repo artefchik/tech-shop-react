@@ -4,7 +4,7 @@ import { Navbar } from 'widgets/Navbar';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import Logo from 'shared/assets/icons/logo.svg';
 import { ActionsNavbar } from 'widgets/Navbar/ui/ActionsNavbar/ActionsNavbar';
-import { getRoutePathMain, RoutePath } from 'shared/const/router';
+import { getRoutePathMain } from 'shared/const/router';
 import cls from './Header.module.scss';
 
 interface HeaderProps {

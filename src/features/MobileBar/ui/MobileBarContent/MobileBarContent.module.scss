@@ -1,5 +1,6 @@
 .MobileBarContent {
-  background-color: var(--bg-mobile-bar);
-  min-height: 100px;
+}
+.content {
+  max-height: 55vh;
   overflow-y: auto;
 }

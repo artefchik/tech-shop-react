@@ -6,8 +6,6 @@ import React, {
     useState,
 } from 'react';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import view from 'shared/assets/icons/view.svg';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import cls from './Input.module.scss';
 
@@ -75,10 +73,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         [cls[theme]]: true,
         [cls[align]]: true,
         [cls[textSize]]: true,
+        [cls.error]: isError,
     };
 
     return (
-        <div className={classNames(cls.body, { [cls.error]: isError }, [className])}>
+        <div className={classNames(cls.body, {}, [className])}>
             {label && (
                 <label htmlFor={label} className={cls.label}>
                     {label}

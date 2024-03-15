@@ -17,7 +17,7 @@ interface DrawerProps {
     lazy?: boolean;
 }
 
-const height = window.innerHeight - 100;
+const height = window.innerHeight;
 
 export const DrawerContent = memo((props: DrawerProps) => {
     const { Spring, Gesture } = useAnimationLibs();
@@ -45,11 +45,17 @@ export const DrawerContent = memo((props: DrawerProps) => {
     };
 
     const bind = Gesture.useDrag(
-        ({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel }) => {
-            if (my < -70) cancel();
+        ({
+            last,
+            velocity: [, vy],
+            direction: [, dy],
+            movement: [, my],
+            cancel,
+        }) => {
+            if (my < -50) cancel();
 
             if (last) {
-                if (my > height * 0.5 || (vy > 0.5 && dy > 0)) {
+                if (my > height * 0.8 || (vy > 0.5 && dy > 0)) {
                     close();
                 } else {
                     openDrawer();
@@ -75,7 +81,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
     return (
         <Portal>
             <div
-                className={classNames(cls.Drawer, {}, [
+                className={classNames(cls.Drawer, { [cls.opened]: isOpen }, [
                     className,
                     themeVariant,
                     'app_drawer',
@@ -84,10 +90,14 @@ export const DrawerContent = memo((props: DrawerProps) => {
                 <Overlay onClick={close} />
                 <Spring.a.div
                     className={cls.sheet}
-                    style={{ display, bottom: `calc(-100vh + ${height - 100}px)`, y }}
+                    style={{
+                        display,
+                        bottom: 0,
+                        y,
+                    }}
                     {...bind()}
                 >
-                    <div className={cls.auto}>{children}</div>
+                    <div>{children}</div>
                 </Spring.a.div>
             </div>
         </Portal>

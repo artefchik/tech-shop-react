@@ -4,7 +4,11 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { useSelector } from 'react-redux';
 import { Header } from 'widgets/Header';
-import { getUserAuthData, getUserInitiated, initUserAuthData } from 'entities/User';
+import {
+    getUserAuthData,
+    getUserInitiated,
+    initUserAuthData,
+} from 'entities/User';
 import { Footer } from 'widgets/Footer';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { isBrowser } from 'react-device-detect';
@@ -13,6 +17,7 @@ import { fetchCartProductsList } from 'features/CartProduct';
 import { getCartId, initCartData } from 'entities/Cart';
 import { getFavoriteDataId, initFavoriteData } from 'entities/Favorite';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton';
+import { NotificationButton } from 'features/NotificationButton';
 
 function App() {
     const { themeVariant } = useTheme();
