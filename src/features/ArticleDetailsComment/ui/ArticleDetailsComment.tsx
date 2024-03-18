@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CommentForm, CommentList } from 'entities/Comment';
-import { Text, TextSize, TextWeight } from 'shared/ui/Text/Text';
-import { VStack } from 'shared/ui/Stack';
+import { Text, TextSize, TextTheme, TextWeight } from 'shared/ui/Text/Text';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
@@ -10,6 +10,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useTranslation } from 'react-i18next';
 import { deleteCommentArticle } from '../model/services/deleteCommentArticle/deleteCommentArticle';
 import { getArticleDetailsCommentsText } from '../model/selectors/getArticleDetailsCommentsText/getArticleDetailsCommentsText';
 import { getArticleDetailsCommentsIsLoading } from '../model/selectors/getArticleDetailsCommentsIsLoading/getArticleDetailsCommentsIsLoading';
@@ -19,7 +20,6 @@ import {
     articleDetailsCommentsReducer,
 } from '../model/slice/articleDetailsCommentsSlice';
 import { getArticleDetailsCommentsData } from '../model/selectors/getArticleDetailsCommentsData/getArticleDetailsCommentsData';
-import cls from './ArticleDetailsComment.module.scss';
 import { fetchCommentsByArticleId } from '../model/services/fetchCommentByArticleId/fetchCommentByArticleId';
 
 interface ArticleDetailsCommentProps {
@@ -33,6 +33,7 @@ const reducers: ReducersList = {
 
 export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
     const { className, articleId } = props;
+    const { t } = useTranslation();
     const authData = useSelector(getUserAuthData);
     const dispatch = useAppDispatch();
     const comments = useSelector(getArticleDetailsCommentsData);
@@ -67,16 +68,20 @@ export const ArticleDetailsComment = (props: ArticleDetailsCommentProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack
-                gap="20"
-                className={classNames(cls.ArticleDetailsComment, {}, [className])}
-            >
-                <Text
-                    size={TextSize.BIG}
-                    text="Комментарии"
-                    className={cls.commentTitle}
-                    weight={TextWeight.SEMI}
-                />
+            <VStack gap="20" className={className}>
+                <HStack gap="10">
+                    <Text
+                        size={TextSize.BIG}
+                        text={t('Comments')}
+                        weight={TextWeight.SEMI}
+                    />
+                    <Text
+                        size={TextSize.BIG}
+                        text={String(comments?.length)}
+                        theme={TextTheme.TEXT}
+                        weight={TextWeight.SEMI}
+                    />
+                </HStack>
                 <CommentForm
                     onSendComment={onSendComment}
                     onCommentChangeText={onCommentChangeText}

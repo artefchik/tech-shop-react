@@ -15,7 +15,19 @@ const mainPageApi = rtkApi.injectEndpoints({
                 },
             }),
         }),
+        getMainPageArticles: build.query<Article[], MainPageApiArg>({
+            query: ({ limit, url, order, category }) => ({
+                url: '/articles',
+                params: {
+                    limit,
+                    order,
+                    category,
+                },
+            }),
+        }),
     }),
 });
 
 export const useGetMainBlockPage = mainPageApi.useGetMainBlockPageQuery;
+
+export const useGetMainPageArticles = mainPageApi.useGetMainPageArticlesQuery;

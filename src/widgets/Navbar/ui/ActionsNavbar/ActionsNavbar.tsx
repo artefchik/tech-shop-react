@@ -6,6 +6,10 @@ import { AvatarDropdown } from 'features/AvatarDropdown/ui/AvatarDropdown';
 import { CartButton } from 'features/CartButton';
 import { HStack } from 'shared/ui/Stack';
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import cls from './ActionsNavbar.module.scss';
 
 interface ActionsNavbarProps {

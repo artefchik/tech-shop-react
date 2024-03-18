@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import {
     FavoriteProduct,
     FavoriteType,
@@ -19,9 +23,11 @@ const productFavoritesAdapter = createEntityAdapter<FavoriteProduct>({
     selectId: (favorite: FavoriteProduct) => favorite.productId,
 });
 
-export const getProductFavorites = productFavoritesAdapter.getSelectors<StateSchema>(
-    (state) => state.productFavorites || productFavoritesAdapter.getInitialState(),
-);
+export const getProductFavorites =
+    productFavoritesAdapter.getSelectors<StateSchema>(
+        (state) =>
+            state.productFavorites || productFavoritesAdapter.getInitialState(),
+    );
 
 export const productFavoritesSlice = createSlice({
     name: 'productFavorites',
@@ -34,14 +40,12 @@ export const productFavoritesSlice = createSlice({
             } else {
                 productFavoritesAdapter.setOne(state, action.payload);
             }
-            // if (action.payload.isFavorite) {
-            //     productFavoritesAdapter.setOne(state, action.payload);
-            // } else {
-            //     productFavoritesAdapter.removeOne(state, action.payload.id);
-            // }
         },
         updateData: (state, action: PayloadAction<FavoriteProduct[]>) => {
             productFavoritesAdapter.setAll(state, action.payload);
+        },
+        clearFavorites: (state) => {
+            productFavoritesAdapter.removeAll(state);
         },
     },
     extraReducers: (builder) => {

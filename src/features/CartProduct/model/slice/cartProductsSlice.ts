@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { CartItemType } from 'entities/Cart';
 import { fetchCartProductsList } from 'features/CartProduct/model/services/fetchCartProductsList/fetchCartProductsList';
@@ -7,7 +11,6 @@ import { CartProductSchema } from '../types/CartProductSchema';
 const cartAdapter = createEntityAdapter<CartItemType>({
     selectId: (basketItem: CartItemType) => basketItem.id,
 });
-
 export const getCartProducts = cartAdapter.getSelectors<StateSchema>(
     (state) => state.cartProducts || cartAdapter.getInitialState(),
 );

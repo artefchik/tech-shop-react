@@ -11,9 +11,6 @@ export const favoriteSlice = createSlice({
     name: 'favorite',
     initialState,
     reducers: {
-        setInitFavoriteData: (state, action: PayloadAction<Favorite>) => {
-            state.data = action.payload;
-        },
         setLogout: (state) => {
             state.data = undefined;
         },

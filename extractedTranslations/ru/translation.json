@@ -22,12 +22,14 @@
       }
     }
   },
+  "Comments": "Comments",
   "Confirm Password": "Confirm Password",
   "Creating an article": "Creating an article",
   "Displaying the article": "Displaying the article",
   "Don't have an account?": "Don't have an account?",
   "Edit": "Edit",
   "Email": "Почта",
+  "Enter the comment text": "Enter the comment text",
   "Favorites": "Favorites",
   "Filters": "Filters",
   "First name": "First name",
@@ -46,6 +48,7 @@
   "Only authorized users can add favorites to the shopping cart": "Only authorized users can add favorites to the shopping cart",
   "Only authorized users can add products to favorites": "Only authorized users can add products to favorites",
   "Only authorized users can add products to the shopping cart": "Only authorized users can add products to the shopping cart",
+  "Only registered users can leave comments": "Only registered users can leave comments",
   "Page No": "Page No",
   "Page Not Found": "Page Not Found",
   "Password": "Password",

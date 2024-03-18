@@ -14,7 +14,7 @@ export const ProductListSkeleton = (props: ProductListSkeletonProps) => {
             {new Array(view === ViewType.SMALL ? 6 : 3)
                 .fill(0)
                 .map((item, index) => (
-                    <ProductCardSkeleton key={index} />
+                    <ProductCardSkeleton key={index} view={view} />
                 ))}
         </div>
     );

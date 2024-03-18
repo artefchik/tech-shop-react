@@ -22,7 +22,9 @@ export const ProductsList = (props: ProductsListProps) => {
             {isLoading &&
                 new Array(view === ViewType.SMALL ? 6 : 3)
                     .fill(0)
-                    .map((item, index) => <ProductCardSkeleton key={index} />)}
+                    .map((item, index) => (
+                        <ProductCardSkeleton view={view} key={index} />
+                    ))}
 
             {products.length > 0 &&
                 products.map((product) => (

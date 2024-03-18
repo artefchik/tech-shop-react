@@ -4,7 +4,6 @@ import { Card } from 'shared/ui/Card/Card';
 import { SandboxSettings } from 'features/SandboxSettings';
 import { SandboxSettingsPreview } from 'pages/SandboxPage/ui/SandboxSettingsPreview/SandboxSettingsPreview';
 import { VStack } from 'shared/ui/Stack';
-import { EditorHeader } from 'features/Editor/ui/EditorHeader/EditorHeader';
 
 interface SandboxPageWrapperProps {
     className?: string;

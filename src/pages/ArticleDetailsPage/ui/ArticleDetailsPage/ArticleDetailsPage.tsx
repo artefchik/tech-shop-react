@@ -5,13 +5,15 @@ import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Container } from 'shared/ui/Container/Container';
 import { Page } from 'shared/ui/Page/Page';
 import { ArticleDetailsComment } from 'features/ArticleDetailsComment';
-import { ArticleDetailsRating } from 'features/ArticleDetailsRating';
-import { Suspense } from 'react';
+import {
+    ArticleDetailsRating,
+    articleDetailsRatingReducer,
+} from 'features/ArticleDetailsRating';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleDetailsRatingReducer } from 'features/ArticleDetailsRating/model/slice/articleDetailsRatingSlice';
+import { AdvantagesItemList } from 'widgets/Advantages';
 import cls from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsHeaderPage } from '../ArticleDetailsHeaderPage/ArticleDetailsHeaderPage';
 
@@ -42,6 +44,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
                     <ArticleDetailsRating articleId={id} />
                     <ArticleDetailsComment articleId={id} />
                 </Container>
+                <AdvantagesItemList />
             </Page>
         </DynamicModuleLoader>
     );

@@ -69,6 +69,10 @@
   "from": "от",
   "You have the last save": "У вас есть последнее сохранение",
   "Displaying the article": "Отображение статьи ",
-  "Add a cover image": "Добавить обложку"
+  "Add a cover image": "Добавить обложку",
+  "Enter the comment text": "Введите текст комментария",
+  "Only registered users can leave comments": "Оставлять комментарии могут только зарегистрированные пользователи...",
+  "Comments": "Комментарии"
+
 }
 

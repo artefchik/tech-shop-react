@@ -43,6 +43,11 @@ export const AppImage = memo((props: AppImageProps) => {
             setIsLoading(false);
             setHasError(true);
         };
+        return () => {
+            img.onload = null;
+            img.onerror = null;
+            img.src = '';
+        };
     }, [src]);
 
     if (isLoading && fallback) {

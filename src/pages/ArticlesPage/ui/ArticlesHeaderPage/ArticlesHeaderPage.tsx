@@ -37,7 +37,6 @@ export const ArticlesHeaderPage = (props: ArticlesHeaderPageProps) => {
             gap="30"
             className={classNames(cls.ArticlesHeaderPage, {}, [className])}
         >
-            {/* <ArticleSearch onSend={debounceFetchData} /> */}
             <Text text={t('Articles')} size={TextSize.LARGE} As="h3" />
             <HStack
                 gap="15"

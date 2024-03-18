@@ -39,6 +39,7 @@ export const ProductsPageHeader = memo((props: ProductsPageHeaderProps) => {
         dispatch(productsPageActions.setPage(1));
         dispatch(fetchProductsList({ replace: true }));
     }, [category, dispatch]);
+
     return (
         <HStack
             align="center"

@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthResponse, userActions } from 'entities/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { $api } from 'shared/api/api';
+import axios from 'axios';
 
 interface LoginByEmailProps {
     email: string;
@@ -18,7 +19,12 @@ export const loginByEmail = createAsyncThunk<
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
     try {
-        const response = await $api.post<AuthResponse>('/login', authData);
+        const response = await axios.post<AuthResponse>(
+            `http://localhost:8000/login`,
+            authData,
+            { withCredentials: true },
+        );
+
         if (!response.data) {
             throw new Error();
         }
@@ -30,6 +36,6 @@ export const loginByEmail = createAsyncThunk<
         return response.data;
     } catch (e) {
         console.log(e);
-        return rejectWithValue('не верный логин или пароль');
+        return rejectWithValue('Не верный логин или пароль');
     }
 });

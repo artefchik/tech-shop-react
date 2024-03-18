@@ -25,13 +25,11 @@ export const fetchArticleList = createAsyncThunk<
 
     const page = getArticleListPage(getState());
     const limit = getArticleListLimit(getState());
-    const search = getArticleFiltersSearch(getState());
     const type = getArticleFiltersType(getState());
     const sort = getArticleFiltersSort(getState());
     const order = getArticleFiltersOrder(getState());
     try {
         addQueryParams({
-            search,
             type,
             sort,
             order,
@@ -43,7 +41,6 @@ export const fetchArticleList = createAsyncThunk<
                 limit,
                 sort,
                 types: type === ArticleType.ALL ? undefined : type,
-                // q: search,
             },
         });
         if (!response.data) {

@@ -2,13 +2,11 @@
   &.ProductCard {
     padding: 10px;
     cursor: pointer;
-
+    transition: all 0.4s ease 0s;
     @media (any-hover: hover) {
       &:hover {
-        .favorites {
-          path {
-          }
-        }
+        border-color: var(--hover-border);
+        background-color: var(--hover-color-article);
       }
     }
   }
@@ -73,12 +71,12 @@
   &.ProductCard {
     padding: 0;
     overflow: hidden;
+    transition: all 0.4s ease 0s;
   }
 
   .card {
     padding: 15px;
-    transition: all 0.3s ease 0s;
-
+    transition: all 0.4s ease 0s;
     @media (max-width: 767.98px) {
       padding: 10px;
       gap: 10px;
@@ -87,8 +85,11 @@
 
   @media (any-hover: hover) {
     &:hover {
+      border-color: var(--hover-border);
+
       .card {
         background-color: var(--hover-color-article);
+
       }
     }
   }
@@ -167,8 +168,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   svg {
     width: 100px;
     height: 100px;
   }
+}
+
+.skeletonImage {
+  flex: 0 0 20%;
 }

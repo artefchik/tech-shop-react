@@ -15,17 +15,16 @@ const ProductsCategoriesPage = (props: ProductsCategoriesProps) => {
 
     return (
         <Page
+            isBottomPadding
             className={classNames(cls.ProductsCategoriesPage, {}, [className])}
         >
-            <Container>
-                <div className={cls.body}>
-                    {productsCategoriesList.map((productCategory) => (
-                        <ProductCategoryItem
-                            category={productCategory}
-                            key={productCategory.link}
-                        />
-                    ))}
-                </div>
+            <Container className={cls.body}>
+                {productsCategoriesList.map((productCategory) => (
+                    <ProductCategoryItem
+                        category={productCategory}
+                        key={productCategory.link}
+                    />
+                ))}
             </Container>
         </Page>
     );

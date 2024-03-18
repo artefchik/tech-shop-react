@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { VStack } from 'shared/ui/Stack';
+import { EditorHeader } from 'features/Editor/ui/EditorHeader/EditorHeader';
 import { EditorTitle } from '../EditorTitle/EditorTitle';
 import { EditorBlocks } from '../EditorBlocks/EditorBlocks';
 import { editorActions, editorReducer } from '../../model/slice/editorSlice';

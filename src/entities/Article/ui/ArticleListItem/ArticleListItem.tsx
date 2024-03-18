@@ -18,6 +18,7 @@ import { ViewType } from 'shared/const/types';
 import { useTranslation } from 'react-i18next';
 import { AppImage } from 'shared/ui/AppImage/AppImage';
 import { NotFoundImage } from 'shared/ui/NotFoundImage/NotFoundImage';
+import { ARTICLE_ITEM_ID_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -32,10 +33,11 @@ interface ArticleListItemProps {
     className?: string;
     article: Article;
     view: ViewType;
+    index?: number;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const { className, article, view } = props;
+    const { className, article, view, index } = props;
     const navigate = useNavigate();
     const { t } = useTranslation();
     const renderType = useCallback(
@@ -43,9 +45,17 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         [],
     );
 
+    const onClickHandler = useCallback(() => {
+        sessionStorage.setItem(
+            ARTICLE_ITEM_ID_LOCALSTORAGE_KEY,
+            JSON.stringify(index),
+        );
+    }, [index]);
+
     const onOpenArticle = useCallback(() => {
         navigate(getRoutePathArticlesDetailsById(article.id));
-    }, [article.id, navigate]);
+        onClickHandler();
+    }, [article.id, navigate, onClickHandler]);
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
@@ -53,6 +63,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     if (view === ViewType.BIG) {
         return (
             <article
+                onClick={onClickHandler}
                 className={classNames(cls.ArticleListItem, {}, [
                     className,
                     cls[view],
@@ -117,7 +128,13 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 <AppImage
                     src={__API__ + article.img}
                     alt=""
-                    errorFallback={<NotFoundImage className={cls.image} />}
+                    errorFallback={
+                        <NotFoundImage
+                            className={classNames(cls.image, {}, [
+                                cls.notFound,
+                            ])}
+                        />
+                    }
                     className={cls.image}
                 />
                 <VStack className={cls.body}>

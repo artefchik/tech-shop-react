@@ -10,12 +10,19 @@ const initialState: CartSchema = {
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,
-    reducers: {},
+    reducers: {
+        setLogout: (state) => {
+            state.data = undefined;
+        },
+    },
     extraReducers: (builder) => {
         builder
-            .addCase(initCartData.fulfilled, (state, action: PayloadAction<Cart>) => {
-                state.data = action.payload;
-            })
+            .addCase(
+                initCartData.fulfilled,
+                (state, action: PayloadAction<Cart>) => {
+                    state.data = action.payload;
+                },
+            )
             .addCase(initCartData.rejected, (state, action) => {
                 state.error = action.payload;
             });

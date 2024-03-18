@@ -4,7 +4,6 @@ import './SliderBullets.scss';
 import 'swiper/scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ReactNode } from 'react';
-// [width: number]: SwiperOptions;
 
 export interface BreakpointsSlider {
     [width: number]: {
@@ -18,6 +17,7 @@ interface SliderProps {
     slidesPerView?: number;
     pagination?: boolean;
     spaceBetween?: number;
+    loop?: boolean;
     breakpoints?: BreakpointsSlider;
 }
 
@@ -29,6 +29,7 @@ export function Slider(props: SliderProps) {
         pagination = true,
         breakpoints,
         slidesPerView = 1,
+        loop = false,
     } = props;
 
     return (
@@ -47,11 +48,9 @@ export function Slider(props: SliderProps) {
                     delay: 2400,
                     disableOnInteraction: false,
                 }}
-                loop
+                loop={loop}
                 speed={800}
                 breakpoints={breakpoints}
-                // onSlideChange={() => console.log('slide change')}
-                // onSwiper={(swiper: any) => console.log(swiper)}
             >
                 {children}
             </Swiper>

@@ -1,24 +1,26 @@
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from 'entities/Product/ui/ProductList/ProductList.module.scss';
-import { ProductCardSkeleton } from 'entities/Product/ui/ProductCard/ProductCardSkeleton';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getProducts } from 'pages/ProductsPage/model/slice/productsPageSlice';
 import { ViewType } from 'shared/const/types';
 import { useEffect } from 'react';
-import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/services/fetchProductsFavorites/fetchProductsFavorites';
-import { getProductFavoritesIsLoading } from 'features/ProductFavoriteButton/model/selectors/getProductFavoritesIsLoading/getProductFavoritesIsLoading';
-import { ProductItem, ProductsList } from 'widgets/ProductItem';
+import { ProductItem } from 'widgets/ProductItem';
+import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
+import { fetchProductsFavorites } from 'features/ProductFavoriteButton';
+import { ProductCardSkeleton } from 'entities/Product';
 import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
+import { fetchProductsNextPage } from '../../model/services/fetchProductsNextPage/fetchProductsNextPage';
+import cls from './ProductsPageInfiniteList.module.scss';
 import { getProductsPageIsLoading } from '../../model/selectors/getProductsPageIsLoading/getProductsPageIsLoading';
 import { getProductsPageView } from '../../model/selectors/getProductsPageView/getProductsPageView';
 
 interface ArticlesInfiniteListProps {
     className?: string;
 }
+
 export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
     const { className } = props;
     const products = useSelector(getProducts.selectAll);
+    const productsLength = useSelector(getProducts.selectTotal);
     const isLoading = useSelector(getProductsPageIsLoading);
     const view = useSelector(getProductsPageView);
     const dispatch = useAppDispatch();
@@ -27,7 +29,56 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
         dispatch(fetchProductsFavorites());
     }, [dispatch]);
 
+    const onLoadNextPart = () => {
+        dispatch(fetchProductsNextPage());
+    };
+
+    if (view === ViewType.BIG) {
+        return (
+            <Virtuoso
+                useWindowScroll
+                totalCount={productsLength}
+                data={products}
+                endReached={onLoadNextPart}
+                components={{
+                    ScrollSeekPlaceholder: () => (
+                        <ProductCardSkeleton view={ViewType.BIG} />
+                    ),
+                }}
+                itemContent={(index) => (
+                    <ProductItem
+                        product={products[index]}
+                        view={ViewType.BIG}
+                        className={cls.bigCard}
+                    />
+                )}
+                scrollSeekConfiguration={{
+                    enter: (velocity) => Math.abs(velocity) > 200,
+                    exit: (velocity) => Math.abs(velocity) < 50,
+                }}
+            />
+        );
+    }
+
     return (
-        <ProductsList view={view} products={products} isLoading={isLoading} />
+        <VirtuosoGrid
+            totalCount={productsLength}
+            data={products}
+            useWindowScroll
+            endReached={onLoadNextPart}
+            components={{
+                ScrollSeekPlaceholder: () => (
+                    <ProductCardSkeleton view={ViewType.SMALL} />
+                ),
+            }}
+            listClassName={cls.wrapper}
+            itemContent={(index) => (
+                <ProductItem product={products[index]} view={ViewType.SMALL} />
+            )}
+            scrollSeekConfiguration={{
+                enter: (velocity) => Math.abs(velocity) > 200,
+                exit: (velocity) => Math.abs(velocity) < 50,
+            }}
+        />
     );
 };

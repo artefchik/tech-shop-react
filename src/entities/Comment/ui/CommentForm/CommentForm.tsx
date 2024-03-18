@@ -7,6 +7,7 @@ import { FormEvent, memo, useCallback } from 'react';
 import { User } from 'entities/User';
 import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
 import { AuthModal } from 'widgets/AuthModal/ui/AuthModal';
+import { useTranslation } from 'react-i18next';
 import cls from './CommentForm.module.scss';
 
 interface CommentFormProps {
@@ -18,7 +19,9 @@ interface CommentFormProps {
 }
 
 export const CommentForm = memo((props: CommentFormProps) => {
-    const { className, onSendComment, onCommentChangeText, text, authData } = props;
+    const { className, onSendComment, onCommentChangeText, text, authData } =
+        props;
+    const { t } = useTranslation();
     const { isOpenModal, onCloseModal, onShowModal } = useToggleModal();
 
     const onSendCommentHandler = useCallback(
@@ -41,21 +44,26 @@ export const CommentForm = memo((props: CommentFormProps) => {
                         <Input
                             onChange={onCommentChangeText}
                             value={text}
-                            placeholder="Введите текст комментария"
+                            placeholder={t('Enter the comment text')}
                             className={cls.input}
                         />
-                        <Button type="submit">Отправить</Button>
+                        <Button disabled={!text?.length} type="submit">
+                            {t('Submit')}
+                        </Button>
                     </>
                 ) : (
                     <>
                         <Text
                             theme={TextTheme.TEXT}
-                            text="Оставлять комментарии могут только зарегистрированные пользователи..."
+                            text={t('Only registered users can leave comments')}
                             className={cls.input}
                         />
-                        <Button onClick={onShowModal}>Войти</Button>
+                        <Button onClick={onShowModal}>{t('Sign Up')}</Button>
                         {isOpenModal && (
-                            <AuthModal isOpen={isOpenModal} onClose={onCloseModal} />
+                            <AuthModal
+                                isOpen={isOpenModal}
+                                onClose={onCloseModal}
+                            />
                         )}
                     </>
                 )}

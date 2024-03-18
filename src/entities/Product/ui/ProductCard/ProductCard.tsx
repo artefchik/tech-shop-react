@@ -85,7 +85,9 @@ export const ProductCard = memo((props: ProductItemProps) => {
             <HStack gap="15" className={cls.card}>
                 <VStack gap="15" className={cls.imageBlock}>
                     <div className={cls.image}>
-                        <img
+                        <AppImage
+                            fallback={<Skeleton height="100%" />}
+                            errorFallback={<NotFoundImage />}
                             src={__API__ + product.imageSrc}
                             alt={product.title}
                         />

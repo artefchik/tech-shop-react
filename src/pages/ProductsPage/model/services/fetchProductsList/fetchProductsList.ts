@@ -35,10 +35,12 @@ export const fetchProductsList = createAsyncThunk<
         });
         const response = await $api.get<Product[]>(`/products`, {
             params: {
-                category: category === ProductsCategories.ALL ? undefined : category,
+                category:
+                    category === ProductsCategories.ALL ? undefined : category,
                 page,
                 color,
                 order,
+                limit,
             },
         });
         if (!response.data) {

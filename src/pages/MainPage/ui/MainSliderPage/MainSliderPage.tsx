@@ -29,7 +29,7 @@ export const MainSliderPage = ({ className }: MainSliderPageProps) => {
             {
                 id: 1,
                 image: img,
-                title: 'iPhone 15 Pro u 15 Pro Max',
+                title: 'iPhone 15 Pro and 15 Pro Max',
                 text: t(
                     'Пробудите в себе гения с новым iPhone ,  интеллект и стиль в каждой детали',
                 ),
@@ -37,17 +37,19 @@ export const MainSliderPage = ({ className }: MainSliderPageProps) => {
             {
                 id: 2,
                 image: img2,
-                title: 'iPhone 15 Pro u 15 Pro Max',
+                title: 'iPhone 15 Pro and 15 Pro Max',
                 text: 'Пробудите в себе гения с новым iPhone: интеллект и стиль в каждой детали',
             },
             {
                 id: 3,
                 image: img3,
-                title: 'MacBook Air с процессором M2',
-                text: 'Новый Мас Air в новом форм-факторе и с процессором\n' + 'Apple M2',
+                title: 'MacBook Air M2',
+                text:
+                    'Новый Мас Air в новом форм-факторе и с процессором\n' +
+                    'Apple M2',
             },
         ],
-        [],
+        [t],
     );
 
     const slideItem = useCallback(
