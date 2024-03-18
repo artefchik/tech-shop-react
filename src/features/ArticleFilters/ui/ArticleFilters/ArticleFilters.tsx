@@ -3,7 +3,10 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Popover } from 'shared/ui/DropdownsList/ui/Popover/Popover';
+import {
+    OpenPopover,
+    Popover,
+} from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import filter from 'shared/assets/icons/filters.svg';
 import { useTranslation } from 'react-i18next';
 import { ArticleSortOrder } from '../../ui/ArticleSortOrder/ArticleSortOrder';
@@ -28,7 +31,7 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
             <Popover
                 title={t('Filters')}
                 icon={filter}
-                openView="bottomLeft"
+                openView={OpenPopover.BOTTOM_LEFT}
                 className={className}
             >
                 <ArticleSortTypes onSend={fetchData} />

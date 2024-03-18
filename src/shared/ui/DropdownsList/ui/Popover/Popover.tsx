@@ -1,19 +1,18 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Popover as Pop, Transition } from '@headlessui/react';
 import React, { CSSProperties, Fragment, ReactNode, useRef } from 'react';
 import { VStack } from 'shared/ui/Stack';
-
-import {
-    DropdownsListDirectionOpen,
-    DropdownsListDirectionOpenClasses,
-} from 'shared/ui/DropdownsList/styles/const';
 import { Icon } from 'shared/ui/Icon/Icon';
-import clsDrop from '../../styles/DropdownsList.module.scss';
 import cls from './Popover.module.scss';
 
 export enum TriggerTheme {
     DEFAULT = 'default',
     CLEAR = 'clear',
+}
+
+export enum OpenPopover {
+    BOTTOM_LEFT = 'bottomLeft',
+    BOTTOM_RIGHT = 'bottomRight',
 }
 
 interface PopoverProps {
@@ -23,10 +22,11 @@ interface PopoverProps {
     children: ReactNode;
     width?: string | number;
     height?: string | number;
-    openView?: DropdownsListDirectionOpen;
     triggerClear?: boolean;
     triggerTheme?: TriggerTheme;
     fullWidthClass?: string;
+    hoverTrigger?: boolean;
+    openView?: OpenPopover;
 }
 
 export const Popover = (props: PopoverProps) => {
@@ -37,9 +37,10 @@ export const Popover = (props: PopoverProps) => {
         children,
         width,
         height = 310,
-        openView = 'bottom',
+        openView = OpenPopover.BOTTOM_LEFT,
         triggerClear = false,
         fullWidthClass = '',
+        hoverTrigger = true,
         triggerTheme = TriggerTheme.DEFAULT,
     } = props;
 
@@ -56,10 +57,11 @@ export const Popover = (props: PopoverProps) => {
                 <>
                     <Pop.Button
                         as="div"
-                        className={classNames(cls.trigger, { [cls.active]: open }, [
-                            className,
-                            cls[triggerTheme],
-                        ])}
+                        className={classNames(
+                            cls.trigger,
+                            { [cls.active]: open, [cls.hover]: hoverTrigger },
+                            [className, cls[triggerTheme]],
+                        )}
                     >
                         <span>{title}</span>
                         {icon && <Icon Svg={icon} className={cls.icon} />}
@@ -75,10 +77,11 @@ export const Popover = (props: PopoverProps) => {
                         leaveTo="opacity-0 translate-y-2"
                     >
                         <Pop.Panel
-                            className={classNames(cls.body, { [cls.open]: open }, [
-                                // DropdownsListDirectionOpenClasses[openView],
-                                cls[fullWidthClass],
-                            ])}
+                            className={classNames(
+                                cls.body,
+                                { [cls[openView]]: open },
+                                [cls[fullWidthClass]],
+                            )}
                             as="div"
                             // style={styles}
                         >

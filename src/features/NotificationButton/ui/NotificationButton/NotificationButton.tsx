@@ -1,5 +1,8 @@
 import { NotificationList } from 'entities/Notification/ui/NotificationList/NotificationList';
-import { Popover, TriggerTheme } from 'shared/ui/DropdownsList/ui/Popover/Popover';
+import {
+    Popover,
+    TriggerTheme,
+} from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { memo, useCallback, useState } from 'react';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
@@ -8,7 +11,7 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import bell from 'shared/assets/icons/bell.svg';
 
 interface NotificationButtonProps {
-  className?: string;
+    className?: string;
 }
 
 export const NotificationButton = memo((props: NotificationButtonProps) => {
@@ -23,17 +26,15 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
     }, []);
 
     const trigger = (
-        <Button theme={ThemeButton.CLEAR} onClick={onOpenDrawer}><Icon Svg={bell} /></Button>
+        <Button theme={ThemeButton.CLEAR} onClick={onOpenDrawer}>
+            <Icon Svg={bell} />
+        </Button>
     );
 
     return (
         <>
             <BrowserView>
-                <Popover
-                    triggerTheme={TriggerTheme.CLEAR}
-                    openView="bottomLeft"
-                    icon={bell}
-                >
+                <Popover triggerTheme={TriggerTheme.CLEAR} icon={bell}>
                     <NotificationList />
                 </Popover>
             </BrowserView>

@@ -4,13 +4,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index:100;
+    z-index:-1;
     opacity: 0;
-    pointer-events: none;
     visibility: hidden;
+    pointer-events: none;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease 0s;
 }
 
 .content {
@@ -19,11 +20,9 @@
     border-radius: var(--border-radius-s);
     background-color: var(--bg-color);
     width: 32%;
-
     z-index: var(--z-index-modal);
-
-    transition: transform 0.4s ease 0s;
-    transform: scale(0.5);
+    transform: scale(0.4);
+    transition: all 0.4s ease 0s;
     @media (max-width: 1023.98px) {
         width: 60%;
     }
@@ -31,6 +30,8 @@
     @media (max-width: 767.98px) {
         width: 90%;
     }
+
+
 }
 
 .opened {
@@ -39,7 +40,7 @@
     overflow: auto;
     pointer-events:auto;
     z-index: var(--z-index-modal);
-    .content{
+    .content {
         transform: scale(1);
     }
 }

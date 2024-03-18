@@ -65,7 +65,10 @@ export const Text = memo((props: TextProps) => {
     return (
         <>
             {text && (
-                <As className={classNames(cls.Text, mods, [className])} {...otherProps}>
+                <As
+                    className={classNames(cls.Text, mods, [className])}
+                    {...otherProps}
+                >
                     {text}
                 </As>
             )}

@@ -2,7 +2,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { ChangeEvent, CSSProperties, useEffect, useRef, useState } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { ImageBlock } from 'features/Editor/model/types/editor';
 import cls from './UploadImage.module.scss';
 
 interface UploadImageProps<T> {
@@ -24,7 +23,9 @@ export function UploadImage<T>(props: UploadImageProps<T>) {
         onChangeImageBlock,
     } = props;
 
-    const [imageURL, setImageURL] = useState<string | ArrayBuffer | null>(image ?? null);
+    const [imageURL, setImageURL] = useState<string | ArrayBuffer | null>(
+        image ?? null,
+    );
     const fileInputRef = useRef<HTMLInputElement>(null);
     const isVisible = Boolean(imageURL);
 
@@ -75,13 +76,19 @@ export function UploadImage<T>(props: UploadImageProps<T>) {
                 style={styles}
             >
                 {!imageURL && (
-                    <Text className={cls.text} text={text} theme={TextTheme.TEXT} />
+                    <Text
+                        className={cls.text}
+                        text={text}
+                        theme={TextTheme.TEXT}
+                    />
                 )}
                 {imageURL && (
                     <div
-                        className={classNames(cls.image, { [cls.adaptive]: adaptive }, [
-                            className,
-                        ])}
+                        className={classNames(
+                            cls.image,
+                            { [cls.adaptive]: adaptive },
+                            [className],
+                        )}
                     >
                         <img src={imageURL as string} alt="" />
                     </div>

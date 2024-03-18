@@ -1,7 +1,9 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 import { createSelector } from '@reduxjs/toolkit';
-import { ArticleBlockType } from 'entities/Article/model/types/article';
-import { TextBlock } from 'features/Editor/model/types/editor';
+import {
+    ArticleBlockType,
+    ArticleTextBlock,
+} from 'entities/Article/model/types/article';
 
 export const getEditorBlocks = (state: StateSchema) =>
     state.editor?.editorData.blocks ?? [];
@@ -10,11 +12,11 @@ export const getEditorTextBlocks = createSelector(getEditorBlocks, (blocks) =>
     blocks?.filter((block) => block.type === ArticleBlockType.TEXT),
 );
 
-export const getEditorTextBlocksT = createSelector(
+export const getEditorTextBlocksParagraphs = createSelector(
     getEditorTextBlocks,
-    (texBlocks) =>
-        texBlocks?.reduce((accum, text) => {
-            const item = text as TextBlock;
-            return accum + (item.paragraph?.length || 0);
-        }, 0) ?? 0,
+    (textBlocks) =>
+        textBlocks.reduce((accum, textBlock) => {
+            const item = textBlock as ArticleTextBlock;
+            return accum + (item.paragraph?.length ?? 0);
+        }, 0),
 );

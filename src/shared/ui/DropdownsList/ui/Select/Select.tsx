@@ -63,7 +63,7 @@ export const Select = (props: SelectProps) => {
                     >
                         <span className={clsDrop.bodyText}>{defaultValue}</span>
 
-                        {value ? (
+                        {value === defaultValue ? (
                             <Button
                                 onClick={onClearValue}
                                 theme={ThemeButton.DELETE}
@@ -78,6 +78,13 @@ export const Select = (props: SelectProps) => {
                                 )}
                             />
                         )}
+                        {/* <span */}
+                        {/*    className={classNames( */}
+                        {/*        cls.openIcon, */}
+                        {/*        { [cls.open]: open }, */}
+                        {/*        [], */}
+                        {/*    )} */}
+                        {/* /> */}
                     </Listbox.Button>
 
                     <Transition

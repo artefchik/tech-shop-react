@@ -9,6 +9,7 @@ import {
 import { Page } from 'shared/ui/Page/Page';
 import { useInView } from 'react-intersection-observer';
 import { useSearchParams } from 'react-router-dom';
+import { AdvantagesItemList } from 'widgets/Advantages';
 import { ArticlesHeaderPage } from '../ArticlesHeaderPage/ArticlesHeaderPage';
 import { initArticlePage } from '../../model/services/initArticlePage/initArticlePage';
 import { ArticlesInfiniteList } from '../ArticlesInfiniteList/ArticlesInfiniteList';

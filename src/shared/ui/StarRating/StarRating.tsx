@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { CSSProperties, useState } from 'react';
+import { CSSProperties, memo, useEffect, useState } from 'react';
 import cls from './StarRating.module.scss';
 import starIcon from '../../assets/icons/star.svg';
 
@@ -8,13 +8,13 @@ interface StarRatingProps {
     className?: string;
     onSelect?: (starCount: number) => void;
     size?: number;
-    selectedStars?: number;
+    selectedStars: number;
 }
 
 const stars = [1, 2, 3, 4, 5];
 
 export const StarRating = (props: StarRatingProps) => {
-    const { className, size = 25, onSelect, selectedStars = 0 } = props;
+    const { className, size = 25, onSelect, selectedStars } = props;
 
     const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));

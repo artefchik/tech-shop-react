@@ -47,7 +47,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                         </div>
                     </div>
                     <VStack className={cls.content}>
-                        <StarRating selectedStars={product.starRating} />
+                        {/* <StarRating selectedStars={product.starRating} /> */}
                         <VStack gap="5">
                             <Text
                                 text={product.title}
@@ -91,7 +91,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                         />
                     </div>
                     <HStack justify="center" className={cls.rating}>
-                        <StarRating selectedStars={product.starRating} />
+                        {/* <StarRating selectedStars={product.starRating} /> */}
                     </HStack>
                 </VStack>
                 <VStack className={cls.textBlock} gap="20">

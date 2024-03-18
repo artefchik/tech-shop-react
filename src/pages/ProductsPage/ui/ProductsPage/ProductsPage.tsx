@@ -10,6 +10,7 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ProductsCategories } from 'shared/const/types';
+import { AdvantagesItemList } from 'widgets/Advantages';
 import { initProductsPage } from '../../model/services/initProductsPage/initProductsPage';
 import { ProductsPageInfiniteList } from '../ProductsPageInfiniteList/ProductsPageInfiniteList';
 import { ProductsPageHeader } from '../ProductsPageHeader/ProductsPageHeader';
@@ -34,7 +35,9 @@ const ProductsPage = (props: ProductsPageProps) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        dispatch(productsPageActions.setCategory(category as ProductsCategories));
+        dispatch(
+            productsPageActions.setCategory(category as ProductsCategories),
+        );
     }, [category, dispatch]);
 
     const { ref, inView } = useInView({
@@ -59,7 +62,10 @@ const ProductsPage = (props: ProductsPageProps) => {
                 className={classNames(cls.ProductsPage, {}, [className])}
             >
                 <Container>
-                    <ProductsPageHeader category={category} className={cls.header} />
+                    <ProductsPageHeader
+                        category={category}
+                        className={cls.header}
+                    />
                     <ProductsPageInfiniteList />
                 </Container>
             </Page>

@@ -19,7 +19,7 @@ export const ActionsNavbar = memo((props: ActionsNavbarProps) => {
             <Suspense fallback="">
                 <LangSwitcher open="bottomLeft" />
             </Suspense>
-            <NotificationButton />
+            {/* <NotificationButton /> */}
             <CartButton />
             <AvatarDropdown />
             <ThemeSwitcher />

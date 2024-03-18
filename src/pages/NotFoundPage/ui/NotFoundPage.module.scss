@@ -1,2 +1,14 @@
 .NotFoundPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.title {
+  font-size: 60px;
+}
+
+.text {
+  font-size: 40px;
 }

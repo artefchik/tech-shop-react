@@ -1,12 +1,14 @@
-import { ArticleBlockType } from 'entities/Article/model/types/article';
+import {
+    ArticleBlock,
+    ArticleBlockType,
+} from 'entities/Article/model/types/article';
 import { VStack } from 'shared/ui/Stack';
-import { EditorImageBlock } from 'features/Editor/ui/EditorImageBlock/EditorImageBlock';
-import { EditorBaseBlock } from 'features/Editor/ui/EditorBaseBlock/EditorBaseBlock';
-import { EditorBlock, TextBlock } from 'features/Editor/model/types/editor';
+import { EditorImageBlock } from '../EditorImageBlock/EditorImageBlock';
+import { EditorBaseBlock } from '../EditorBaseBlock/EditorBaseBlock';
 
 interface EditorRenderBlockProps {
     onClose?: (value: string) => void;
-    block: EditorBlock;
+    block: ArticleBlock;
     type: ArticleBlockType;
 }
 

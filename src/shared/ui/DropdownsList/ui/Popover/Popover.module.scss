@@ -16,13 +16,17 @@
   border: 1px solid var(--color-border-select);
   transition: all 0.3s ease 0s;
   position: relative;
+
+  @media (max-width: 767.98px) {
+    width: 97vw;
+  }
+}
+
+.hover {
   @media (any-hover: hover) {
     &:hover {
       background-color: var(--color-active-trigger);
     }
-  }
-  @media (max-width: 767.98px) {
-    width: 97vw;
   }
 }
 
@@ -105,9 +109,16 @@
   //overflow: hidden;
 }
 
-
-.open {
+.bottomLeft{
   right: 0;
+  top: 120%;
+  @media (max-width: 767.98px) {
+    left: 0;
+  }
+}
+
+.bottomRight {
+  left:  0;
   top: 120%;
   @media (max-width: 767.98px) {
     left: 0;

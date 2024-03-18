@@ -20,14 +20,14 @@ export const updateProfileData = createAsyncThunk<
         rejectValue: ValidateProfileError[];
     }
 >('profile/updateProfileData', async (_, thunkAPI) => {
-    // @ts-ignore
-    const formData = getProfileForm(thunkAPI.getState());
-    const errors = validateProfileData(formData);
-    // if (errors.length) {
-    //     return thunkAPI.rejectWithValue(errors);
-    // }
     try {
-        const response = await $api.patch<Profile>(`/profile/${formData?.id}`, formData);
+        // @ts-ignore
+        const formData = getProfileForm(thunkAPI.getState());
+
+        const response = await $api.patch<Profile>(
+            `/profile/${formData?.id}`,
+            formData,
+        );
         return response.data;
     } catch (e) {
         console.log(e);

@@ -5,6 +5,8 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import Logo from 'shared/assets/icons/logo.svg';
 import { ActionsNavbar } from 'widgets/Navbar/ui/ActionsNavbar/ActionsNavbar';
 import { getRoutePathMain } from 'shared/const/router';
+import { ErrorButton } from 'app/providers/ErrorBoundary/ui/ErrorButton';
+import React from 'react';
 import cls from './Header.module.scss';
 
 interface HeaderProps {

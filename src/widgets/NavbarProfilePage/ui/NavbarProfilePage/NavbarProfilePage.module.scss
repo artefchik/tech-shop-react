@@ -1,0 +1,44 @@
+.NavbarProfilePage {
+  align-self: flex-start;
+  width: 25%;
+  border-radius: var(--border-radius-s);
+  border: 1px solid var(--border-color);
+  background-color: var(--accent-bg-color);
+  overflow: hidden;
+
+  @media (max-width: 991.98px) {
+      display: flex;
+  }
+}
+
+.block {
+  padding: 10px;
+  transition: all 0.4s ease 0s;
+
+  span {
+    transition: all 0.4s ease 0s;
+    color: var(--color-text-block);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      span {
+        color: var(--primary-color);
+      }
+
+      background-color: var(--color-active-trigger);
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.active {
+  span {
+    color: var(--primary-color);
+  }
+
+  background-color: var(--color-active-trigger);
+}

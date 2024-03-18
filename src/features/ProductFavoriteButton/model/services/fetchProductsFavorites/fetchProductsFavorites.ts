@@ -11,12 +11,11 @@ export const fetchProductsFavorites = createAsyncThunk<
 >('productFavorites/fetchProductsFavorites', async (_, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
-    const favorite = getFavoriteData(getState());
-    if (!favorite) {
-        return rejectWithValue('error');
-    }
-
     try {
+        const favorite = getFavoriteData(getState());
+        if (!favorite) {
+            return rejectWithValue('error');
+        }
         const response = await $api.get(`/favorites/${favorite.id}`);
 
         if (!response.data) {

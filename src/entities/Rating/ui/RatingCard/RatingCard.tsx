@@ -10,6 +10,7 @@ import { Input } from 'shared/ui/Input/Input';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
+import { useTranslation } from 'react-i18next';
 import cls from './RatingCard.module.scss';
 
 interface RatingCardProps {
@@ -19,7 +20,7 @@ interface RatingCardProps {
     onCancel?: (starsCount: number) => void;
     onAccept?: (starsCount: number, feedback?: string) => void;
     hasFeedback?: boolean;
-    rate?: number;
+    rate: number;
 }
 
 export const RatingCard = (props: RatingCardProps) => {
@@ -30,13 +31,13 @@ export const RatingCard = (props: RatingCardProps) => {
         onCancel,
         onAccept,
         hasFeedback,
-        rate = 0,
+        rate,
     } = props;
 
     const [starsCount, setStarsCount] = useState(rate);
     const [feedback, setFeedback] = useState('');
     const { isOpenModal, onShowModal, onCloseModal } = useToggleModal();
-
+    const { t } = useTranslation();
     const onSelectStars = useCallback(
         (selectStarsCount: number) => {
             setStarsCount(selectStarsCount);
@@ -71,9 +72,16 @@ export const RatingCard = (props: RatingCardProps) => {
             <VStack align="center" gap="15">
                 <Text
                     size={TextSize.BIG}
-                    text={starsCount ? 'Спасибо за оценку !' : title}
+                    text={
+                        starsCount
+                            ? t('Thank you for evaluating the article')
+                            : title
+                    }
                 />
-                <StarRating selectedStars={starsCount} onSelect={onSelectStars} />
+                <StarRating
+                    selectedStars={starsCount}
+                    onSelect={onSelectStars}
+                />
             </VStack>
             <BrowserView>
                 <Modal isOpen={isOpenModal} lazy onClose={onCancelHandler}>
@@ -84,9 +92,11 @@ export const RatingCard = (props: RatingCardProps) => {
                                 theme={ThemeButton.OUTLINE_RED}
                                 onClick={onCancelHandler}
                             >
-                                close
+                                {t('Close')}
                             </Button>
-                            <Button onClick={onAcceptHandler}>save</Button>
+                            <Button onClick={onAcceptHandler}>
+                                {t('Submit')}
+                            </Button>
                         </HStack>
                     </VStack>
                 </Modal>

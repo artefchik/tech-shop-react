@@ -1,1 +1,3 @@
-export { ArticleDetailsRatingAsync as ArticleDetailsRating } from './ui/ArticleDetailsRating.async';
+export { ArticleDetailsRating } from './ui/ArticleDetailsRating';
+
+export { ArticleDetailsRatingSchema } from './model/types/ArticleDetailsRatingSchema';

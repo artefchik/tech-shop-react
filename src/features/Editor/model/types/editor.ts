@@ -1,19 +1,27 @@
-import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
+// interface Block {
+//     id: string;
+//     type: ArticleBlockType;
+//     title?: string;
+// }
+// export interface ImageBlock extends Block {
+//     image?: string;
+// }
+//
+// export interface TextBlock extends Block {
+//     paragraph?: string;
+// }
+//
+// export type EditorBlock = ImageBlock | TextBlock;
+//
+//
+//
+// export interface ArticleBlockBase {
+//     _id: string;
+//     type: ArticleBlockType;
+//     title?: string;
+// }
 
-interface Block {
-    id: string;
-    type: ArticleBlockType;
-    title?: string;
-}
-export interface ImageBlock extends Block {
-    image?: string;
-}
-
-export interface TextBlock extends Block {
-    paragraph?: string;
-}
-
-export type EditorBlock = ImageBlock | TextBlock;
+import { ArticleBlock } from 'entities/Article';
 
 export interface TimeChange {
     hour: number;
@@ -23,7 +31,7 @@ export interface TimeChange {
 }
 
 export interface EditorData {
-    blocks: EditorBlock[];
+    blocks: ArticleBlock[];
     title: string;
 }
 

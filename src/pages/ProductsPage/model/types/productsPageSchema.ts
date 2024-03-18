@@ -10,7 +10,7 @@ export interface ProductsPageSchema extends EntityState<Product> {
     page: number;
     limit: number;
     hasMore: boolean;
-    category: ProductsCategories;
+    category?: ProductsCategories;
 
     _initiated: boolean;
 }

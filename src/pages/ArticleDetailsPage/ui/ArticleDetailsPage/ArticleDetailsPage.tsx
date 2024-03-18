@@ -6,12 +6,22 @@ import { Container } from 'shared/ui/Container/Container';
 import { Page } from 'shared/ui/Page/Page';
 import { ArticleDetailsComment } from 'features/ArticleDetailsComment';
 import { ArticleDetailsRating } from 'features/ArticleDetailsRating';
+import { Suspense } from 'react';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { articleDetailsRatingReducer } from 'features/ArticleDetailsRating/model/slice/articleDetailsRatingSlice';
 import cls from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsHeaderPage } from '../ArticleDetailsHeaderPage/ArticleDetailsHeaderPage';
 
 interface ArticleDetailsPageProps {
     className?: string;
 }
+
+const reducers: ReducersList = {
+    articleDetailsRating: articleDetailsRatingReducer,
+};
 
 const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const { className } = props;
@@ -22,14 +32,18 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     }
 
     return (
-        <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-            <Container className={cls.body}>
-                <ArticleDetailsHeaderPage />
-                <ArticleDetails id={id} className={cls.article} />
-                {/* <ArticleDetailsRating articleId={id} /> */}
-                <ArticleDetailsComment articleId={id} />
-            </Container>
-        </Page>
+        <DynamicModuleLoader reducers={reducers}>
+            <Page
+                className={classNames(cls.ArticleDetailsPage, {}, [className])}
+            >
+                <Container className={cls.body}>
+                    <ArticleDetailsHeaderPage />
+                    <ArticleDetails articleId={id} className={cls.article} />
+                    <ArticleDetailsRating articleId={id} />
+                    <ArticleDetailsComment articleId={id} />
+                </Container>
+            </Page>
+        </DynamicModuleLoader>
     );
 };
 export default ArticleDetailsPage;

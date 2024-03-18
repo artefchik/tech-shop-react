@@ -3,7 +3,11 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import { memo, useCallback, useEffect } from 'react';
 import { Card } from 'shared/ui/Card/Card';
-import { EditableProfileFooter, ProfileCard, ProfileEdit } from 'entities/Profile';
+import {
+    EditableProfileFooter,
+    ProfileCard,
+    ProfileEdit,
+} from 'entities/Profile';
 import { HStack, VStack } from 'shared/ui/Stack';
 import {
     DynamicModuleLoader,
@@ -20,7 +24,7 @@ import { getProfileData } from '../../model/selectors/getProfileData/getProfileD
 
 interface EditableProfileCardProps {
     className?: string;
-    id: string;
+    id?: string;
 }
 
 const reducers: ReducersList = {
@@ -65,39 +69,23 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     );
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="25" className={className}>
-                <HStack gap="10">
-                    <Text text={t('User profile')} size={TextSize.LARGE} />
-                    <Text
-                        theme={TextTheme.SECONDARY}
-                        size={TextSize.LARGE}
-                        text={`${profileData?.firstname} ${profileData?.lastname}`}
-                    />
-                </HStack>
-                <VStack gap="20">
-                    <ProfileCard data={profileData} />
-                    <VStack gap="15">
-                        <Text
-                            text={t('Profile settings')}
-                            size={TextSize.BIG}
-                            weight={TextWeight.SEMI}
+        // <DynamicModuleLoader reducers={reducers}>
+        <VStack gap="25" className={className} width>
+            <VStack gap="20">
+                <Card>
+                    <VStack gap="20">
+                        <ProfileEdit
+                            readonly={readonly}
+                            data={dataForm}
+                            onChangeFirstname={onChangeFirstname}
+                            onChangeLastname={onChangeLastname}
+                            onChangeAge={onChangeAge}
                         />
-                        <Card>
-                            <VStack gap="20">
-                                <ProfileEdit
-                                    readonly={readonly}
-                                    data={dataForm}
-                                    onChangeFirstname={onChangeFirstname}
-                                    onChangeLastname={onChangeLastname}
-                                    onChangeAge={onChangeAge}
-                                />
-                                {canEdit && <EditableProfileFooter />}
-                            </VStack>
-                        </Card>
+                        {canEdit && <EditableProfileFooter />}
                     </VStack>
-                </VStack>
+                </Card>
             </VStack>
-        </DynamicModuleLoader>
+        </VStack>
+        // </DynamicModuleLoader>
     );
 });

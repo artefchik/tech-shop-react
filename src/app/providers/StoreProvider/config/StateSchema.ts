@@ -1,5 +1,10 @@
 import { UserSchema } from 'entities/User';
-import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import {
+    AnyAction,
+    EnhancedStore,
+    Reducer,
+    ReducersMapObject,
+} from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
 import { AxiosInstance } from 'axios';
 import { To } from 'history';
@@ -11,7 +16,6 @@ import { ProfileSchema } from 'features/EditableProfileCard';
 import { ArticleDetailsCommentsSchema } from 'features/ArticleDetailsComment';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CartSchema } from 'entities/Cart';
-import { SandboxPageSchema } from 'pages/SandboxPage';
 import { EditorSchema } from 'features/Editor';
 import { ProductFavoritesSchema } from 'features/ProductFavoriteButton';
 import { ProductsPageSchema } from 'pages/ProductsPage';
@@ -20,6 +24,7 @@ import { ProductsFiltersSchema } from 'features/ProductsFilter';
 import { MobileBarSchema } from 'features/MobileBar';
 import { FavoriteSchema } from 'entities/Favorite';
 import { CartProductSchema } from 'features/CartProduct';
+import { ArticleDetailsRatingSchema } from 'features/ArticleDetailsRating';
 
 export interface StateSchema {
     user: UserSchema;
@@ -33,11 +38,11 @@ export interface StateSchema {
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: ArticleDetailsCommentsSchema;
+    articleDetailsRating?: ArticleDetailsRatingSchema;
     articlesPage?: ArticlesPageSchema;
     articleFilters?: ArticleFiltersSchema;
     productsPage?: ProductsPageSchema;
     productsFilters?: ProductsFiltersSchema;
-    sandboxPage?: SandboxPageSchema;
     editor?: EditorSchema;
     sandboxSettings?: SandboxSettingsSchema;
 
@@ -48,7 +53,10 @@ export type StateSchemaKey = keyof StateSchema;
 export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
-    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+    reduce: (
+        state: StateSchema,
+        action: AnyAction,
+    ) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
 

@@ -3,7 +3,6 @@
     padding-top: calc(var(--header-height) + 50px);
   }
   padding-top: 10px;
-  padding-bottom: 50px;
   min-height: 100vh;
   flex: 1 1 auto;
 }
@@ -11,4 +10,8 @@
 .trigger {
   height: 20px;
   margin: 10px;
+}
+
+.bottom {
+  padding-bottom: 20px;
 }

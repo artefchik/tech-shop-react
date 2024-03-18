@@ -11,6 +11,7 @@ import delivery from 'shared/assets/icons/delivery.svg';
 import image1 from 'shared/assets/aboutPage/image-block-1.jpg';
 import image3 from 'shared/assets/aboutPage/image-block-3.png';
 import image4 from 'shared/assets/aboutPage/image-block-4.png';
+import { AdvantagesItemList } from 'widgets/Advantages';
 import cls from './AboutPage.module.scss';
 
 interface AboutPageProps {
@@ -49,19 +50,19 @@ const items: AboutPageItem[] = [
 const AboutPage = ({ className }: AboutPageProps) => {
     const { t } = useTranslation();
     return (
-        <Page className={classNames(cls.AboutPage, {}, [className])}>
+        <Page>
             <Container>
                 <Text
                     text={t('About Us')}
                     size={TextSize.LARGE}
                     As="h3"
                     weight={TextWeight.SEMI}
-                    className={cls.title}
                 />
             </Container>
             {items.map((item) => (
                 <AboutPageBlock key={item.image} block={item} />
             ))}
+            <AdvantagesItemList />
         </Page>
     );
 };

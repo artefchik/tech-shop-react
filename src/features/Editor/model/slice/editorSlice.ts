@@ -1,26 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { EditorSchema } from 'features/Editor';
 import { getStorageItem } from 'shared/lib/helpers/localStorage';
-import {
-    EDITOR_CREATED_LOCALSTORAGE_KEY,
-    EDITOR_LOCALSTORAGE_KEY,
-} from 'shared/const/localStorage';
-import { ArticleBlockType } from 'entities/Article';
+import { EDITOR_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import { Article, ArticleBlock, ArticleBlockType } from 'entities/Article';
 import { v4 as uuidv4 } from 'uuid';
+import { EditorSavedData } from 'features/Editor/model/types/editor';
 import {
-    EditorBlock,
-    EditorData,
-    EditorSavedData,
-    ImageBlock,
-    TextBlock,
-    TimeChange,
-} from '../types/editor';
+    ArticleImageBlock,
+    ArticleTextBlock,
+} from 'entities/Article/model/types/article';
 
 const initialState: EditorSchema = {
     editorData: {
         blocks: [
             {
-                id: uuidv4(),
+                _id: uuidv4(),
                 type: ArticleBlockType.TEXT,
                 title: '',
                 paragraph: '',
@@ -36,7 +30,9 @@ export const editorSlice = createSlice({
     initialState,
     reducers: {
         initEditor: (state) => {
-            const data = getStorageItem<EditorSavedData>(EDITOR_LOCALSTORAGE_KEY);
+            const data = getStorageItem<EditorSavedData>(
+                EDITOR_LOCALSTORAGE_KEY,
+            );
             if (data) {
                 state.savedData = data;
             }
@@ -52,26 +48,28 @@ export const editorSlice = createSlice({
             }
             state.savedData = undefined;
         },
-        createBlock: (state, action: PayloadAction<EditorBlock>) => {
+        createBlock: (state, action: PayloadAction<ArticleBlock>) => {
             state.editorData?.blocks.push(action.payload);
         },
 
-        changeBlock: (state, action: PayloadAction<EditorBlock>) => {
+        changeBlock: (state, action: PayloadAction<ArticleBlock>) => {
             const searchBlock = state.editorData?.blocks.find(
-                (block) => block.id === action.payload.id,
+                (block) => block._id === action.payload._id,
             );
             if (searchBlock) {
-                state.editorData.blocks = state.editorData.blocks.map((block) => {
-                    if (block.id === action.payload.id) {
-                        block = action.payload;
-                    }
-                    return block;
-                });
+                state.editorData.blocks = state.editorData.blocks.map(
+                    (block) => {
+                        if (block._id === action.payload._id) {
+                            block = action.payload;
+                        }
+                        return block;
+                    },
+                );
             }
         },
-        onChangeTextBlock: (state, action: PayloadAction<TextBlock>) => {
+        onChangeTextBlock: (state, action: PayloadAction<ArticleTextBlock>) => {
             state.editorData.blocks = state.editorData.blocks.map((block) => {
-                if (block.id === action.payload.id) {
+                if (block._id === action.payload._id) {
                     block = {
                         ...block,
                         ...action.payload,
@@ -81,9 +79,12 @@ export const editorSlice = createSlice({
             });
         },
 
-        onChangeImageBlock: (state, action: PayloadAction<ImageBlock>) => {
+        onChangeImageBlock: (
+            state,
+            action: PayloadAction<ArticleImageBlock>,
+        ) => {
             state.editorData.blocks = state.editorData.blocks.map((block) => {
-                if (block.id === action.payload.id) {
+                if (block._id === action.payload._id) {
                     block = {
                         ...block,
                         ...action.payload,
@@ -92,12 +93,12 @@ export const editorSlice = createSlice({
                 return block;
             });
         },
-        createBlockOnMobile: (state, action: PayloadAction<EditorBlock>) => {
+        createBlockOnMobile: (state, action: PayloadAction<ArticleBlock>) => {
             state.editorData.blocks.push(action.payload);
         },
         deleteBlock: (state, action: PayloadAction<string>) => {
             state.editorData.blocks = state.editorData.blocks.filter(
-                (block) => block.id !== action.payload,
+                (block) => block._id !== action.payload,
             );
         },
     },

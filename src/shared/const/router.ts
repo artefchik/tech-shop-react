@@ -11,6 +11,7 @@ export enum AppRoutes {
     PRODUCTS = 'products',
     PRODUCTS_CATEGORIES = 'products_categories',
     SHOPPING_CART = 'shopping_cart',
+    FAVORITES = 'favorites',
     AUTH = 'auth',
 
     NOT_FOUND = 'not_found',
@@ -31,6 +32,7 @@ export const getRoutePathProductsCategories = (category: string) =>
     `/products/${category}`;
 export const getRoutePathShoppingCart = () => '/shopping_cart';
 export const getRoutePathAuth = () => '/auth';
+export const getRoutePathFavorites = () => '/favorites';
 
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: getRoutePathMain(),
@@ -44,6 +46,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.PRODUCTS_CATEGORIES]:
         getRoutePathProductsCategories(':category'), // + :id
     [AppRoutes.SHOPPING_CART]: getRoutePathShoppingCart(),
+    [AppRoutes.FAVORITES]: getRoutePathFavorites(),
     [AppRoutes.AUTH]: getRoutePathAuth(),
 
     [AppRoutes.NOT_FOUND]: '*',

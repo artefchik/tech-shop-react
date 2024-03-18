@@ -32,13 +32,19 @@ export const ProductsModelFilter = (props: ProductsModelFilterProps) => {
         [dispatch, onSend],
     );
 
+    const onClearModel = useCallback(() => {
+        dispatch(productsFiltersActions.setModel(''));
+        onSend();
+    }, [dispatch, onSend]);
+
     return (
         <Select
             value={model}
             onChange={onChangeModel}
             items={models}
-            defaultValue={t('Model')}
+            defaultValue={model || t('Model')}
             className={className}
+            onClearValue={onClearModel}
         />
     );
 };

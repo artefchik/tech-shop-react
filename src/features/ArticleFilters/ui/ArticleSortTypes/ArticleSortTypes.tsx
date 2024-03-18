@@ -5,6 +5,7 @@ import { ArticleType } from 'entities/Article';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useTranslation } from 'react-i18next';
+import { SelectItem } from 'shared/ui/DropdownsList/ui/Select/Select';
 import { articleFiltersActions } from '../../model/slice/articleFiltersSlice';
 import { getArticleFiltersType } from '../../model/selectors/getArticleFiltersType/getArticleFiltersType';
 
@@ -18,7 +19,8 @@ export const ArticleSortTypes = (props: ArticleSortTypesProps) => {
     const { t } = useTranslation();
     const type = useSelector(getArticleFiltersType);
     const dispatch = useAppDispatch();
-    const sortTypesOptions = useMemo<TabItem[]>(
+
+    const sortTypesOptions = useMemo<SelectItem[]>(
         () => [
             {
                 value: ArticleType.ALL,
@@ -48,13 +50,16 @@ export const ArticleSortTypes = (props: ArticleSortTypesProps) => {
         [dispatch, onSend],
     );
 
+    const onClearType = useCallback(() => {}, []);
+
     return (
         <Select
             value={type}
             onChange={onChangeTypes}
             items={sortTypesOptions}
-            defaultValue={type !== ArticleType.ALL ? type : t('Categories')}
+            defaultValue={t('Categories')}
             className={className}
+            onClearValue={onClearType}
         />
     );
 };

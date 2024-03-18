@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
 import { UploadImage } from 'shared/ui/UploadImage/UploadImage';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { sandboxSettingsActions } from 'features/SandboxSettings/model/slice/sandboxSettingsSlice';
 import { getEditorTextBlocks } from 'features/Editor/model/selectors/getEditorBlocks/getEditorBlocks';
 import { getSandboxSettingsImage } from 'features/SandboxSettings/model/selectors/getSandboxSettingsImage/getSandboxSettingsImage';
+import { useTranslation } from 'react-i18next';
 import cls from './SandboxSettingsPreview.module.scss';
 
 interface SandboxSettingsPreviewProps {
@@ -22,6 +23,7 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
     const previewImage = useSelector(getSandboxSettingsImage);
     const textBlocks = useSelector(getEditorTextBlocks);
     const title = useSelector(getEditorTitle);
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const onChangePreviewImage = useCallback(
         (image: string) => {
@@ -35,12 +37,11 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
             gap="10"
             className={classNames(cls.SandboxSettingsPreview, {}, [className])}
         >
-            <Text text="Отображение статьи" />
+            <Text size={TextSize.BIG} text={t('Displaying the article')} />
             <VStack gap="10">
                 <UploadImage
                     adaptive
-                    // height={350}
-                    text="Добавить обложку"
+                    text={t('Add a cover image')}
                     image={previewImage}
                     onChangeImageBlock={onChangePreviewImage}
                     className={cls.previewImage}
@@ -51,11 +52,10 @@ export const SandboxSettingsPreview = (props: SandboxSettingsPreviewProps) => {
                     <VStack gap="20">
                         {!!textBlocks?.length &&
                             textBlocks.map((textBlock) => (
-                                // <ArticleRenderBlock
-                                //     key={textBlock.id}
-                                //     block={textBlock}
-                                // />
-                                <div />
+                                <ArticleRenderBlock
+                                    key={textBlock._id}
+                                    block={textBlock}
+                                />
                             ))}
                     </VStack>
                 </Card>

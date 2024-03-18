@@ -24,14 +24,14 @@ export const EditorBlocks = (props: EditorBlocksProps) => {
     const blocks = useSelector(getEditorBlocks);
     const dispatch = useAppDispatch();
     const title = useSelector(getEditorTitle);
-    const enterKey = useKeyPress({ key: '`' });
+    const enterKey = useKeyPress({ key: 'Shift' });
     const initiated = useSelector(getEditorInitiated);
 
     useEffect(() => {
         if (enterKey && isBrowser) {
             dispatch(
                 editorActions.createBlock({
-                    id: uuidv4(),
+                    _id: uuidv4(),
                     type: ArticleBlockType.TEXT,
                     title: '',
                     paragraph: '',
@@ -53,7 +53,9 @@ export const EditorBlocks = (props: EditorBlocksProps) => {
     return (
         <VStack gap="10" className={className}>
             {!!blocks?.length &&
-                blocks.map((block) => <EditorBlockMain key={block.id} item={block} />)}
+                blocks.map((block) => (
+                    <EditorBlockMain key={block._id} item={block} />
+                ))}
         </VStack>
     );
 };

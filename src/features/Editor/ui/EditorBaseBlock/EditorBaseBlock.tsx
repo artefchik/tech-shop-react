@@ -3,12 +3,12 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { VStack } from 'shared/ui/Stack';
 import { TextArea, TextAreaTextSize } from 'shared/ui/TextArea/TextArea';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
+import { ArticleTextBlock } from 'entities/Article/model/types/article';
 import { editorActions } from '../../model/slice/editorSlice';
-import { TextBlock } from '../../model/types/editor';
 
 interface EditorBaseBlockProps {
     className?: string;
-    item: TextBlock;
+    item: ArticleTextBlock;
     onClose?: (value: string) => void;
 }
 
@@ -21,13 +21,13 @@ export const EditorBaseBlock = (props: EditorBaseBlockProps) => {
     const onChangeBlock = useCallback(() => {
         dispatch(
             editorActions.onChangeTextBlock({
-                id: item.id,
+                _id: item._id,
                 type: item.type,
                 title,
                 paragraph,
             }),
         );
-    }, [dispatch, item.id, item.type, title, paragraph]);
+    }, [dispatch, item._id, item.type, title, paragraph]);
 
     const debounceChange = useDebounce(onChangeBlock, 600);
 

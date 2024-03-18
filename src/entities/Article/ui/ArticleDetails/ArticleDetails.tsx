@@ -31,7 +31,7 @@ import { ArticleType } from '../../model/types/article';
 
 interface ArticleDetailsProps {
     className?: string;
-    id: string;
+    articleId: string;
 }
 
 const reducers: ReducersList = {
@@ -39,7 +39,7 @@ const reducers: ReducersList = {
 };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
-    const { className, id } = props;
+    const { className, articleId } = props;
     const dispatch = useAppDispatch();
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
@@ -49,10 +49,10 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         [],
     );
     useEffect(() => {
-        if (id) {
-            dispatch(fetchArticleById(id));
+        if (articleId) {
+            dispatch(fetchArticleById(articleId));
         }
-    }, [dispatch, id]);
+    }, [dispatch, articleId]);
 
     let content;
 
@@ -68,7 +68,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         );
     } else if (error) {
         content = (
-            <Text align={TextAlign.CENTER} size={TextSize.BIG} text="Статья не найдена" />
+            <Text
+                align={TextAlign.CENTER}
+                size={TextSize.BIG}
+                text="Статья не найдена"
+            />
         );
     } else {
         content = (
@@ -79,16 +83,28 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                         theme={AppLinkTheme.CLEAR}
                         className={cls.info}
                     >
-                        <Avatar src={article?.user.avatar} alt={article?.user.username} />
-                        <Text text={article?.user.username} theme={TextTheme.TEXT} />
+                        <Avatar
+                            src={article?.user.avatar}
+                            alt={article?.user.username}
+                        />
+                        <Text
+                            text={article?.user.username}
+                            theme={TextTheme.TEXT}
+                        />
                     </AppLink>
                     <HStack gap="5" align="center">
                         <Icon Svg={calendar} hover={false} />
-                        <Text text={timeAgo(article?.createdAt)} theme={TextTheme.TEXT} />
+                        <Text
+                            text={timeAgo(article?.createdAt)}
+                            theme={TextTheme.TEXT}
+                        />
                     </HStack>
                     <HStack gap="5" align="center">
                         <Icon Svg={viewIcon} hover={false} />
-                        <Text text={String(article?.views)} theme={TextTheme.TEXT} />
+                        <Text
+                            text={String(article?.views)}
+                            theme={TextTheme.TEXT}
+                        />
                     </HStack>
                 </HStack>
                 <VStack gap="5" className={cls.headerBlock}>

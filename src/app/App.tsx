@@ -18,6 +18,7 @@ import { getCartId, initCartData } from 'entities/Cart';
 import { getFavoriteDataId, initFavoriteData } from 'entities/Favorite';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton';
 import { NotificationButton } from 'features/NotificationButton';
+import { ErrorButton } from 'app/providers/ErrorBoundary/ui/ErrorButton';
 
 function App() {
     const { themeVariant } = useTheme();
@@ -52,7 +53,7 @@ function App() {
             <Suspense fallback="">
                 {isBrowser && <Header />}
                 <MobileBar />
-                {initiated && <AppRouter />}
+                <AppRouter />
                 <Footer />
             </Suspense>
         </div>

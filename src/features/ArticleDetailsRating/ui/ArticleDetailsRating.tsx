@@ -1,74 +1,81 @@
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { RatingCard } from 'entities/Rating';
 import {
-    useChangeArticleDetailsRating,
-    useGetArticleDetailsRating,
-} from '../api/articleRatingApi';
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useTranslation } from 'react-i18next';
+import { createArticleDetailsRating } from '../model/services/createArticleRating/createArticleDetailsRating';
+import { fetchArticleDetailsRating } from '../model/services/fetchArticleRating/fetchArticleDetailsRating';
+import { articleDetailsRatingReducer } from '../model/slice/articleDetailsRatingSlice';
+import { getArticleDetailsRatingData } from '../model/selectors/getArticleDetailsRatingData/getArticleDetailsRatingData';
 
 interface ArticleDetailsRatingProps {
     className?: string;
     articleId: string;
 }
 
-const ArticleDetailsRating = (props: ArticleDetailsRatingProps) => {
+const reducers: ReducersList = {
+    articleDetailsRating: articleDetailsRatingReducer,
+};
+
+export const ArticleDetailsRating = (props: ArticleDetailsRatingProps) => {
     const { className, articleId } = props;
     const userData = useSelector(getUserAuthData);
+    const dispatch = useAppDispatch();
+    const articleRating = useSelector(getArticleDetailsRatingData);
+    const { t } = useTranslation();
 
-    const { data, isLoading } = useGetArticleDetailsRating({
-        articleId,
-        userId: userData?.id ?? '',
-    });
+    useEffect(() => {
+        dispatch(fetchArticleDetailsRating(articleId));
+    }, [articleId, dispatch]);
 
-    const [changeArticleRatingMutation] = useChangeArticleDetailsRating();
-
-    const handleChangeArticleRatingMutation = useCallback(
+    const handleCreateArticleRating = useCallback(
         (starsCount: number, feedback?: string) => {
-            try {
-                changeArticleRatingMutation({
+            dispatch(
+                createArticleDetailsRating({
                     articleId,
-                    userId: userData?.id ?? '',
                     rate: starsCount,
-                    feedback,
-                });
-            } catch (e) {
-                console.log(e);
-            }
+                    feedback: feedback || '',
+                    userId: userData?.id ?? '',
+                }),
+            );
         },
-        [articleId, changeArticleRatingMutation, userData?.id],
+        [articleId, dispatch, userData?.id],
     );
 
     const onAccept = useCallback(
         (starsCount: number, feedback?: string) => {
-            handleChangeArticleRatingMutation(starsCount, feedback);
+            handleCreateArticleRating(starsCount, feedback);
         },
-        [handleChangeArticleRatingMutation],
+        [handleCreateArticleRating],
     );
 
     const onCancel = useCallback(
         (starsCount: number) => {
-            handleChangeArticleRatingMutation(starsCount);
+            handleCreateArticleRating(starsCount);
         },
-        [handleChangeArticleRatingMutation],
+        [handleCreateArticleRating],
     );
 
-    const rating = data?.[0];
-
-    if (isLoading) {
+    if (!userData?.id) {
         return null;
     }
 
+    const rating = articleRating?.rate ? articleRating.rate : 0;
+
     return (
         <RatingCard
-            rate={rating?.rate}
+            rate={rating}
             className={className}
             onAccept={onAccept}
             onCancel={onCancel}
-            title="Оцените статью"
-            feedbackTitle="Оставьте отзыв"
+            title={t('Please rate the article')}
+            feedbackTitle={t('Please leave a review')}
             hasFeedback
         />
     );
 };
-export default ArticleDetailsRating;

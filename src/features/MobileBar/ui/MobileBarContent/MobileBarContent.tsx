@@ -11,18 +11,12 @@ interface MobileBarContentProps {
 export const MobileBarContent = (props: MobileBarContentProps) => {
     const { className } = props;
     return (
-        <VStack
-            width
-            As="nav"
-            className={classNames(cls.MobileBarContent, {}, [className])}
-        >
-            <VStack As="ul" className={cls.content}>
-                {mobileNavbarItemsList.map((item) => (
-                    <li key={item.path}>
-                        <MobileContentItem item={item} />
-                    </li>
-                ))}
-            </VStack>
+        <VStack As="ul" className={cls.content}>
+            {mobileNavbarItemsList.map((item) => (
+                <li key={item.path}>
+                    <MobileContentItem item={item} />
+                </li>
+            ))}
         </VStack>
     );
 };

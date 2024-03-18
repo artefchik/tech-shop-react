@@ -1,15 +1,20 @@
 import {
+    CSSProperties,
     ImgHTMLAttributes,
     memo,
     ReactElement,
     useLayoutEffect,
     useState,
 } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './AppImage.module.scss';
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string;
     fallback?: ReactElement;
     errorFallback?: ReactElement;
+    adaptive?: boolean;
+    border?: string;
 }
 
 export const AppImage = memo((props: AppImageProps) => {
@@ -19,6 +24,10 @@ export const AppImage = memo((props: AppImageProps) => {
         alt = 'image',
         errorFallback,
         fallback,
+        adaptive = false,
+        border,
+        width,
+        height,
         ...otherProps
     } = props;
     const [isLoading, setIsLoading] = useState(true);
@@ -44,5 +53,19 @@ export const AppImage = memo((props: AppImageProps) => {
         return errorFallback;
     }
 
-    return <img className={className} src={src} alt={alt} {...otherProps} />;
+    const styles: CSSProperties = {
+        width,
+        height,
+        border,
+    };
+
+    return (
+        <img
+            style={styles}
+            className={classNames(cls.AppImage, {}, [className])}
+            src={src}
+            alt={alt}
+            {...otherProps}
+        />
+    );
 });

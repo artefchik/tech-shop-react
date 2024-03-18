@@ -9,7 +9,7 @@ export const createBlockItem = (type: ArticleBlockType, blockId: string) => {
     switch (type) {
         case ArticleBlockType.IMAGE:
             return {
-                id,
+                _id: id,
                 type: ArticleBlockType.IMAGE,
                 image: '',
                 title: '',
@@ -17,7 +17,7 @@ export const createBlockItem = (type: ArticleBlockType, blockId: string) => {
 
         default:
             return {
-                id,
+                _id: id,
                 type: ArticleBlockType.TEXT,
                 title: '',
                 text: '',

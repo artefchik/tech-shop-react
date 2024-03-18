@@ -13,7 +13,6 @@
 
     @media (any-hover: hover) {
         &:hover {
-            background-color: var(--secelt-active);
             color: var(--primary-color);
 
             .icon {
@@ -41,4 +40,9 @@
     z-index: 50;
     border-top: 1px solid var(--border-color);
     transition: all 0.7s ease 0.1s;
+}
+.body{
+    .open {
+        left: 0;
+    }
 }

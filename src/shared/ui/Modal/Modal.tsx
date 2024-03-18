@@ -14,11 +14,7 @@ interface ModalProps {
     children: ReactNode;
 }
 
-interface KeyboardEvent {
-    key: string;
-}
-
-const ANIMATION_DELAY = 300;
+const ANIMATION_DELAY = 400;
 
 export const Modal = (props: ModalProps) => {
     const { className, children, isOpen, onClose, lazy } = props;
@@ -48,9 +44,14 @@ export const Modal = (props: ModalProps) => {
 
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className, themeVariant])}>
+            <div
+                className={classNames(cls.Modal, mods, [
+                    className,
+                    themeVariant,
+                ])}
+            >
                 <Overlay onClick={close} />
-                <div className={classNames(cls.content, {}, [className])}>{children}</div>
+                <div className={cls.content}>{children}</div>
             </div>
         </Portal>
     );

@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { Product } from 'entities/Product';
@@ -31,7 +35,10 @@ const productsPageSlice = createSlice({
     reducers: {
         setView: (state, action: PayloadAction<ViewType>) => {
             state.view = action.payload;
-            localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
+            localStorage.setItem(
+                ARTICLES_VIEW_LOCALSTORAGE_KEY,
+                action.payload,
+            );
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
@@ -41,7 +48,9 @@ const productsPageSlice = createSlice({
         },
 
         initState: (state) => {
-            const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ViewType;
+            const view = localStorage.getItem(
+                ARTICLES_VIEW_LOCALSTORAGE_KEY,
+            ) as ViewType;
             state.view = view;
             state.limit = view === ViewType.SMALL ? 3 : 3;
             state._initiated = true;

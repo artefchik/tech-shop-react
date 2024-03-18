@@ -4,11 +4,14 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { memo, useCallback } from 'react';
-import { RoutePath } from 'shared/const/router';
+import { getRoutePathProfile, RoutePath } from 'shared/const/router';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
+import { AppImage } from 'shared/ui/AppImage/AppImage';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import avatar from 'shared/assets/avatar.jpeg';
 import cls from './CommentItem.module.scss';
 import { CommentType } from '../../model/types/comment';
 
@@ -41,17 +44,26 @@ export const CommentItem = memo((props: CommentItemProps) => {
             <HStack align="center">
                 <VStack width gap="5">
                     <AppLink
-                        to={`${RoutePath.profile}${comment.user.id}`}
+                        to={getRoutePathProfile(authData?.id ?? '')}
                         className={cls.header}
                         theme={AppLinkTheme.CLEAR}
                     >
-                        {comment.user.avatar && (
-                            <Avatar
-                                src={comment?.user.avatar}
-                                alt={comment.user.username}
-                            />
-                        )}
-                        <Text text={comment.user.username} />
+                        <AppImage
+                            width={30}
+                            height={30}
+                            border="50%"
+                            src={comment?.user.avatar}
+                            fallback={
+                                <Skeleton width={30} height={30} border="50%" />
+                            }
+                            errorFallback={
+                                <Avatar
+                                    src={avatar}
+                                    alt={comment.user.username}
+                                />
+                            }
+                        />
+                        <Text text={comment.user.username} As="span" />
                     </AppLink>
                     <Text text={comment.text} theme={TextTheme.TEXT} />
                 </VStack>

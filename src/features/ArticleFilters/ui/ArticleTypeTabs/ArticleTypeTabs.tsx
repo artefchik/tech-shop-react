@@ -16,7 +16,7 @@
 //
 // export const ArticleTypeTabs = (props: ArticleTypeTabsProps) => {
 //     const { className, fetchData } = props;
-//     const type = useSelector(getArticleFiltersType);
+//     const types = useSelector(getArticleFiltersType);
 //     const dispatch = useAppDispatch();
 //
 //     const onTabClick = useCallback((tab:TabItem) => {
@@ -47,6 +47,6 @@
 //     );
 //
 //     return (
-//         <Tabs tabs={typeTabs} value={type} onTabClick={onTabClick} />
+//         <Tabs tabs={typeTabs} value={types} onTabClick={onTabClick} />
 //     );
 // };

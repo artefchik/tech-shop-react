@@ -1,5 +1,5 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { LegacyRef, memo, ReactNode, useEffect, useMemo } from 'react';
+import { LegacyRef, ReactNode, useEffect } from 'react';
 import cls from './Page.module.scss';
 
 interface PageProps {
@@ -8,10 +8,18 @@ interface PageProps {
     onScrollEnd?: () => void;
     triggerRef?: LegacyRef<HTMLDivElement>;
     isLock?: boolean;
+    isBottomPadding?: boolean;
 }
 
 export const Page = (props: PageProps) => {
-    const { className, children, onScrollEnd, triggerRef, isLock } = props;
+    const {
+        className,
+        children,
+        onScrollEnd,
+        triggerRef,
+        isLock,
+        isBottomPadding = false,
+    } = props;
 
     useEffect(() => {
         if (onScrollEnd) {
@@ -21,6 +29,7 @@ export const Page = (props: PageProps) => {
 
     const mods: Mods = {
         [cls.open]: isLock,
+        [cls.bottom]: isBottomPadding,
     };
 
     return (
