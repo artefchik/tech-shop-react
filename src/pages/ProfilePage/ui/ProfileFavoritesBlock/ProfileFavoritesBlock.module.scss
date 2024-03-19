@@ -1,0 +1,9 @@
+.ProfileFavoritesBlock {
+  height:100%;
+  width: 100%;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}

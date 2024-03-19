@@ -1,9 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { HStack } from 'shared/ui/Stack';
 import support from 'shared/assets/icons/support.svg';
 import user from 'shared/assets/icons/user.svg';
 import priceTag from 'shared/assets/icons/price-tag.svg';
 import { Container } from 'shared/ui/Container/Container';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AdvantagesItem } from '../AdvantagesItem/AdvantagesItem';
 import cls from './AdvantagesItemList.module.scss';
 import { Advantages } from '../../model/types/advantages';
@@ -14,24 +15,28 @@ interface AdvantagesItemListProps {
 
 export const AdvantagesItemList = (props: AdvantagesItemListProps) => {
     const { className } = props;
+    const { t } = useTranslation();
+    const advantagesItems = useMemo<Advantages[]>(
+        () => [
+            {
+                icon: support,
+                title: t('Product Support'),
+                text: t('advantages-text-2'),
+            },
+            {
+                icon: user,
+                title: t('Personal Account'),
+                text: t('advantages-text-1'),
+            },
 
-    const advantagesItems: Advantages[] = [
-        {
-            icon: support,
-            title: 'Product Support',
-            text: 'Up to 3 years on-site warranty available for your peace of mind.',
-        },
-        {
-            icon: user,
-            title: 'Personal Account',
-            text: 'With big discounts, free delivery and a dedicated support specialist.',
-        },
-        {
-            icon: priceTag,
-            title: 'Amazing Savings',
-            text: 'Up to 70% off new Products, you can be sure of the best price.',
-        },
-    ];
+            {
+                icon: priceTag,
+                title: t('Amazing Savings'),
+                text: t('advantages-text-3'),
+            },
+        ],
+        [t],
+    );
 
     return (
         <div className={classNames(cls.AdvantagesItemList, {}, [className])}>

@@ -34,8 +34,8 @@ export const ProductCardSkeleton = memo((props: ProductItemSkeletonProps) => {
     }
 
     return (
-        <Card>
-            <HStack gap="15">
+        <Card className={cls.skeletonBig}>
+            <HStack gap="15" width>
                 <Skeleton
                     height={255}
                     width={230}

@@ -1,0 +1,10 @@
+.content {
+  @media (max-width: 991.98px) {
+      flex-direction: column-reverse;
+  }
+}
+.title {
+  @media (max-width: 479.98px) {
+      flex-direction: column;
+  }
+}

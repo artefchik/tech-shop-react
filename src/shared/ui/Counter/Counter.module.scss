@@ -51,3 +51,22 @@
         transform: rotate(-90deg);
     }
 }
+
+.big {
+    width: 100%;
+    .body {
+        width: 100%;
+        display: flex;
+        gap: 0;
+        height: var(--height-button);
+        border-radius: var(--border-radius-s);
+        overflow: hidden;
+    }
+
+    .button {
+        flex: 0 0 50px;
+    }
+    .quantity {
+        flex: 1 1 auto;
+    }
+}

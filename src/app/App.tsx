@@ -34,7 +34,7 @@ function App() {
     }, [dispatch]);
 
     useEffect(() => {
-        if (userData) {
+        if (userData?.id) {
             dispatch(initFavoriteData(userData.id));
             dispatch(initCartData(userData.id));
         }

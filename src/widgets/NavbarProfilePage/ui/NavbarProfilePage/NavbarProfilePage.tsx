@@ -26,8 +26,8 @@ export const NavbarProfilePage = (props: NavbarProfilePageProps) => {
     );
 
     return (
-        <aside className={classNames(cls.NavbarProfilePage, {}, [className])}>
-            <VStack As="ul">
+        <div className={classNames(cls.NavbarProfilePage, {}, [className])}>
+            <VStack As="ul" className={cls.body}>
                 {profileItemsConfig.map((item) => {
                     const active = item.block === block;
                     return (
@@ -45,6 +45,6 @@ export const NavbarProfilePage = (props: NavbarProfilePageProps) => {
                     );
                 })}
             </VStack>
-        </aside>
+        </div>
     );
 };

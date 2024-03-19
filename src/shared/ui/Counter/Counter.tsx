@@ -2,15 +2,27 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
 import cls from './Counter.module.scss';
 
+export enum ViewCounter {
+    BIG = 'big',
+    SMALL = 'small',
+}
+
 interface CounterProps {
     className?: string;
     quantity: number;
     onIncrement?: (quantity: number) => void;
     onDecrement?: (quantity: number) => void;
+    view?: ViewCounter;
 }
 
 export const Counter = memo((props: CounterProps) => {
-    const { className, quantity, onDecrement, onIncrement } = props;
+    const {
+        className,
+        quantity,
+        onDecrement,
+        onIncrement,
+        view = ViewCounter.SMALL,
+    } = props;
 
     const onDecrementHandler = (quantity: number) => () => {
         onDecrement?.(quantity);
@@ -20,7 +32,7 @@ export const Counter = memo((props: CounterProps) => {
     };
 
     return (
-        <div className={classNames(cls.Counter, {}, [className])}>
+        <div className={classNames(cls.Counter, {}, [className, cls[view]])}>
             <div className={cls.body}>
                 <button
                     onClick={onDecrementHandler(quantity)}

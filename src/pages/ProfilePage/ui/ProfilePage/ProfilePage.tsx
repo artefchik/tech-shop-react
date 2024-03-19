@@ -1,14 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { Container } from 'shared/ui/Container/Container';
 import { Page } from 'shared/ui/Page/Page';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { profileReducer } from 'features/EditableProfileCard';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+import {
+    fetchProfileData,
+    getProfileData,
+    getProfileError,
+    profileReducer,
+} from 'features/EditableProfileCard';
 import { useTranslation } from 'react-i18next';
 import { HStack, VStack } from 'shared/ui/Stack';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
-    ProfilePageItemType,
     NavbarProfilePage,
+    ProfilePageItemType,
 } from 'widgets/NavbarProfilePage';
 import {
     DynamicModuleLoader,
@@ -16,8 +21,12 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
-import { ProfilePageHeader } from '../ProfilePageHeader/ProfilePageHeader';
+import { ProfileCard } from 'entities/Profile';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { EmptySearch } from 'shared/ui/EmptySearch/EmptySearch';
 import { ProfilePagePageBlock } from '../ProfilePageBlock/ProfilePagePageBlock';
+import { ProfilePageHeader } from '../ProfilePageHeader/ProfilePageHeader';
+import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
     className?: string;
@@ -35,33 +44,56 @@ export const ProfilePage = (props: ProfilePageProps) => {
         ProfilePageItemType.PROFILE,
     );
     const authData = useSelector(getUserAuthData);
+    const dispatch = useAppDispatch();
+    const profileData = useSelector(getProfileData);
+
+    const error = useSelector(getProfileError);
+
+    useEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id));
+        }
+    }, [dispatch, id]);
 
     if (!id) {
-        return <Text text={t('User not found')} />;
+        return null;
     }
 
-    // if (authData?.id !== id){
-    //     return
-    // }
+    let renderContent;
+
+    if (error) {
+        renderContent = <EmptySearch text={error} />;
+    } else if (authData?.id !== id) {
+        renderContent = (
+            <>
+                <ProfilePageHeader block={isCurrentBlock} />
+                <ProfileCard data={profileData} />
+            </>
+        );
+    } else {
+        renderContent = (
+            <>
+                <ProfilePageHeader
+                    block={isCurrentBlock}
+                    className={cls.title}
+                />
+
+                <HStack gap="20" className={cls.content}>
+                    <ProfilePagePageBlock block={isCurrentBlock} id={id} />
+                    <NavbarProfilePage
+                        onChangeBlock={setIsCurrentBlock}
+                        block={isCurrentBlock}
+                    />
+                </HStack>
+            </>
+        );
+    }
 
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Page isBottomPadding>
                 <Container>
-                    <VStack gap="20">
-                        <ProfilePageHeader block={isCurrentBlock} />
-
-                        <HStack gap="20">
-                            <ProfilePagePageBlock
-                                block={isCurrentBlock}
-                                id={id}
-                            />
-                            <NavbarProfilePage
-                                onChangeBlock={setIsCurrentBlock}
-                                block={isCurrentBlock}
-                            />
-                        </HStack>
-                    </VStack>
+                    <VStack gap="20">{renderContent}</VStack>
                 </Container>
             </Page>
         </DynamicModuleLoader>

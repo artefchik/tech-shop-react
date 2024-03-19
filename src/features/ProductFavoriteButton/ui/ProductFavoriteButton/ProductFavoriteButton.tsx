@@ -20,6 +20,7 @@ import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { getRoutePathAuth } from 'shared/const/router';
 import { useTranslation } from 'react-i18next';
+import { use } from 'i18next';
 import { toggleProductsFavorites } from '../../model/services/toggleProductsFavorites/toggleProductsFavorites';
 
 interface ProductFavoriteButtonProps {
@@ -38,7 +39,6 @@ export const ProductFavoriteButton = (props: ProductFavoriteButtonProps) => {
     const dispatch = useAppDispatch();
     const userData = useSelector(getUserAuthData);
     const { isOpenModal, onShowModal, onCloseModal } = useToggleModal();
-
     const favoriteItem = useSelector((state: StateSchema) =>
         getProductFavorites.selectById(state, productId),
     );
@@ -76,6 +76,7 @@ export const ProductFavoriteButton = (props: ProductFavoriteButtonProps) => {
             <FavoriteButton
                 isFavorite={Boolean(favoriteItem)}
                 onToggleFavorite={onToggleFavorite}
+                auth={Boolean(userData?.id)}
             />
         </DynamicModuleLoader>
     );

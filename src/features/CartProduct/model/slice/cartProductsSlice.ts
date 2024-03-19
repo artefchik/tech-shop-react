@@ -9,7 +9,7 @@ import { fetchCartProductsList } from 'features/CartProduct/model/services/fetch
 import { CartProductSchema } from '../types/CartProductSchema';
 
 const cartAdapter = createEntityAdapter<CartItemType>({
-    selectId: (basketItem: CartItemType) => basketItem.id,
+    selectId: (cartItem: CartItemType) => cartItem.id,
 });
 export const getCartProducts = cartAdapter.getSelectors<StateSchema>(
     (state) => state.cartProducts || cartAdapter.getInitialState(),

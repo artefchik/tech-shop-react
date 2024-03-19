@@ -16,21 +16,6 @@ export interface ProfileIte {
     block: ReactNode;
 }
 
-export const profileItemsConfi: Record<ProfilePageItemType, ProfileIte> = {
-    [ProfilePageItemType.PROFILE]: {
-        content: 'Profile',
-        block: EditableProfileCard,
-    },
-    [ProfilePageItemType.SETTING]: {
-        content: 'Favorites',
-        block: EditableProfileCard,
-    },
-    [ProfilePageItemType.FAVORITES]: {
-        content: 'Favorites',
-        block: EditableProfileCard,
-    },
-};
-
 export const profileItemsConfig: ProfileItem[] = [
     {
         content: 'Profile',
@@ -39,5 +24,9 @@ export const profileItemsConfig: ProfileItem[] = [
     {
         content: 'Settings',
         block: ProfilePageItemType.SETTING,
+    },
+    {
+        content: 'Favorites',
+        block: ProfilePageItemType.FAVORITES,
     },
 ];

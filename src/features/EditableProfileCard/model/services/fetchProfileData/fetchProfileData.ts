@@ -11,14 +11,16 @@ export const fetchProfileData = createAsyncThunk<
         rejectValue: string;
     }
 >('profile/fetchProfileData', async (profileId, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
     try {
-        const response = await $api.get<Profile>(`/profile/${profileId}`, {});
+        const response = await $api.get<Profile>(`/profile/${profileId}`);
         if (!response.data) {
-            return thunkAPI.rejectWithValue('error');
+            throw new Error();
         }
         return response.data;
     } catch (e) {
         console.log(e);
-        return thunkAPI.rejectWithValue('error');
+        return rejectWithValue('Profile not found');
     }
 });

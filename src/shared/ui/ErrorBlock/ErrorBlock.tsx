@@ -18,7 +18,7 @@ export const ErrorBlock = (props: ErrorBlockProps) => {
             className={classNames(cls.ErrorBlock, {}, [className])}
         >
             <Icon Svg={info} />
-            <Text text={text} theme={TextTheme.WHITE} />
+            <Text text={text} />
         </HStack>
     );
 };

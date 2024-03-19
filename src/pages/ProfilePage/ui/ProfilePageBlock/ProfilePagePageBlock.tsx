@@ -8,6 +8,8 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchProfileData } from 'features/EditableProfileCard/model/services/fetchProfileData/fetchProfileData';
 import { getProfileIsLoading } from 'features/EditableProfileCard/model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { ProfileFavoritesBlock } from 'pages/ProfilePage/ui/ProfileFavoritesBlock/ProfileFavoritesBlock';
+import { HStack } from 'shared/ui/Stack';
 
 interface ProfilePagePageBlockProps {
     className?: string;
@@ -31,7 +33,7 @@ export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
     const renderBlock = useCallback(() => {
         switch (block) {
             case ProfilePageItemType.FAVORITES:
-                return '';
+                return <ProfileFavoritesBlock />;
 
             case ProfilePageItemType.PROFILE:
                 return <ProfileCard data={profileData} />;
@@ -43,5 +45,5 @@ export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
         }
     }, [id, block, profileData]);
 
-    return <>{renderBlock()}</>;
+    return <HStack width>{renderBlock()}</HStack>;
 };

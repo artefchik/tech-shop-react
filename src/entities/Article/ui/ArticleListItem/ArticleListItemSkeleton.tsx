@@ -44,20 +44,13 @@ export const ArticleListItemSkeleton = memo(
                             </HStack>
                             <Skeleton height={32} width="70%" />
                             <Skeleton height={25} width="70%" />
-                            <HStack gap="10">
-                                <Skeleton
-                                    height={24}
-                                    width={80}
-                                    className={cls.info}
-                                />
-                                <Skeleton
-                                    height={24}
-                                    width={80}
-                                    className={cls.info}
-                                />
-                            </HStack>
                             <Skeleton
-                                height={150}
+                                height={30}
+                                width={130}
+                                className={cls.info}
+                            />
+                            <Skeleton
+                                height={100}
                                 width="100%"
                                 className={cls.textBlock}
                             />

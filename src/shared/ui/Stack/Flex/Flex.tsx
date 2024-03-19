@@ -7,7 +7,10 @@ type FlexAlign = 'center' | 'start' | 'end' | 'stretch';
 type FlexGap = '5' | '10' | '15' | '20' | '25' | '30' | '35';
 type FlexDirection = 'row' | 'column' | 'rowReverse';
 
-type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+type DivProps = DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+>;
 
 type TagType = 'div' | 'section' | 'nav' | 'ul' | 'li' | 'form';
 
@@ -19,6 +22,7 @@ export interface FlexProps extends DivProps {
     direction?: FlexDirection;
     gap?: FlexGap;
     width?: boolean;
+    height?: boolean;
     wrap?: boolean;
     As?: TagType;
 }
@@ -63,6 +67,7 @@ export const Flex = (props: FlexProps) => {
         gap,
         wrap = false,
         width = false,
+        height = false,
         As = 'div',
     } = props;
 
@@ -79,6 +84,7 @@ export const Flex = (props: FlexProps) => {
 
     const mods: Mods = {
         [cls.width]: width,
+        [cls.height]: height,
         [cls.wrap]: wrap,
     };
 

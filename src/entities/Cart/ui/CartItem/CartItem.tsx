@@ -27,7 +27,7 @@ export const CartItem = memo((props: CartItemProps) => {
                     <AppImage
                         fallback={<Skeleton height="100%" />}
                         errorFallback={<NotFoundImage className={cls.image} />}
-                        src={__API__ + product.imageSrc}
+                        src={product.imageSrc}
                         alt={product.title}
                     />
                 </div>

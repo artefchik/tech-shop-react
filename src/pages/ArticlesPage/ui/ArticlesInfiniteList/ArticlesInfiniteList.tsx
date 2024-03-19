@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ViewType } from 'shared/const/types';
+import { EmptySearch } from 'shared/ui/EmptySearch/EmptySearch';
+import { useTranslation } from 'react-i18next';
+import { getSkeletons } from 'shared/ui/Skeleton/Skeleton';
+import { ArticleListSkeleton } from 'entities/Article/ui/ArticleList/ArticleListSkeleton';
 import { fetchArticleNextPage } from '../../model/services/fetchArticleNextPage/fetchArticleNextPage';
 import { getArticles } from '../../model/slice/articlesPageSlice';
 import { getArticleListIsLoading } from '../../model/selectors/getArticleListIsLoading/getArticleListIsLoading';
@@ -22,10 +26,18 @@ export const ArticlesInfiniteList = (props: ArticlesInfiniteListProps) => {
     const error = useSelector(getArticleListError);
     const view = useSelector(getArticleListView);
     const dispatch = useAppDispatch();
-
+    const { t } = useTranslation();
     const onLoadNextPart = () => {
         dispatch(fetchArticleNextPage());
     };
+
+    if (isLoading) {
+        return <ArticleListSkeleton view={view} />;
+    }
+
+    if (!articlesLength) {
+        return <EmptySearch text={t('Nothing was found')} />;
+    }
 
     if (view === ViewType.BIG) {
         return (

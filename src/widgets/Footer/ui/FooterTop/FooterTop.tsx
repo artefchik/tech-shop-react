@@ -10,7 +10,10 @@ import { Spoller } from 'shared/ui/Spoller/Spoller';
 import { useTranslation } from 'react-i18next';
 import cls from './FooterTop.module.scss';
 import { FooterLinkItems } from '../FooterLinkItems/FooterLinkItems';
-import { footerCategoryLinksList, footerLinksList } from '../../model/types/footer';
+import {
+    footerCategoryLinksList,
+    footerLinksList,
+} from '../../model/types/footer';
 
 interface FooterTopProps {
     className?: string;
@@ -26,21 +29,30 @@ export const FooterTop = ({ className }: FooterTopProps) => {
                     <Text
                         className={cls.infoText}
                         size={TextSize.SMALL}
-                        text={t(
-                            'Shop is a proudly Australian open, Melbourne based supplier of IT. goods and services, operating since 1991. We provide complete business IT solutions, centred on high quality hardware and exceptional customer service',
-                        )}
+                        text={t('about footer')}
                     />
                 </VStack>
                 <VStack gap="15">
                     <HStack align="center" gap="5">
-                        <Text text={`${t('Email')}:`} size={TextSize.SMALL} As="span" />
+                        <Text
+                            text={`${t('Email')}:`}
+                            size={TextSize.SMALL}
+                            As="span"
+                        />
                         <AppLink theme={AppLinkTheme.BASE} to="info@gmail.com">
                             artemadeev42@gmail.com
                         </AppLink>
                     </HStack>
                     <HStack align="center" gap="5">
-                        <Text text={`${t('Phone')}:`} size={TextSize.SMALL} As="span" />
-                        <AppLink theme={AppLinkTheme.BASE} to="tell:+88007553555">
+                        <Text
+                            text={`${t('Phone')}:`}
+                            size={TextSize.SMALL}
+                            As="span"
+                        />
+                        <AppLink
+                            theme={AppLinkTheme.BASE}
+                            to="tell:+88007553555"
+                        >
                             88007553555
                         </AppLink>
                     </HStack>
@@ -55,11 +67,18 @@ export const FooterTop = ({ className }: FooterTopProps) => {
                 <Spoller
                     open
                     title={t('Categories')}
-                    content={<FooterLinkItems links={footerCategoryLinksList} />}
+                    content={
+                        <FooterLinkItems links={footerCategoryLinksList} />
+                    }
                 />
             </HStack>
             <Card className={cls.form}>
-                <VStack gap="20" className={cls.bodyForm} justify="between" width>
+                <VStack
+                    gap="20"
+                    className={cls.bodyForm}
+                    justify="between"
+                    width
+                >
                     <VStack align="center" gap="5">
                         <Text
                             align={TextAlign.CENTER}

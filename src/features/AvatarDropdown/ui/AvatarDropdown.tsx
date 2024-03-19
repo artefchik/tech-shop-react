@@ -17,6 +17,7 @@ import { favoriteActions } from 'entities/Favorite/model/slice/favoriteSlice';
 import { cartActions } from 'entities/Cart/model/slice/cartSlice';
 import { cartProductsActions } from 'features/CartProduct';
 import { productFavoritesActions } from 'features/ProductFavoriteButton/model/slice/productFavoritesSlice';
+import { useTranslation } from 'react-i18next';
 
 interface AvatarDropdownProps {
     className?: string;
@@ -27,7 +28,7 @@ export const AvatarDropdown = (props: AvatarDropdownProps) => {
     const authData = useSelector(getUserAuthData);
     const dispatch = useAppDispatch();
     const { isOpenModal, onCloseModal, onShowModal } = useToggleModal();
-
+    const { t } = useTranslation();
     const onLogout = useCallback(() => {
         dispatch(logout());
         dispatch(favoriteActions.setLogout());
@@ -38,11 +39,11 @@ export const AvatarDropdown = (props: AvatarDropdownProps) => {
 
     const profileActions: DropdownItem[] = [
         {
-            content: 'Профиль',
+            content: t('Profile'),
             href: authData ? getRoutePathProfile(authData.id) : '',
         },
         {
-            content: 'Выйти',
+            content: t('Log out'),
             onClick: onLogout,
         },
     ];

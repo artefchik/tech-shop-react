@@ -27,8 +27,6 @@ export const ProductList = (props: ProductListProps) => {
                         view={view}
                     />
                 ))}
-
-            {isLoading && <ProductListSkeleton view={view} />}
         </div>
     );
 };

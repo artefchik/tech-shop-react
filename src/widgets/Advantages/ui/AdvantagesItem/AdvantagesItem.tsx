@@ -2,7 +2,13 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Advantages } from 'widgets/Advantages/model/types/advantages';
 import { VStack } from 'shared/ui/Stack';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { Text, TextAlign, TextSize, TextTheme, TextWeight } from 'shared/ui/Text/Text';
+import {
+    Text,
+    TextAlign,
+    TextSize,
+    TextTheme,
+    TextWeight,
+} from 'shared/ui/Text/Text';
 import cls from './AdvantagesItem.module.scss';
 
 interface AdvantagesItemProps {
@@ -16,7 +22,6 @@ export const AdvantagesItem = (props: AdvantagesItemProps) => {
         <VStack
             align="center"
             gap="15"
-            justify="center"
             className={classNames(cls.AdvantagesItem, {}, [className])}
         >
             <div className={cls.icon}>

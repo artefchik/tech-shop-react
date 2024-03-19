@@ -13,13 +13,6 @@ interface ArticleListProps {
     articles?: Article[];
 }
 
-const getSkeletons = (view: ViewType) =>
-    new Array(view === ViewType.BIG ? 3 : 6)
-        .fill(0)
-        .map((item, index) => (
-            <ArticleListItemSkeleton key={index} view={view} />
-        ));
-
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
         className,
@@ -39,7 +32,6 @@ export const ArticleList = memo((props: ArticleListProps) => {
                         view={view}
                     />
                 ))}
-            {isLoading && getSkeletons(view)}
         </div>
     );
 });

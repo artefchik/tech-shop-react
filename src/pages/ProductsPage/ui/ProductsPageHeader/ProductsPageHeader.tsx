@@ -5,6 +5,7 @@ import { ProductsFilter } from 'features/ProductsFilter/ui/ProductsFilter/Produc
 import { ProductsCategories } from 'shared/const/types';
 import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useTranslation } from 'react-i18next';
 import { ProductsCategoriesMap } from '../../model/types/productsCategories';
 import { ProductsViewSelector } from '../ProductsViewSelector/ProductsViewSelector';
 import { fetchProductsList } from '../../model/services/fetchProductsList/fetchProductsList';
@@ -19,26 +20,27 @@ interface ProductsPageHeaderProps {
 export const ProductsPageHeader = memo((props: ProductsPageHeaderProps) => {
     const { className, category = 'Products' } = props;
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const renderTitle = useCallback(() => {
         switch (category) {
             case ProductsCategories.ALL:
-                return ProductsCategoriesMap[ProductsCategories.ALL];
+                return t('All');
             case ProductsCategories.PC:
-                return ProductsCategoriesMap[ProductsCategories.PC];
+                return t('PC');
             case ProductsCategories.PHONE:
-                return ProductsCategoriesMap[ProductsCategories.PHONE];
+                return t('Phones');
             case ProductsCategories.ACCESSORIES:
-                return ProductsCategoriesMap[ProductsCategories.ACCESSORIES];
+                return t('Accessories');
 
             default:
                 return ProductsCategoriesMap[ProductsCategories.ALL];
         }
-    }, [category]);
+    }, [category, t]);
 
     const fetchData = useCallback(() => {
         dispatch(productsPageActions.setPage(1));
         dispatch(fetchProductsList({ replace: true }));
-    }, [category, dispatch]);
+    }, [dispatch]);
 
     return (
         <HStack

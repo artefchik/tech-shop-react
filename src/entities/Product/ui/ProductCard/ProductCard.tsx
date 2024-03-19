@@ -83,7 +83,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
             className={classNames(cls.ProductCard, {}, [className, cls[view]])}
         >
             <HStack gap="15" className={cls.card}>
-                <VStack gap="15" className={cls.imageBlock}>
+                <VStack className={cls.imageBlock}>
                     <div className={cls.image}>
                         <AppImage
                             fallback={<Skeleton height="100%" />}
@@ -92,9 +92,6 @@ export const ProductCard = memo((props: ProductItemProps) => {
                             alt={product.title}
                         />
                     </div>
-                    <HStack justify="center" className={cls.rating}>
-                        {/* <StarRating selectedStars={product.starRating} /> */}
-                    </HStack>
                 </VStack>
                 <VStack className={cls.textBlock} gap="20">
                     <Text
@@ -123,7 +120,9 @@ export const ProductCard = memo((props: ProductItemProps) => {
                         />
                     </HStack>
                     <HStack align="center" gap="20">
-                        {AddProductButton && AddProductButton}
+                        <div className={cls.addButton}>
+                            {AddProductButton && AddProductButton}
+                        </div>
                         {FavoriteButton && FavoriteButton}
                     </HStack>
                 </VStack>

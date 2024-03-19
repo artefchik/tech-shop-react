@@ -1,7 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Product, ProductCard } from 'entities/Product';
 import { ViewType } from 'shared/const/types';
-import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
 import { ProductCardSkeleton } from 'entities/Product/ui/ProductCard/ProductCardSkeleton';
 import { ProductItem } from 'widgets/ProductItem';
 import cls from './ProductsList.module.scss';

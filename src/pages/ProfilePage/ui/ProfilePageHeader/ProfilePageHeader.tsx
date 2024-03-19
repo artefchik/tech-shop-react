@@ -27,7 +27,7 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
             case ProfilePageItemType.PROFILE:
                 return t('User profile');
             case ProfilePageItemType.FAVORITES:
-                return t('Favorites');
+                return t('User favorites');
             default:
                 return '';
         }

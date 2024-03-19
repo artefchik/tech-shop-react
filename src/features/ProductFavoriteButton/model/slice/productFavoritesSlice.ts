@@ -5,13 +5,12 @@ import {
 } from '@reduxjs/toolkit';
 import {
     FavoriteProduct,
-    FavoriteType,
     ProductFavoritesSchema,
 } from 'features/ProductFavoriteButton/model/types/favorite';
-import { fetchProductsList } from 'pages/ProductsPage/model/services/fetchProductsList/fetchProductsList';
-import { fetchProductsFavorites } from 'features/ProductFavoriteButton/model/services/fetchProductsFavorites/fetchProductsFavorites';
-import { Article } from 'entities/Article';
 import { StateSchema } from 'app/providers/StoreProvider';
+import { Product } from 'entities/Product';
+import { fetchProductsFavorites } from '../services/fetchProductsFavorites/fetchProductsFavorites';
+import { fetchFavorites } from '../services/fetchFavorites/fetchFavorites';
 
 const initialState: ProductFavoritesSchema = {
     isLoading: false,
@@ -62,6 +61,22 @@ export const productFavoritesSlice = createSlice({
                 },
             )
             .addCase(fetchProductsFavorites.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+
+            .addCase(fetchFavorites.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(
+                fetchFavorites.fulfilled,
+                (state, action: PayloadAction<Product[]>) => {
+                    state.isLoading = false;
+                    state.favoritesItems = action.payload;
+                },
+            )
+            .addCase(fetchFavorites.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

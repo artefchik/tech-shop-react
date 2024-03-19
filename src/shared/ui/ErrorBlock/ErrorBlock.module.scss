@@ -4,6 +4,7 @@
   padding: var(--container-padding-small);
   position: relative;
   overflow: hidden;
+
   &::before {
     content: '';
     position: absolute;
@@ -11,15 +12,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-error);
+    background-color: var(--color-error-bg);
     opacity: 0.3;
-    z-index: -1;
+    z-index: 1;
   }
 
   svg {
     flex: 0 0 25px;
     path, circle {
-      stroke: var(--color-white);
+      stroke: var(--primary-color);
     }
   }
 }

@@ -9,8 +9,9 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { ProductsCategories } from 'shared/const/types';
+import { ProductsCategories, ViewType } from 'shared/const/types';
 import { fetchArticleList } from 'pages/ArticlesPage/model/services/fetchArticleList/fetchArticleList';
+import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
 import { initProductsPage } from '../../model/services/initProductsPage/initProductsPage';
 import { ProductsPageInfiniteList } from '../ProductsPageInfiniteList/ProductsPageInfiniteList';
 import { ProductsPageHeader } from '../ProductsPageHeader/ProductsPageHeader';

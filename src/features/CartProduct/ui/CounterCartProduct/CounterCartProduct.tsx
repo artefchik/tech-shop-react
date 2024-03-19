@@ -1,4 +1,4 @@
-import { Counter } from 'shared/ui/Counter/Counter';
+import { Counter, ViewCounter } from 'shared/ui/Counter/Counter';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { CartItemType } from 'entities/Cart';
 import { cartProductsActions } from '../../model/slice/cartProductsSlice';
@@ -7,14 +7,17 @@ import { updateCartProduct } from '../../model/services/updateCartProduct/update
 interface CounterCartProductProps {
     className?: string;
     product: CartItemType;
+    view?: ViewCounter;
 }
 
 export const CounterCartProduct = (props: CounterCartProductProps) => {
-    const { className, product } = props;
+    const { className, product, view } = props;
     const dispatch = useAppDispatch();
 
     const onIncrement = (count: number) => () => {
-        dispatch(cartProductsActions.addOneItem({ ...product, count: (count += 1) }));
+        dispatch(
+            cartProductsActions.addOneItem({ ...product, count: (count += 1) }),
+        );
         dispatch(
             updateCartProduct({
                 productId: product.id,
@@ -38,6 +41,7 @@ export const CounterCartProduct = (props: CounterCartProductProps) => {
     };
     return (
         <Counter
+            view={view}
             quantity={product.count}
             onIncrement={onIncrement(product.count)}
             onDecrement={onDecrement(product.count)}
