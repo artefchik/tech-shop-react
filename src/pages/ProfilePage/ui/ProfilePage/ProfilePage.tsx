@@ -16,6 +16,8 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ProfilePageHeader } from '../ProfilePageHeader/ProfilePageHeader';
 import { ProfilePagePageBlock } from '../ProfilePageBlock/ProfilePagePageBlock';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
 
 interface ProfilePageProps {
     className?: string;
@@ -32,9 +34,15 @@ export const ProfilePage = (props: ProfilePageProps) => {
     const [isCurrentBlock, setIsCurrentBlock] = useState(
         ProfilePageItemType.PROFILE,
     );
+    const authData = useSelector(getUserAuthData)
+
 
     if (!id) {
         return <Text text={t('User not found')} />;
+    }
+
+    if (authData?.id !== id){
+        return
     }
 
     return (

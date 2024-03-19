@@ -9,16 +9,24 @@ interface FavoriteButtonProps {
     className?: string;
     onToggleFavorite?: () => void;
     isFavorite?: boolean;
+    auth?: boolean;
 }
 
 export const FavoriteButton = memo((props: FavoriteButtonProps) => {
-    const { className, onToggleFavorite, isFavorite = false } = props;
+    const {
+        className,
+        onToggleFavorite,
+        isFavorite = false,
+        auth = false,
+    } = props;
     const [isSelectedFavorite, setIsSelectedFavorite] = useState(isFavorite);
 
     const onToggleFavoriteHandler = useCallback(() => {
-        setIsSelectedFavorite((prevState) => !prevState);
+        if (auth) {
+            setIsSelectedFavorite((prevState) => !prevState);
+        }
         onToggleFavorite?.();
-    }, [onToggleFavorite]);
+    }, [auth, onToggleFavorite]);
 
     return (
         <Button

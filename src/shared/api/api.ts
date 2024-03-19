@@ -4,7 +4,7 @@ import { AuthResponse } from 'entities/User';
 
 export const $api = axios.create({
     withCredentials: true,
-    baseURL: 'http://localhost:8000',
+    baseURL: __API__,
 });
 //
 $api.interceptors.request.use((config: AxiosRequestConfig) => {
@@ -15,13 +15,18 @@ $api.interceptors.request.use((config: AxiosRequestConfig) => {
             return config;
         }
     }
+    return config;
     // @ts-ignore
 });
 $api.interceptors.response.use(
     (config) => config,
     async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 401 && error.config && !error.config._isRetry) {
+        if (
+            error.response.status === 401 &&
+            error.config &&
+            !error.config._isRetry
+        ) {
             originalRequest._isRetry = true;
             try {
                 const response = await axios.get<AuthResponse>(
@@ -30,7 +35,10 @@ $api.interceptors.response.use(
                         withCredentials: true,
                     },
                 );
-                localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.accessToken);
+                localStorage.setItem(
+                    USER_LOCALSTORAGE_KEY,
+                    response.data.accessToken,
+                );
                 return $api.request(originalRequest);
             } catch (e) {
                 console.log(e);

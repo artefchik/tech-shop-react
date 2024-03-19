@@ -9,6 +9,7 @@ export enum TextTheme {
     SECONDARY = 'secondary',
     DEFAULT = 'default',
     LINKCOLOR = 'link',
+    WHITE = 'white',
     INVERTED_PRIMARY = 'inverted',
 }
 

@@ -3,7 +3,10 @@ import { Page } from 'shared/ui/Page/Page';
 import { Container } from 'shared/ui/Container/Container';
 import { VStack } from 'shared/ui/Stack';
 import { useSelector } from 'react-redux';
-import { fetchCartProductsList, getCartProductsTotal } from 'features/CartProduct';
+import {
+    fetchCartProductsList,
+    getCartProductsTotal,
+} from 'features/CartProduct';
 import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { CartPageIsEmpty } from '../CartPageIsEmpty/CartPageIsEmpty';
@@ -26,9 +29,12 @@ const ShoppingCartPage = (props: ProductsCartPageProps) => {
     }, [dispatch]);
 
     return (
-        <Page className={classNames(cls.ShoppingCartPage, {}, [className])}>
+        <Page
+            isBottomPadding
+            className={classNames(cls.ShoppingCartPage, {}, [className])}
+        >
             <Container>
-                {totalCart > 0 ? (
+                {totalCart ? (
                     <VStack gap="20">
                         <ShoppingCartHeaderPage />
                         <ShoppingCartList />

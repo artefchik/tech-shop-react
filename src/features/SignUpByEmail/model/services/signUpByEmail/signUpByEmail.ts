@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthResponse, userActions } from 'entities/User';
 import { $api } from 'shared/api/api';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 
 interface SignupByEmailProps {
     username: string;
@@ -12,9 +13,7 @@ interface SignupByEmailProps {
 export const signUpByEmail = createAsyncThunk<
     AuthResponse,
     SignupByEmailProps,
-    {
-        rejectValue: string;
-    }
+    ThunkConfig<string>
 >('user/signUpByEmail', async (authData, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
@@ -24,13 +23,13 @@ export const signUpByEmail = createAsyncThunk<
             authData,
         );
         if (!response.data) {
-            throw new Error('');
+            throw new Error();
         }
         localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.accessToken);
         dispatch(userActions.setAuthData(response.data.user));
         return response.data;
-    } catch (e) {
+    } catch (e: any) {
         console.log(e);
-        return rejectWithValue('не верный логин или пароль');
+        return rejectWithValue(e.response?.data?.message);
     }
 });

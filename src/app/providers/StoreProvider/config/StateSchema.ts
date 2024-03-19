@@ -25,6 +25,8 @@ import { MobileBarSchema } from 'features/MobileBar';
 import { FavoriteSchema } from 'entities/Favorite';
 import { CartProductSchema } from 'features/CartProduct';
 import { ArticleDetailsRatingSchema } from 'features/ArticleDetailsRating';
+import { SignUpByEmailSchema } from 'features/SignUpByEmail';
+import { LoginByEmailSchema } from 'features/LoginByEmail';
 
 export interface StateSchema {
     user: UserSchema;
@@ -45,7 +47,8 @@ export interface StateSchema {
     productsFilters?: ProductsFiltersSchema;
     editor?: EditorSchema;
     sandboxSettings?: SandboxSettingsSchema;
-
+    signUpByEmail?: SignUpByEmailSchema;
+    loginByEmail?: LoginByEmailSchema;
     mobileBar?: MobileBarSchema;
 }
 

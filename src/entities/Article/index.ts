@@ -1,3 +1,4 @@
+export { ArticleListItemSkeleton } from './ui/ArticleListItem/ArticleListItemSkeleton';
 export { ArticleListItem } from './ui/ArticleListItem/ArticleListItem';
 export { ArticleBlock } from './model/types/article';
 export { ArticleBlockType } from 'entities/Article/model/types/article';

@@ -18,3 +18,9 @@ export const signUpSchema = z
     });
 
 export type SignUpSchema = z.infer<typeof signUpSchema>;
+
+export interface SignUpByEmailSchema {
+    data?: SignUpSchema;
+    isLoading: boolean;
+    error?: string;
+}

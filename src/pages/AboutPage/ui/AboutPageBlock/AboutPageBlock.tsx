@@ -3,6 +3,8 @@ import { VStack } from 'shared/ui/Stack';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Flex } from 'shared/ui/Stack/Flex/Flex';
+import { AppImage } from 'shared/ui/AppImage/AppImage';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './AboutPageBlock.module.scss';
 import { AboutPageItem } from '../../model/types/about';
 
@@ -26,7 +28,10 @@ export const AboutPageBlock = (props: AboutPageBlockProps) => {
                 className={classNames(cls.AboutPageBlock, {}, [className])}
             >
                 <div className={cls.image}>
-                    <img src={block.image} alt="" />
+                    <AppImage
+                        src={block.image}
+                        fallback={<Skeleton width="100%" height="100%" />}
+                    />
                 </div>
                 <VStack className={cls.block}>
                     <VStack className={cls.content} gap="20">
@@ -43,7 +48,11 @@ export const AboutPageBlock = (props: AboutPageBlockProps) => {
                         </VStack>
                         <VStack gap="15">
                             {block.paragraphs?.map((paragraph, index) => (
-                                <Text className={cls.text} key={index} text={paragraph} />
+                                <Text
+                                    className={cls.text}
+                                    key={index}
+                                    text={paragraph}
+                                />
                             ))}
                         </VStack>
                     </VStack>

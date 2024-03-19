@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthResponse, userActions } from 'entities/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { $api } from 'shared/api/api';
 import axios from 'axios';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 
 interface LoginByEmailProps {
     email: string;
@@ -12,9 +12,7 @@ interface LoginByEmailProps {
 export const loginByEmail = createAsyncThunk<
     AuthResponse,
     LoginByEmailProps,
-    {
-        rejectValue: string;
-    }
+    ThunkConfig<string>
 >('user/loginByEmail', async (authData, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
@@ -36,6 +34,8 @@ export const loginByEmail = createAsyncThunk<
         return response.data;
     } catch (e) {
         console.log(e);
-        return rejectWithValue('Не верный логин или пароль');
+        return rejectWithValue(
+            'Вход на сайт не был произведён. Возможно, Вы ввели неверное email пользователя или пароль.',
+        );
     }
 });
