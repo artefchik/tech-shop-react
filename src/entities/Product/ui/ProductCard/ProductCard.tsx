@@ -38,7 +38,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                         <AppImage
                             fallback={<Skeleton height="100%" />}
                             errorFallback={<NotFoundImage />}
-                            src={__API__ + product.imageSrc}
+                            src={product.imageSrc}
                             alt={product.title}
                         />
                         {/* <img  /> */}
@@ -88,7 +88,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                         <AppImage
                             fallback={<Skeleton height="100%" />}
                             errorFallback={<NotFoundImage />}
-                            src={__API__ + product.imageSrc}
+                            src={product.imageSrc}
                             alt={product.title}
                         />
                     </div>

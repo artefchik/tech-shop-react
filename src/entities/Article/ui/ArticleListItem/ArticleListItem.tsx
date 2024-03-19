@@ -126,7 +126,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 className={classNames(cls.card, {}, [cls.flex])}
             >
                 <AppImage
-                    src={__API__ + article.img}
+                    src={article.img}
                     alt=""
                     errorFallback={
                         <NotFoundImage

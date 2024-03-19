@@ -5,6 +5,8 @@ import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Flex } from 'shared/ui/Stack/Flex/Flex';
 import { AppImage } from 'shared/ui/AppImage/AppImage';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { useEffect } from 'react';
+import { $api } from 'shared/api/api';
 import cls from './AboutPageBlock.module.scss';
 import { AboutPageItem } from '../../model/types/about';
 
@@ -19,7 +21,9 @@ export const AboutPageBlock = (props: AboutPageBlockProps) => {
         [cls.reverse]: block.isReverse,
     };
     const reverse = block.isReverse ? 'rowReverse' : 'row';
-
+    useEffect(() => {
+        console.log(__API__);
+    }, []);
     return (
         <div className={classNames(cls.wrapper, mods, [])}>
             <Flex

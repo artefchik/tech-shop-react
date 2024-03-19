@@ -10,6 +10,7 @@ import {
     getProductsFilterOrder,
 } from 'features/ProductsFilter';
 import { getProductsCategory } from 'pages/ProductsPage/model/selectors/getProductsCategory/getProductsCategory';
+import axios from 'axios';
 import { getProductsListPage } from '../../selectors/getProductsListPage/getProductsListPage';
 import { getProductsPageLimit } from '../../selectors/getProductsPageLimit/getProductsPageLimit';
 
@@ -33,7 +34,7 @@ export const fetchProductsList = createAsyncThunk<
         addQueryParams({
             order,
         });
-        const response = await $api.get<Product[]>(`/products`, {
+        const response = await axios.get<Product[]>(`${__API__}/products`, {
             params: {
                 category:
                     category === ProductsCategories.ALL ? undefined : category,

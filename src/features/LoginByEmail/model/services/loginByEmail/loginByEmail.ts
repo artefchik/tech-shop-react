@@ -18,7 +18,7 @@ export const loginByEmail = createAsyncThunk<
 
     try {
         const response = await axios.post<AuthResponse>(
-            `http://localhost:8000/login`,
+            `${__API__}/login`,
             authData,
             { withCredentials: true },
         );

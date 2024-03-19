@@ -1,12 +1,13 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { AuthResponse } from 'entities/User';
+import * as process from 'process';
 
 export const $api = axios.create({
     withCredentials: true,
     baseURL: __API__,
 });
-//
+
 $api.interceptors.request.use((config: AxiosRequestConfig) => {
     const accessToken = localStorage.getItem(USER_LOCALSTORAGE_KEY);
     if (accessToken) {
@@ -16,7 +17,6 @@ $api.interceptors.request.use((config: AxiosRequestConfig) => {
         }
     }
     return config;
-    // @ts-ignore
 });
 $api.interceptors.response.use(
     (config) => config,
@@ -30,7 +30,7 @@ $api.interceptors.response.use(
             originalRequest._isRetry = true;
             try {
                 const response = await axios.get<AuthResponse>(
-                    'http://localhost:8000/refresh',
+                    `${__API__}/refresh`,
                     {
                         withCredentials: true,
                     },
