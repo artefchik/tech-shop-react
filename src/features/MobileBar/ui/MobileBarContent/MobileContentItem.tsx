@@ -21,18 +21,24 @@ export const MobileContentItem = (props: MobileContentItemProps) => {
     const dispatch = useAppDispatch();
     const isOpenBar = useSelector(getMobileBarIsOpen);
 
-    const onToggleBar = useCallback(() => {
-        dispatch(mobileBarActions.setOpenBar(!isOpenBar));
-    }, [dispatch, isOpenBar]);
+    const onCloseBar = useCallback(() => {
+        dispatch(mobileBarActions.setOpenBar(false));
+    }, [dispatch]);
+
     return (
         <AppNavLink
             className={classNames(cls.MobileContentItem, {}, [className])}
             to={item.path}
-            onClick={onToggleBar}
+            onClick={onCloseBar}
             activeClassname={cls.active}
         >
             <Icon Svg={item.icon} />
-            <Text text={item.text} theme={TextTheme.TEXT} As="span" size={TextSize.BIG} />
+            <Text
+                text={item.text}
+                theme={TextTheme.TEXT}
+                As="span"
+                size={TextSize.BIG}
+            />
         </AppNavLink>
     );
 };

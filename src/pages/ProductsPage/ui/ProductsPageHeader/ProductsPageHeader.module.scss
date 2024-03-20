@@ -10,3 +10,29 @@
     width: 100%;
   }
 }
+
+.backLink {
+
+
+  a{
+    transition: all 0.4s ease 0s;
+    color: var(--color-text-block);
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      a {
+        color: var(--secondary-color);
+      }
+      svg {
+        path {
+          stroke: var(--secondary-color);
+        }
+      }
+    }
+  }
+
+  svg {
+    transition: all 0.4s ease 0s;
+    transform: rotate(180deg);
+  }
+}

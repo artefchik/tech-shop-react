@@ -29,6 +29,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const { className } = props;
     const { id } = useParams<{ id: string }>();
     console.log(id);
+
     if (!id) {
         return <Text text="Статья не найдена" size={TextSize.BIG} />;
     }

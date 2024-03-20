@@ -6,7 +6,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useCallback, useEffect } from 'react';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
+import { DrawerContent } from 'shared/ui/Drawer/Drawer';
 import { VStack } from 'shared/ui/Stack';
 import { MobileBarButtonOpen } from '../MobileBarButtonOpen/MobileBarButtonOpen';
 import { MobileBarBottom } from '../MobileBarBottom/MobileBarBottom';
@@ -54,13 +54,13 @@ export const MobileBar = (props: MobileBarProps) => {
             {isMobile && (
                 <DynamicModuleLoader reducers={reducers}>
                     <MobileBarButtonOpen />
-                    <Drawer isOpen={isOpenBar} onClose={onCloseBar}>
+                    <DrawerContent isOpen={isOpenBar} onClose={onCloseBar}>
                         <VStack>
                             <MobileBarTop />
                             <MobileBarContent />
                             <MobileBarBottom />
                         </VStack>
-                    </Drawer>
+                    </DrawerContent>
                 </DynamicModuleLoader>
             )}
         </>

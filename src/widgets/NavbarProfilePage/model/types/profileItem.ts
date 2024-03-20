@@ -1,19 +1,16 @@
-import { ReactNode } from 'react';
-import { EditableProfileCard } from 'features/EditableProfileCard';
+import { getRoutePathArticlesCreate } from 'shared/const/router';
 
 export enum ProfilePageItemType {
     SETTING = 'settings',
     PROFILE = 'profile',
     FAVORITES = 'favorites',
+    CREATE_ARTICLE = 'create_article',
 }
 
 export interface ProfileItem {
     content: string;
     block: ProfilePageItemType;
-}
-export interface ProfileIte {
-    content: string;
-    block: ReactNode;
+    to?: string;
 }
 
 export const profileItemsConfig: ProfileItem[] = [
@@ -28,5 +25,10 @@ export const profileItemsConfig: ProfileItem[] = [
     {
         content: 'Favorites',
         block: ProfilePageItemType.FAVORITES,
+    },
+    {
+        content: 'Creating an article',
+        block: ProfilePageItemType.CREATE_ARTICLE,
+        to: getRoutePathArticlesCreate(),
     },
 ];

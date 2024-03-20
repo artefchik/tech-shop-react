@@ -5,7 +5,7 @@ import {
 } from 'shared/ui/DropdownsList/ui/Popover/Popover';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { memo, useCallback, useState } from 'react';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
+import { DrawerContent } from 'shared/ui/Drawer/Drawer';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
 import bell from 'shared/assets/icons/bell.svg';
@@ -40,9 +40,9 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
             </BrowserView>
             <MobileView>
                 {trigger}
-                <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
+                <DrawerContent isOpen={isOpen} onClose={onCloseDrawer}>
                     <NotificationList />
-                </Drawer>
+                </DrawerContent>
             </MobileView>
         </>
     );

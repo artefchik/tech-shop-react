@@ -17,13 +17,10 @@ import { fetchCartProductsList } from 'features/CartProduct';
 import { getCartId, initCartData } from 'entities/Cart';
 import { getFavoriteDataId, initFavoriteData } from 'entities/Favorite';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton';
-import { NotificationButton } from 'features/NotificationButton';
-import { ErrorButton } from 'app/providers/ErrorBoundary/ui/ErrorButton';
 
 function App() {
     const { themeVariant } = useTheme();
     const dispatch = useAppDispatch();
-    const initiated = useSelector(getUserInitiated);
     const userData = useSelector(getUserAuthData);
 
     const favorite = useSelector(getFavoriteDataId);

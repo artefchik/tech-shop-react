@@ -1,5 +1,6 @@
 export const USER_LOCALSTORAGE_KEY = 'token';
-export const ARTICLES_VIEW_LOCALSTORAGE_KEY = 'view';
+export const ARTICLES_VIEW_LOCALSTORAGE_KEY = 'articles_view';
+export const PRODUCTS_VIEW_LOCALSTORAGE_KEY = 'products_view';
 export const EDITOR_LOCALSTORAGE_KEY = 'editor';
 
 export const ARTICLE_ITEM_ID_LOCALSTORAGE_KEY = 'article_item_id';

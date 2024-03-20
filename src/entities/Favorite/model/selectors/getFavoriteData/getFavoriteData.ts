@@ -5,5 +5,5 @@ export const getFavoriteData = (state: StateSchema) => state.favorite.data;
 
 export const getFavoriteDataId = createSelector(
     getFavoriteData,
-    (favorite) => favorite?.id ?? '',
+    (favorite) => favorite?.id,
 );

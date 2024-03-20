@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { AppImage } from 'shared/ui/AppImage/AppImage';
 import { NotFoundImage } from 'shared/ui/NotFoundImage/NotFoundImage';
 import { ARTICLE_ITEM_ID_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -128,6 +129,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 <AppImage
                     src={article.img}
                     alt=""
+                    fallback={<Skeleton className={cls.image} />}
                     errorFallback={
                         <NotFoundImage
                             className={classNames(cls.image, {}, [

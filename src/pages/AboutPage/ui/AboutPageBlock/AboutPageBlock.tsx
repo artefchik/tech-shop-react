@@ -21,9 +21,7 @@ export const AboutPageBlock = (props: AboutPageBlockProps) => {
         [cls.reverse]: block.isReverse,
     };
     const reverse = block.isReverse ? 'rowReverse' : 'row';
-    useEffect(() => {
-        console.log(__API__);
-    }, []);
+
     return (
         <div className={classNames(cls.wrapper, mods, [])}>
             <Flex
@@ -31,10 +29,17 @@ export const AboutPageBlock = (props: AboutPageBlockProps) => {
                 direction={reverse}
                 className={classNames(cls.AboutPageBlock, {}, [className])}
             >
-                <div className={cls.image}>
+                <div className={cls.imageBody}>
                     <AppImage
                         src={block.image}
-                        fallback={<Skeleton width="100%" height="100%" />}
+                        className={cls.image}
+                        fallback={
+                            <Skeleton
+                                width="100%"
+                                height="100%"
+                                className={cls.image}
+                            />
+                        }
                     />
                 </div>
                 <VStack className={cls.block}>

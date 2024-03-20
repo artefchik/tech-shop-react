@@ -18,7 +18,7 @@ export const ArticleListSkeleton = memo((props: ArticleListSkeletonProps) => {
             {new Array(view === ViewType.BIG ? 3 : 6)
                 .fill(0)
                 .map((_, index) => (
-                    <ArticleListItemSkeleton view={view} />
+                    <ArticleListItemSkeleton view={view} key={index} />
                 ))}
         </div>
     );

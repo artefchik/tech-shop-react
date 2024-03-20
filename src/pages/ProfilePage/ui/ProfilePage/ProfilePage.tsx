@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Container } from 'shared/ui/Container/Container';
 import { Page } from 'shared/ui/Page/Page';
-import { Text, TextSize } from 'shared/ui/Text/Text';
 import {
     fetchProfileData,
     getProfileData,
@@ -39,7 +38,6 @@ const reducers: ReducersList = {
 export const ProfilePage = (props: ProfilePageProps) => {
     const { className } = props;
     const { id } = useParams<{ id: string }>();
-    const { t } = useTranslation();
     const [isCurrentBlock, setIsCurrentBlock] = useState(
         ProfilePageItemType.PROFILE,
     );

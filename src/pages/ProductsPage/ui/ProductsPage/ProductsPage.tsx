@@ -1,8 +1,6 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { Page } from 'shared/ui/Page/Page';
 import { Container } from 'shared/ui/Container/Container';
-import { useInView } from 'react-intersection-observer';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useParams, useSearchParams } from 'react-router-dom';
 import {
@@ -10,8 +8,7 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ProductsCategories, ViewType } from 'shared/const/types';
-import { fetchArticleList } from 'pages/ArticlesPage/model/services/fetchArticleList/fetchArticleList';
-import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
+import { isMobile } from 'react-device-detect';
 import { initProductsPage } from '../../model/services/initProductsPage/initProductsPage';
 import { ProductsPageInfiniteList } from '../ProductsPageInfiniteList/ProductsPageInfiniteList';
 import { ProductsPageHeader } from '../ProductsPageHeader/ProductsPageHeader';
@@ -43,6 +40,12 @@ const ProductsPage = (props: ProductsPageProps) => {
     useEffect(() => {
         dispatch(initProductsPage(searchParams));
     }, [dispatch, searchParams]);
+
+    useEffect(() => {
+        if (isMobile) {
+            dispatch(productsPageActions.setView(ViewType.SMALL));
+        }
+    }, [dispatch]);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>

@@ -39,7 +39,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: getRoutePathMain(),
         element: <MainPage />,
-        authOnly: false,
     },
     [AppRoutes.ABOUT]: {
         path: getRoutePathAbout(),
@@ -48,27 +47,25 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.PROFILE]: {
         path: getRoutePathProfile(':id'),
         element: <ProfilePage />,
-        authOnly: false,
     },
     [AppRoutes.ARTICLES]: {
         path: getRoutePathArticles(),
         element: <ArticlesPage />,
-        authOnly: false,
     },
     [AppRoutes.ARTICLE_DETAILS]: {
         path: getRoutePathArticlesDetailsById(':id'),
         element: <ArticleDetailsPage />,
-        authOnly: false,
     },
     [AppRoutes.ARTICLE_CREATE]: {
         path: getRoutePathArticlesCreate(),
         element: <SandboxPage />,
-        authOnly: false,
+        authOnly: true,
     },
     [AppRoutes.ARTICLE_EDIT]: {
         path: getRoutePathArticlesEditById(':id'),
         element: <ArticleDetailsEditPage />,
-        authOnly: false,
+        authOnly: true,
+        // roles: [UserRoles.ADMIN],
     },
     [AppRoutes.PRODUCTS]: {
         path: getRoutePathProducts(),

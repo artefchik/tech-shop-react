@@ -41,7 +41,6 @@ export const ProductCard = memo((props: ProductItemProps) => {
                             src={product.imageSrc}
                             alt={product.title}
                         />
-                        {/* <img  /> */}
                         <div className={cls.favorites}>
                             {FavoriteButton && FavoriteButton}
                         </div>
@@ -84,8 +83,9 @@ export const ProductCard = memo((props: ProductItemProps) => {
         >
             <HStack gap="15" className={cls.card}>
                 <VStack className={cls.imageBlock}>
-                    <div className={cls.image}>
+                    <div className={cls.imageBody}>
                         <AppImage
+                            className={cls.image}
                             fallback={<Skeleton height="100%" />}
                             errorFallback={<NotFoundImage />}
                             src={product.imageSrc}
@@ -119,12 +119,12 @@ export const ProductCard = memo((props: ProductItemProps) => {
                             As="span"
                         />
                     </HStack>
-                    <HStack align="center" gap="20">
+                    <div className={cls.buttons}>
                         <div className={cls.addButton}>
                             {AddProductButton && AddProductButton}
                         </div>
                         {FavoriteButton && FavoriteButton}
-                    </HStack>
+                    </div>
                 </VStack>
             </HStack>
         </Card>

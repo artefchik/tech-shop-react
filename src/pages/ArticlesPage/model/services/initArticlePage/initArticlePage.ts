@@ -17,7 +17,6 @@ export const initArticlePage = createAsyncThunk<
 >('articlesPage/initArticlePage', async (searchParams, thunkAPI) => {
     const { dispatch, getState } = thunkAPI;
     const initiated = getArticleListInited(getState());
-    console.log(initiated);
     if (!initiated) {
         const search = searchParams.get('search');
         const type = searchParams.get('type') as ArticleType;

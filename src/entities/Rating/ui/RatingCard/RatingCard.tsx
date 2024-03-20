@@ -9,7 +9,7 @@ import { Modal } from 'shared/ui/Modal/Modal';
 import { Input } from 'shared/ui/Input/Input';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
+import { DrawerContent } from 'shared/ui/Drawer/Drawer';
 import { useTranslation } from 'react-i18next';
 import cls from './RatingCard.module.scss';
 
@@ -102,12 +102,16 @@ export const RatingCard = (props: RatingCardProps) => {
                 </Modal>
             </BrowserView>
             <MobileView>
-                <Drawer isOpen={isOpenModal} onClose={onCancelHandler} lazy>
+                <DrawerContent
+                    isOpen={isOpenModal}
+                    onClose={onCancelHandler}
+                    lazy
+                >
                     <VStack gap="20">
                         <VStack gap="15">{modelContent}</VStack>
                         <Button onClick={onAcceptHandler}>save</Button>
                     </VStack>
-                </Drawer>
+                </DrawerContent>
             </MobileView>
         </Card>
     );

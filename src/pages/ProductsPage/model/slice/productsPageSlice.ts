@@ -4,7 +4,10 @@ import {
     PayloadAction,
 } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import {
+    ARTICLES_VIEW_LOCALSTORAGE_KEY,
+    PRODUCTS_VIEW_LOCALSTORAGE_KEY,
+} from 'shared/const/localStorage';
 import { Product } from 'entities/Product';
 import { ProductsPageSchema } from 'pages/ProductsPage/model/types/productsPageSchema';
 import { fetchProductsList } from 'pages/ProductsPage/model/services/fetchProductsList/fetchProductsList';
@@ -36,7 +39,7 @@ const productsPageSlice = createSlice({
         setView: (state, action: PayloadAction<ViewType>) => {
             state.view = action.payload;
             localStorage.setItem(
-                ARTICLES_VIEW_LOCALSTORAGE_KEY,
+                PRODUCTS_VIEW_LOCALSTORAGE_KEY,
                 action.payload,
             );
         },
@@ -49,7 +52,7 @@ const productsPageSlice = createSlice({
 
         initState: (state) => {
             const view = localStorage.getItem(
-                ARTICLES_VIEW_LOCALSTORAGE_KEY,
+                PRODUCTS_VIEW_LOCALSTORAGE_KEY,
             ) as ViewType;
             state.view = view;
             state.limit = view === ViewType.SMALL ? 7 : 5;

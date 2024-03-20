@@ -1,9 +1,10 @@
 import { Page } from 'shared/ui/Page/Page';
 import { Container } from 'shared/ui/Container/Container';
-import { VStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { AdvantagesItemList } from 'widgets/Advantages';
-import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
-import { ViewType } from 'shared/const/types';
+import cls from 'entities/Product/ui/ProductCard/ProductCard.module.scss';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { Card } from 'shared/ui/Card/Card';
 import { MainPageArticlesCards } from '../MainPageArticlesCards/MainPageArticlesCards';
 import { MainPageProductsCards } from '../MainPageProductsCards/MainPageProductsCards';
 import { MainSliderPage } from '../../ui/MainSliderPage/MainSliderPage';

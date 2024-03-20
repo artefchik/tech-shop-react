@@ -30,7 +30,7 @@ const AuthPage = (props: AuthPageProps) => {
 
     return (
         <Page className={classNames(cls.AuthPage, {}, [className])}>
-            <Container width={500}>
+            <Container width={500} className={cls.container}>
                 {currentForm ? (
                     <Suspense fallback="">
                         <LoginFormAsync

@@ -1,7 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { VStack } from 'shared/ui/Stack';
 import { useCallback } from 'react';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Text } from 'shared/ui/Text/Text';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import cls from './NavbarProfilePage.module.scss';
 import {
     profileItemsConfig,
@@ -40,7 +41,16 @@ export const NavbarProfilePage = (props: NavbarProfilePageProps) => {
                                 [],
                             )}
                         >
-                            <Text text={item.content} As="span" />
+                            {item.to ? (
+                                <AppLink
+                                    theme={AppLinkTheme.CLEAR}
+                                    to={item.to ?? ''}
+                                >
+                                    <Text text={item.content} As="span" />
+                                </AppLink>
+                            ) : (
+                                <Text text={item.content} As="span" />
+                            )}
                         </li>
                     );
                 })}

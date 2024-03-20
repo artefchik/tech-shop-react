@@ -34,17 +34,17 @@ export const MainPageArticlesCards = (props: MainPageArticlesCardsProps) => {
                 title={t('Articles')}
                 srcLink={getRoutePathArticles()}
             />
-            {/* {isLoading && ( */}
-            {/*    <MainPageCardsSlider<Article> data={articles}> */}
-            {/*        {(article) => ( */}
-            {/*            <ArticleListItemSkeleton view={ViewType.SMALL} /> */}
-            {/*        )} */}
-            {/*    </MainPageCardsSlider> */}
-            {/* )} */}
             <MainPageCardsSlider<Article> data={articles}>
-                {(article) => (
-                    <ArticleListItem article={article} view={ViewType.SMALL} />
-                )}
+                {(article) =>
+                    isLoading ? (
+                        <ArticleListItemSkeleton view={ViewType.SMALL} />
+                    ) : (
+                        <ArticleListItem
+                            article={article}
+                            view={ViewType.SMALL}
+                        />
+                    )
+                }
             </MainPageCardsSlider>
         </VStack>
     );

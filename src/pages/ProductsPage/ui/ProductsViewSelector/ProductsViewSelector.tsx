@@ -1,8 +1,9 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { ViewSelector } from 'shared/ui/ViewSelector/ViewSelector';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ViewType } from 'shared/const/types';
+import { isMobile } from 'react-device-detect';
 import { getProductsPageView } from '../../model/selectors/getProductsPageView/getProductsPageView';
 import { productsPageActions } from '../../model/slice/productsPageSlice';
 
@@ -23,5 +24,11 @@ export const ProductsViewSelector = memo((props: ProductsViewSelectorProps) => {
         [dispatch],
     );
 
-    return <ViewSelector view={view} onViewClick={onChangeView} className={className} />;
+    return (
+        <ViewSelector
+            view={view}
+            onViewClick={onChangeView}
+            className={className}
+        />
+    );
 });

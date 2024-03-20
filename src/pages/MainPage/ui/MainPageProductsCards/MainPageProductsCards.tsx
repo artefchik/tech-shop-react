@@ -10,6 +10,8 @@ import { ViewType } from 'shared/const/types';
 import { MainPageCardsSlider } from 'pages/MainPage/ui/MainPageCardsSlider/MainPageCardsSlider';
 import { Article } from 'entities/Article';
 import { ArticleListItem } from 'entities/Article/ui/ArticleListItem/ArticleListItem';
+import { ProductCardSkeleton } from 'entities/Product';
+import { ProductFavoriteButton } from 'features/ProductFavoriteButton';
 import { useGetMainBlockPage } from '../../model/api/mainPageApi';
 import { MainPageCardHeader } from '../MainPageCardHeader/MainPageCardHeader';
 import {
@@ -39,9 +41,19 @@ export const MainPageProductsCards = (props: MainPageProductsCardsProps) => {
                 srcLink={getRoutePathProducts()}
             />
             <MainPageCardsSlider<Product> data={products}>
-                {(product) => (
-                    <ProductCard product={product} view={ViewType.SMALL} />
-                )}
+                {(product) =>
+                    isLoading ? (
+                        <ProductCardSkeleton view={ViewType.SMALL} />
+                    ) : (
+                        <ProductCard
+                            FavoriteButton={
+                                <ProductFavoriteButton productId={product.id} />
+                            }
+                            product={product}
+                            view={ViewType.SMALL}
+                        />
+                    )
+                }
             </MainPageCardsSlider>
         </VStack>
     );

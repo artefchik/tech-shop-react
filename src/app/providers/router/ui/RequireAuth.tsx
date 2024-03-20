@@ -22,10 +22,11 @@ export function RequireAuth(props: RequireAuthProps) {
         }
         return roles.some((role) => userRoles?.includes(role));
     }, [roles, userRoles]);
-
+    console.log(auth);
     if (!auth || !hasRequireRoles) {
-        return <Navigate to={RoutePath.main} state={{ from: location }} replace />;
+        return (
+            <Navigate to={RoutePath.main} state={{ from: location }} replace />
+        );
     }
-
     return children;
 }

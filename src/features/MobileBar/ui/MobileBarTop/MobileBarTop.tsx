@@ -8,6 +8,11 @@ import { useSelector } from 'react-redux';
 import { useToggleModal } from 'shared/lib/hooks/useToggleModal/useToggleModal';
 import { Button } from 'shared/ui/Button/Button';
 import { AuthModal } from 'widgets/AuthModal/ui/AuthModal';
+import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
+import { mobileBarActions } from 'features/MobileBar/model/slice/mobileBarSlice';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getMobileBarIsOpen } from '../../model/selectors/getMobileBarIsOpen/getMobileBarIsOpen';
 import cls from './MobileBarTop.module.scss';
 
 interface MobileBarTopProps {
@@ -18,12 +23,19 @@ export const MobileBarTop = (props: MobileBarTopProps) => {
     const { className } = props;
     const userData = useSelector(getUserAuthData);
     const { isOpenModal, onCloseModal, onShowModal } = useToggleModal();
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const onCloseBar = useCallback(() => {
+        dispatch(mobileBarActions.setOpenBar(false));
+    }, [dispatch]);
 
     if (!userData) {
         return (
             <div className={classNames(cls.MobileBarTop, {}, [className])}>
-                <Button onClick={onShowModal}>Войти</Button>
-                {isOpenModal && <AuthModal isOpen={isOpenModal} onClose={onCloseModal} />}
+                <Button onClick={onShowModal}>{t('Sign Up')}</Button>
+                {isOpenModal && (
+                    <AuthModal isOpen={isOpenModal} onClose={onCloseModal} />
+                )}
             </div>
         );
     }
@@ -31,11 +43,16 @@ export const MobileBarTop = (props: MobileBarTopProps) => {
     return (
         <AppLink
             to={getRoutePathProfile(userData?.id ?? '')}
+            onClick={onCloseBar}
             theme={AppLinkTheme.CLEAR}
             className={classNames(cls.MobileBarTop, {}, [className])}
         >
             <Avatar size={52} src={userData?.avatar} />
-            <Text text={userData?.username ?? ''} size={TextSize.BIG} As="span" />
+            <Text
+                text={userData?.username ?? ''}
+                size={TextSize.BIG}
+                As="span"
+            />
         </AppLink>
     );
 };

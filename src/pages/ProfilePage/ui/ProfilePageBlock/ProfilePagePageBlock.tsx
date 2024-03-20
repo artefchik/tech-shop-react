@@ -19,7 +19,6 @@ interface ProfilePagePageBlockProps {
 
 export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
     const { className, block, id } = props;
-    const isLoading = useSelector(getProfileIsLoading);
 
     const profileData = useSelector(getProfileData);
     const dispatch = useAppDispatch();

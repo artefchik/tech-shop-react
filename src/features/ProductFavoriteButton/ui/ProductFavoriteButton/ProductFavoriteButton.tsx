@@ -26,7 +26,6 @@ import { toggleProductsFavorites } from '../../model/services/toggleProductsFavo
 interface ProductFavoriteButtonProps {
     className?: string;
     productId: string;
-    isFavorite?: boolean;
 }
 
 const reducers: ReducersList = {
@@ -34,7 +33,7 @@ const reducers: ReducersList = {
 };
 
 export const ProductFavoriteButton = (props: ProductFavoriteButtonProps) => {
-    const { className, productId, isFavorite } = props;
+    const { className, productId } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const userData = useSelector(getUserAuthData);
