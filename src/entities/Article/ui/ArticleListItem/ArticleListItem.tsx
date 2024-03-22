@@ -46,17 +46,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         [],
     );
 
-    const onClickHandler = useCallback(() => {
-        sessionStorage.setItem(
-            ARTICLE_ITEM_ID_LOCALSTORAGE_KEY,
-            JSON.stringify(index),
-        );
-    }, [index]);
-
     const onOpenArticle = useCallback(() => {
         navigate(getRoutePathArticlesDetailsById(article.id));
-        onClickHandler();
-    }, [article.id, navigate, onClickHandler]);
+    }, [article.id, navigate]);
+
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
@@ -64,7 +57,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     if (view === ViewType.BIG) {
         return (
             <article
-                onClick={onClickHandler}
+                onClick={onOpenArticle}
                 className={classNames(cls.ArticleListItem, {}, [
                     className,
                     cls[view],

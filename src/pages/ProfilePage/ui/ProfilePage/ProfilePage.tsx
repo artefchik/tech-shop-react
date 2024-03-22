@@ -5,6 +5,7 @@ import {
     fetchProfileData,
     getProfileData,
     getProfileError,
+    getProfileIsLoading,
     profileReducer,
 } from 'features/EditableProfileCard';
 import { useTranslation } from 'react-i18next';
@@ -44,7 +45,7 @@ export const ProfilePage = (props: ProfilePageProps) => {
     const authData = useSelector(getUserAuthData);
     const dispatch = useAppDispatch();
     const profileData = useSelector(getProfileData);
-
+    const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
 
     useEffect(() => {
@@ -65,7 +66,7 @@ export const ProfilePage = (props: ProfilePageProps) => {
         renderContent = (
             <>
                 <ProfilePageHeader block={isCurrentBlock} />
-                <ProfileCard data={profileData} />
+                <ProfileCard isLoading={isLoading} data={profileData} />
             </>
         );
     } else {

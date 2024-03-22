@@ -1,7 +1,7 @@
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, ReactNode, useCallback, useEffect } from 'react';
 import { Card } from 'shared/ui/Card/Card';
 import {
     EditableProfileFooter,
@@ -9,12 +9,9 @@ import {
     ProfileEdit,
 } from 'entities/Profile';
 import { HStack, VStack } from 'shared/ui/Stack';
-import {
-    DynamicModuleLoader,
-    ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Text, TextSize, TextTheme, TextWeight } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
+import { AVATAR_FILE_NAME } from 'shared/const/const';
+import { updateProfileAvatar } from '../../model/services/updateProfileAvatar/updateProfileAvatar';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
@@ -25,14 +22,11 @@ import { getProfileData } from '../../model/selectors/getProfileData/getProfileD
 interface EditableProfileCardProps {
     className?: string;
     id?: string;
+    ActivatedEmail?: ReactNode;
 }
 
-const reducers: ReducersList = {
-    profile: profileReducer,
-};
-
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
-    const { className, id } = props;
+    const { className, id, ActivatedEmail } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const dataForm = useSelector(getProfileForm);
@@ -68,8 +62,17 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         [dispatch],
     );
 
+    const onChangeAvatar = useCallback(
+        (imageFile: File) => {
+            const formData = new FormData();
+            formData.append(AVATAR_FILE_NAME, imageFile);
+            console.log(formData);
+            dispatch(updateProfileAvatar(formData));
+        },
+        [dispatch],
+    );
+
     return (
-        // <DynamicModuleLoader reducers={reducers}>
         <VStack gap="25" className={className} width>
             <VStack gap="20">
                 <Card>
@@ -79,13 +82,14 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                             data={dataForm}
                             onChangeFirstname={onChangeFirstname}
                             onChangeLastname={onChangeLastname}
+                            onChangeAvatar={onChangeAvatar}
                             onChangeAge={onChangeAge}
                         />
+                        {ActivatedEmail && ActivatedEmail}
                         {canEdit && <EditableProfileFooter />}
                     </VStack>
                 </Card>
             </VStack>
         </VStack>
-        // </DynamicModuleLoader>
     );
 });

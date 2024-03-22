@@ -25,7 +25,7 @@
   "Read more": "Читать далее",
   "Filters": "Фильтры",
   "Submit": "Отправить",
-  "Login": "Вход",
+  "Login": "Войти",
   "Sign Up": "Зарегестрироваться",
   "Confirm Password": "Подтвердите пароль",
   "Don't have an account?": "У вас нет аккаунта?",
@@ -87,7 +87,10 @@
   "Phones": "Телефоны",
   "PC": "Компьютеры",
   "All": "Все продукты",
-  "Nothing was found": "Ничего не было найдено"
-
+  "Nothing was found": "Ничего не было найдено",
+  "Change avatar": "Изменить аватар",
+  "Confirm email": "Подтвердить почту",
+  "A confirmation link has been sent to your email": "На ваш электронный адрес была отправлена ссылка для подтверждения",
+  "Email confirmed": "Почта подтверждена"
 }
 

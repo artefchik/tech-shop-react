@@ -8,11 +8,6 @@ import { getProfileForm } from 'features/EditableProfileCard/model/selectors/get
 import { $api } from 'shared/api/api';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
 
-interface ThunkConfig {
-    state?: StateSchema;
-    rejectValue?: ValidateProfileError[];
-}
-
 export const updateProfileData = createAsyncThunk<
     Profile,
     void,

@@ -20,7 +20,10 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
-        'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
+        'react/jsx-filename-extension': [
+            2,
+            { extensions: ['.js', '.jsx', '.tsx'] },
+        ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
         'no-unused-vars': 'off',
@@ -48,7 +51,8 @@ module.exports = {
                     'label',
                     'name',
                     'open',
-                    'as'
+                    'as',
+                    'alt',
                 ],
             },
         ],

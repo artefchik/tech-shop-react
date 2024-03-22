@@ -10,6 +10,7 @@ import { getProfileIsLoading } from 'features/EditableProfileCard/model/selector
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { ProfileFavoritesBlock } from 'pages/ProfilePage/ui/ProfileFavoritesBlock/ProfileFavoritesBlock';
 import { HStack } from 'shared/ui/Stack';
+import { ConfirmEmail } from 'features/ConfirmEmail/ui/ConfirmEmail';
 
 interface ProfilePagePageBlockProps {
     className?: string;
@@ -19,6 +20,7 @@ interface ProfilePagePageBlockProps {
 
 export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
     const { className, block, id } = props;
+    const isLoading = useSelector(getProfileIsLoading);
 
     const profileData = useSelector(getProfileData);
     const dispatch = useAppDispatch();
@@ -35,14 +37,19 @@ export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
                 return <ProfileFavoritesBlock />;
 
             case ProfilePageItemType.PROFILE:
-                return <ProfileCard data={profileData} />;
+                return <ProfileCard isLoading={isLoading} data={profileData} />;
 
             case ProfilePageItemType.SETTING:
-                return <EditableProfileCard id={id} />;
+                return (
+                    <EditableProfileCard
+                        id={id}
+                        ActivatedEmail={<ConfirmEmail />}
+                    />
+                );
             default:
-                return <ProfileCard data={profileData} />;
+                return <ProfileCard isLoading={isLoading} data={profileData} />;
         }
-    }, [id, block, profileData]);
+    }, [isLoading, id, block, profileData]);
 
     return <HStack width>{renderBlock()}</HStack>;
 };

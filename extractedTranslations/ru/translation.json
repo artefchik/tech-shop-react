@@ -1,5 +1,6 @@
 {
   "": "",
+  "A confirmation link has been sent to your email": "A confirmation link has been sent to your email",
   "About": "О нас",
   "About As": "About As",
   "About Us": "About Us",
@@ -18,6 +19,7 @@
   "Cancel": "Cancel",
   "Categorie": "Categorie",
   "Categories": "Категории",
+  "Change avatar": "Change avatar",
   "Close": "Close",
   "Color": {
     "": {
@@ -28,11 +30,13 @@
   },
   "Comments": "Comments",
   "Confirm Password": "Confirm Password",
+  "Confirm email": "Confirm email",
   "Creating an article": "Creating an article",
   "Displaying the article": "Displaying the article",
   "Don't have an account?": "Don't have an account?",
   "Edit": "Edit",
   "Email": "Почта",
+  "Email confirmed": "Email confirmed",
   "Enter the comment text": "Enter the comment text",
   "Favorites": "Favorites",
   "Filters": "Filters",

@@ -32,7 +32,7 @@ export const MobileBarTop = (props: MobileBarTopProps) => {
     if (!userData) {
         return (
             <div className={classNames(cls.MobileBarTop, {}, [className])}>
-                <Button onClick={onShowModal}>{t('Sign Up')}</Button>
+                <Button onClick={onShowModal}>{t('Login')}</Button>
                 {isOpenModal && (
                     <AuthModal isOpen={isOpenModal} onClose={onCloseModal} />
                 )}
