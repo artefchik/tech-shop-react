@@ -23,11 +23,11 @@
     z-index: var(--z-index-modal);
     transform: scale(0.4);
     transition: all 0.4s ease 0s;
-    @media (max-width: 1023.98px) {
-        width: 60%;
+    @media (max-width: 1250.98px) {
+        width: 50%;
     }
 
-    @media (max-width: 767.98px) {
+    @media (max-width: 700.98px) {
         width: 90%;
     }
 

@@ -12,6 +12,7 @@ interface CounterProps {
     quantity: number;
     onIncrement?: (quantity: number) => void;
     onDecrement?: (quantity: number) => void;
+    stopPropagation?: boolean;
     view?: ViewCounter;
 }
 
@@ -21,6 +22,7 @@ export const Counter = memo((props: CounterProps) => {
         quantity,
         onDecrement,
         onIncrement,
+        stopPropagation = false,
         view = ViewCounter.SMALL,
     } = props;
 
@@ -31,8 +33,17 @@ export const Counter = memo((props: CounterProps) => {
         onIncrement?.(quantity);
     };
 
+    const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (stopPropagation) {
+            e.stopPropagation();
+        }
+    };
+
     return (
-        <div className={classNames(cls.Counter, {}, [className, cls[view]])}>
+        <div
+            onClick={onClickHandler}
+            className={classNames(cls.Counter, {}, [className, cls[view]])}
+        >
             <div className={cls.body}>
                 <button
                     onClick={onDecrementHandler(quantity)}

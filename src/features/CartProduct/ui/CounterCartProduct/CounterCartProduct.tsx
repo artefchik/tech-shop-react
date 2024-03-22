@@ -41,6 +41,7 @@ export const CounterCartProduct = (props: CounterCartProductProps) => {
     };
     return (
         <Counter
+            stopPropagation
             view={view}
             quantity={product.count}
             onIncrement={onIncrement(product.count)}

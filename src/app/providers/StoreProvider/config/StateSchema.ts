@@ -27,6 +27,7 @@ import { CartProductSchema } from 'features/CartProduct';
 import { ArticleDetailsRatingSchema } from 'features/ArticleDetailsRating';
 import { SignUpByEmailSchema } from 'features/SignUpByEmail';
 import { LoginByEmailSchema } from 'features/LoginByEmail';
+import { ProductDetailsSchema } from 'entities/Product';
 
 export interface StateSchema {
     user: UserSchema;
@@ -44,6 +45,7 @@ export interface StateSchema {
     articlesPage?: ArticlesPageSchema;
     articleFilters?: ArticleFiltersSchema;
     productsPage?: ProductsPageSchema;
+    productDetails?: ProductDetailsSchema;
     productsFilters?: ProductsFiltersSchema;
     editor?: EditorSchema;
     sandboxSettings?: SandboxSettingsSchema;

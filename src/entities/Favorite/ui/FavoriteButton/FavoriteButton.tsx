@@ -21,12 +21,16 @@ export const FavoriteButton = memo((props: FavoriteButtonProps) => {
     } = props;
     const [isSelectedFavorite, setIsSelectedFavorite] = useState(isFavorite);
 
-    const onToggleFavoriteHandler = useCallback(() => {
-        if (auth) {
-            setIsSelectedFavorite((prevState) => !prevState);
-        }
-        onToggleFavorite?.();
-    }, [auth, onToggleFavorite]);
+    const onToggleFavoriteHandler = useCallback(
+        (e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            if (auth) {
+                setIsSelectedFavorite((prevState) => !prevState);
+            }
+            onToggleFavorite?.();
+        },
+        [auth, onToggleFavorite],
+    );
 
     useEffect(() => {
         setIsSelectedFavorite(isFavorite);

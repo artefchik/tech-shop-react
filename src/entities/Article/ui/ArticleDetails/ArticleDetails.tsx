@@ -25,7 +25,7 @@ import { timeAgo } from 'shared/lib/helpers/date';
 import { ArticleTypeBlock } from '../ArticleTypeBlock/ArticleTypeBlock';
 import { ArticleRenderBlock } from '../ArticleRenderBlock/ArticleRenderBlock';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
-import { fetchArticleById } from '../../model/services/fetchArticleById';
+import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import cls from './ArticleDetails.module.scss';
 import { ArticleType } from '../../model/types/article';
 

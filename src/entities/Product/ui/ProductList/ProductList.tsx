@@ -1,10 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ProductCard } from 'entities/Product/ui/ProductCard/ProductCard';
-import { ProductCardSkeleton } from 'entities/Product/ui/ProductCard/ProductCardSkeleton';
 import { ViewType } from 'shared/const/types';
-import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
 import cls from './ProductList.module.scss';
-import { Product } from '../../model/product';
+import { Product } from '../../model/types/product';
 
 interface ProductListProps {
     className?: string;

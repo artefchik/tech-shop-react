@@ -20,8 +20,8 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { getRoutePathAuth } from 'shared/const/router';
 import { VStack } from 'shared/ui/Stack';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { CounterCartProduct } from 'features/CartProduct/ui/CounterCartProduct/CounterCartProduct';
 import { ViewCounter } from 'shared/ui/Counter/Counter';
+import { CounterCartProduct } from '../CounterCartProduct/CounterCartProduct';
 import {
     cartProductsActions,
     cartProductsReducer,
@@ -49,14 +49,18 @@ export const AddProductButton = (props: AddProductButtonProps) => {
     const cartProduct = useSelector((state: StateSchema) =>
         getCartProducts.selectById(state, product.id),
     );
-    const addToCart = useCallback(() => {
-        if (!userData?.id) {
-            onShowModal();
-        } else {
-            dispatch(cartProductsActions.addItem(product));
-            dispatch(addToProduct(product.id));
-        }
-    }, [dispatch, onShowModal, product, userData?.id]);
+    const addToCart = useCallback(
+        (e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            if (!userData?.id) {
+                onShowModal();
+            } else {
+                dispatch(cartProductsActions.addItem(product));
+                dispatch(addToProduct(product.id));
+            }
+        },
+        [dispatch, onShowModal, product, userData?.id],
+    );
 
     if (cartProduct) {
         return (

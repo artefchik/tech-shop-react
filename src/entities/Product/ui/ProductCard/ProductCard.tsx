@@ -2,14 +2,15 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import { memo, ReactNode } from 'react';
-import { StarRating } from 'shared/ui/StarRating/StarRating';
+import { memo, ReactNode, useCallback } from 'react';
 import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
 import { ViewType } from 'shared/const/types';
 import { AppImage } from 'shared/ui/AppImage/AppImage';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { NotFoundImage } from 'shared/ui/NotFoundImage/NotFoundImage';
-import { Product } from '../../model/product';
+import { getRoutePathProductDetailsById } from 'shared/const/router';
+import { useNavigate } from 'react-router-dom';
+import { Product } from '../../model/types/product';
 import cls from './ProductCard.module.scss';
 
 interface ProductItemProps {
@@ -23,10 +24,16 @@ interface ProductItemProps {
 export const ProductCard = memo((props: ProductItemProps) => {
     const { className, product, view, AddProductButton, FavoriteButton } =
         props;
+    const navigate = useNavigate();
+
+    const onOpenProduct = useCallback(() => {
+        navigate(getRoutePathProductDetailsById(product.category, product.id));
+    }, [navigate, product.category, product.id]);
 
     if (view === ViewType.SMALL) {
         return (
             <Card
+                onClick={onOpenProduct}
                 As="article"
                 className={classNames(cls.ProductCard, {}, [
                     className,
@@ -79,6 +86,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
 
     return (
         <Card
+            onClick={onOpenProduct}
             className={classNames(cls.ProductCard, {}, [className, cls[view]])}
         >
             <HStack gap="15" className={cls.card}>

@@ -1,5 +1,3 @@
-import { RouteProps } from 'react-router-dom';
-
 export enum AppRoutes {
     MAIN = 'main',
     ABOUT = 'about',
@@ -9,6 +7,7 @@ export enum AppRoutes {
     ARTICLE_CREATE = 'article_create',
     ARTICLE_EDIT = 'article_edit',
     PRODUCTS = 'products',
+    PRODUCTS_DETAILS = 'products_details',
     PRODUCTS_CATEGORIES = 'products_categories',
     SHOPPING_CART = 'shopping_cart',
     FAVORITES = 'favorites',
@@ -28,6 +27,8 @@ export const getRoutePathArticlesEditById = (id: string) =>
     `/articles/${id}/edit`;
 
 export const getRoutePathProducts = () => '/products';
+export const getRoutePathProductDetailsById = (category: string, id: string) =>
+    `/products/${category}/${id}`;
 export const getRoutePathProductsCategories = (category: string) =>
     `/products/${category}`;
 export const getRoutePathShoppingCart = () => '/shopping_cart';
@@ -43,6 +44,10 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.ARTICLE_CREATE]: getRoutePathArticlesCreate(),
     [AppRoutes.ARTICLE_EDIT]: getRoutePathArticlesEditById(':id'), // + :id
     [AppRoutes.PRODUCTS]: getRoutePathProducts(),
+    [AppRoutes.PRODUCTS_DETAILS]: getRoutePathProductDetailsById(
+        ':category',
+        ':id',
+    ),
     [AppRoutes.PRODUCTS_CATEGORIES]:
         getRoutePathProductsCategories(':category'), // + :id
     [AppRoutes.SHOPPING_CART]: getRoutePathShoppingCart(),

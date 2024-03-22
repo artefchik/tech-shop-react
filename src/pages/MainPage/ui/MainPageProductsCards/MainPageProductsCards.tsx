@@ -1,23 +1,13 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Slider } from 'shared/ui/Slider/Slider';
 import { VStack } from 'shared/ui/Stack';
 import { useTranslation } from 'react-i18next';
 import { getRoutePathProducts } from 'shared/const/router';
-import { Product, ProductCategory } from 'entities/Product/model/product';
-import { SwiperSlide } from 'swiper/react';
-import { ProductCard } from 'entities/Product/ui/ProductCard/ProductCard';
+import { Product, ProductCategory } from 'entities/Product/model/types/product';
 import { ViewType } from 'shared/const/types';
-import { MainPageCardsSlider } from 'pages/MainPage/ui/MainPageCardsSlider/MainPageCardsSlider';
-import { Article } from 'entities/Article';
-import { ArticleListItem } from 'entities/Article/ui/ArticleListItem/ArticleListItem';
-import { ProductCardSkeleton } from 'entities/Product';
+import { ProductCard, ProductCardSkeleton } from 'entities/Product';
 import { ProductFavoriteButton } from 'features/ProductFavoriteButton';
+import { MainPageCardsSlider } from '../MainPageCardsSlider/MainPageCardsSlider';
 import { useGetMainBlockPage } from '../../model/api/mainPageApi';
 import { MainPageCardHeader } from '../MainPageCardHeader/MainPageCardHeader';
-import {
-    breakpointsMainPageCards,
-    MainPageApiArg,
-} from '../../model/types/cardBlocks';
 
 interface MainPageProductsCardsProps {
     className?: string;

@@ -43,9 +43,9 @@
   "descending  price": "по убыванию цены",
   "Shopping Cart": "Корзина товаров",
   "Sort by": "Сортировать по...",
-  "Color": "Цвет...",
-  "Brand": "Бренд...",
-  "Model": "Модель...",
+  "Color": "Цвет",
+  "Brand": "Бренд",
+  "Model": "Модель",
   "Only authorized users can add products to the shopping cart": "Добавлять в товары в корзины могут только авторизованные пользователи.",
   "Only authorized users can add products to favorites": "Только авторизованные пользователи могут добавлять товары в избранное.",
   "An unexpected error has occurred, please refresh the page": "Произошла непредвиденная ошибка,пожалуйста обновите страницу.",
@@ -91,6 +91,8 @@
   "Change avatar": "Изменить аватар",
   "Confirm email": "Подтвердить почту",
   "A confirmation link has been sent to your email": "На ваш электронный адрес была отправлена ссылка для подтверждения",
-  "Email confirmed": "Почта подтверждена"
+  "Email confirmed": "Почта подтверждена",
+  "Memory": "Память",
+  "Product not found": "Товар не найден"
 }
 

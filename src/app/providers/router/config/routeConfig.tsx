@@ -15,6 +15,7 @@ import {
     getRoutePathAuth,
     getRoutePathFavorites,
     getRoutePathMain,
+    getRoutePathProductDetailsById,
     getRoutePathProducts,
     getRoutePathProductsCategories,
     getRoutePathProfile,
@@ -29,6 +30,7 @@ import { UserRoles } from 'entities/User';
 import { SandboxPage } from 'pages/SandboxPage';
 import { AuthPage } from 'pages/AuthPage';
 import { FavoritesPage } from 'pages/FavoritesPage';
+import { ProductDetailsPage } from 'pages/ProductDetailsPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -70,6 +72,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.PRODUCTS]: {
         path: getRoutePathProducts(),
         element: <ProductsCategoriesPage />,
+    },
+    [AppRoutes.PRODUCTS_DETAILS]: {
+        path: getRoutePathProductDetailsById(':category', ':id'),
+        element: <ProductDetailsPage />,
     },
     [AppRoutes.PRODUCTS_CATEGORIES]: {
         path: getRoutePathProductsCategories(':category'),

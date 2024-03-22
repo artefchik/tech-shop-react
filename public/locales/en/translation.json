@@ -42,9 +42,9 @@
   "ascending  price": "ascending  price",
   "descending  price": "descending  price",
   "Shopping Cart": "Shopping Cart",
-  "Brand": "Brand...",
-  "Model": "Model...",
-  "Color": "Color...",
+  "Brand": "Brand",
+  "Model": "Model",
+  "Color": "Color",
   "Sort by": "Sort by...",
   "Only authorized users can add products to the shopping cart": "Only authorized users can add products to the shopping cart.",
   "Only authorized users can add products to favorites": "Only authorized users can add products to favorites.",
@@ -92,5 +92,7 @@
   "Change avatar": "Change avatar",
   "Confirm email": "Confirm email",
   "A confirmation link has been sent to your email": "A confirmation link has been sent to your email",
-  "Email confirmed": "Email confirmed"
+  "Email confirmed": "Email confirmed",
+  "Memory": "Memory",
+  "Product not found": "Product not found"
 }

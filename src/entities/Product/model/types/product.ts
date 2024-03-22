@@ -22,14 +22,22 @@ export enum ProductColor {
     SILVER = 'silver',
     SPACE_GRAY = 'spaceGray',
 }
+
+export enum ProductMemory {
+    '128GB' = '128GB',
+    '256GB' = '256GB',
+    '512GB' = '512GB',
+    '1024GB' = '1024GB',
+}
 export interface Product {
     id: string;
     imageSrc: string;
     title: string;
     price: Price;
     color: ProductColor;
-    brand: ProductBrand;
+    brand: string;
     category: ProductCategory;
     starRating?: number;
+    memory: ProductMemory;
     description?: string;
 }
