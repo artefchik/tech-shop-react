@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
-import { memo, ReactNode, useCallback } from 'react';
+import React, { memo, ReactNode, useCallback } from 'react';
 import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
 import { ViewType } from 'shared/const/types';
 import { AppImage } from 'shared/ui/AppImage/AppImage';
@@ -30,6 +30,10 @@ export const ProductCard = memo((props: ProductItemProps) => {
         navigate(getRoutePathProductDetailsById(product.category, product.id));
     }, [navigate, product.category, product.id]);
 
+    const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
+    };
+
     if (view === ViewType.SMALL) {
         return (
             <Card
@@ -48,7 +52,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                             src={product.imageSrc}
                             alt={product.title}
                         />
-                        <div className={cls.favorites}>
+                        <div className={cls.favorites} onClick={onClickHandler}>
                             {FavoriteButton && FavoriteButton}
                         </div>
                     </div>
@@ -78,7 +82,9 @@ export const ProductCard = memo((props: ProductItemProps) => {
                             </HStack>
                         </VStack>
                     </VStack>
-                    {AddProductButton && AddProductButton}
+                    <div onClick={onClickHandler} className={cls.addButton}>
+                        {AddProductButton && AddProductButton}
+                    </div>
                 </VStack>
             </Card>
         );
@@ -127,7 +133,7 @@ export const ProductCard = memo((props: ProductItemProps) => {
                             As="span"
                         />
                     </HStack>
-                    <div className={cls.buttons}>
+                    <div className={cls.buttons} onClick={onClickHandler}>
                         <div className={cls.addButton}>
                             {AddProductButton && AddProductButton}
                         </div>

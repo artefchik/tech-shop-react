@@ -56,27 +56,29 @@ export const ProductFavoriteButton = (props: ProductFavoriteButtonProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <Modal isOpen={isOpenModal} lazy onClose={onCloseModal}>
-                <VStack align="center" gap="5">
-                    <Text
-                        text={t(
-                            'Only authorized users can add products to favorites',
-                        )}
-                        align={TextAlign.CENTER}
-                    />
-                    <AppLink
-                        theme={AppLinkTheme.SECONDARY}
-                        to={getRoutePathAuth()}
-                    >
-                        {t('Sign Up')}
-                    </AppLink>
-                </VStack>
-            </Modal>
-            <FavoriteButton
-                isFavorite={Boolean(favoriteItem)}
-                onToggleFavorite={onToggleFavorite}
-                auth={Boolean(userData?.id)}
-            />
+            <>
+                <Modal isOpen={isOpenModal} lazy onClose={onCloseModal}>
+                    <VStack align="center" gap="5">
+                        <Text
+                            text={t(
+                                'Only authorized users can add products to favorites',
+                            )}
+                            align={TextAlign.CENTER}
+                        />
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            to={getRoutePathAuth()}
+                        >
+                            {t('Sign Up')}
+                        </AppLink>
+                    </VStack>
+                </Modal>
+                <FavoriteButton
+                    isFavorite={Boolean(favoriteItem)}
+                    onToggleFavorite={onToggleFavorite}
+                    auth={Boolean(userData?.id)}
+                />
+            </>
         </DynamicModuleLoader>
     );
 };

@@ -23,6 +23,7 @@ export const ProductDetailsCard = (props: ProductDetailsCardProps) => {
     const product = useSelector(getProductDetailsData);
     const isLoading = useSelector(getProductDetailsIsLoading);
     const error = useSelector(getProductDetailsError);
+
     useEffect(() => {
         dispatch(fetchProductById(productId));
     }, [dispatch, productId]);

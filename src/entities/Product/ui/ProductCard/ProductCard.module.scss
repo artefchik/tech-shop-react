@@ -34,6 +34,7 @@
     }
   }
 
+
   .content {
     flex: 1 1 auto;
   }
@@ -64,6 +65,13 @@
   .prevPrice {
     text-decoration-line: line-through;
     color: var(--color-text-secondary);
+  }
+
+  .addButton {
+  > button {
+    width: 100%;
+  }
+
   }
 }
 
@@ -213,3 +221,4 @@
   height: 100px;
   width:  100px;
 }
+
