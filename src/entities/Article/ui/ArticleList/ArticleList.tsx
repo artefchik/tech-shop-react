@@ -1,7 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
 import { ViewType } from 'shared/const/types';
-import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { Article } from '../../model/types/article';
 import cls from './ArticleList.module.scss';
@@ -11,6 +10,7 @@ interface ArticleListProps {
     view?: ViewType;
     isLoading?: boolean;
     articles?: Article[];
+    isOffered?: boolean;
 }
 
 export const ArticleList = memo((props: ArticleListProps) => {
@@ -18,6 +18,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         className,
         isLoading,
         articles = [],
+        isOffered = false,
         view = ViewType.SMALL,
     } = props;
     return (
@@ -30,6 +31,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
                         key={article.id}
                         article={article}
                         view={view}
+                        isOffered={isOffered}
                     />
                 ))}
         </div>

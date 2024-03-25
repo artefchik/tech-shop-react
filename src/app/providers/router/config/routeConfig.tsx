@@ -15,6 +15,8 @@ import {
     getRoutePathAuth,
     getRoutePathFavorites,
     getRoutePathMain,
+    getRoutePathOfferedArticles,
+    getRoutePathOfferedArticlesById,
     getRoutePathProductDetailsById,
     getRoutePathProducts,
     getRoutePathProductsCategories,
@@ -31,6 +33,8 @@ import { SandboxPage } from 'pages/SandboxPage';
 import { AuthPage } from 'pages/AuthPage';
 import { FavoritesPage } from 'pages/FavoritesPage';
 import { ProductDetailsPage } from 'pages/ProductDetailsPage';
+import { OfferedArticlesPage } from 'pages/OfferedArticlesPage';
+import { OfferedArticleDetailsPage } from 'pages/OfferedArticleDetailsPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -61,12 +65,24 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.ARTICLE_CREATE]: {
         path: getRoutePathArticlesCreate(),
         element: <SandboxPage />,
-        authOnly: true,
+        // authOnly: true,
     },
     [AppRoutes.ARTICLE_EDIT]: {
         path: getRoutePathArticlesEditById(':id'),
         element: <ArticleDetailsEditPage />,
         authOnly: true,
+        // roles: [UserRoles.ADMIN],
+    },
+    [AppRoutes.OFFERED_ARTICLES]: {
+        path: getRoutePathOfferedArticles(),
+        element: <OfferedArticlesPage />,
+        // authOnly: true,
+        // roles: [UserRoles.ADMIN],
+    },
+    [AppRoutes.OFFERED_ARTICLE_DETAILS]: {
+        path: getRoutePathOfferedArticlesById(':id'),
+        element: <OfferedArticleDetailsPage />,
+        // authOnly: true,
         // roles: [UserRoles.ADMIN],
     },
     [AppRoutes.PRODUCTS]: {

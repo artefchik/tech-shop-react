@@ -66,39 +66,41 @@ export const AddProductButton = (props: AddProductButtonProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <Modal isOpen={isOpenModal} lazy onClose={onCloseModal}>
-                <VStack align="center" gap="5">
-                    <Text
-                        text={t(
-                            'Only authorized users can add products to the shopping cart',
-                        )}
-                        align={TextAlign.CENTER}
-                    />
-                    <AppLink
-                        theme={AppLinkTheme.SECONDARY}
-                        to={getRoutePathAuth()}
-                    >
-                        {t('Sign Up')}
-                    </AppLink>
-                </VStack>
-            </Modal>
+            <>
+                <Modal isOpen={isOpenModal} lazy onClose={onCloseModal}>
+                    <VStack align="center" gap="5">
+                        <Text
+                            text={t(
+                                'Only authorized users can add products to the shopping cart',
+                            )}
+                            align={TextAlign.CENTER}
+                        />
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            to={getRoutePathAuth()}
+                        >
+                            {t('Sign Up')}
+                        </AppLink>
+                    </VStack>
+                </Modal>
 
-            <Button
-                onClick={addToCart}
-                className={classNames(cls.AddProductButton, {}, [
-                    className,
-                    cls[view],
-                ])}
-            >
-                <>
-                    <Icon
-                        Svg={cartPlus}
-                        hover={false}
-                        className={cls.cartPlus}
-                    />
-                    <span>{t('Add To Cart')}</span>
-                </>
-            </Button>
+                <Button
+                    onClick={addToCart}
+                    className={classNames(cls.AddProductButton, {}, [
+                        className,
+                        cls[view],
+                    ])}
+                >
+                    <>
+                        <Icon
+                            Svg={cartPlus}
+                            hover={false}
+                            className={cls.cartPlus}
+                        />
+                        <span>{t('Add To Cart')}</span>
+                    </>
+                </Button>
+            </>
         </DynamicModuleLoader>
     );
 };

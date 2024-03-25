@@ -19,7 +19,7 @@ export const articleCategories: ArticleType[] = [
 ];
 
 export interface SandboxSettingsSchema {
-    types: ArticleType[];
+    types: ArticleType;
     previewImage: string;
     keyWords: string[];
     lang: LanguageType;

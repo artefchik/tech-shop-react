@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleDetails } from 'entities/Article';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Container } from 'shared/ui/Container/Container';
 import { Page } from 'shared/ui/Page/Page';
@@ -14,6 +13,7 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { AdvantagesItemList } from 'widgets/Advantages';
+import { ArticleDetailsCard } from 'widgets/ArticleDetailsCard';
 import cls from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsHeaderPage } from '../ArticleDetailsHeaderPage/ArticleDetailsHeaderPage';
 
@@ -41,7 +41,10 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
             >
                 <Container className={cls.body}>
                     <ArticleDetailsHeaderPage />
-                    <ArticleDetails articleId={id} className={cls.article} />
+                    <ArticleDetailsCard
+                        articleId={id}
+                        className={cls.article}
+                    />
                     <ArticleDetailsRating articleId={id} />
                     <ArticleDetailsComment articleId={id} />
                 </Container>

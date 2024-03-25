@@ -49,16 +49,20 @@ export const CommentItem = memo((props: CommentItemProps) => {
                         theme={AppLinkTheme.CLEAR}
                     >
                         <AppImage
-                            width={30}
-                            height={30}
-                            border="50%"
+                            className={cls.icon}
                             src={comment?.user.avatar}
                             fallback={
-                                <Skeleton width={30} height={30} border="50%" />
+                                <Skeleton
+                                    width={35}
+                                    height={35}
+                                    border="50%"
+                                    className={cls.icon}
+                                />
                             }
                             errorFallback={
                                 <Avatar
                                     src={avatar}
+                                    className={cls.icon}
                                     alt={comment.user.username}
                                 />
                             }

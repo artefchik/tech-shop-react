@@ -2,11 +2,17 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getProducts } from 'pages/ProductsPage/model/slice/productsPageSlice';
 import { ViewType } from 'shared/const/types';
-import { useEffect } from 'react';
+import {
+    MutableRefObject,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { ProductItem } from 'widgets/ProductItem';
 import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton';
-import { ProductCardSkeleton } from 'entities/Product';
+import { Product, ProductCardSkeleton } from 'entities/Product';
 import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
 import { EmptySearch } from 'shared/ui/EmptySearch/EmptySearch';
 import { useTranslation } from 'react-i18next';
@@ -27,13 +33,15 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
     const view = useSelector(getProductsPageView);
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
+
     useEffect(() => {
         dispatch(fetchProductsFavorites());
     }, [dispatch]);
 
-    const onLoadNextPart = () => {
+    const onLoadNextPart = useCallback(() => {
         dispatch(fetchProductsNextPage());
-    };
+    }, [dispatch]);
+
     if (isLoading) {
         return <ProductListSkeleton view={view} />;
     }
@@ -45,12 +53,17 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
     if (view === ViewType.BIG) {
         return (
             <Virtuoso
+                context={{ isLoading }}
                 className={className}
                 useWindowScroll
                 totalCount={productsLength}
                 data={products}
                 endReached={onLoadNextPart}
                 components={{
+                    Footer: () =>
+                        isLoading ? (
+                            <ProductListSkeleton view={ViewType.BIG} />
+                        ) : null,
                     ScrollSeekPlaceholder: () => (
                         <ProductCardSkeleton view={ViewType.BIG} />
                     ),
@@ -72,8 +85,10 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
 
     return (
         <VirtuosoGrid
+            context={{ isLoading }}
             className={className}
             totalCount={productsLength}
+            initialItemCount={5}
             data={products}
             useWindowScroll
             endReached={onLoadNextPart}

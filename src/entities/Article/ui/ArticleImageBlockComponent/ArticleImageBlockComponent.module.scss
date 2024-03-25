@@ -6,5 +6,7 @@
 }
 
 .image {
+    border-radius: var(--border-radius-s);
+    overflow: hidden;
     max-width: 100%;
 }

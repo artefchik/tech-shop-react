@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Profile } from 'entities/Profile';
+import { updateProfileAvatar } from 'features/EditableProfileCard/model/services/updateProfileAvatar/updateProfileAvatar';
+import { User } from 'entities/User';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 import { ProfileSchema } from '../types/editableProfile';
@@ -65,7 +67,27 @@ export const profileSlice = createSlice({
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.validateErrors = action.payload;
-            });
+            })
+            .addCase(updateProfileAvatar.pending, (state, action) => {
+                state.validateErrors = undefined;
+                state.isLoading = true;
+            })
+            .addCase(updateProfileAvatar.rejected, (state, action) => {
+                state.isLoading = false;
+            })
+            .addCase(
+                updateProfileAvatar.fulfilled,
+                (state, action: PayloadAction<User>) => {
+                    state.isLoading = false;
+                    if (state.data) {
+                        state.data.user = action.payload;
+                    }
+                    if (state.form) {
+                        state.form.user = action.payload;
+                    }
+                    state.readonly = true;
+                },
+            );
     },
 });
 

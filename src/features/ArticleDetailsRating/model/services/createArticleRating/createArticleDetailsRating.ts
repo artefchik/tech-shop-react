@@ -2,14 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { $api } from 'shared/api/api';
 import { getUserAuthData } from 'entities/User';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 import { ArticleRating } from '../../types/articleRating';
 
 export const createArticleDetailsRating = createAsyncThunk<
     ArticleRating,
     ArticleRating,
-    {
-        rejectValue: string;
-    }
+    ThunkConfig<string>
 >(
     'articleDetailsRating/createArticleDetailsRating',
     async (ratingData, thunkAPI) => {

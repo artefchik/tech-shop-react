@@ -1,4 +1,9 @@
-import { AnyAction, combineReducers, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import {
+    AnyAction,
+    combineReducers,
+    Reducer,
+    ReducersMapObject,
+} from '@reduxjs/toolkit';
 import {
     MountedReducers,
     ReducerManager,
@@ -32,6 +37,7 @@ export function createReducerManager(
             if (!key || reducers[key]) {
                 return;
             }
+            // @ts-ignore
             reducers[key] = reducer;
             combinedReducer = combineReducers(reducers);
         },

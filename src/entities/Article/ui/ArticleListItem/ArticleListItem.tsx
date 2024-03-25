@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
-import { memo, useCallback } from 'react';
+import { memo, ReactNode, useCallback } from 'react';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import { HStack, VStack } from 'shared/ui/Stack';
 import {
     getRoutePathArticlesDetailsById,
+    getRoutePathOfferedArticlesById,
     getRoutePathProfile,
 } from 'shared/const/router';
 import { timeAgo } from 'shared/lib/helpers/date';
@@ -35,10 +36,11 @@ interface ArticleListItemProps {
     article: Article;
     view: ViewType;
     index?: number;
+    isOffered?: boolean;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const { className, article, view, index } = props;
+    const { className, article, view, index, isOffered = false } = props;
     const navigate = useNavigate();
     const { t } = useTranslation();
     const renderType = useCallback(
@@ -57,7 +59,6 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     if (view === ViewType.BIG) {
         return (
             <article
-                onClick={onOpenArticle}
                 className={classNames(cls.ArticleListItem, {}, [
                     className,
                     cls[view],
@@ -97,7 +98,15 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                             className={cls.textBlock}
                         />
                         <AppLink
-                            to={getRoutePathArticlesDetailsById(article.id)}
+                            to={
+                                isOffered
+                                    ? getRoutePathOfferedArticlesById(
+                                          article.id,
+                                      )
+                                    : getRoutePathArticlesDetailsById(
+                                          article.id,
+                                      )
+                            }
                             theme={AppLinkTheme.PRIMARY}
                         >
                             <Text text={t('Read more')} />

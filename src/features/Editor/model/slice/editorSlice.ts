@@ -29,6 +29,19 @@ export const editorSlice = createSlice({
     name: 'editor',
     initialState,
     reducers: {
+        resetEditor: (state) => {
+            state.editorData = {
+                blocks: [
+                    {
+                        _id: uuidv4(),
+                        type: ArticleBlockType.TEXT,
+                        title: '',
+                        paragraph: '',
+                    },
+                ],
+                title: '',
+            };
+        },
         initEditor: (state) => {
             const data = getStorageItem<EditorSavedData>(
                 EDITOR_LOCALSTORAGE_KEY,

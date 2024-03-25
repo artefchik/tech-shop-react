@@ -39,7 +39,7 @@ export interface Article {
     img: string;
     views: number;
     createdAt: Date;
-    isUpdate: string;
+    isUpdate: boolean;
     types: ArticleType[];
     blocks: ArticleBlock[];
 }

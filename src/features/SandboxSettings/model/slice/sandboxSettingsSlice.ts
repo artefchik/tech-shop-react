@@ -5,7 +5,7 @@ import { SandboxSettingsSchema } from '../types/settings';
 
 const initialState: SandboxSettingsSchema = {
     lang: LanguageType.RU,
-    types: [],
+    types: ArticleType.IT,
     previewImage: '',
     keyWords: [],
 };
@@ -20,7 +20,7 @@ export const sandboxSettingsSlice = createSlice({
         setLang: (state, action: PayloadAction<LanguageType>) => {
             state.lang = action.payload;
         },
-        setTypes: (state, action: PayloadAction<ArticleType[]>) => {
+        setTypes: (state, action: PayloadAction<ArticleType>) => {
             state.types = action.payload;
         },
         setKeyWords: (state, action: PayloadAction<string>) => {
@@ -28,6 +28,10 @@ export const sandboxSettingsSlice = createSlice({
                 const words = action.payload.split(',');
                 state.keyWords = words.map((word) => word.trim());
             }
+        },
+
+        resetSettings: (state) => {
+            state.previewImage = '';
         },
     },
     extraReducers: (builder) => {},

@@ -1,3 +1,5 @@
+export { ArticleSortTypes } from './ui/ArticleSortTypes/ArticleSortTypes';
+
 export { articleFiltersActions } from './model/slice/articleFiltersSlice';
 
 export { ArticleSortField } from './model/types/filters';

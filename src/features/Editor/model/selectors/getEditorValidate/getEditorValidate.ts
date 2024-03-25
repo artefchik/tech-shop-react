@@ -5,5 +5,5 @@ import { getEditorTextBlocksParagraphs } from '../getEditorBlocks/getEditorBlock
 export const getEditorValidate = createSelector(
     getEditorTitle,
     getEditorTextBlocksParagraphs,
-    (title, paragraphLength) => title.length > 10 && paragraphLength > 40,
+    (title, paragraphLength) => title.length > 5 && paragraphLength > 40,
 );

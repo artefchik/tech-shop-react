@@ -28,6 +28,9 @@ import { ArticleDetailsRatingSchema } from 'features/ArticleDetailsRating';
 import { SignUpByEmailSchema } from 'features/SignUpByEmail';
 import { LoginByEmailSchema } from 'features/LoginByEmail';
 import { ProductDetailsSchema } from 'entities/Product';
+import { SandboxPageSchema } from 'pages/SandboxPage';
+import { OfferedArticlesPageSchema } from 'pages/OfferedArticlesPage';
+import { OfferedArticleDetailsSchema } from 'features/OfferedArticle';
 
 export interface StateSchema {
     user: UserSchema;
@@ -49,9 +52,13 @@ export interface StateSchema {
     productsFilters?: ProductsFiltersSchema;
     editor?: EditorSchema;
     sandboxSettings?: SandboxSettingsSchema;
+    sandboxPage?: SandboxPageSchema;
+    offeredArticlesPage?: OfferedArticlesPageSchema;
     signUpByEmail?: SignUpByEmailSchema;
     loginByEmail?: LoginByEmailSchema;
     mobileBar?: MobileBarSchema;
+
+    offeredArticleDetails?: OfferedArticleDetailsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

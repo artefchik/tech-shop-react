@@ -1,3 +1,5 @@
+import { OfferedArticlesPage } from 'pages/OfferedArticlesPage';
+
 export enum AppRoutes {
     MAIN = 'main',
     ABOUT = 'about',
@@ -12,6 +14,8 @@ export enum AppRoutes {
     SHOPPING_CART = 'shopping_cart',
     FAVORITES = 'favorites',
     AUTH = 'auth',
+    OFFERED_ARTICLES = 'offered_articles',
+    OFFERED_ARTICLE_DETAILS = 'offered_article_details',
 
     NOT_FOUND = 'not_found',
 }
@@ -35,6 +39,10 @@ export const getRoutePathShoppingCart = () => '/shopping_cart';
 export const getRoutePathAuth = () => '/auth';
 export const getRoutePathFavorites = () => '/favorites';
 
+export const getRoutePathOfferedArticles = () => '/offered_articles';
+export const getRoutePathOfferedArticlesById = (id: string) =>
+    `/offered_articles/${id}`;
+
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: getRoutePathMain(),
     [AppRoutes.ABOUT]: getRoutePathAbout(),
@@ -51,6 +59,8 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.PRODUCTS_CATEGORIES]:
         getRoutePathProductsCategories(':category'), // + :id
     [AppRoutes.SHOPPING_CART]: getRoutePathShoppingCart(),
+    [AppRoutes.OFFERED_ARTICLES]: getRoutePathOfferedArticles(),
+    [AppRoutes.OFFERED_ARTICLE_DETAILS]: getRoutePathOfferedArticlesById(':id'),
     [AppRoutes.FAVORITES]: getRoutePathFavorites(),
     [AppRoutes.AUTH]: getRoutePathAuth(),
 

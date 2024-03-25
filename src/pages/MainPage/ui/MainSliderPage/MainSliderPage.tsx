@@ -73,7 +73,7 @@ export const MainSliderPage = ({ className }: MainSliderPageProps) => {
                                 text={slide.text}
                             />
                         </VStack>
-                        <Button>{t('Купить')}</Button>
+                        <Button>{t('Buy')}</Button>
                     </VStack>
                     <div className={cls.image}>
                         <img src={slide.image} alt={slide.title} />

@@ -80,7 +80,7 @@ export function DropdownBox(props: DropdownBoxProps) {
                         <Combobox.Options as="ul" className={cls.list}>
                             {filteredItems.map((item) => (
                                 <Combobox.Option
-                                    key={item.value}
+                                    key={item.content}
                                     value={item.value}
                                     as={Fragment}
                                 >

@@ -20,12 +20,22 @@ export const EditorImageBlock = (props: EditorImageBlockProps) => {
     const { className, item, onClose } = props;
     const { t } = useTranslation();
 
-    const [title, setTitle] = useState(item.title);
+    const [title, setTitle] = useState(item.title ?? '');
     const dispatch = useAppDispatch();
 
-    const onChangeTitle = useCallback((value: string) => {
-        setTitle(value);
-    }, []);
+    const onChangeTitle = useCallback(
+        (value: string) => {
+            setTitle(value);
+            dispatch(
+                editorActions.onChangeImageBlock({
+                    _id: item._id,
+                    type: ArticleBlockType.IMAGE,
+                    title,
+                }),
+            );
+        },
+        [dispatch, item._id, title],
+    );
 
     const onChangeImage = useCallback(
         (image: string) => {

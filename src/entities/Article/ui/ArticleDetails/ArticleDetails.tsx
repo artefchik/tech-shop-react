@@ -3,6 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import {
+    Article,
     getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsIsLoading,
@@ -31,7 +32,9 @@ import { ArticleType } from '../../model/types/article';
 
 interface ArticleDetailsProps {
     className?: string;
-    articleId: string;
+    article?: Article;
+    isLoading: boolean;
+    error?: string;
 }
 
 const reducers: ReducersList = {
@@ -39,21 +42,12 @@ const reducers: ReducersList = {
 };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
-    const { className, articleId } = props;
-    const dispatch = useAppDispatch();
-    const article = useSelector(getArticleDetailsData);
-    const isLoading = useSelector(getArticleDetailsIsLoading);
-    const error = useSelector(getArticleDetailsError);
+    const { className, article, isLoading, error } = props;
+
     const renderType = useCallback(
         (type: ArticleType) => <ArticleTypeBlock type={type} key={type} />,
         [],
     );
-    useEffect(() => {
-        if (articleId) {
-            dispatch(fetchArticleById(articleId));
-        }
-    }, [dispatch, articleId]);
-
     let content;
 
     if (isLoading) {

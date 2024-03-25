@@ -31,7 +31,7 @@ const productsPageSlice = createSlice({
         view: ViewType.SMALL,
         category: ProductsCategories.ALL,
         page: 1,
-        limit: 7,
+        limit: 5,
         hasMore: true,
         _initiated: false,
     }),
@@ -55,7 +55,7 @@ const productsPageSlice = createSlice({
                 PRODUCTS_VIEW_LOCALSTORAGE_KEY,
             ) as ViewType;
             state.view = view;
-            state.limit = view === ViewType.SMALL ? 7 : 5;
+            state.limit = view === ViewType.SMALL ? 5 : 3;
             state._initiated = true;
         },
     },
