@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Article } from 'entities/Article';
 import { fetchOfferedArticleById } from '../services/fetchOfferedArticleById/fetchOfferedArticleById';
-import { OfferedArticleDetailsSchema } from '../types/OfferedArticleDetailsSchema';
+import {
+    OfferedArticle,
+    OfferedArticleDetailsSchema,
+} from '../types/OfferedArticleDetailsSchema';
 
 const initialState: OfferedArticleDetailsSchema = {
     data: undefined,
@@ -21,7 +24,7 @@ export const offeredArticleDetailsSlice = createSlice({
             })
             .addCase(
                 fetchOfferedArticleById.fulfilled,
-                (state, action: PayloadAction<Article>) => {
+                (state, action: PayloadAction<OfferedArticle>) => {
                     state.isLoading = false;
                     state.data = action.payload;
                 },

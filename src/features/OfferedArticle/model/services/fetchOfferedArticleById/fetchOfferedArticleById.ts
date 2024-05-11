@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { $api } from 'shared/api/api';
 import { Article } from 'entities/Article';
+import { OfferedArticle } from 'features/OfferedArticle/model/types/OfferedArticleDetailsSchema';
 
 export const fetchOfferedArticleById = createAsyncThunk<
     Article,
@@ -11,7 +12,10 @@ export const fetchOfferedArticleById = createAsyncThunk<
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
     try {
-        const response = await $api.get<Article>(`/sandbox-articles/${id}`, {});
+        const response = await $api.get<OfferedArticle>(
+            `/sandbox-articles/${id}`,
+            {},
+        );
         if (!response.data) {
             return rejectWithValue('error');
         }

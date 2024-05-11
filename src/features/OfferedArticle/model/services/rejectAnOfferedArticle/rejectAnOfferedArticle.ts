@@ -3,17 +3,22 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { $api } from 'shared/api/api';
 import { Article } from 'entities/Article';
 
-export const publishAnOfferedArticle = createAsyncThunk<
+interface rejectAnOfferedArticleArg {
+    id: string;
+    text: string;
+}
+
+export const rejectAnOfferedArticle = createAsyncThunk<
     Article,
-    string,
+    rejectAnOfferedArticleArg,
     ThunkConfig<string>
->('offeredArticle/publishAnOfferedArticle', async (id, thunkAPI) => {
+>('offeredArticle/rejectAnOfferedArticle', async ({ id, text }, thunkAPI) => {
     const { getState, rejectWithValue, dispatch } = thunkAPI;
 
     try {
         const response = await $api.post<Article>(
-            `/sandbox-articles/publish/${id}`,
-            {},
+            `/sandbox-articles/reject/${id}`,
+            { text },
         );
         if (!response.data) {
             return rejectWithValue('error');

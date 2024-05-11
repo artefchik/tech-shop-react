@@ -5,11 +5,10 @@ import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack } from 'shared/ui/Stack';
 import { useTranslation } from 'react-i18next';
-import { updateProfileAvatar } from 'features/EditableProfileCard/model/services/updateProfileAvatar/updateProfileAvatar';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 
-import { profileActions } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
+import { profileActions } from '../../model/slice/profileSlice';
 
 interface ProfileHeaderProps {
     className?: string;

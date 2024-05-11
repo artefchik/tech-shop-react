@@ -12,10 +12,11 @@ import {
 import { ProductItem } from 'widgets/ProductItem';
 import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 import { fetchProductsFavorites } from 'features/ProductFavoriteButton';
-import { Product, ProductCardSkeleton } from 'entities/Product';
+import { ProductCardSkeleton } from 'entities/Product';
 import { ProductListSkeleton } from 'entities/Product/ui/ProductList/ProductListSkeleton';
 import { EmptySearch } from 'shared/ui/EmptySearch/EmptySearch';
 import { useTranslation } from 'react-i18next';
+import { getRoutePathMain } from 'shared/const/router';
 import { fetchProductsNextPage } from '../../model/services/fetchProductsNextPage/fetchProductsNextPage';
 import cls from './ProductsPageInfiniteList.module.scss';
 import { getProductsPageIsLoading } from '../../model/selectors/getProductsPageIsLoading/getProductsPageIsLoading';
@@ -47,7 +48,13 @@ export const ProductsPageInfiniteList = (props: ArticlesInfiniteListProps) => {
     }
 
     if (!productsLength) {
-        return <EmptySearch text={t('Nothing was found')} />;
+        return (
+            <EmptySearch
+                text={t('Nothing was found')}
+                to={getRoutePathMain()}
+                labelLink={t('Home')}
+            />
+        );
     }
 
     if (view === ViewType.BIG) {

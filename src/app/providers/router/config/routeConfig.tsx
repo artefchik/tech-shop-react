@@ -76,13 +76,13 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.OFFERED_ARTICLES]: {
         path: getRoutePathOfferedArticles(),
         element: <OfferedArticlesPage />,
-        // authOnly: true,
-        // roles: [UserRoles.ADMIN],
+        authOnly: true,
+        roles: [UserRoles.ADMIN],
     },
     [AppRoutes.OFFERED_ARTICLE_DETAILS]: {
         path: getRoutePathOfferedArticlesById(':id'),
         element: <OfferedArticleDetailsPage />,
-        // authOnly: true,
+        authOnly: true,
         // roles: [UserRoles.ADMIN],
     },
     [AppRoutes.PRODUCTS]: {

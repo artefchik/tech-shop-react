@@ -94,6 +94,14 @@
   "Email confirmed": "Почта подтверждена",
   "Memory": "Память",
   "Product not found": "Товар не найден",
-  "Buy":"Купить"
+  "Buy":"Купить",
+  "The publication of the article was refused , the reason is": "В публикации статьи было отказано, причина - ",
+  "This article was refused publication, it is under revision": "Этой статье было отказано в публикации, она находится на доработке",
+  "The title": "Заголовок",
+  "Enter the text": "Введите текст",
+  "The article not found": "Статья не найдена",
+  "All articles": "Все статьи",
+  "All products": "Все продукты",
+  "Profile not found": "Профиль не найден"
 }
 

@@ -179,6 +179,7 @@ const SignUpForm = (props: SignUpFormProps) => {
                         </VStack>
                         {error && <ErrorBlock text={error} />}
                         <Button
+                            isLoading={isSubmitting}
                             disabled={!isDirty || isSubmitting}
                             type="submit"
                         >

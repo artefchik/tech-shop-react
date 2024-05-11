@@ -11,6 +11,14 @@ import { getOfferedArticleDetailsData } from 'features/OfferedArticle/model/sele
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useEffect } from 'react';
 import { fetchOfferedArticleById } from 'features/OfferedArticle/model/services/fetchOfferedArticleById/fetchOfferedArticleById';
+import { ErrorBlock } from 'shared/ui/ErrorBlock/ErrorBlock';
+import { useTranslation } from 'react-i18next';
+import { getIsAdminRole, getUserAuthData } from 'entities/User';
+import { OfferedArticleButtons } from 'features/OfferedArticle/ui/OfferedArticleButtons/OfferedArticleButtons';
+import { getOfferedArticleDetailsError } from 'features/OfferedArticle/model/selectors/getOfferedArticleDetailsError/getOfferedArticleDetailsError';
+import { getOfferedArticleDetailsIsLoading } from 'features/OfferedArticle/model/selectors/getOfferedArticleDetailsIsLoading/getOfferedArticleDetailsIsLoading';
+import { use } from 'i18next';
+import { Button } from 'shared/ui/Button/Button';
 import cls from './OfferedArticleCard.module.scss';
 
 interface OfferedArticleCardProps {
@@ -23,8 +31,20 @@ const reducers: ReducersList = {
 };
 export const OfferedArticleCard = (props: OfferedArticleCardProps) => {
     const { className, articleId } = props;
-    const article = useSelector(getOfferedArticleDetailsData);
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
+
+    const article = useSelector(getOfferedArticleDetailsData);
+    const error = useSelector(getOfferedArticleDetailsError);
+    const isLoading = useSelector(getOfferedArticleDetailsIsLoading);
+    const isAdmin = useSelector(getIsAdminRole);
+    const userData = useSelector(getUserAuthData);
+
+    const rejectedText = isAdmin
+        ? `${t('This article was refused publication, it is under revision')}`
+        : `${t(
+              'The publication of the article was refused , the reason is',
+          )}${article?.rejected}`;
 
     useEffect(() => {
         dispatch(fetchOfferedArticleById(articleId));
@@ -36,7 +56,12 @@ export const OfferedArticleCard = (props: OfferedArticleCardProps) => {
                 gap="15"
                 className={classNames(cls.OfferedArticleCard, {}, [className])}
             >
-                <ArticleDetails isLoading={false} article={article} />
+                {article?.rejected && <ErrorBlock text={rejectedText} />}
+                <ArticleDetails isLoading={isLoading} article={article} />
+                <OfferedArticleButtons
+                    isRejected={Boolean(article?.rejected)}
+                    article={article}
+                />
             </VStack>
         </DynamicModuleLoader>
     );

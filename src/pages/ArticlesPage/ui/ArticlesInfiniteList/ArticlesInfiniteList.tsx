@@ -7,6 +7,7 @@ import { EmptySearch } from 'shared/ui/EmptySearch/EmptySearch';
 import { useTranslation } from 'react-i18next';
 import { getSkeletons } from 'shared/ui/Skeleton/Skeleton';
 import { ArticleListSkeleton } from 'entities/Article/ui/ArticleList/ArticleListSkeleton';
+import { getRoutePathMain } from 'shared/const/router';
 import { fetchArticleNextPage } from '../../model/services/fetchArticleNextPage/fetchArticleNextPage';
 import { getArticles } from '../../model/slice/articlesPageSlice';
 import { getArticleListIsLoading } from '../../model/selectors/getArticleListIsLoading/getArticleListIsLoading';
@@ -36,7 +37,13 @@ export const ArticlesInfiniteList = (props: ArticlesInfiniteListProps) => {
     }
 
     if (!articlesLength) {
-        return <EmptySearch text={t('Nothing was found')} />;
+        return (
+            <EmptySearch
+                text={t('Nothing was found')}
+                to={getRoutePathMain()}
+                labelLink={t('Home')}
+            />
+        );
     }
 
     if (view === ViewType.BIG) {

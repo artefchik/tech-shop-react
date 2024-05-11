@@ -28,6 +28,8 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
                 return t('User profile');
             case ProfilePageItemType.FAVORITES:
                 return t('User favorites');
+            case ProfilePageItemType.USER_ARTICLES:
+                return t('User articles');
             default:
                 return '';
         }

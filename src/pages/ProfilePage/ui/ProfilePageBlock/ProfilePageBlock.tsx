@@ -11,6 +11,9 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { ProfileFavoritesBlock } from 'pages/ProfilePage/ui/ProfileFavoritesBlock/ProfileFavoritesBlock';
 import { HStack } from 'shared/ui/Stack';
 import { ConfirmEmail } from 'features/ConfirmEmail/ui/ConfirmEmail';
+import { OfferedArticlesList } from 'widgets/OfferedArticlesList';
+import { fetchOfferedArticles } from 'pages/OfferedArticlesPage/model/services/fetchOfferedArticles/fetchOfferedArticles';
+import { getOfferedArticlesData } from 'pages/OfferedArticlesPage/model/selectors/getOfferedArticlesData/getOfferedArticlesData';
 
 interface ProfilePagePageBlockProps {
     className?: string;
@@ -18,9 +21,10 @@ interface ProfilePagePageBlockProps {
     block: ProfilePageItemType;
 }
 
-export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
+export const ProfilePageBlock = (props: ProfilePagePageBlockProps) => {
     const { className, block, id } = props;
     const isLoading = useSelector(getProfileIsLoading);
+    const articles = useSelector(getOfferedArticlesData);
 
     const profileData = useSelector(getProfileData);
     const dispatch = useAppDispatch();
@@ -30,6 +34,10 @@ export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
             dispatch(fetchProfileData(id));
         }
     }, [dispatch, id]);
+
+    useEffect(() => {
+        dispatch(fetchOfferedArticles({ userId: id }));
+    }, [dispatch]);
 
     const renderBlock = useCallback(() => {
         switch (block) {
@@ -46,6 +54,10 @@ export const ProfilePagePageBlock = (props: ProfilePagePageBlockProps) => {
                         ActivatedEmail={<ConfirmEmail />}
                     />
                 );
+
+            case ProfilePageItemType.USER_ARTICLES: {
+                return <OfferedArticlesList articles={articles} />;
+            }
             default:
                 return <ProfileCard isLoading={isLoading} data={profileData} />;
         }

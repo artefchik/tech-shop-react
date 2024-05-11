@@ -23,7 +23,6 @@ export const ArticleDetailsCard = (props: ArticleDetailsCardProps) => {
     const dispatch = useAppDispatch();
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
-    const error = useSelector(getArticleDetailsError);
 
     useEffect(() => {
         if (articleId) {
@@ -31,7 +30,5 @@ export const ArticleDetailsCard = (props: ArticleDetailsCardProps) => {
         }
     }, [dispatch, articleId]);
 
-    return (
-        <ArticleDetails article={article} isLoading={isLoading} error={error} />
-    );
+    return <ArticleDetails article={article} isLoading={isLoading} />;
 };

@@ -38,7 +38,6 @@ const OfferedArticleDetailsPage = (props: OfferedArticleDetailsPageProps) => {
                         </AppLink>
                     </div>
                     <OfferedArticleCard articleId={id} />
-                    <OfferedArticleButtons articleId={id} />
                 </VStack>
             </Container>
         </Page>

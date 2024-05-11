@@ -5,6 +5,8 @@ export enum ProfilePageItemType {
     PROFILE = 'profile',
     FAVORITES = 'favorites',
     CREATE_ARTICLE = 'create_article',
+    USER_ARTICLES = 'user_articles',
+    OFFERED_ARTICLES = 'offered_articles',
 }
 
 export interface ProfileItem {
@@ -12,23 +14,3 @@ export interface ProfileItem {
     block: ProfilePageItemType;
     to?: string;
 }
-
-export const profileItemsConfig: ProfileItem[] = [
-    {
-        content: 'Profile',
-        block: ProfilePageItemType.PROFILE,
-    },
-    {
-        content: 'Settings',
-        block: ProfilePageItemType.SETTING,
-    },
-    {
-        content: 'Favorites',
-        block: ProfilePageItemType.FAVORITES,
-    },
-    {
-        content: 'Creating an article',
-        block: ProfilePageItemType.CREATE_ARTICLE,
-        to: getRoutePathArticlesCreate(),
-    },
-];

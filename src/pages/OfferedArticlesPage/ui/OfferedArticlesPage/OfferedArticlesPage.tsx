@@ -5,13 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { Container } from 'shared/ui/Container/Container';
 import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { ArticleList } from 'entities/Article';
+import { ArticleListItem } from 'entities/Article';
 import { ViewType } from 'shared/const/types';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { VStack } from 'shared/ui/Stack';
+import { OfferedArticlesList } from 'widgets/OfferedArticlesList';
 import { getOfferedArticlesData } from '../../model/selectors/getOfferedArticlesData/getOfferedArticlesData';
 import { fetchOfferedArticles } from '../../model/services/fetchOfferedArticles/fetchOfferedArticles';
 import { offeredArticlesPageReducer } from '../../model/slice/offeredArticlesPageSlice';
@@ -29,6 +30,7 @@ const OfferedArticlesPage = (props: OfferedArticlesPageProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const articles = useSelector(getOfferedArticlesData);
+
     useEffect(() => {
         dispatch(fetchOfferedArticles({}));
     }, [dispatch]);
@@ -43,11 +45,7 @@ const OfferedArticlesPage = (props: OfferedArticlesPageProps) => {
                             size={TextSize.LARGE}
                             As="h3"
                         />
-                        <ArticleList
-                            isOffered
-                            articles={articles}
-                            view={ViewType.BIG}
-                        />
+                        <OfferedArticlesList articles={articles} />
                     </VStack>
                 </Container>
             </Page>

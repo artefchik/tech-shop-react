@@ -21,6 +21,7 @@ interface TabsProps {
 }
 
 export const Tabs = (props: TabsProps) => {
+
     const { className, onTabClick, value, tabs, name } = props;
     const onChangeHandler = useCallback(
         (tab: TabItem) => () => {

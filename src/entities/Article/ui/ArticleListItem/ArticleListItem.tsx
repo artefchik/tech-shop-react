@@ -21,6 +21,7 @@ import { AppImage } from 'shared/ui/AppImage/AppImage';
 import { NotFoundImage } from 'shared/ui/NotFoundImage/NotFoundImage';
 import { ARTICLE_ITEM_ID_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { ErrorBlock } from 'shared/ui/ErrorBlock/ErrorBlock';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
 import {
@@ -37,10 +38,18 @@ interface ArticleListItemProps {
     view: ViewType;
     index?: number;
     isOffered?: boolean;
+    rejected?: boolean;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const { className, article, view, index, isOffered = false } = props;
+    const {
+        className,
+        article,
+        view,
+        index,
+        rejected,
+        isOffered = false,
+    } = props;
     const navigate = useNavigate();
     const { t } = useTranslation();
     const renderType = useCallback(
@@ -66,6 +75,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             >
                 <Card>
                     <VStack gap="10" className={cls.body}>
+                        {rejected && (
+                            <ErrorBlock
+                                className={cls.rejected}
+                                text={t('Reject')}
+                            />
+                        )}
                         <HStack wrap gap="20">
                             <AppLink
                                 to={getRoutePathProfile(article.user.id)}
@@ -120,8 +135,8 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     return (
         <article
             className={classNames(cls.ArticleListItem, {}, [
-                className,
                 cls[view],
+                className,
             ])}
         >
             <Card

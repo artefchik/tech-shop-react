@@ -1,5 +1,6 @@
 {
   "": "",
+  "A": "A",
   "A confirmation link has been sent to your email": "A confirmation link has been sent to your email",
   "About": "About",
   "About As": "About As",
@@ -10,6 +11,8 @@
   "Add an image": "Add an image",
   "Age": "Age",
   "All": "All",
+  "All articles": "All articles",
+  "All products": "All products",
   "Amazing Savings": "Amazing Savings",
   "An unexpected error has occurred, please refresh the page": "An unexpected error has occurred, please refresh the page",
   "Article Settings": "Article Settings",
@@ -38,6 +41,7 @@
   "Email": "Email",
   "Email confirmed": "Email confirmed",
   "Enter the comment text": "Enter the comment text",
+  "Enter the text": "Enter the text",
   "Favorites": "Favorites",
   "Filters": "Filters",
   "First name": "First name",
@@ -75,11 +79,13 @@
   "Product not found": "Product not found",
   "Products": "Products",
   "Profile": "Profile",
+  "Profile not found": "Profile not found",
   "Profile settings": "Profile settings",
   "Publish": "Publish",
   "Read more": "Read more",
   "Recover": "Recover",
   "Refresh the page": "Refresh the page",
+  "Reject": "Reject",
   "Restore": "Restore",
   "Save": "Save",
   "Shop is a proudly Australian open, Melbourne based supplier of I": {
@@ -104,6 +110,12 @@
   "Submit for moderation": "Submit for moderation",
   "Subscribe": "Subscribe",
   "Thank you for evaluating the article": "Thank you for evaluating the article",
+  "The article not found": "The article not found",
+  "The publication of the article was refused , the reason is": "The publication of the article was refused , the reason is",
+  "The reason for the refusal to publish": "The reason for the refusal to publish",
+  "The title": "The title",
+  "This article was refused publication, it is under revision": "This article was refused publication, it is under revision",
+  "Title": "Title",
   "To create a basic text block": "To create a basic text block",
   "To create a basic text block, click \"~\"": "To create a basic text block, click \"~\"",
   "Up to 3 years on-site warranty available for your peace of mind": {
@@ -112,6 +124,7 @@
   "Up to 70% off new Products, you can be sure of the best price": {
     "": "Up to 70% off new Products, you can be sure of the best price."
   },
+  "User articles": "User articles",
   "User favorites": "User favorites",
   "User not Found": "User not Found",
   "User not found": "User not found",

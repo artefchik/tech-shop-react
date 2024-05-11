@@ -9,6 +9,7 @@ import { formatToCurrency } from 'shared/lib/helpers/formatToCurrency';
 import { Product } from 'entities/Product';
 import { NotFoundImage } from 'shared/ui/NotFoundImage/NotFoundImage';
 import { EmptySearch } from 'shared/ui/EmptySearch/EmptySearch';
+import { getRoutePathProducts } from 'shared/const/router';
 import { ProductDetailsSkeleton } from '../ProductDetails/ProductDetailsSkeleton';
 import cls from './ProductDetails.module.scss';
 
@@ -29,7 +30,13 @@ export const ProductDetails = (props: ProductDetailsProps) => {
     if (isLoading) {
         content = <ProductDetailsSkeleton />;
     } else if (error) {
-        content = <EmptySearch text={t('Product not found')} />;
+        content = (
+            <EmptySearch
+                text={t('Product not found')}
+                to={getRoutePathProducts()}
+                labelLink={t('All products')}
+            />
+        );
     } else {
         content = (
             <VStack gap="10">

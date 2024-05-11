@@ -96,5 +96,15 @@
   "Memory": "Memory",
   "Product not found": "Product not found",
   "Buy":"Buy",
-  "Publish": "Publish"
+  "Publish": "Publish",
+  "Reject": "Reject",
+  "The publication of the article was refused , the reason is": "The publication of the article was refused , the reason is - ",
+  "This article was refused publication, it is under revision": "This article was refused publication, it is under revision",
+  "The title": "The title",
+  "Enter the text": "Enter the text",
+  "The article not found": "The article not found",
+  "All articles": "All articles",
+  "All products": "All products",
+  "Profile not found": "Profile not found",
+  "User articles": "User articles"
 }

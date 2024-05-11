@@ -24,9 +24,11 @@ import { getUserAuthData } from 'entities/User';
 import { ProfileCard } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { EmptySearch } from 'shared/ui/EmptySearch/EmptySearch';
-import { ProfilePagePageBlock } from '../ProfilePageBlock/ProfilePagePageBlock';
+import { getRoutePathMain } from 'shared/const/router';
+import { offeredArticlesPageReducer } from 'pages/OfferedArticlesPage/model/slice/offeredArticlesPageSlice';
 import { ProfilePageHeader } from '../ProfilePageHeader/ProfilePageHeader';
 import cls from './ProfilePage.module.scss';
+import { ProfilePageBlock } from '../ProfilePageBlock/ProfilePageBlock';
 
 interface ProfilePageProps {
     className?: string;
@@ -34,10 +36,12 @@ interface ProfilePageProps {
 
 const reducers: ReducersList = {
     profile: profileReducer,
+    offeredArticlesPage: offeredArticlesPageReducer,
 };
 
 export const ProfilePage = (props: ProfilePageProps) => {
     const { className } = props;
+    const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     const [isCurrentBlock, setIsCurrentBlock] = useState(
         ProfilePageItemType.PROFILE,
@@ -61,7 +65,13 @@ export const ProfilePage = (props: ProfilePageProps) => {
     let renderContent;
 
     if (error) {
-        renderContent = <EmptySearch text={error} />;
+        renderContent = (
+            <EmptySearch
+                text={t('Profile not found')}
+                to={getRoutePathMain()}
+                labelLink={t('Home')}
+            />
+        );
     } else if (authData?.id !== id) {
         renderContent = (
             <>
@@ -78,7 +88,7 @@ export const ProfilePage = (props: ProfilePageProps) => {
                 />
 
                 <HStack gap="20" className={cls.content}>
-                    <ProfilePagePageBlock block={isCurrentBlock} id={id} />
+                    <ProfilePageBlock block={isCurrentBlock} id={id} />
                     <NavbarProfilePage
                         onChangeBlock={setIsCurrentBlock}
                         block={isCurrentBlock}

@@ -18,7 +18,7 @@ export const ErrorBlock = (props: ErrorBlockProps) => {
             className={classNames(cls.ErrorBlock, {}, [className])}
         >
             <Icon Svg={info} />
-            <Text text={text} />
+            <Text text={text} As="span" />
         </HStack>
     );
 };

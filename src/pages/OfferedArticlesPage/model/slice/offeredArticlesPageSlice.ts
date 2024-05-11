@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Article } from 'entities/Article';
+import { OfferedArticle } from 'features/OfferedArticle';
 import { OfferedArticlesPageSchema } from '../types/OfferedArticlesPageSchema';
 import { fetchOfferedArticles } from '../services/fetchOfferedArticles/fetchOfferedArticles';
 
@@ -21,7 +22,7 @@ export const offeredArticlesPageSlice = createSlice({
             })
             .addCase(
                 fetchOfferedArticles.fulfilled,
-                (state, action: PayloadAction<Article[]>) => {
+                (state, action: PayloadAction<OfferedArticle[]>) => {
                     state.isLoading = false;
                     state.data = action.payload;
                 },

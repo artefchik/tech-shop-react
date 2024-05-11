@@ -7,14 +7,17 @@ import { useCallback } from 'react';
 import { getEditorValidate } from 'features/Editor/model/selectors/getEditorValidate/getEditorValidate';
 import { getEditorTextBlocksParagraphs } from 'features/Editor/model/selectors/getEditorBlocks/getEditorBlocks';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { sendArticleForModeration } from 'pages/SandboxPage/model/services/sendArticleForModeration/sendArticleForModeration';
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { sandboxSettingsReducer } from 'features/SandboxSettings';
 import { getSandboxSettingsImage } from 'features/SandboxSettings/model/selectors/getSandboxSettingsImage/getSandboxSettingsImage';
-import { getSandboxPageIsLoading } from 'pages/SandboxPage/model/selectors/getSandboxPageIsLoading/getSandboxPageIsLoading';
 import { editorActions } from 'features/Editor/model/slice/editorSlice';
 import { sandboxSettingsActions } from 'features/SandboxSettings/model/slice/sandboxSettingsSlice';
+import { useNavigate } from 'react-router-dom';
+import { getRoutePathProfile } from 'shared/const/router';
+import { getUserAuthData } from 'entities/User';
 import cls from './SandboxPageFooter.module.scss';
+import { getSandboxPageIsLoading } from '../../model/selectors/getSandboxPageIsLoading/getSandboxPageIsLoading';
+import { sendArticleForModeration } from '../../model/services/sendArticleForModeration/sendArticleForModeration';
 
 interface SandboxPageFooterProps {
     className?: string;
@@ -34,8 +37,9 @@ export const SandboxPageFooter = (props: SandboxPageFooterProps) => {
     const isValidateEditorFields = useSelector(getEditorValidate);
     const text = useSelector(getEditorTextBlocksParagraphs);
     const prevImage = useSelector(getSandboxSettingsImage);
-
+    const navigate = useNavigate();
     const isLoading = useSelector(getSandboxPageIsLoading);
+    const userData = useSelector(getUserAuthData);
     const onClickNext = useCallback(
         (step: number) => () => {
             if (activeStep !== stepsCount) {
@@ -61,6 +65,7 @@ export const SandboxPageFooter = (props: SandboxPageFooterProps) => {
         if (result.meta.requestStatus === 'fulfilled') {
             dispatch(editorActions.resetEditor());
             dispatch(sandboxSettingsActions.resetSettings());
+            navigate(getRoutePathProfile(userData?.id ?? ''));
         }
     }, [dispatch]);
 
